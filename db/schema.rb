@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160926174640) do
+ActiveRecord::Schema.define(version: 20161025045148) do
 
   create_table "allocation_histories", force: :cascade do |t|
     t.integer  "item_id"
@@ -24,26 +24,26 @@ ActiveRecord::Schema.define(version: 20160926174640) do
   end
 
   create_table "brands", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "items", force: :cascade do |t|
-    t.text     "name"
-    t.text     "description"
-    t.text     "model_number"
-    t.integer  "quantity"
-    t.decimal  "unit_price"
-    t.decimal  "total_value"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.text     "name",               limit: 50,   null: false
+    t.text     "description",        limit: 1000, null: false
+    t.text     "model_number",       limit: 25,   null: false
+    t.integer  "quantity",                        null: false
+    t.decimal  "unit_price",                      null: false
+    t.decimal  "total_value",                     null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
