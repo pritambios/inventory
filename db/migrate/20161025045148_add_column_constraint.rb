@@ -7,5 +7,7 @@ class AddColumnConstraint < ActiveRecord::Migration[5.0]
     change_column :items, :unit_price, :decimal, null: false
     change_column :items, :total_value, :decimal, null: false
     add_foreign_key :items, :users
+    add_index :brands, :name, unique: true
+    add_index :categories, :name, unique: true
   end
 end
