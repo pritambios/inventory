@@ -1,6 +1,5 @@
 class UpdateUsers < ActiveRecord::Migration[5.0]
   def change
-
     remove_column :users, :encrypted_password, :string
     remove_column :users, :reset_password_token, :string
     remove_column :users, :reset_password_sent_at, :datetime
@@ -12,11 +11,9 @@ class UpdateUsers < ActiveRecord::Migration[5.0]
     remove_column :users, :last_sign_in_ip, :string
     remove_column :users, :admin, :boolean
     remove_column :users, :phone, :string
-
-    add_column :users, :access_token, :string, { :null => false }
-    add_column :users, :google_uid, :string, { :null => false }
-
+    add_column :users, :access_token, :string, null: false
+    add_column :users, :google_uid, :string, null: false
     change_column_null :users, :first_name, false
-
+    change_column_default :users, :email, from: "", to: nil
   end
 end
