@@ -1,17 +1,13 @@
 class Item < ApplicationRecord
-  belongs_to :user
+  belongs_to :employee
   belongs_to :category
   belongs_to :brand
-  has_many :allocation_histories
+  belongs_to :system
 
-  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }
-  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
-  validates :name, presence: true, length: { minimum: 3, maximum: 50 }
-  validates :description, presence: true, length: { minimum: 10, maximum: 1000 }
+  validates :serial_number, presence: true, length: { minimum: 3, maximum: 50 }
   validates :model_number, presence: true, length: { minimum: 2, maximum: 25 }
-  validates :quantity, presence: true
-  validates :unit_price, presence: true
-  validates :total_value, presence: true
+  validates :purchase_on, presence: true
+  validates :purchase_from, presence: true
 
   def save_allocation_history(user)
     allocation_history = allocation_histories.build
