@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161027073405) do
+ActiveRecord::Schema.define(version: 20161027085003) do
   create_table "allocation_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "item_id"
     t.integer  "user_id"
@@ -47,13 +47,21 @@ ActiveRecord::Schema.define(version: 20161027073405) do
   end
 
   create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.text     "model_number", limit: 255, null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.integer  "user_id"
-    t.integer  "category_id"
-    t.integer  "brand_id"
-    t.index ["user_id"], name: "fk_rails_d4b6334db2", using: :btree
+    t.text     "model_number",        limit: 255,                  null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+    t.integer  "category_id",                                      null: false
+    t.integer  "brand_id",                                         null: false
+    t.integer  "employee_id"
+    t.integer  "system_id"
+    t.string   "serial_number",                                    null: false
+    t.date     "purchase_on",                                      null: false
+    t.string   "purchase_from",                                    null: false
+    t.text     "purchase_note",       limit: 65535
+    t.boolean  "working",                           default: true
+    t.date     "warrenty_expired_on"
+    t.index ["employee_id"], name: "index_items_on_employee_id", using: :btree
+    t.index ["system_id"], name: "index_items_on_system_id", using: :btree
   end
 
   create_table "systems", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -78,5 +86,4 @@ ActiveRecord::Schema.define(version: 20161027073405) do
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
-  add_foreign_key "items", "users"
 end
