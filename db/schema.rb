@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161027085003) do
+ActiveRecord::Schema.define(version: 20161027122147) do
+
   create_table "allocation_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "item_id"
     t.integer  "user_id"
@@ -60,6 +61,8 @@ ActiveRecord::Schema.define(version: 20161027085003) do
     t.text     "purchase_note",       limit: 65535
     t.boolean  "working",                           default: true
     t.date     "warrenty_expired_on"
+    t.index ["brand_id"], name: "fk_rails_36708b3aa6", using: :btree
+    t.index ["category_id"], name: "fk_rails_89fb86dc8b", using: :btree
     t.index ["employee_id"], name: "index_items_on_employee_id", using: :btree
     t.index ["system_id"], name: "index_items_on_system_id", using: :btree
   end
@@ -86,4 +89,9 @@ ActiveRecord::Schema.define(version: 20161027085003) do
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
+  add_foreign_key "items", "brands"
+  add_foreign_key "items", "categories"
+  add_foreign_key "items", "employees"
+  add_foreign_key "items", "systems"
+  add_foreign_key "systems", "employees"
 end
