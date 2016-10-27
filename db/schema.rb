@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161027072847) do
+ActiveRecord::Schema.define(version: 20161027073405) do
   create_table "allocation_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "item_id"
     t.integer  "user_id"
@@ -63,6 +63,17 @@ ActiveRecord::Schema.define(version: 20161027072847) do
     t.integer  "category_id"
     t.integer  "brand_id"
     t.index ["user_id"], name: "fk_rails_d4b6334db2", using: :btree
+  end
+
+  create_table "systems", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "employee_id",                               null: false
+    t.date     "build_on"
+    t.date     "discarted_at"
+    t.boolean  "working",                    default: true
+    t.text     "note",         limit: 65535
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.index ["employee_id"], name: "index_systems_on_employee_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

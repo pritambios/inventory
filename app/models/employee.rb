@@ -1,2 +1,3 @@
-class Employee < ApplicationRecord
+class Employee < ActiveRecord::Base
+  
 end
