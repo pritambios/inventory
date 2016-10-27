@@ -1,5 +1,8 @@
 class ChangeItemColumns < ActiveRecord::Migration[5.0]
   def up
+    remove_foreign_key :items, :users
+    remove_column :items, :user_id
+    change_column :items, :model_number, :string, null: false, limit: 50
     remove_column :items, :name
     remove_column :items, :description
     remove_column :items, :quantity
