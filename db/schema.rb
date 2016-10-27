@@ -47,18 +47,9 @@ ActiveRecord::Schema.define(version: 20161027073405) do
   end
 
   create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.text     "name",               limit: 255,                  null: false
-    t.text     "description",        limit: 65535,                null: false
-    t.text     "model_number",       limit: 255,                  null: false
-    t.integer  "quantity",                                        null: false
-    t.decimal  "unit_price",                       precision: 10, null: false
-    t.decimal  "total_value",                      precision: 10, null: false
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
+    t.text     "model_number", limit: 255, null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.integer  "user_id"
     t.integer  "category_id"
     t.integer  "brand_id"
