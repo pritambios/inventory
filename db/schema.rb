@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20161027085003) do
     t.text     "model_number",        limit: 255,                  null: false
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
+    t.integer  "user_id"
     t.integer  "category_id",                                      null: false
     t.integer  "brand_id",                                         null: false
     t.integer  "employee_id"
@@ -62,6 +63,7 @@ ActiveRecord::Schema.define(version: 20161027085003) do
     t.date     "warrenty_expired_on"
     t.index ["employee_id"], name: "index_items_on_employee_id", using: :btree
     t.index ["system_id"], name: "index_items_on_system_id", using: :btree
+    t.index ["user_id"], name: "fk_rails_d4b6334db2", using: :btree
   end
 
   create_table "systems", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -86,4 +88,5 @@ ActiveRecord::Schema.define(version: 20161027085003) do
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
+  add_foreign_key "items", "users"
 end

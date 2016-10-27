@@ -1,5 +1,14 @@
 class ChangeItemColumns < ActiveRecord::Migration[5.0]
   def up
+    remove_column :items, :name
+    remove_column :items, :description
+    remove_column :items, :quantity
+    remove_column :items, :unit_price
+    remove_column :items, :total_value
+    remove_column :items, :image_file_name
+    remove_column :items, :image_content_type
+    remove_column :items, :image_file_size
+    remove_column :items, :image_updated_at
     change_column :items, :category_id, :integer, null: false, index: true
     change_column :items, :brand_id, :integer, null: false, index: true
     add_reference :items, :employee, index: true
