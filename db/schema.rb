@@ -10,40 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160926174640) do
+ActiveRecord::Schema.define(version: 20161025045148) do
 
-  create_table "allocation_histories", force: :cascade do |t|
+  create_table "allocation_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "item_id"
     t.integer  "user_id"
     t.string   "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["item_id", "user_id"], name: "index_allocation_histories_on_item_id_and_user_id"
-    t.index ["item_id"], name: "index_allocation_histories_on_item_id"
-    t.index ["user_id"], name: "index_allocation_histories_on_user_id"
+    t.index ["item_id", "user_id"], name: "index_allocation_histories_on_item_id_and_user_id", using: :btree
+    t.index ["item_id"], name: "index_allocation_histories_on_item_id", using: :btree
+    t.index ["user_id"], name: "index_allocation_histories_on_user_id", using: :btree
   end
 
-  create_table "brands", force: :cascade do |t|
+  create_table "brands", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_brands_on_name", unique: true, using: :btree
   end
 
-  create_table "categories", force: :cascade do |t|
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_categories_on_name", unique: true, using: :btree
   end
 
-  create_table "items", force: :cascade do |t|
-    t.text     "name"
-    t.text     "description"
-    t.text     "model_number"
-    t.integer  "quantity"
-    t.decimal  "unit_price"
-    t.decimal  "total_value"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+  create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "name",               limit: 255,                  null: false
+    t.text     "description",        limit: 65535,                null: false
+    t.text     "model_number",       limit: 255,                  null: false
+    t.integer  "quantity",                                        null: false
+    t.decimal  "unit_price",                       precision: 10, null: false
+    t.decimal  "total_value",                      precision: 10, null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -51,9 +53,10 @@ ActiveRecord::Schema.define(version: 20160926174640) do
     t.integer  "user_id"
     t.integer  "category_id"
     t.integer  "brand_id"
+    t.index ["user_id"], name: "fk_rails_d4b6334db2", using: :btree
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
@@ -70,8 +73,9 @@ ActiveRecord::Schema.define(version: 20160926174640) do
     t.string   "last_name"
     t.boolean  "admin",                  default: false
     t.string   "phone"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "items", "users"
 end
