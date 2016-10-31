@@ -1,0 +1,34 @@
+// Place all the styles related to the employees controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.center {
+  text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+p.employee_info {
+  padding-bottom: 10px;
+  font-size: 24px;
+}
+
+table, th, td {
+  border-collapse: collapse;
+  text-align: left;
+}
+
+th, td {
+  padding: 15px;
+}
+
+table {
+  border-spacing: 5px;
+  width: 100%;
+}

@@ -1,0 +1,34 @@
+<% provide(:title, 'All Empoyees Details') %>
+<div class="form-group">
+  <%= link_to 'Back', root_path, class: "btn btn-lg btn-primary", id: "button1" %>
+</div>
+<div class="form-group">
+  <%=link_to 'Add New Employee', new_employee_path %>
+</div>
+
+<h1>Employees(<%= @employees.count %>)</h1>
+<hr>
+
+<table>
+  <tr>
+    <th><h4>Names</h4></th>
+    <th><h4>Address</h4></th>
+    <th><h4>Mobile</h4></th>
+    <th><h4>Designation</h4></th>
+    <th><h4>Working Status</h4></th>
+    <th><h4>&nbsp;&nbsp;</h4></th>
+  </tr>
+  <% @employees.each do |employee| %>
+    <tr>
+      <td><strong> <%= link_to employee.name, employee_path(employee) %> </strong></td>
+      <td> <%= employee.email %> </td>
+      <td> <%= employee.mobile %> </td>
+      <td> <%= employee.designation %> </td>
+      <td> <%= employee.active? ? "Currently Working" : "Left Kreeti Technologies" %> </td>
+      <td> <%=link_to 'Edit', edit_employee_path(employee), class: 'btn btn-default' %> </td>
+      <td> <%=link_to 'Delete', employee_path(employee), method: :delete, data: {confirm: 'Do you want to delete the Information?'}, class: 'btn btn-default' %> </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= will_paginate %>

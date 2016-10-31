@@ -1,4 +1,5 @@
 <h1 align="center">Listing All Categories</h1>
+
 <div align="center">
   <% @categories.each do |category| %>
     <ul class="listing">
@@ -10,21 +11,24 @@
                 data: { confirm: 'Are you sure you want to delete this category and all of their items?' },
                  class: "close"%>
           </li>
-        <% end %>
-          <li id="category-title">
-            <%= link_to "#{category.name}", category_path(category) %>
-            <%= category.name %>
-            <% if current_user.admin? %>
-            <%= link_to ('<i class="fa fa-edit"></i>').html_safe, edit_category_path(category), id: "edit"%>
-            <% end %>
+          <% end %>
+            <li id="category-title">
+              <%= link_to "#{category.name}", category_path(category) %>
+              <%= category.name %>
+              <% if current_user %>
+                <%= link_to ('<i class="fa fa-edit"></i>').html_safe, edit_category_path(category), id: "edit"%>
+              <% end %>
+            </li>
+          <li>
+            <small><%= pluralize(category.items.count, "item") %></small>
           </li>
-          <li><small><%= pluralize(category.items.count, "item") %></small></li>
         </div>
       </div>
     </ul>
   <% end %>
 <%= will_paginate renderer: BootstrapPagination::Rails %>
 </div>
+
 <% if current_user.admin? %>
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_category_path,
