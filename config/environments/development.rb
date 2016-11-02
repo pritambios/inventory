@@ -9,7 +9,7 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
   config.assets.quiet = true
-
+  config.assets.paths << Rails.root.join("app/assets/images")
   # Show full error reports.
   config.consider_all_requests_local = true
 

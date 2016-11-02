@@ -8,4 +8,7 @@ Rails.application.routes.draw do
   get 'history', to: 'items#history'
   post 'reallocate', to: 'items#reallocate'
   get 'deallocate', to: 'items#deallocate'
+  get "/login", to: redirect("/auth/google_oauth2")
+  get "/auth/google_oauth2/callback", to: "sessions#create"
+  delete 'logout', to: 'sessions#destroy'
 end

@@ -1,9 +1,20 @@
 #logo {
-float: left;
-font-size: 1.7em;
-color: #4CAF50;
-letter-spacing:-1px;
-font-weight: bold;
+  float: left;
+  font-size: 1.7em;
+  color: #4CAF50;
+  letter-spacing:-1px;
+  font-weight: bold;
+}
+.google-div {
+  min-height: 600px;
+  position: relative;
+}
+.google-btn {
+  position: absolute;
+  left: 50%;
+  display: inline-block;
+  top: 50%;
+  margin: -22px 0 0 -130px;
 }
 #category-title {
   font-weight: bold;
@@ -30,14 +41,6 @@ font-weight: bold;
   a:hover, a:focus {
     color: #000 !important;
   }
-}
-#edit {
-  display: inline;
-    color: #D2691E;
-}
-#edit:hover, #edit:focus {
-
-  background: none;
 }
 .logout {
   padding-left: 0px;
