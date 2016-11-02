@@ -1,5 +1,6 @@
-<%- model_class = Item -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h1>
+<% provide(:title, 'Add Item Details') %>
+<div class="form-group">
+  <%= link_to 'Back', items_path, class: "btn btn-lg btn-primary" %>
 </div>
+<h1 class="center">New Item</h1>
 <%= render :partial => 'form' %>

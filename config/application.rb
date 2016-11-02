@@ -12,5 +12,6 @@ module KreetiProject
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     WillPaginate.per_page = 20
+    config.time_zone = 'Kolkata'
   end
 end

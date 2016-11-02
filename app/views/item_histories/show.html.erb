@@ -1,0 +1,17 @@
+<% provide(:title, @item_history.item.serial_number) %>
+<div class="form-group">
+  <%= link_to 'Back', item_histories_path, class: "btn btn-lg btn-primary" %>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <section>
+      <p class="item_history_info"> Item Serial number: <strong> <%= @item_history.item.serial_number %> </strong> </p>
+      <p class="item_history_info"> Item Model number: <%= @item_history.item.model_number %> </p>
+      <p class="item_history_info"> Brand Name: <%= @item_history.item.brand.name %> </p>
+      <p class="item_history_info"> Category Name: <%= @item_history.item.category.name %> </p>
+      <p class="item_history_info"> Working Status: <%=  @item_history.status? ? "Active" : "Inactive" %> </p>
+      <p class="item_history_info"> Allocated To Employee: <%=  @item_history.employee.try(:name) || "Unallocted" %> </p>
+      <p class="item_history_info"> Attached With: <%= @item_history.system.try(:id) || "Unattached" %> </p>
+    </section>
+  </div>
+</div>

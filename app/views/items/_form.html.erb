@@ -1,95 +1,56 @@
-<%= form_for @item, :html => { multipart: true, :class => "form-horizontal item" } do |f| %>
-
-  <% if @item.errors.any? %>
-    <div id="error_expl" class="panel panel-danger">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h3>
-      </div>
-      <div class="panel-body">
-        <ul>
-        <% @item.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    </div>
-  <% end %>
+<%= form_for @item do |f| %>
+  <%= render 'shared/errors', obj: @item %>
 
   <div class="form-group">
-    <%= f.label :name, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :name, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:name) %>
+    <%= f.label :model_number, "Model Number:", class: 'required' %>
+    <%= f.text_field :model_number, class: 'form-control' %>
   </div>
   <div class="form-group">
-    <%= f.label :description, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :description, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:description) %>
+    <%= f.label :serial_number , "Serial Number:" , class: 'required' %>
+    <%= f.text_field :serial_number, class: 'form-control' %>
   </div>
   <div class="form-group">
-    <%= f.label :model_number, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :model_number, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:model_number) %>
+    <%= f.label :purchase_on , "Purchased On:" , class: 'required' %>
+    <%= f.text_field :purchase_on, class: 'form-control datepicker' %>
   </div>
   <div class="form-group">
-    <%= f.label :quantity, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :quantity, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:quantity) %>
+    <%= f.label :category_id , "Category Name:", class: 'required' %>
+    <%= f.collection_select :category_id, Category.all, :id, :name, prompt: 'Select Category' %>
   </div>
   <div class="form-group">
-    <%= f.label :unit_price, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :unit_price, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:unit_price) %>
+    <%= f.label :brand_id , "Brand Name:", class: 'required' %>
+    <%= f.collection_select :brand_id, Brand.all, :id, :name, prompt: 'Select Brand' %>
   </div>
   <div class="form-group">
-    <%= f.label :total_value, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :total_value, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:total_value) %>
+    <%= f.label :purchase_from , "Purchased From:", class: 'required' %>
+    <%= f.text_field :purchase_from, class: 'form-control' %>
   </div>
   <div class="form-group">
-    <%= f.label :image, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.file_field :image, :class => 'form-control' %>
-    </div>
-    <%=f.error_span(:image) %>
+    <%= f.label :purchase_note , "Purchased Note :" %>
+    <%= f.text_field :purchase_note, class: 'form-control' %>
+ </div>
+  <div class="form-group">
+    <%= f.label :warranty_expires_on , "Warranty Expires On :" %>
+    <%= f.text_field :warranty_expires_on, class: 'form-control datepicker' %>
   </div>
   <div class="form-group">
-    <div class="row">
-      <%= f.label :category, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-10">
-          <%= f.collection_select :category_id, Category.all,:id, :name, include_blank: "Select Category" do |cb| %>
-            <% cb.text %>
-          <% end %>
-      </div>
-    </div>
+    <%= f.label :working, "Item Working Status :" %>
+    <table class="update">
+      <tr>
+        <td> Yes <%= f.radio_button 'working', 'true'  %></td>
+        <td> No <%= f.radio_button 'working', 'false'  %></td>
+      </tr>
+    </table>
   </div>
   <div class="form-group">
-    <div class="row">
-      <%= f.label :brand, :class => 'control-label col-lg-2' %>
-      <div class="col-lg-10">
-        <%= f.collection_select :brand_id, Brand.all, :id, :name, include_blank: "Select Brand" do |cb| %>
-          <% cb.text %>
-        <% end %>
-      </div>
-    </div>
+    <%= f.label :system_id , "System ID:" %>
+    <%= f.collection_select :system_id, System.all, :id, :id,  prompt: 'Select System' %>
   </div>
   <div class="form-group">
-    <div class="col-lg-offset-2 col-lg-10">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                items_path, :class => 'btn btn-default' %>
-    </div>
+    <%= f.label :employee_id , "Employee Name:" %>
+    <%= f.collection_select :employee_id, Employee.all, :id, :name, prompt: 'Select Employee' %>
   </div>
-
+  <div class="center">
+    <%= f.submit "Enter Details", class: "btn btn-primary" %>
+  </div>
 <% end %>

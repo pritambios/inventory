@@ -1,43 +1,41 @@
-<%- model_class = Item -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+<% provide(:title, @item.name) %>
+<div class="form-group">
+  <%= link_to 'Back', items_path, class: "btn btn-lg btn-primary" %>
 </div>
-<%= image_tag @item.image.url(:medium) %>
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @item.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
-  <dd><%= @item.user.email %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:category) %>:</strong></dt>
-  <dd><%= @item.category.name if @item.category %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:brand) %>:</strong></dt>
-  <dd><%= @item.brand.name if @item.brand %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-  <dd><%= @item.description %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:model_number) %>:</strong></dt>
-  <dd><%= @item.model_number %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:quantity) %>:</strong></dt>
-  <dd><%= @item.quantity %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:unit_price) %>:</strong></dt>
-  <dd><%= @item.unit_price %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:total_value) %>:</strong></dt>
-  <dd><%= @item.total_value %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:image_content_type) %>:</strong></dt>
-  <dd><%= @item.image_content_type %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:image_file_size) %>:</strong></dt>
-  <dd><%= @item.image_file_size %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:image_updated_at) %>:</strong></dt>
-  <dd><%= @item.image_updated_at %></dd>
-</dl>
-
-<%= link_to t('.back', :default => t("helpers.links.back")),
-              items_path, :class => 'btn btn-default'  %>
-<% if (current_user == @item.user) || current_user.admin? %>
-<%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_item_path(@item), :class => 'btn btn-default' %>
-<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              item_path(@item),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
-<% end %>
+<div class="row">
+  <div class="col-md-8">
+    <section>
+      <h2><%= @item.name %></h2>
+      <hr>
+      <p class="item_info"> Model Number: <strong> <%= @item.model_number %> </strong> </p>
+      <p class="item_info"> Serial Number: <%= @item.serial_number %> </p>
+      <p class="item_info"> Purchase On: <%= @item.purchase_on %> </p>
+      <p class="item_info"> Category Name: <%= @item.category.try(:name) %> </p>
+      <p class="item_info"> Brand Name: <%= @item.brand.try(:name) %> </p>
+      <p class="item_info"> Purchase From: <%= @item.purchase_from %> </p>
+      <p class="item_info"> Purchase Note: <%= @item.purchase_note %> </p>
+      <p class="item_info"> Warranty Expires On: <%= @item.warranty_expires_on %> </p>
+      <p class="item_info"> Item Status: <%= @item.working? ? "Item is working" : "Item Stopped Working" %> </p>
+      <%=link_to 'Edit Details', edit_item_path(@item) %> <br><br>
+    </section>
+    <h3>Item Histoy:</h3>
+    <hr>
+    <table>
+      <tr>
+        <th><h4>System </h4></th>
+        <th><h4>Allocated To</h4></th>
+        <th><h4>Status</h4></th>
+        <th><h4> Date </h4></th>
+      </tr>
+      <% @item_histories.each do |item_history| %>
+        <tr>
+          <td> <%= item_history.system_id.present? ? "System #{item_history.system_id}" : "Unattached" %> </td>
+          <td> <%= item_history.employee.try(:name) || "Unallocated" %> </td>
+          <td> <%= item_history.status? ? "Active" : "Inactive" %> </td>
+          <td> <%= item_history.created_at.strftime("%d/%m/%Y") %> </td>
+        </tr>
+      <% end %>
+    </table>
+    <%= will_paginate @item_histories %>
+  </div>
+</div>

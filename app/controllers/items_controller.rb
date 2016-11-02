@@ -1,6 +1,5 @@
 class ItemsController < ApplicationController
   before_action :get_item, only: [:show, :edit, :update, :destroy]
-  before_action :require_same_user, only: [:edit, :update, :destroy]
 
   def index
     @items = Item.paginate(page: params[:page], per_page: 10)
@@ -13,32 +12,26 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    @allocation = @item.allocation_histories.new
-    @item.user = current_user
-    @allocation.user = current_user
-    @allocation.status = "allocated"
 
-    respond_to do |format|
-      if @item.save and @allocation.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
-        format.json { render :show, status: :created, location: @item }
-      else
-        format.html { render :new }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
-      end
+    if @item.save
+      flash[:success] = "Item with #{@item.model_number} is Created Successfully!"
+      redirect_to item_path(@item)
+    else
+      render 'new'
     end
   end
 
   def update
-    respond_to do |format|
-      if @item.update(item_params)
-        format.html { redirect_to @item, notice: 'Item was successfully updated.' }
-        format.json { render :show, status: :ok, location: @item }
-      else
-        format.html { render :edit }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
-      end
+    if @item.update_attributes(item_params)
+      flash[:success] = "Item Details Successfully Updated"
+      redirect_to item_path(@item)
+    else
+      render 'edit'
     end
+  end
+
+  def show
+    @item_histories = @item.item_histories.order_desending.paginate(page: params[:page])
   end
 
   def destroy
@@ -89,7 +82,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :description, :model_number, :quantity, :unit_price, :total_value, :image, :category_id, :brand_id)
+    params.require(:item).permit(:model_number, :category_id, :brand_id, :serial_number, :purchase_on, :purchase_from, :purchase_note, :working, :system_id, :employee_id, :warranty_expires_on)
   end
 
   def require_same_user
