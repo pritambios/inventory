@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 20161103064236) do
 
-  create_table "allocation_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "allocation_histories", force: :cascade do |t|
     t.integer  "item_id"
     t.integer  "user_id"
     t.string   "status"
@@ -23,21 +26,21 @@ ActiveRecord::Schema.define(version: 20161103064236) do
     t.index ["user_id"], name: "index_allocation_histories_on_user_id", using: :btree
   end
 
-  create_table "brands", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "brands", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_brands_on_name", unique: true, using: :btree
   end
 
-  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_categories_on_name", unique: true, using: :btree
   end
 
-  create_table "employees", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "employees", force: :cascade do |t|
     t.string   "name"
     t.string   "email",                      null: false
     t.string   "mobile"
@@ -47,7 +50,7 @@ ActiveRecord::Schema.define(version: 20161103064236) do
     t.datetime "updated_at",                 null: false
   end
 
-  create_table "item_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "item_histories", force: :cascade do |t|
     t.integer  "item_id",                 null: false
     t.boolean  "status",                  null: false
     t.integer  "employee_id"
@@ -60,49 +63,47 @@ ActiveRecord::Schema.define(version: 20161103064236) do
     t.index ["system_id"], name: "index_item_histories_on_system_id", using: :btree
   end
 
-  create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "model_number",        limit: 50,                   null: false
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
-    t.integer  "category_id",                                      null: false
-    t.integer  "brand_id",                                         null: false
+  create_table "items", force: :cascade do |t|
+    t.string   "model_number",        limit: 50,                null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.integer  "category_id",                                   null: false
+    t.integer  "brand_id",                                      null: false
     t.integer  "employee_id"
     t.integer  "system_id"
-    t.string   "serial_number",                                    null: false
-    t.date     "purchase_on",                                      null: false
-    t.string   "purchase_from",                                    null: false
-    t.text     "purchase_note",       limit: 65535
-    t.boolean  "working",                           default: true
+    t.string   "serial_number",                                 null: false
+    t.date     "purchase_on",                                   null: false
+    t.string   "purchase_from",                                 null: false
+    t.text     "purchase_note"
+    t.boolean  "working",                        default: true
     t.date     "warranty_expires_on"
-    t.index ["brand_id"], name: "fk_rails_36708b3aa6", using: :btree
-    t.index ["category_id"], name: "fk_rails_89fb86dc8b", using: :btree
     t.index ["employee_id"], name: "index_items_on_employee_id", using: :btree
     t.index ["system_id"], name: "index_items_on_system_id", using: :btree
   end
 
-  create_table "system_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "system_id",                 null: false
+  create_table "system_histories", force: :cascade do |t|
+    t.integer  "system_id",   null: false
     t.integer  "employee_id"
-    t.boolean  "status",                    null: false
-    t.text     "note",        limit: 65535
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.boolean  "status",      null: false
+    t.text     "note"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.index ["employee_id"], name: "index_system_histories_on_employee_id", using: :btree
     t.index ["system_id"], name: "index_system_histories_on_system_id", using: :btree
   end
 
-  create_table "systems", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "systems", force: :cascade do |t|
     t.integer  "employee_id"
     t.date     "assembled_on"
     t.date     "discarded_at"
-    t.boolean  "working",                    default: true
-    t.text     "note",         limit: 65535
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.boolean  "working",      default: true
+    t.text     "note"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.index ["employee_id"], name: "index_systems_on_employee_id", using: :btree
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",        null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
