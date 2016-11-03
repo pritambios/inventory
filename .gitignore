@@ -7,7 +7,6 @@ public/photos/
 
 *.DS_Store
 config/database.yml
-config/secrets.yml
 db/dumpfile
 *~
 # files
