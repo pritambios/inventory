@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161101075123) do
+ActiveRecord::Schema.define(version: 20161103064236) do
 
   create_table "allocation_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "item_id"
@@ -80,10 +80,21 @@ ActiveRecord::Schema.define(version: 20161101075123) do
     t.index ["system_id"], name: "index_items_on_system_id", using: :btree
   end
 
+  create_table "system_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "system_id",                 null: false
+    t.integer  "employee_id"
+    t.boolean  "status",                    null: false
+    t.text     "note",        limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["employee_id"], name: "index_system_histories_on_employee_id", using: :btree
+    t.index ["system_id"], name: "index_system_histories_on_system_id", using: :btree
+  end
+
   create_table "systems", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "employee_id",                               null: false
-    t.date     "build_on"
-    t.date     "discarted_at"
+    t.integer  "employee_id"
+    t.date     "assembled_on"
+    t.date     "discarded_at"
     t.boolean  "working",                    default: true
     t.text     "note",         limit: 65535
     t.datetime "created_at",                                null: false
@@ -109,5 +120,7 @@ ActiveRecord::Schema.define(version: 20161101075123) do
   add_foreign_key "items", "categories"
   add_foreign_key "items", "employees"
   add_foreign_key "items", "systems"
+  add_foreign_key "system_histories", "employees"
+  add_foreign_key "system_histories", "systems"
   add_foreign_key "systems", "employees"
 end

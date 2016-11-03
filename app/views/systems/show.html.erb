@@ -1,0 +1,42 @@
+<h1>System</h1>
+<hr>
+<dl class="dl-horizontal">
+  <dt><strong>Assembled On :</strong></dt>
+  <dd><%= @system.assembled_on %></dd>
+  <dt><strong>Discarded At :</strong></dt>
+  <dd><%= @system.discarded_at %></dd>
+  <dt><strong>Current Status :</strong></dt>
+  <dd><%= @system.working %></dd>
+  <dt><strong>Note :</strong></dt>
+  <dd><%= @system.note %></dd>
+  <dt><strong>Items :</strong></dt>
+  <dd>
+  <% @system.items.each do |item| %>
+    <%= link_to item.model_number, item_path(item) %>
+  <% end %>
+  </dd>
+</dl>
+
+<%= link_to 'Back', systems_path, :class => 'btn btn-default'  %>
+<% if current_user %>
+<%= link_to 'Edit', edit_system_path(@system), :class => 'btn btn-default' %>
+<%= link_to 'Delete', system_path(@system), method: 'delete', data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %>
+<% end %>
+
+<h1>System History</h1>
+<hr>
+<table>
+  <tr>
+    <th><h4>Employee </h4></th>
+    <th><h4>Status</h4></th>
+    <th><h4> Date </h4></th>
+  </tr>
+  <% @system_histories.each do |system_history| %>
+  <tr>
+    <td> <%= link_to system_history.employee.name, employee_path(system_history.employee) %> </td>
+    <td> <%= system_history.status? ? "Active" : "Inactive" %> </td>
+    <td> <%= system_history.created_at.strftime("%d/%m/%Y") %> </td>
+  </tr>
+  <% end %>
+</table>
+<%= will_paginate @system_histories %>

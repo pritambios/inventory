@@ -8,6 +8,6 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user
-    !!current_user
+    redirect_to root_path unless current_user
   end
 end
