@@ -7,6 +7,11 @@ Rails.application.routes.draw do
   resources :brands
   resources :employees
   resources :systems
+  resources :checkouts, except: [:destroy] do
+    member do
+      get 'checkin'
+    end
+  end
   get 'history', to: 'items#history'
   post 'reallocate', to: 'items#reallocate'
   get 'deallocate', to: 'items#deallocate'
@@ -14,4 +19,5 @@ Rails.application.routes.draw do
   get "/auth/google_oauth2/callback", to: "sessions#create"
   delete 'logout', to: 'sessions#destroy'
   get 'systems/:id/history', to: 'systems#history', as: 'system_history'
+
 end

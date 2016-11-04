@@ -1,0 +1,26 @@
+<div class="row">
+  <h2 class="col-md-4">Checkouts</h2>
+  <div class="newCheckout col-md-4 col-md-offset-4 text-right"><h4> <%=link_to 'New Check Out', new_checkout_path , class: "btn btn-default"%> </h4></div>
+</div>
+<hr>
+<table>
+  <tr>
+    <th><h4>Item</h4></th>
+    <th><h4>Employee</h4></th>
+    <th><h4>Checking Out</h4></th>
+    <th><h4>Checking In</h4></th>
+    <th><h4>&nbsp;&nbsp;</h4></th>
+  </tr>
+  <% @checkouts.each do |checkout| %>
+    <tr>
+      <td><big> <%= link_to checkout.item.name, checkout_path(checkout) %> </big></td>
+      <td> <%= link_to checkout.employee.try(:name), employee_path(checkout.employee_id) || 'For Maintaince'%> </td>
+      <td> <%= checkout.checking_out %> </td>
+      <td> <%= checkout.checking_in %> </td>
+      <td> <%= if !checkout.checking_in.present? then link_to 'Checking In', checkin_checkout_path(checkout), class: 'btn btn-default' else 'Item Returned' end %>
+      <td> <%= link_to 'Edit', edit_checkout_path(checkout), class: 'btn btn-default' %> </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= will_paginate %>

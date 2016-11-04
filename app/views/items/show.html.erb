@@ -35,6 +35,27 @@
         </tr>
       <% end %>
     </table>
-    <%= will_paginate @item_histories %>
+    <%= will_paginate @item_histories, :param_name => 'item_histories_page' %>
+  </div>
+  <div class="col-md-4">
+    <h3> Checkouts Histoy:</h3>
+    <hr>
+    <table>
+      <tr>
+        <th><h4>Employee </h4></th>
+        <th><h4>Checking Out</h4></th>
+        <th><h4>Checking In</h4></th>
+        <th><h4> &nbsp; </h4></th>
+      </tr>
+      <% @checkouts.each do |checkout| %>
+        <tr>
+          <td> <%= checkout.employee.try(:name) %> </td>
+          <td> <%= checkout.checking_out %> </td>
+          <td> <%= checkout.checking_in %> </td>
+          <td> <%= link_to "View Details", checkout_path(checkout) %> </td>
+        </tr>
+      <% end %>
+    </table>
+    <%= will_paginate @checkouts, :param_name => 'checkouts_page' %>
   </div>
 </div>

@@ -1,0 +1,35 @@
+<div class="form-group">
+  <%= link_to 'Back', checkouts_path, class: "btn btn-lg btn-primary" %>
+</div>
+<section>
+  <div class="show">
+    <table>
+      <tr>
+        <td><h3 class="checkout-info"> Item  </h3></td>
+        <td>: <%= @checkout.item.name %></td>
+      <tr>
+      <tr>
+        <% if @checkout.employee_id.present?  %>
+          <td><h3 class="checkout-info"> Employee</h3></td>
+          <td>: <%= @checkout.employee.try(:name) %> </td>
+        <% else %>
+          <td><h3> Item Dispatched For Maintaince </h3></td>
+        <% end %>
+      </tr>
+      <tr>
+        <td><h3 class="checkout-info"> Checked Out At </h3></td>
+        <td>: <%= @checkout.checking_out %> </td>
+      </tr>
+      <tr>
+        <td><h3 class="checkout-info"> Checked In At </h3></td>
+        <td>: <%= @checkout.checking_in %> </td>
+      </tr>
+      <tr>
+        <td><h3 class="checkout-info"> Purpose </h3></td>
+        <td>: <%= @checkout.reason %> </td>
+      </tr>
+    </table>
+  </div>
+  <%= if !@checkout.checking_in.present? then link_to 'Checking In', checkin_checkout_path(@checkout), class: 'btn btn-default' end %>
+  <%= link_to 'Edit', edit_checkout_path(@checkout), class: 'btn btn-default' %>
+</section>

@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
   after_save :update_item_history
   has_many :item_histories
+  has_many :checkouts
   belongs_to :employee, optional: true
   belongs_to :category
   belongs_to :brand
