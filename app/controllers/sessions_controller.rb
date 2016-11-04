@@ -2,8 +2,13 @@ class SessionsController < ApplicationController
   skip_before_action :authenticate_user
 
   def create
-    user = User.find_or_create_from_auth(env["omniauth.auth"])
-    session[:user_id] = user.id
+    google_auth = request.env["omniauth.auth"]
+
+    if google_auth.info.email.present?
+      user = User.find_or_create_for_auth(google_auth)
+      session[:user_id] = user.id
+    end
+
     redirect_to root_path
   end
 

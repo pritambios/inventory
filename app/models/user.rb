@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-
   has_many :items, dependent: :destroy
   has_many :allocation_histories
 
@@ -14,14 +13,26 @@ class User < ApplicationRecord
     "Anonymous"
   end
 
-  def self.find_or_create_from_auth(auth)
-    user = User.find_or_initialize_by(email: auth.info.email)
-    user.google_uid = auth.uid
-    user.email = auth.info.email
-    user.first_name = auth.info.first_name
-    user.last_name = auth.info.last_name
-    user.access_token = auth.credentials.token
-    user.save!
+  def self.find_or_create_for_auth(auth)
+    user ||= User.find_by_email(auth.info.email)
+
+    if user
+      user.first_name   = auth.info.first_name
+      user.last_name    = auth.info.last_name
+      user.google_uid   = auth.uid
+      user.access_token = auth.credentials.token
+      user.google_uid   = auth.uid
+    else
+      user = User.new(
+                      first_name: auth.info.first_name,
+                      last_name:  auth.info.last_name,
+                      email:      auth.info.email,
+                      access_token: auth.credentials.token,
+                      google_uid: auth.uid)
+
+    end
+
+    user.save
     user
   end
 end
