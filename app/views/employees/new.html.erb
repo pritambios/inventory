@@ -8,15 +8,15 @@
     <%= form_for(@employee, url: employees_path) do |f| %>
       <%= render 'shared/errors', obj: @employee %>
       <div class="form-group">
-        <%= f.label :name , 'Name of the Employee:' %>
+        <%= f.label :name , 'Name:' %>
         <%= f.text_field :name, class: 'form-control' %>
       </div>
       <div class="form-group">
-        <%= f.label :email , 'Mailing Address:' %>
+        <%= f.label :email , 'Email:' %>
         <%= f.text_field :email, class: 'form-control' %>
       </div>
       <div class="form-group">
-        <%= f.label :mobile , 'Mobile Number:' %>
+        <%= f.label :mobile , 'Mobile:' %>
         <%= f.text_field :mobile, class: 'form-control' %>
       </div>
       <div class="form-group">
