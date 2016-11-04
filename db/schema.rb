@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161103095404) do
+ActiveRecord::Schema.define(version: 20161103133739) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,19 @@ ActiveRecord::Schema.define(version: 20161103095404) do
     t.boolean  "active",      default: true
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+  end
+
+  create_table "issues", force: :cascade do |t|
+    t.integer  "item_id"
+    t.integer  "system_id"
+    t.string   "title",       null: false
+    t.text     "description"
+    t.date     "closed_at"
+    t.text     "note"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["item_id"], name: "index_issues_on_item_id", using: :btree
+    t.index ["system_id"], name: "index_issues_on_system_id", using: :btree
   end
 
   create_table "item_histories", force: :cascade do |t|
@@ -128,6 +141,8 @@ ActiveRecord::Schema.define(version: 20161103095404) do
 
   add_foreign_key "checkouts", "employees"
   add_foreign_key "checkouts", "items"
+  add_foreign_key "issues", "items"
+  add_foreign_key "issues", "systems"
   add_foreign_key "item_histories", "employees"
   add_foreign_key "item_histories", "items"
   add_foreign_key "item_histories", "systems"

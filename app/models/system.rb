@@ -3,8 +3,13 @@ class System < ActiveRecord::Base
 
   has_many :items
   has_many :system_histories
+  has_many :issues
 
   belongs_to :employee, optional: true
+
+  def name
+    "System #{id}"
+  end
 
   def update_system_history
     if employee_id_changed? || working_changed?

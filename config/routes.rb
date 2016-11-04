@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       get 'checkin'
     end
   end
+  resources :issues
   get 'history', to: 'items#history'
   post 'reallocate', to: 'items#reallocate'
   get 'deallocate', to: 'items#deallocate'

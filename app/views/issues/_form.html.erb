@@ -1,0 +1,42 @@
+<div class="form-group">
+  <%= link_to 'Back', issues_path, class: "btn btn-lg btn-primary" %>
+</div>
+
+<%= render 'shared/errors', obj: @issue %>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for @issue, html: { multipart: true } do |f| %>
+      <div class="form-group">
+        <%= f.label :items, "Item Serial No :" %>
+        <%= f.collection_select :item_id, Item.all, :id, :name, include_blank: "Select Item" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :systems, "System :" %>
+        <%= f.collection_select :system_id, System.all, :id, :name, include_blank: "Select System" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :title, "Title  :", class: 'required' %>
+        <%= f.text_field :title, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :description, "Description :" %>
+        <%= f.text_area :description, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :closed_at, "Closing Time :" %>
+        <%= f.text_field :closed_at, class: 'form-control datepicker' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :note, "Notes :" %><br>
+        <%= f.text_area :note, rows: "10", class: 'form-control' %>
+      </div>
+       <div class="form-group">
+         <div class="col-lg-offset-2 col-lg-10">
+           <%= f.submit nil, :class => 'btn btn-primary' %>
+           <%= link_to 'Cancel', systems_path, class: 'btn btn-default' %>
+         </div>
+       </div>
+    <% end %>
+  </div>
+</div>

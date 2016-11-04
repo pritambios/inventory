@@ -1,0 +1,20 @@
+<h1>Issue</h1>
+<hr>
+<dl class="dl-horizontal">
+  <dt><strong>System :</strong></dt>
+  <dd><%= @issue.system.try(:id) %></dd>
+  <dt><strong>Item :</strong></dt>
+  <dd><%= @issue.item.try(:serial_number) %></dd>
+  <dt><strong>Title :</strong></dt>
+  <dd><%= @issue.title %></dd>
+  <dt><strong>Description :</strong></dt>
+  <dd><%= @issue.description %></dd>
+  <dt><strong>Closing Time :</strong></dt>
+  <dd><%= @issue.closed_at.strftime('%d/%m/%Y') %></dd>
+  <dt><strong>Note :</strong></dt>
+  <dd><%= @issue.note %></dd>
+</dl>
+
+<%= link_to 'Back', issues_path, class: 'btn btn-default'  %>
+<%= link_to 'Edit', edit_issue_path(@issue), class: 'btn btn-default' %>
+<%= link_to 'Delete', issue_path(@issue), method: 'delete', data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
