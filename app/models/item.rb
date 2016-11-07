@@ -27,18 +27,4 @@ class Item < ApplicationRecord
       item_history.save
     end
   end
-
-  def save_allocation_history(user)
-    allocation_history = allocation_histories.build
-    allocation_history.user_id = user.id
-    allocation_history.status = "reallocated"
-    allocation_history.save
-  end
-
-  def save_deallocation_history(user)
-    allocation_history = allocation_histories.build
-    allocation_history.user_id = user.id
-    allocation_history.status = "deallocated"
-    allocation_history.save
-  end
 end

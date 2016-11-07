@@ -1,15 +1,28 @@
-<h1 align="center">Listing all items</h1>
-<% if current_user.admin? %>
-	<%= react_component 'Items', props={ users: @users, items: @items.as_json( :include=> { :category=> { only: [:name] },
-				:user=> {only: [:first_name, :last_name, :email, :admin]} })} %>
-<% else %>
-		<%= render 'item', obj: @items %>
-<% end %>
-<%#= react_component 'Users', { users: @users } %>
-<div align="center">
-	<%= will_paginate renderer: BootstrapPagination::Rails %>
+<div class="page-header">
+  <%=link_to 'Add', new_item_path, class: "btn btn-primary pull-right" %>
+  <h3>Items(<%= @items.count %>)</h3>
 </div>
 
-<%#= link_to t('.new', :default => t("helpers.links.new")),
-            new_item_path,
-            :class => 'btn btn-primary' %>
+<table class="table table-striped">
+  <tr>
+    <th>Item</th>
+    <th>Model Number</th>
+    <th>Serial Number</th>
+    <th>Category</th>
+    <th>Brand</th>
+    <th><h4>Actions</h4></th>
+  </tr>
+  <% @items.each do |item| %>
+    <tr>
+      <td> <%= link_to item.name, item_path(item)  %> </td>
+      <td> <%= item.model_number %></td>
+      <td> <%= item.serial_number %> </td>
+      <td> <%= item.category.name %> </td>
+      <td> <%= item.brand.name %> </td>
+      <td> <%= link_to 'Edit', edit_item_path(item), class: 'btn btn-default' %> </td>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= will_paginate %>
