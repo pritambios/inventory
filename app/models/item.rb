@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
-  after_save :update_item_history
+  around_save :update_item_history
 
   has_many :item_histories
   has_many :checkouts
@@ -22,9 +22,12 @@ class Item < ApplicationRecord
   private
 
   def update_item_history
-    if system_id_changed? || employee_id_changed? || working_changed?
+    if system_id_changed? || employee_id_changed? || working_changed? || new_record?
       item_history = item_histories.build(employee_id: employee_id, system_id: system_id, status: working)
-      item_history.save
     end
+
+    yield
+
+    item_history.save if item_history.present?
   end
 end

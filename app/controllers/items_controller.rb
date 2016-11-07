@@ -11,7 +11,6 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-
     if @item.save
       redirect_to item_path(@item), flash: { success: "Item with #{@item.model_number} is Created Successfully!" }
     else
@@ -40,19 +39,10 @@ class ItemsController < ApplicationController
     end
   end
 
-  def history
-    @item = Item.find(params[:format])
-    @histories = @item.allocation_histories.paginate(page: params[:page], per_page: 10).order("updated_at DESC")
-  end
-
   private
 
   def get_item
     @item = Item.find(params[:id])
-  end
-
-  def reallocate_user_params
-    params.require(:item).permit(:user_id)
   end
 
   def item_params
