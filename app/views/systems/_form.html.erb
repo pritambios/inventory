@@ -23,10 +23,8 @@
       </div>
       <div class="form-group">
         <%= f.label :working, "Current Status :" %>
-        <%= f.label :working, "Working", value: "true" %>
-        <%= f.radio_button :working, true, checked: "true" %>
-        <%= f.label :working, "Not Working", value: "false" %>
-        <%= f.radio_button :working, false %>
+        Working: <%= f.radio_button(:working, "true", checked: @system.working) %>
+        Not Working: <%= f.radio_button(:working, "false", checked: !@system.working ) %>
       </div>
       <div class="form-group">
         <%= f.label :note, "Notes :" %><br>

@@ -6,7 +6,7 @@
   <dt><strong>Discarded At :</strong></dt>
   <dd><%= @system.discarded_at %></dd>
   <dt><strong>Current Status :</strong></dt>
-  <dd><%= @system.working %></dd>
+  <dd><%= @system.working ? "Working" : "Not Working" %></dd>
   <dt><strong>Note :</strong></dt>
   <dd><%= @system.note %></dd>
   <dt><strong>Items :</strong></dt>
@@ -33,7 +33,7 @@
   </tr>
   <% @system_histories.each do |system_history| %>
   <tr>
-    <td> <%= link_to system_history.employee.name, employee_path(system_history.employee) %> </td>
+    <td> <%= system_history.employee.present? ? system_history.employee.try(:name) : "Not Assigned" %> </td>
     <td> <%= system_history.status? ? "Active" : "Inactive" %> </td>
     <td> <%= system_history.created_at.strftime("%d/%m/%Y") %> </td>
   </tr>
