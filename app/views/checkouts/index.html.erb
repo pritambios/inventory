@@ -14,8 +14,8 @@
     <tr>
       <td><%= link_to checkout.item.name, checkout_path(checkout) %></td>
       <td>
-        <% if checkout.employee_id.present? %>
-          <%= link_to checkout.employee.try(:name), employee_path(checkout.employee) %>
+        <% if checkout.employee.present? %>
+          <%= link_to checkout.employee.name_or_email, employee_path(checkout.employee) %>
         <% else %>
           For Maintaince
         <% end %>

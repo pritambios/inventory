@@ -19,6 +19,9 @@ class Item < ApplicationRecord
     "#{brand.name}-#{category.name}_#{serial_number}"
   end
 
+  scope :unavailable, -> { joins(:checkouts).where(checkouts: { checking_in: nil }) }
+  scope :available,   -> { where.not(id: unavailable) }
+
   private
 
   def update_item_history
