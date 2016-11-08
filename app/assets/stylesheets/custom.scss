@@ -5,10 +5,12 @@
   letter-spacing:-1px;
   font-weight: bold;
 }
+
 .google-div {
   min-height: 600px;
   position: relative;
 }
+
 .google-btn {
   position: absolute;
   left: 50%;
@@ -16,17 +18,21 @@
   top: 50%;
   margin: -22px 0 0 -130px;
 }
+
 #category-title {
   font-weight: bold;
   font-size: 1.5em;
 }
+
 .red {
   color: red;
 }
+
 .listing {
   list-style: none;
   padding-left: 0;
 }
+
 .user-name {
   padding: 0 !important;
   padding-left: 5px;
@@ -38,18 +44,22 @@
     margin: 0 !important;
     padding: 5px !important;
   }
+
   a:hover, a:focus {
     color: #000 !important;
   }
 }
+
 .logout {
   padding-left: 0px;
   padding-right: 0px;
 }
+
 .nav.navbar-right {
   padding-bottom: 10px;
   padding-top: 5px;
 }
+
 .nav.navbar-nav {
   .navbar-link {
     border-radius: 5px;
@@ -57,41 +67,59 @@
     margin-top: 15px;
     padding: 8px;
   }
+
   .navbar-link:focus, .navbar-link:hover {
     background: #3071a9;
     color: #fff;
   }
+
   li a {
     margin-right: 5px;
   }
 }
+
 .nav.navbar-right li {
   .btn {
     color: #fff !important;
     margin-top: 5%;
   }
+
   .btn-danger:hover, .btn-danger:focus {
     background-color: darken(#d9534f, 20%) !important;
   }
+
   .btn-primary:hover, .btn-primary:focus {
     background-color: darken(#428bca, 20%) !important;
   }
+
   .btn-danger:visited, .btn-danger:visited {
     color: #fff;
   }
 }
+
 .no-padding {
   padding: 0 !important;
 }
+
 .left-padding {
   padding-left: 15px !important;
 }
+
 footer {
 	margin-top: 45px;
 	padding-top: 5px;
 	border-top: 1px solid #eaeaea;
 	color: #777;
 }
+
 footer a:hover {
   color:#222;
+}
+
+.top {
+  margin: 0px;
+}
+
+table th {
+  font-size: 18px;
 }

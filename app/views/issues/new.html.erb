@@ -1,2 +1,14 @@
-<h1> Create Issue </h1>
-<%= render partial: 'form' %>
+<h1 class="text-center">Create Issue</h1>
+<hr>
+
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <%= form_for @issue, class: "form-horizontal" do |f| %>
+      <%= render 'form', f: f %>
+      <div class="text-right">
+        <%= link_to "Cancel", issues_path, class: "btn btn-primary" %>
+        <%= f.submit "Create", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

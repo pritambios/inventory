@@ -1,33 +1,19 @@
-<h1 align="center">Listing All Brands</h1>
-
-<div align="center">
-  <% @brands.each do |brand| %>
-    <ul class="listing">
-      <div class="row">
-        <div class="well col-sm-4 col-sm-offset-4">
-          <% if current_user %>
-          <li>
-            <%= link_to ('<i class="fa fa-remove"></i>').html_safe, brand, method: :delete,
-              data: { confirm: 'Are you sure you want to delete this brand and all of their items?' },
-               class: "close"%>
-          </li>
-          <% end %>
-          <li id="category-title">
-            <%= link_to "#{brand.name}", brand_path(brand) %>
-            <% if current_user %>
-            <%= link_to ('<i class="fa fa-edit"></i>').html_safe, edit_brand_path(brand), id: "edit"%>
-            <% end %>
-          </li>
-          <li><small><%= pluralize(brand.items.count, "item") %></small></li>
-        </div>
-      </div>
-    </ul>
-  <% end %>
-<%= will_paginate renderer: BootstrapPagination::Rails %>
+<div class="page-header">
+  <%= link_to 'Add', new_brand_path, class: "btn btn-primary pull-right" %>
+  <h3>Brands(<%= @brands.count %>)</h3>
 </div>
 
-<% if current_user %>
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_brand_path,
-            :class => 'btn btn-primary col-sm-4 col-sm-offset-4' %>
-<% end %>
+<table class="table table-striped">
+  <tr>
+    <th>Name</th>
+    <th>&nbsp;</th>
+  </tr>
+  <% @brands.each do |brand| %>
+    <tr>
+      <td><%= link_to brand.name, brand_path(brand) %></td>
+      <td><%= link_to "Edit", edit_brand_path(brand), class: "btn btn-default btn-sm pull-right" %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= will_paginate %>

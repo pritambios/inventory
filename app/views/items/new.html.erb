@@ -1,5 +1,14 @@
-<div class="form-group">
-  <%= link_to 'Back', items_path, class: "btn btn-lg btn-primary" %>
+<h1 align="center">Create Item</h1>
+<hr>
+
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <%= form_for @item, class: "form-horizontal" do |f| %>
+      <%= render 'form', f: f %>
+      <div class="text-right">
+        <%= link_to "Cancel", items_path, class: "btn btn-primary" %>
+        <%= f.submit "Create", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
 </div>
-<h1 class="center">New Item</h1>
-<%= render :partial => 'form' %>

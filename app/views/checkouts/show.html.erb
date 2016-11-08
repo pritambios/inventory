@@ -30,6 +30,8 @@
       </tr>
     </table>
   </div>
-  <%= if !@checkout.checking_in.present? then link_to 'Checking In', checkin_checkout_path(@checkout), class: 'btn btn-default' end %>
+  <% unless @checkout.checking_in.present? %>
+    <%= link_to 'Checking In', checkin_checkout_path(@checkout), class: 'btn btn-default' %>
+  <% end %>
   <%= link_to 'Edit', edit_checkout_path(@checkout), class: 'btn btn-default' %>
 </section>

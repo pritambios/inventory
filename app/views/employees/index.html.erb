@@ -1,26 +1,28 @@
 <div class="page-header">
-  <%=link_to 'Add', new_employee_path, class: "btn btn-primary pull-right" %>
+  <%= link_to 'Add', new_employee_path, class: "btn btn-primary pull-right" %>
   <h3>Employees(<%= @employees.count %>)</h3>
 </div>
 
 <table class="table table-striped">
   <tr>
-    <th><h4>Names</h4></th>
-    <th><h4>Address</h4></th>
-    <th><h4>Mobile</h4></th>
-    <th><h4>Designation</h4></th>
-    <th><h4>Working Status</h4></th>
-    <th><h4>&nbsp;&nbsp;</h4></th>
+    <th>Names</th>
+    <th>Address</th>
+    <th>Mobile</th>
+    <th>Designation</th>
+    <th>Working Status</th>
+    <th>&nbsp;</th>
   </tr>
   <% @employees.each do |employee| %>
     <tr>
-      <td><strong> <%= link_to employee.name, employee_path(employee) %> </strong></td>
-      <td> <%= employee.email %> </td>
-      <td> <%= employee.mobile %> </td>
-      <td> <%= employee.designation %> </td>
-      <td> <%= employee.active? ? "Currently Working" : "Left Kreeti Technologies" %> </td>
-      <td> <%=link_to 'Edit', edit_employee_path(employee), class: 'btn btn-default' %> </td>
-      <td> <%=link_to 'Delete', employee_path(employee), method: :delete, data: {confirm: 'Do you want to delete the Information?'}, class: 'btn btn-default' %> </td>
+      <td><%= link_to employee.name, employee_path(employee) %></td>
+      <td><%= employee.email %></td>
+      <td><%= employee.mobile %></td>
+      <td><%= employee.designation %></td>
+      <td><%= employee.active? ? "Currently Working" : "" %></td>
+      <td>
+        <%= link_to "Edit", edit_employee_path(employee), class: "btn btn-default btn-sm" %>
+        <%=link_to 'Delete', employee_path(employee), method: :delete, data: { confirm: 'Do you want to delete the Information?' },  class: "btn btn-default btn-sm" %>
+      </td>
     </tr>
   <% end %>
 </table>

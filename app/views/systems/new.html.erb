@@ -1,3 +1,14 @@
-<h1>Create System </h1>
+<h1 class="text-center">Create new System</h1>
+<hr>
 
-<%= render partial: 'form' %>
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <%= form_for @system,class: "form-horizontal" do |f| %>
+      <%= render 'form', f: f %>
+      <div class="text-right">
+        <%= link_to "Cancel", systems_path, class: "btn btn-primary" %>
+        <%= f.submit "Create", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

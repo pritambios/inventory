@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :get_item, only: [:show, :edit, :update, :destroy]
 
   def index
-    @items = Item.paginate(page: params[:page], per_page: 10)
+    @items = Item.paginate(page: params[:page])
   end
 
   def new

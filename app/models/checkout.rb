@@ -1,6 +1,6 @@
 class Checkout < ApplicationRecord
   belongs_to :employee, optional: true
-  belongs_to :item, optional: true
+  belongs_to :item
 
   validates :checking_out, presence: true
   validates :reason, presence: true

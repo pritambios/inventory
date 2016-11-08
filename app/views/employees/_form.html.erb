@@ -1,17 +1,26 @@
 <%= render 'shared/errors', obj: @employee %>
-<div class="form-group">
-  <%= f.label :name , 'Name:' %>
-  <%= f.text_field :name, class: 'form-control' %>
+<div class="form-group row">
+  <div class="col-sm-4"><%= f.label :name , "Name: " %></div>
+  <div class="col-sm-8"><%= f.text_field :name, class: 'form-control', placeholder: "Employee Name" %></div>
 </div>
-<div class="form-group">
-  <%= f.label :email , 'Email:' %>
-  <%= f.text_field :email, class: 'form-control' %>
+<div class="form-group row">
+  <div class="col-sm-4"><%= f.label :email , "Email:", class: "required" %></div>
+  <div class="col-sm-8"><%= f.text_field :email, class: 'form-control', placeholder: "E-Mail Address", required: true %></div>
 </div>
-<div class="form-group">
-  <%= f.label :mobile , 'Mobile:' %>
-  <%= f.text_field :mobile, class: 'form-control' %>
+<div class="form-group row">
+  <div class="col-sm-4"><%= f.label :mobile , 'Mobile:' %></div>
+  <div class="col-sm-8"><%= f.text_field :mobile, class: 'form-control', placeholder: "Mobile number" %></div>
 </div>
-<div class="form-group">
-  <%= f.label :designation , 'Designation:' %>
-  <%= f.text_field :designation, class: 'form-control' %>
+<div class="form-group row">
+  <div class="col-sm-4"><%= f.label :designation , 'Designation:', class: "required" %></div>
+  <div class="col-sm-8"><%= f.text_field :designation, class: 'form-control', placeholder: "Designation", required: true %></div>
+</div>
+<div class="form-group row">
+  <div class="col-sm-4"><%= f.label :active, "Current Employee :" %></div>
+  <div class="col-sm-8">
+    <%= f.label :active, "Working", value: "true" %>
+    <%= f.radio_button :active, true, checked: "true" %>
+    <%= f.label :working, "Left", value: "false" %>
+    <%= f.radio_button :active, false %>
+  </div>
 </div>

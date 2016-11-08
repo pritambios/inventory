@@ -2,7 +2,7 @@ class BrandsController < ApplicationController
   before_action :get_brand, only: [:edit, :update, :show, :destroy]
 
   def index
-    @brands = Brand.paginate(page: params[:page], per_page: 3)
+    @brands = Brand.paginate(page: params[:page])
   end
 
   def new

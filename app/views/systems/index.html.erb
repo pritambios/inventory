@@ -1,27 +1,31 @@
 <div class="page-header">
-  <%=link_to 'Add', new_system_path, class: "btn btn-primary pull-right" %>
+  <%= link_to 'Add', new_system_path, class: "btn btn-primary pull-right" %>
   <h3>Systems(<%= @systems.count %>)</h3>
 </div>
 
 <table class="table table-striped">
   <tr>
-    <th><h4>System</h4></th>
-    <th><h4>Assembled on</h4></th>
-    <th><h4>Discarded</h4></th>
-    <th><h4>Working Status</h4></th>
-    <th><h4>Note</h4></th>
-    <th><h4>Allocated Person</h4></th>
-    <th><h4>Actions</h4></th>
+    <th>System</th>
+    <th>Assembled on</th>
+    <th>Discarded</th>
+    <th>Working Status</th>
+    <th>Note</th>
+    <th>Allocated Person</th>
+    <th>&nbsp;</th>
   </tr>
   <% @systems.each do |system| %>
     <tr>
-      <td> <%= link_to system.name, system_path(system)  %> </td>
-      <td> <%= system.assembled_on %></td>
-      <td> <%= system.discarded_at %> </td>
-      <td> <%= system.working ? "Working" : "Not Working" %> </td>
-      <td> <%= system.note %> </td>
-      <td> <%= system.employee.try(:name) %>
-      <td> <%= link_to 'Edit', edit_system_path(system), class: 'btn btn-default' %> </td>
+      <td><%= link_to system.name, system_path(system) %></td>
+      <td><%= system.assembled_on %></td>
+      <td><%= system.discarded_at %></td>
+      <td><%= system.working ? "Working" : "Not Working" %></td>
+      <td><%= system.note %></td>
+      <td><%= system.employee.try(:name) %></td>
+      <td>
+        <%= link_to 'Edit', edit_system_path(system), class: "btn btn-default btn-sm" %>
+        <%= link_to 'Delete', system_path(system), method: :delete, data: { confirm: 'Do you want to delete the Information?' }, class: "btn btn-default btn-sm" %>
+        <%= link_to 'History', system_history_path(system), class: "btn btn-default btn-sm" %>
+      </td>
     </tr>
   <% end %>
 </table>
