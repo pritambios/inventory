@@ -10,21 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161103133739) do
+ActiveRecord::Schema.define(version: 20161108075908) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "allocation_histories", force: :cascade do |t|
-    t.integer  "item_id"
-    t.integer  "user_id"
-    t.string   "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["item_id", "user_id"], name: "index_allocation_histories_on_item_id_and_user_id", using: :btree
-    t.index ["item_id"], name: "index_allocation_histories_on_item_id", using: :btree
-    t.index ["user_id"], name: "index_allocation_histories_on_user_id", using: :btree
-  end
 
   create_table "brands", force: :cascade do |t|
     t.string   "name"
