@@ -60,6 +60,37 @@
   padding-top: 5px;
 }
 
+.content p {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.btn-edit {
+  background-color: #005566;
+  color: #fff;
+}
+
+.btn-edit:hover, .btn-edit:focus {
+  color: #fff;
+}
+
+.content span {
+  font-weight: 500;
+}
+
+.table-heading {
+  color: #999;
+}
+
+.btn-show {
+  color: inherit;
+  font-size: 19px;
+}
+
+.pagination {
+  margin: 0 0 20px;
+}
+
 .nav.navbar-nav {
   .navbar-link {
     border-radius: 5px;

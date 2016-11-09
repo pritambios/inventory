@@ -1,58 +1,58 @@
 <div class="form-group">
-  <%= link_to 'Back', items_path, class: "btn btn-lg btn-primary" %>
+  <%= back_link %>
 </div>
 <div class="row">
-  <div class="col-md-8">
-    <section>
-      <h2><%= @item.name %></h2>
+  <div class="col-md-4">
+    <div class="content">
+      <h3 class="table-heading"><%= @item.name %></h3>
       <hr>
-      <p class="item_info"> Model Number: <strong> <%= @item.model_number %> </strong> </p>
-      <p class="item_info"> Serial Number: <%= @item.serial_number %> </p>
-      <p class="item_info"> Purchase On: <%= @item.purchase_on %> </p>
-      <p class="item_info"> Category Name: <%= @item.category.try(:name) %> </p>
-      <p class="item_info"> Brand Name: <%= @item.brand.try(:name) %> </p>
-      <p class="item_info"> Purchase From: <%= @item.purchase_from %> </p>
-      <p class="item_info"> Purchase Note: <%= @item.purchase_note %> </p>
-      <p class="item_info"> Warranty Expires On: <%= @item.warranty_expires_on %> </p>
-      <p class="item_info"> Item Status: <%= @item.working? ? "Item is working" : "Item Stopped Working" %> </p>
-      <%=link_to 'Edit Details', edit_item_path(@item) %> <br><br>
-    </section>
-    <h3>Item Histoy:</h3>
+      <p>Status: <span><%= @item.working? ? "working" : "Not Working" %></span></p>
+      <p>Model Number: <span> <%= @item.model_number %></span></p>
+      <p>Serial Number: <span><%= @item.serial_number %></span></p>
+      <p>Purchase On: <span><%= @item.purchase_on %></span></p>
+      <p>Purchase From: <span><%= @item.purchase_from %></span></p>
+      <p>Category: <span><%= @item.category.try(:name) %></span></p>
+      <p>Brand: <span><%= @item.brand.try(:name) %></span></p>
+      <p>Warranty Expires On: <span><%= @item.warranty_expires_on %></span></p>
+      <p>Purchase Note: <span><%= @item.purchase_note %></span></p>
+      <%= edit_link(edit_item_path(@item)) %>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <h3 class="table-heading">Item Histoy:</h3>
     <hr>
-    <table>
+    <table class="table table-striped">
       <tr>
-        <th><h4>System </h4></th>
-        <th><h4>Allocated To</h4></th>
-        <th><h4>Status</h4></th>
-        <th><h4> Date </h4></th>
+        <th>System</th>
+        <th>Allocated To</th>
+        <th>Status</th>
+        <th>Date</th>
       </tr>
       <% @item_histories.each do |item_history| %>
         <tr>
-          <td> <%= item_history.system_id.present? ? "System #{item_history.system_id}" : "Unattached" %> </td>
-          <td> <%= item_history.employee.try(:name) || "Unallocated" %> </td>
-          <td> <%= item_history.status? ? "Active" : "Inactive" %> </td>
-          <td> <%= item_history.created_at.strftime("%d/%m/%Y") %> </td>
+          <td><%= item_history.system_id.present? ? "System #{item_history.system_id}" : "Unattached" %></td>
+          <td><%= item_history.employee.try(:name) || "Unallocated" %></td>
+          <td><%= item_history.status? ? "Active" : "Inactive" %></td>
+          <td><%= item_history.created_at.strftime("%d/%m/%Y") %></td>
         </tr>
       <% end %>
     </table>
     <%= will_paginate @item_histories, :param_name => 'item_histories_page' %>
-  </div>
-  <div class="col-md-4">
-    <h3> Checkouts Histoy:</h3>
+    <h3 class="table-heading"> Checkouts Histoy:</h3>
     <hr>
-    <table>
+    <table class="table table-striped">
       <tr>
-        <th><h4>Employee </h4></th>
-        <th><h4>Checking Out</h4></th>
-        <th><h4>Checking In</h4></th>
-        <th><h4> &nbsp; </h4></th>
+        <th>Employee</th>
+        <th>Checking Out</th>
+        <th>Checking In</th>
+        <th> &nbsp;</th>
       </tr>
       <% @checkouts.each do |checkout| %>
         <tr>
-          <td> <%= checkout.employee.try(:name) %> </td>
-          <td> <%= checkout.checking_out %> </td>
-          <td> <%= checkout.checking_in %> </td>
-          <td> <%= link_to "View Details", checkout_path(checkout) %> </td>
+          <td><%= checkout.employee.try(:name) %></td>
+          <td><%= checkout.checking_out %></td>
+          <td><%= checkout.checking_in %></td>
+          <td><%= show_link(checkout_path(checkout)) %></td>
         </tr>
       <% end %>
     </table>
