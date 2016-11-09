@@ -7,6 +7,8 @@ class System < ActiveRecord::Base
 
   belongs_to :employee, optional: true
 
+  scope :order_desending, -> { order('created_at DESC') }
+
   def name
     "System #{id}"
   end

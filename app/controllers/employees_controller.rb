@@ -29,6 +29,11 @@ class EmployeesController < ApplicationController
     @employees = Employee.paginate(page: params[:page])
   end
 
+  def show
+    @items = @employee.items.order_desending.paginate(page: params[:items_page])
+    @systems = @employee.systems.order_desending.paginate(page: params[:systems_page])
+  end
+
   def destroy
     if @employee.destroy
       flash[:success] = "Employee Details Deleted"

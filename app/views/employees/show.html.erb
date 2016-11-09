@@ -1,17 +1,59 @@
 <div class="form-group">
-  <%= link_to 'Back', employees_path, class: "btn btn-lg btn-primary", id: "button1" %>
+  <%= back_link %>
 </div>
 <div class="row">
-  <aside class="col-md-8">
-    <section class="user_info">
-      <h1>
-        <p class="employee_info"> Employee Name: <strong> <%= @employee.name %> </strong> </p>
-        <p class="employee_info"> Address: <%= @employee.email %> </p>
-        <p class="employee_info"> Mobiler: <%= @employee.mobile %> </p>
-        <p class="employee_info"> Designation: <%= @employee.designation %> </p>
-        <p class="employee_info"> Status: <%= @employee.active? ? "Currently Working" : "Not Working" %> </p>
-      </h1>
-      <%=link_to 'Edit Details', edit_employee_path(@employee) %> <br><br>
-    </section>
-  </aside>
+  <section class="col-xs-12 col-sm-5 main-info">
+    <h3><%= @employee.name %></h3>
+    <p><span>Email:</span><%= @employee.email %></p>
+    <p><span>Mobile:</span><%= @employee.mobile %></p>
+    <p><span>Designation:</span><%= @employee.designation %></p>
+    <p><span>Status:</span><%= @employee.active? ? "Working" : "Not Working" %></p>
+    <%= edit_link(edit_employee_path(@employee)) %>
+  </section>
+  <section class="col-xs-12 col-sm-7 other-info">
+    <div>
+      <h3>Alloted Items(<%= @items.count %>)</h3>
+      <table class="table table-striped">
+        <tr>
+          <th>Item</th>
+          <th>Model Number</th>
+          <th>Serial Number</th>
+          <th>Category</th>
+          <th>Brand</th>
+          <th>&nbsp;</th>
+        </tr>
+        <% @items.each do |item| %>
+          <tr>
+            <td><%= link_to item.name, item_path(item)  %></td>
+            <td><%= item.model_number %></td>
+            <td><%= item.serial_number %></td>
+            <td><%= item.category.name %></td>
+            <td><%= item.brand.name %></td>
+            <td class="icon-show"><%= show_link(item_path(item)) %></td>
+          </tr>
+          <% end %>
+      </table>
+      <%= will_paginate @items, param_name: 'items_page' %>
+    </div>
+    <div>
+      <h3>Alloted Systems(<%= @systems.count %>)</h3>
+      <table class="table table-striped">
+        <tr>
+          <th>System</th>
+          <th>Assembled on</th>
+          <th>&nbsp;</th>
+        </tr>
+        <% @systems.each do |system| %>
+          <tr>
+            <td><%= link_to system.name, system_path(system) %></td>
+            <td><%= system.assembled_on.present? ? format_date(system.assembled_on) : "" %></td>
+            <td class="icon-show">
+              <%= show_link(system_path(system)) %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+      <%= will_paginate @systems, param_name: 'systems_page' %>
+    </div>
+  </section>
 </div>

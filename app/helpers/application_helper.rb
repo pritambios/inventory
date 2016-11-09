@@ -10,4 +10,8 @@ module ApplicationHelper
   def show_link(path)
     link_to ('<i class="fa fa-eye"></i>').html_safe, path, class: 'btn-show'
   end
+
+  def format_date(date)
+    date.strftime("%d/%m/%Y")
+  end
 end

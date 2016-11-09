@@ -15,6 +15,8 @@ class Item < ApplicationRecord
   validates :purchase_on, presence: true
   validates :purchase_from, presence: true
 
+  scope :order_desending, -> { order('created_at DESC') }
+
   def name
     "#{brand.name}-#{category.name}_#{serial_number}"
   end
