@@ -1,7 +1,7 @@
 #logo {
   float: left;
   font-size: 1.7em;
-  color: #4CAF50;
+  color: #f26722;
   letter-spacing:-1px;
   font-weight: bold;
 }
@@ -34,30 +34,18 @@
 }
 
 .user-name {
-  padding: 0 !important;
-  padding-left: 5px;
-  padding-top: 15px !important;
+  padding-right: 15px;
+  padding-top: 15px;
   text-align: center;
-
-  a {
-    color: black !important;
-    margin: 0 !important;
-    padding: 5px !important;
-  }
-
-  a:hover, a:focus {
-    color: #000 !important;
-  }
-}
-
-.logout {
-  padding-left: 0px;
-  padding-right: 0px;
 }
 
 .nav.navbar-right {
-  padding-bottom: 10px;
-  padding-top: 5px;
+  margin-right: 0px;
+
+  li a {
+    padding: 0px 10px;
+    line-height: 35px;
+  }
 }
 
 .content p {
@@ -107,12 +95,39 @@
   li a {
     margin-right: 5px;
   }
+
+  .logout-btn {
+    margin-top: 10px;
+    color: #303641;
+    background-color: #36d2ea;
+
+    &:hover, &:focus {
+      background-color: #36d2ea;
+      color: #303641;
+    }
+  }
+}
+
+.navbar-default {
+  background-color: #fff;
+  border-color: #e7e7e7;
+  box-shadow: 0 3px 5px #eee;
+  padding-top: 5px;
+  min-height: 60px;
+}
+
+.top-links {
+  width: 65%;
+  float: right;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: #303641;
 }
 
 .nav.navbar-right li {
   .btn {
-    color: #fff !important;
-    margin-top: 5%;
+    margin-top: 10%;
   }
 
   .btn-danger:hover, .btn-danger:focus {
@@ -136,11 +151,14 @@
   padding-left: 15px !important;
 }
 
+.main-content{
+  min-height: 600px;
+}
+
 footer {
-	margin-top: 45px;
-	padding-top: 5px;
-	border-top: 1px solid #eaeaea;
-	color: #777;
+  padding: 1rem;
+  background-color: #7b7b7b;
+  color: #fff;
 }
 
 footer a:hover {
@@ -153,4 +171,10 @@ footer a:hover {
 
 table th {
   font-size: 18px;
+}
+
+@media only screen and (max-width: 768px) {
+  .nav > li > a {
+    padding: 20px 5px 0px;
+  }
 }

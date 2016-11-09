@@ -10,48 +10,48 @@
       <% end %>
       <%= link_to "Inventory",root_path, class: "navbar-brand", id: "logo" %>
     </div>
-    <div class="navbar-collapse collapse collapsed_data">
-      <% if current_user %>
-        <ul class="nav navbar-nav navbar-left">
-          <li class="links">
-            <%= link_to 'Employees', employees_path %>
-          </li>
-          <li class="links">
-            <%= link_to 'Brands', brands_path %>
-          </li>
-          <li class="links">
-            <%= link_to 'Categories', categories_path %>
-          </li>
-          <li class="links">
-            <%= link_to 'Items', items_path %>
-          </li>
-          <li class="links">
-            <%= link_to 'Systems', systems_path %>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">More <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li class="links">
-                <%= link_to 'Checkouts', checkouts_path %>
-              </li>
-              <li class="links">
-                <%= link_to 'Issues', issues_path %>
-              </li>
-            </ul>
-          </li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right col-sm-3">
-          <div class="row">
-            <li class="user-name col-sm-8">
-              <i class="fa fa-user"></i>
+    <% if current_user %>
+      <div class="navbar-collapse collapse collapsed_data">
+        <div class="top-links">
+          <ul class="nav navbar-nav navbar-left">
+            <li class="links">
+              <%= link_to 'Checkouts', checkouts_path %>
+            </li>
+            <li class="links">
+              <%= link_to 'Employees', employees_path %>
+            </li>
+            <li class="links">
+              <%= link_to 'Issues', issues_path %>
+            </li>
+            <li class="links">
+              <%= link_to 'Items', items_path %>
+            </li>
+            <li class="links">
+              <%= link_to 'Systems', systems_path %>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">More <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="links">
+                  <%= link_to 'Brands', brands_path %>
+                </li>
+                <li class="links">
+                  <%= link_to 'Categories', categories_path %>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="user-name">
+              <i class="fa fa-user"></i>&nbsp;
               <%= current_user.full_name.present? ? current_user.full_name : current_user.email %>
             </li>
-            <li class="logout col-sm-4">
-              <%= link_to('logout', logout_path, class: 'btn btn-sm btn-danger', title: 'Logout', method: :delete) %>
+            <li class="logout">
+              <%= link_to('Logout', logout_path, class: 'btn btn-sm logout-btn', title: 'Logout', method: :delete) %>
             </li>
-          </div>
-       </ul>
-       <% end %>
-    </div>
+          </ul>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
