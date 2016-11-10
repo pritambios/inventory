@@ -1,42 +1,40 @@
-<h1>System</h1>
-<hr>
-<dl class="dl-horizontal">
-  <dt><strong>Assembled On :</strong></dt>
-  <dd><%= @system.assembled_on %></dd>
-  <dt><strong>Discarded At :</strong></dt>
-  <dd><%= @system.discarded_at %></dd>
-  <dt><strong>Current Status :</strong></dt>
-  <dd><%= @system.working ? "Working" : "Not Working" %></dd>
-  <dt><strong>Note :</strong></dt>
-  <dd><%= @system.note %></dd>
-  <dt><strong>Items :</strong></dt>
-  <dd>
-  <% @system.items.each do |item| %>
-    <%= link_to item.model_number, item_path(item) %>
-  <% end %>
-  </dd>
-</dl>
-
-<%= link_to 'Back', systems_path, :class => 'btn btn-default'  %>
-<% if current_user %>
-<%= link_to 'Edit', edit_system_path(@system), :class => 'btn btn-default' %>
-<%= link_to 'Delete', system_path(@system), method: 'delete', data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %>
-<% end %>
-
-<h1>System History</h1>
-<hr>
-<table>
-  <tr>
-    <th><h4>Employee </h4></th>
-    <th><h4>Status</h4></th>
-    <th><h4> Date </h4></th>
-  </tr>
-  <% @system_histories.each do |system_history| %>
-  <tr>
-    <td> <%= system_history.employee.present? ? system_history.employee.try(:name) : "Not Assigned" %> </td>
-    <td> <%= system_history.status? ? "Active" : "Inactive" %> </td>
-    <td> <%= system_history.created_at.strftime("%d/%m/%Y") %> </td>
-  </tr>
-  <% end %>
-</table>
-<%= will_paginate @system_histories %>
+<div class="form-group">
+  <%= back_link %>
+</div>
+<div class="row">
+  <section class="col-xs-12 col-sm-5 main-info">
+    <h3><%= @system.name %></h3>
+    <% if @system.assembled_on.present? %>
+      <p><span>Assembled On: </span><%= format_date(@system.assembled_on) %></p>
+    <% end %>
+    <% if @system.discarded_at.present? %>
+      <p><span>Discarded At: </span><%= format_date(@system.discarded_at) %></p>
+    <% end %>
+    <p><span>Status: </span><%= @system.working ? "Working" : "Not Working" %></p>
+    <% if @system.note.present? %>
+      <p><span>Note: </span><%= @system.note %></p>
+    <% end %>
+    <%= edit_link(edit_system_path(@system)) %>
+    <%= link_to 'Delete', system_path(@system), method: :delete, data: { confirm: 'Do you want to delete the Information?' }, class: "btn btn-default btn-sm" %>
+  </section>
+  <section class="col-xs-12 col-sm-7 other-info">
+    <div>
+      <h3>Histories (<%= @system_histories.count %>)</h3>
+      <table class="table table-striped">
+        <tr>
+          <th>Employee</th>
+          <th>Status</th>
+          <th>Date</th>
+        </tr>
+        <% @system_histories.each do |system_history| %>
+          <tr>
+            <td><%= system_history.employee.present? ? system_history.employee.try(:name) : "Not Assigned" %></td>
+            <td><%= system_history.status? ? "Active" : "Inactive" %></td>
+            <td><%= format_date(system_history.created_at) %></td>
+          </tr>
+        <% end %>
+      </table>
+      <%= will_paginate @system_histories %>
+    </div>
+  </section>
+</div>
