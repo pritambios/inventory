@@ -1,20 +1,27 @@
-<h1>Issue</h1>
-<hr>
-<dl class="dl-horizontal">
-  <dt><strong>System :</strong></dt>
-  <dd><%= @issue.system.try(:id) %></dd>
-  <dt><strong>Item :</strong></dt>
-  <dd><%= @issue.item.try(:serial_number) %></dd>
-  <dt><strong>Title :</strong></dt>
-  <dd><%= @issue.title %></dd>
-  <dt><strong>Description :</strong></dt>
-  <dd><%= @issue.description %></dd>
-  <dt><strong>Closing Time :</strong></dt>
-  <dd><%= @issue.closed_at.strftime('%d/%m/%Y') %></dd>
-  <dt><strong>Note :</strong></dt>
-  <dd><%= @issue.note %></dd>
-</dl>
-
-<%= link_to 'Back', issues_path, class: 'btn btn-default'  %>
-<%= link_to 'Edit', edit_issue_path(@issue), class: 'btn btn-default' %>
-<%= link_to 'Delete', issue_path(@issue), method: 'delete', data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+<div class="form-group">
+  <%= back_link %>
+</div>
+<div class="row">
+  <section class="col-xs-12 col-sm-5 main-info">
+    <h3><%= @issue.title %></h3>
+    <% if @issue.system.present? %>
+      <p><span>System: </span><%= @issue.system.name %></p>
+    <% end %>
+    <% if @issue.item.present? %>
+      <p><span>Item: </span><%= @issue.item.name %></p>
+    <% end %>
+    <% if @issue.description.present? %>
+      <p><span>Description: </span><%= @issue.description %></p>
+    <% end %>
+    <% if @issue.closed_at.present? %>
+      <p><span>Resolved at: </span><%= format_date(@issue.closed_at) %></p>
+    <% else %>
+      <p><span>Status: </span>Pending</p>
+    <% end %>
+    <% if @issue.note.present? %>
+      <p><span>Note: </span><%= @issue.note %></p>
+    <% end %>
+    <%= edit_link(edit_issue_path(@issue)) %>
+    <%= link_to 'Delete', issue_path(@issue), method: 'delete', data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+  </section>
+</div>
