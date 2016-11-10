@@ -23,7 +23,6 @@
       <td><%= system.employee.try(:name) %></td>
       <td>
         <%= edit_link(edit_system_path(system)) %>
-        <%= link_to 'Delete', system_path(system), method: :delete, data: { confirm: 'Do you want to delete the Information?' }, class: "btn btn-default btn-sm" %>
       </td>
     </tr>
   <% end %>

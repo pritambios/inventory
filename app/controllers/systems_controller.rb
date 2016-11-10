@@ -1,5 +1,5 @@
 class SystemsController < ApplicationController
-  before_action :get_system, only: [:edit, :update, :show, :destroy]
+  before_action :get_system, only: [:edit, :update, :show]
 
   def index
     @systems = System.paginate(page: params[:page])
@@ -30,16 +30,6 @@ class SystemsController < ApplicationController
       redirect_to system_path(@system)
     else
       render 'edit'
-    end
-  end
-
-  def destroy
-    if @system.destroy
-      flash[:success] = "System Details Deleted"
-      redirect_to systems_path
-    else
-      flash[:danger] = "Unable To delete the details"
-      redirect_to systems_path
     end
   end
 

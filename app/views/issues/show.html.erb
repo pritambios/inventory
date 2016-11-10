@@ -22,6 +22,5 @@
       <p><span>Note: </span><%= @issue.note %></p>
     <% end %>
     <%= edit_link(edit_issue_path(@issue)) %>
-    <%= link_to 'Delete', issue_path(@issue), method: 'delete', data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
   </section>
 </div>

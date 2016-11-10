@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :brands
   resources :employees
-  resources :systems
+  resources :systems, except: [:destroy]
   resources :checkouts, except: [:destroy] do
     member do
       get 'checkin'

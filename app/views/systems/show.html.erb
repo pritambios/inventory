@@ -15,7 +15,6 @@
       <p><span>Note: </span><%= @system.note %></p>
     <% end %>
     <%= edit_link(edit_system_path(@system)) %>
-    <%= link_to 'Delete', system_path(@system), method: :delete, data: { confirm: 'Do you want to delete the Information?' }, class: "btn btn-default btn-sm" %>
   </section>
   <section class="col-xs-12 col-sm-7 other-info">
     <div>
