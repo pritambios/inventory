@@ -10,15 +10,19 @@
     <th>Serial Number</th>
     <th>Category</th>
     <th>Brand</th>
+    <th>Status</th>
     <th>&nbsp;</th>
   </tr>
   <% @items.each do |item| %>
     <tr>
-      <td><%= link_to item.name, item_path(item)  %></td>
+      <td><%= link_to item.name, item_path(item) %></td>
       <td><%= item.model_number %></td>
       <td><%= item.serial_number %></td>
       <td><%= item.category.name %></td>
-      <td><%= item.brand.name %></td>
+      <td><%= item.brand.try(:name) %></td>
+      <td>
+        <%= link_to working_status(item), status_update_path(item), remote: true, method: :put, id: "status-#{ item.id }" %>
+      </td>
       <td><%= link_to 'Edit', edit_item_path(item), class: "btn btn-default btn-sm" %></td>
     </tr>
   <% end %>

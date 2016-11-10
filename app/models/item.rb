@@ -7,18 +7,16 @@ class Item < ApplicationRecord
 
   belongs_to :employee, optional: true
   belongs_to :category
-  belongs_to :brand
+  belongs_to :brand, optional: true
   belongs_to :system, optional: true
 
   validates :serial_number, presence: true, length: { minimum: 3, maximum: 50 }
-  validates :model_number, presence: true, length: { minimum: 2, maximum: 25 }
   validates :purchase_on, presence: true
-  validates :purchase_from, presence: true
 
   scope :order_desending, -> { order('created_at DESC') }
 
   def name
-    "#{brand.name}-#{category.name}_#{serial_number}"
+    "#{category.name}(#{serial_number})"
   end
 
   scope :unavailable, -> { joins(:checkouts).where(checkouts: { checking_in: nil }) }
