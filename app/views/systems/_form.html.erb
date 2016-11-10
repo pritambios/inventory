@@ -1,20 +1,20 @@
 <%= render 'shared/errors', obj: @system %>
 <div class="form-group row">
-  <div class="col-sm-4"><%= f.label :employees, "Select Employee :" %></div>
+  <div class="col-sm-4"><%= f.label :employees, "Allocated To:" %></div>
   <div class="col-sm-8">
     <%= f.collection_select :employee_id, Employee.all, :id, :email, include_blank: "Select Employee" %>
   </div>
 </div>
 <div class="form-group row">
-  <div class="col-sm-4"><%= f.label :assembled_on, "Assembled on  :" %></div>
-  <div class="col-sm-8"><%= f.text_field :assembled_on, class: 'form-control datepicker', placeholder: "YYYY/MM/DD" %></div>
+  <div class="col-sm-4"><%= f.label :assembled_on, "Assembled on  :", class: "required" %></div>
+  <div class="col-sm-8"><%= f.text_field :assembled_on, class: 'form-control datepicker', placeholder: "YYYY/MM/DD", required: "true" %></div>
 </div>
 <div class="form-group row">
   <div class="col-sm-4"><%= f.label :discarded_at, "Discarded at :" %></div>
   <div class="col-sm-8"><%= f.text_field :discarded_at, class: 'form-control datepicker', placeholder: "YYYY/MM/DD" %></div>
 </div>
 <div class="form-group row">
-  <div class="col-sm-4"><%= f.label :working, "Current Status :" %></div>
+  <div class="col-sm-4"><%= f.label :working, "Status :" %></div>
   <div class="col-sm-8">
     <%= f.label :working, "Working", value: "true" %>
     <%= f.radio_button :working, true, checked: "true" %>
