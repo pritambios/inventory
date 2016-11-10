@@ -177,6 +177,13 @@ table th {
   font-size: 18px;
 }
 
+.table-last td:last-child {
+  text-align: right;
+  .btn-edit {
+    margin-left: 15px;
+  }
+}
+
 section.main-info h3, section.other-info h3 {
   color: #999;
 }
