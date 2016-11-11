@@ -4,16 +4,21 @@
 <div class="row">
   <section class="col-xs-12 col-sm-5 main-info">
     <h3><%= @system.name %></h3>
+
     <% if @system.assembled_on.present? %>
       <p><span>Assembled On: </span><%= format_date(@system.assembled_on) %></p>
     <% end %>
+
     <% if @system.discarded_at.present? %>
       <p><span>Discarded At: </span><%= format_date(@system.discarded_at) %></p>
     <% end %>
+
     <p><span>Status: </span><%= @system.working ? "Working" : "Not Working" %></p>
+
     <% if @system.note.present? %>
       <p><span>Note: </span><%= @system.note %></p>
     <% end %>
+
     <p><span>Items: </span>
       <ol>
         <% @system.items.each do |item| %>
@@ -24,8 +29,8 @@
     <%= edit_link(edit_system_path(@system), "System") %>
   </section>
   <section class="col-xs-12 col-sm-7 other-info">
-    <div>
-      <h3>Histories (<%= @system_histories.count %>)</h3>
+    <h3>Histories (<%= @system_histories.count %>)</h3>
+    <div class="table-responsive">
       <table class="table table-striped">
         <tr>
           <th>Employee</th>
@@ -48,8 +53,8 @@
       </table>
       <%= will_paginate @system_histories, param_name: 'system_histories_page' %>
     </div>
-    <div>
-      <h3 class="table-heading">Issues(<%= @issues.count %>)</h3>
+    <h3 class="table-heading">Issues (<%= @issues.count %>)</h3>
+    <div class="table-responsive">
       <table class="table table-striped">
         <tr>
           <th>Issue</th>

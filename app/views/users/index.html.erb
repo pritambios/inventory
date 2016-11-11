@@ -2,24 +2,24 @@
   <%= link_to 'Add', new_user_path, data: { remote_popup: true, title: "Create User" }, class: "btn btn-primary pull-right" %>
   <h3>Users(<%= @users.count %>)</h3>
 </div>
-
-<table class="table table-striped table-last">
-  <tr>
-    <th>Name</th>
-    <th>Email</th>
-    <th>&nbsp;</th>
-  </tr>
-  <% @users.each do |user| %>
+<div class="table-responsive">
+  <table class="table table-striped table-last">
     <tr>
-      <td><%= user.full_name %></td>
-      <td><%= user.email %></td>
-      <td>
-        <%= edit_link(edit_user_path(user), "User") %>
-        <%= link_to "Delete", user_path(user), method: :delete,
-                data: { confirm: "Are you sure?" }, class: 'btn btn-danger' %></li>
-      </td>
+      <th>Name</th>
+      <th>Email</th>
+      <th>&nbsp;</th>
     </tr>
-  <% end %>
-</table>
-
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.full_name %></td>
+        <td><%= user.email %></td>
+        <td>
+          <%= edit_link(edit_user_path(user), "User") %>
+          <%= link_to "Delete", user_path(user), method: :delete,
+                data: { confirm: "Are you sure?" }, class: 'btn btn-danger btn-sm' %></li>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
 <%= will_paginate %>

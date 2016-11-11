@@ -2,34 +2,34 @@
   <%= link_to 'Add', new_system_path, data: { remote_popup: true, title: "Create System" }, class: "btn btn-primary pull-right" %>
   <h3>Systems(<%= @systems.count %>)</h3>
 </div>
-
-<table class="table table-striped table-last">
-  <tr>
-    <th>System</th>
-    <th>Assembled on</th>
-    <th>Discarded</th>
-    <th>Status</th>
-    <th>Allocated To</th>
-    <th>&nbsp;</th>
-  </tr>
-  <% @systems.each do |system| %>
+<div class="table-responsive">
+  <table class="table table-striped table-last">
     <tr>
-      <td><%= link_to system.name, system_path(system) %></td>
-      <td><%= system.assembled_on %></td>
-      <td><%= system.discarded_at %></td>
-      <td><%= system.working ? "Working" : "Not Working" %></td>
-      <td>
-        <% if system.employee.present? %>
-          <%= link_to system.employee.try(:name_or_email), employee_path(system.employee) %>
-        <% else %>
-          Not Assigned
-        <% end %>
-      </td>
-      <td>
-        <%= edit_link(edit_system_path(system), "System") %>
-      </td>
+      <th>System</th>
+      <th>Assembled on</th>
+      <th>Discarded</th>
+      <th>Status</th>
+      <th>Allocated To</th>
+      <th>&nbsp;</th>
     </tr>
-  <% end %>
-</table>
-
+    <% @systems.each do |system| %>
+      <tr>
+        <td><%= link_to system.name, system_path(system) %></td>
+        <td><%= system.assembled_on %></td>
+        <td><%= system.discarded_at %></td>
+        <td><%= system.working ? "Working" : "Not Working" %></td>
+        <td>
+          <% if system.employee.present? %>
+            <%= link_to system.employee.try(:name_or_email), employee_path(system.employee) %>
+          <% else %>
+            Not Assigned
+          <% end %>
+        </td>
+        <td>
+          <%= edit_link(edit_system_path(system), "System") %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
 <%= will_paginate %>

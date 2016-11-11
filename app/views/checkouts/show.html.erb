@@ -1,20 +1,23 @@
 <div class="form-group">
   <%= back_link %>
 </div>
-<div class="row">
-  <section class="col-xs-12 col-sm-5 main-info">
-    <h3><%= @checkout.item.name %></h3>
-    <% if @checkout.employee.present? %>
-      <p><span>Employee: </span><%= link_to @checkout.employee.name_or_email, employee_path(@checkout.employee) %></p>
-    <% end %>
-    <p><span>Checking Out: </span><%= format_date(@checkout.checking_out) %></p>
-    <% if @checkout.checking_in.present? %>
-      <p><span>Checking At: </span><%= format_date(@checkout.checking_in) %></p>
-    <% end %>
-    <p><span>Reason: </span><%= @checkout.reason %></p>
-    <%= edit_link(edit_checkout_path(@checkout), "Checkout") %>
-    <% unless @checkout.checking_in.present? %>
-      <%= link_to 'Checking In', checkin_checkout_path(@checkout), class: 'btn btn-default' %>
-    <% end %>
-  </section>
-</div>
+<section class="main-info">
+  <h3><%= @checkout.item.name %></h3>
+
+  <% if @checkout.employee.present? %>
+    <p><span>Employee: </span><%= link_to @checkout.employee.name_or_email, employee_path(@checkout.employee) %></p>
+  <% end %>
+
+  <p><span>Checking Out: </span><%= format_date(@checkout.checking_out) %></p>
+
+  <% if @checkout.checking_in.present? %>
+    <p><span>Checking At: </span><%= format_date(@checkout.checking_in) %></p>
+  <% end %>
+
+  <p><span>Reason: </span><%= @checkout.reason %></p>
+  <%= edit_link(edit_checkout_path(@checkout), "Checkout") %>
+
+  <% unless @checkout.checking_in.present? %>
+    <%= link_to 'Checking In', checkin_checkout_path(@checkout), class: 'btn btn-default' %>
+  <% end %>
+</section>
