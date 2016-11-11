@@ -4,10 +4,14 @@
 <div class="row">
   <section class="col-xs-12 col-sm-5 main-info">
     <h3><%= @employee.name %></h3>
-    <p><span>Email:</span><%= @employee.email %></p>
-    <p><span>Mobile:</span><%= @employee.mobile %></p>
-    <p><span>Designation:</span><%= @employee.designation %></p>
-    <p><span>Status:</span><%= @employee.active? ? "Working" : "Not Working" %></p>
+    <p><span>Email: </span><%= @employee.email %></p>
+    <% if @employee.mobile.present? %>
+      <p><span>Mobile: </span><%= @employee.mobile %></p>
+    <% end %>
+    <% if @employee.designation.present? %>
+      <p><span>Designation: </span><%= @employee.designation %></p>
+    <% end %>
+    <p><span>Status: </span><%= @employee.active? ? "Working" : "Not Working" %></p>
     <%= edit_link(edit_employee_path(@employee)) %>
   </section>
   <section class="col-xs-12 col-sm-7 other-info">

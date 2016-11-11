@@ -21,7 +21,8 @@ class SystemsController < ApplicationController
   end
 
   def show
-    @system_histories = @system.system_histories.order_desending.paginate(page: params[:page])
+    @system_histories = @system.system_histories.order_desending.paginate(page: params[:system_histories_page])
+    @issues = @system.issues.order_desending.paginate(page: params[:issues_page])
   end
 
   def update

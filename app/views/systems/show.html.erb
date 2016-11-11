@@ -46,7 +46,27 @@
           </tr>
         <% end %>
       </table>
-      <%= will_paginate @system_histories %>
+      <%= will_paginate @system_histories, param_name: 'system_histories_page' %>
+    </div>
+    <div>
+      <h3 class="table-heading">Issues(<%= @issues.count %>)</h3>
+      <table class="table table-striped">
+        <tr>
+          <th>Issue</th>
+          <th>Item</th>
+          <th>Closed At</th>
+          <th>&nbsp;</th>
+        </tr>
+        <% @issues.each do |issue| %>
+          <tr>
+            <td><%= issue.title %></td>
+            <td><%= issue.item.name if issue.item_id? %></td>
+            <td><%= format_date(issue.closed_at) if issue.closed_at? %></td>
+            <td><%= show_link(issue_path(issue)) %></td>
+          </tr>
+        <% end %>
+      </table>
+      <%= will_paginate @issues, param_name: 'issues_page' %>
     </div>
   </section>
 </div>

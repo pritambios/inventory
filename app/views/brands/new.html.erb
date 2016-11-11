@@ -6,7 +6,7 @@
     <%= form_for @brand, class: "form-horizontal" do |f| %>
       <%= render 'form', f: f %>
       <div class="text-right">
-        <%= link_to "Cancel", brands_path, class: "btn btn-primary" %>
+        <%= link_to "Cancel", brands_path, class: "btn btn-default" %>
         <%= f.submit "Create", class: "btn btn-primary" %>
       </div>
     <% end %>

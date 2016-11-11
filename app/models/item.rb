@@ -16,7 +16,7 @@ class Item < ApplicationRecord
   scope :order_desending, -> { order('created_at DESC') }
 
   def name
-    "#{brand.name} #{category.name}"
+    "#{brand.try(:name)} #{category.name}"
   end
 
   scope :unavailable, -> { joins(:checkouts).where(checkouts: { checking_in: nil }) }
