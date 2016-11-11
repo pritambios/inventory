@@ -40,6 +40,6 @@ class SystemsController < ApplicationController
   end
 
   def system_params
-    params.require(:system).permit(:employee_id, :assembled_on, :discarded_at, :working, :note)
+    params.require(:system).permit(:employee_id, :assembled_on, :discarded_at, :working, :note, item_ids: [])
   end
 end

@@ -21,6 +21,7 @@ class Item < ApplicationRecord
 
   scope :unavailable, -> { joins(:checkouts).where(checkouts: { checking_in: nil }) }
   scope :available,   -> { where.not(id: unavailable) }
+  scope :unattached,   -> { where(system_id: nil) }
 
   private
 

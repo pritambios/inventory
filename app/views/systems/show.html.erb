@@ -14,6 +14,13 @@
     <% if @system.note.present? %>
       <p><span>Note: </span><%= @system.note %></p>
     <% end %>
+    <p><span>Items: </span>
+      <ol>
+        <% @system.items.each do |item| %>
+          <li><%= link_to item.name, item_path(item) %></li>
+        <% end %>
+      </ol>
+    </p>
     <%= edit_link(edit_system_path(@system)) %>
   </section>
   <section class="col-xs-12 col-sm-7 other-info">
@@ -27,7 +34,13 @@
         </tr>
         <% @system_histories.each do |system_history| %>
           <tr>
-            <td><%= system_history.employee.present? ? system_history.employee.try(:name) : "Not Assigned" %></td>
+            <td>
+              <% if system_history.employee.present? %>
+                <%= link_to system_history.employee.name_or_email, employee_path(system_history.employee) %>
+              <% else %>
+                Not Assigned
+              <% end %>
+            </td>
             <td><%= system_history.status? ? "Active" : "Inactive" %></td>
             <td><%= format_date(system_history.created_at) %></td>
           </tr>

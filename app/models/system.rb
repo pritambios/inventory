@@ -15,6 +15,10 @@ class System < ActiveRecord::Base
     "System #{id}"
   end
 
+  def associable_items
+    Item.available.unattached.to_a.concat(items)
+  end
+
   def update_system_history
     if employee_id_changed? || working_changed? || new_record?
       system_history = system_histories.build(employee_id: employee_id, status: working)
