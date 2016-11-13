@@ -12,10 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require twitter/bootstrap
 //= require bootstrap-datepicker
+//= require bootstrap-sprockets
 //= require react
 //= require react_ujs
 //= require components
+//= require modal
 //= require_tree .
-//= require bootstrap-datepicker
