@@ -1,9 +1,22 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 80px;
+}
+
 #logo {
   float: left;
   font-size: 1.7em;
   color: #f26722;
   letter-spacing:-1px;
   font-weight: bold;
+}
+
+.page-header {
+  margin-top: 0px;
 }
 
 .google-div {
@@ -145,15 +158,6 @@
 
 .left-padding {
   padding-left: 15px !important;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  margin-bottom: 80px;
 }
 
 .required {
