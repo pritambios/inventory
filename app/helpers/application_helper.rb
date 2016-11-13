@@ -14,6 +14,10 @@ module ApplicationHelper
     javascript_tag(@unobtrusive_js.join(";\n"))
   end
 
+  def flash_message_type(message_type)
+    message_type = 'danger' if message_type == 'error'
+    message_type
+  end
 
   def back_link
     link_to ('<i class="fa fa-arrow-left"></i> Back').html_safe, :back
