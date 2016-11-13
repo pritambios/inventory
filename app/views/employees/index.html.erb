@@ -1,5 +1,5 @@
 <div class="page-header">
-  <%= link_to 'Add', new_employee_path, class: "btn btn-primary pull-right" %>
+  <%= link_to 'Add', new_employee_path, data: { remote_popup: true, title: "Create Employee" }, class: "btn btn-primary pull-right" %>
   <h3>Employees(<%= @employees.count %>)</h3>
 </div>
 
