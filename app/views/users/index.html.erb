@@ -1,22 +1,24 @@
-<h1 align="center">All Users of IMS</h1>
-<div align="center">
-  <%= will_paginate %>
-  <% @users.each do |user| %>
-    <ul class="listing">
-      <div class="row">
-        <div class="well col-md-4 col-md-offset-4">
-          <li class="article-title">
-            <%= link_to user.full_name, user_path(user) %>
-          </li>
-          <li><small><%= pluralize(user.items.count, "article") if user.items %></small></li>
-          <% if current_user.present? %>
-            <li>
-              <%= link_to "Delete this user", user_path(user), method: :delete,
-                data: { confirm: "Are you sure you want to delete the user and all their items?" } %></li>
-          <% end %>
-        </div>
-      </div>
-    </ul>
-  <% end %>
-  <%= will_paginate %>
+<div class="page-header">
+  <%= link_to 'Add', new_user_path, data: { remote_popup: true, title: "Create User" }, class: "btn btn-primary pull-right" %>
+  <h3>Users(<%= @users.count %>)</h3>
 </div>
+
+<table class="table table-striped table-last">
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>&nbsp;</th>
+  </tr>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.full_name %></td>
+      <td><%= user.email %></td>
+      <td>
+        <%= link_to "Delete", user_path(user), method: :delete,
+                data: { confirm: "Are you sure?" }, class: 'btn btn-danger' %></li>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= will_paginate %>

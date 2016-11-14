@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'welcome#index'
-  resources :users, only: [:index, :show, :destroy]
+  resources :users
   resources :items
   resources :item_histories, except: [:destroy, :edit, :update]
   resources :categories

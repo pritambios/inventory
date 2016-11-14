@@ -6,7 +6,11 @@ class SessionsController < ApplicationController
 
     if google_auth.info.email.present?
       user = User.find_or_create_for_auth(google_auth)
-      session[:user_id] = user.id
+      if user
+        session[:user_id] = user.id
+      else
+        flash[:danger] = "Sorry!!..Access denied"
+      end
     end
 
     redirect_to root_path
