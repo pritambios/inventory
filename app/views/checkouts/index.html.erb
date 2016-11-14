@@ -1,5 +1,5 @@
 <div class="page-header">
-  <%= link_to 'Checkout', new_checkout_path, class: "btn btn-primary pull-right" %>
+  <%= link_to 'Checkout', new_checkout_path, data: { remote_popup: true, title: "Create Checkouts" }, class: "btn btn-primary pull-right" %>
   <h3>Checkouts</h3>
 </div>
 <table class="table table-striped table-last">
