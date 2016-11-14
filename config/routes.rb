@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   root 'welcome#index'
   resources :users, except: [:show]
-  resources :items
+  resources :items do
+    member do
+      get 'allocate'
+      put 'reallocate'
+    end
+  end
   resources :item_histories, except: [:destroy, :edit, :update]
   resources :categories
   resources :brands

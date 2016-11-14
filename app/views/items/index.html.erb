@@ -21,7 +21,10 @@
         <td>
           <%= link_to working_status(item), status_update_path(item), remote: true, method: :put, id: "status-#{ item.id }" %>
         </td>
-        <td><%= edit_link(edit_item_path(item), "Item") %></td>
+        <td>
+          <%= edit_link(edit_item_path(item), "Item") %>
+          <%= link_to 'Allocate', allocate_item_path(item), data: { remote_popup: true, title: "Allocate/Deallocate" }, class: "btn btn-primary btn-sm" %>
+        </td>
       </tr>
     <% end %>
   </table>
