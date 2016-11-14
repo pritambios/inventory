@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     end
   end
   resources :issues
+  resources :vendors
   put 'toggle_status/:id', to: 'items#toggle_status', as: 'status_update'
   get 'history', to: 'items#history'
   post 'reallocate', to: 'items#reallocate'

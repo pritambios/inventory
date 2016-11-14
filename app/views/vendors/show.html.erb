@@ -1,0 +1,56 @@
+<div class="form-group">
+  <%= back_link %>
+</div>
+<div class="row">
+  <section class="col-xs-12 col-sm-5 main-info">
+    <h3><%= @vendor.name %></h3>
+
+    <% if @vendor.email.present? %>
+      <p><span>Email: </span><%= @vendor.email %></p>
+    <% end %>
+
+    <% if @vendor.mobile.present? %>
+      <p><span>Mobile: </span><%= @vendor.mobile %></p>
+    <% end %>
+
+    <% if @vendor.address.present? %>
+      <p><span>Address: </span><%= @vendor.address %></p>
+    <% end %>
+
+    <% if @vendor.city.present? %>
+      <p><span>City: </span><%= @vendor.city %></p>
+    <% end %>
+
+    <% if @vendor.state.present? %>
+      <p><span>State: </span><%= @vendor.state %></p>
+    <% end %>
+
+    <%= edit_link(edit_vendor_path(@vendor)) %>
+  </section>
+  <section class="col-xs-12 col-sm-7 other-info">
+    <div>
+      <h3>Purchased Items(<%= @items.count %>)</h3>
+      <table class="table table-striped">
+        <tr>
+          <th>Item</th>
+          <th>Model Number</th>
+          <th>Serial Number</th>
+          <th>Category</th>
+          <th>Brand</th>
+          <th>&nbsp;</th>
+        </tr>
+        <% @items.each do |item| %>
+          <tr>
+            <td><%= link_to item.name, item_path(item)  %></td>
+            <td><%= item.model_number %></td>
+            <td><%= item.serial_number %></td>
+            <td><%= item.category.name %></td>
+            <td><%= item.brand.name %></td>
+            <td class="icon-show"><%= show_link(item_path(item)) %></td>
+          </tr>
+          <% end %>
+      </table>
+      <%= will_paginate @items, param_name: 'items_page' %>
+    </div>
+  </section>
+</div>
