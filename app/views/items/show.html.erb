@@ -8,7 +8,11 @@
     <p>Model Number: <span><%= @item.model_number %></span></p>
     <p>Serial Number: <span><%= @item.serial_number %></span></p>
     <p>Purchase On: <span><%= @item.purchase_on %></span></p>
-    <p>Purchase From: <span><%= @item.purchase_from %></span></p>
+
+    <% if @item.vendor.present? %>
+      <p>Purchase From: <span><%= link_to @item.vendor.name, vendor_path(@item.vendor) %></span></p>
+    <% end %>
+
     <p>Category: <span><%= @item.category.try(:name) %></span></p>
     <p>Brand: <span><%= @item.brand.try(:name) %></span></p>
     <p>Warranty Expires On: <span><%= @item.warranty_expires_on %></span></p>
