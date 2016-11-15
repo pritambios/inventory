@@ -28,7 +28,7 @@ class CheckoutsController < ApplicationController
   end
 
   def checkin
-    @checkout.update_attribute(:checking_in , Time.now)
+    @checkout.update_attribute(:check_in , Time.now)
     redirect_to checkouts_path
   end
 
@@ -39,6 +39,6 @@ class CheckoutsController < ApplicationController
   end
 
   def checkout_params
-    params.require(:checkout).permit(:employee_id, :item_id, :checking_out, :checking_in, :reason)
+    params.require(:checkout).permit(:employee_id, :item_id, :checkout, :check_in, :reason)
   end
 end

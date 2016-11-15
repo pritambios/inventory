@@ -7,8 +7,8 @@
     <tr>
       <th>Item</th>
       <th>Employee</th>
-      <th>Checking Out</th>
-      <th>Checking In</th>
+      <th>Checkout</th>
+      <th>Check In</th>
       <th>&nbsp;</th>
     </tr>
     <% @checkouts.each do |checkout| %>
@@ -21,11 +21,11 @@
             For Maintaince
           <% end %>
         </td>
-        <td><%= checkout.checking_out %></td>
-        <td><%= checkout.checking_in %></td>
+        <td><%= checkout.checkout %></td>
+        <td><%= checkout.check_in %></td>
         <td>
-          <% unless checkout.checking_in.present? %>
-            <%= link_to 'Checking In', checkin_checkout_path(checkout), class: 'btn btn-default' %>
+          <% unless checkout.check_in.present? %>
+            <%= link_to 'Check In', checkin_checkout_path(checkout), class: 'btn btn-default' %>
           <% else %>
             <span>Item Returned</span>
           <% end %>

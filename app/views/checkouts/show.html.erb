@@ -8,16 +8,16 @@
     <p><span>Employee: </span><%= link_to @checkout.employee.name_or_email, employee_path(@checkout.employee) %></p>
   <% end %>
 
-  <p><span>Checking Out: </span><%= format_date(@checkout.checking_out) %></p>
+  <p><span>Checkout: </span><%= format_date(@checkout.checkout) %></p>
 
-  <% if @checkout.checking_in.present? %>
-    <p><span>Checking At: </span><%= format_date(@checkout.checking_in) %></p>
+  <% if @checkout.check_in.present? %>
+    <p><span>Check in: </span><%= format_date(@checkout.check_in) %></p>
   <% end %>
 
   <p><span>Reason: </span><%= @checkout.reason %></p>
   <%= edit_link(edit_checkout_path(@checkout), "Checkout") %>
 
-  <% unless @checkout.checking_in.present? %>
-    <%= link_to 'Checking In', checkin_checkout_path(@checkout), class: 'btn btn-default' %>
+  <% unless @checkout.check_in.present? %>
+    <%= link_to 'Check In', checkin_checkout_path(@checkout), class: 'btn btn-default' %>
   <% end %>
 </section>
