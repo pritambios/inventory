@@ -46,3 +46,4 @@
   <div class="col-sm-4"><%= f.label :employee_id , "Employee:" %></div>
   <div class="col-sm-8"><%= f.collection_select :employee_id, Employee.all, :id, :name_or_email, prompt: 'Select' %></div>
 </div>
+<%= unobtrusive_js(" $('.datepicker').datepicker({ format: 'dd/mm/yyyy' });") %>
