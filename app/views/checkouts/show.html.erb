@@ -11,7 +11,7 @@
   <p><span>Checkout: </span><%= format_date(@checkout.checkout) %></p>
 
   <% if @checkout.check_in.present? %>
-    <p><span>Check in: </span><%= format_date(@checkout.check_in) %></p>
+    <p><span>Checkin: </span><%= format_date(@checkout.check_in) %></p>
   <% end %>
 
   <p><span>Reason: </span><%= @checkout.reason %></p>

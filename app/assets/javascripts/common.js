@@ -1,4 +1,4 @@
 $(function() {
   $(".alert" ).fadeOut(3000);
-  $('.datepicker').datepicker({ format: 'dd/mm/yyyy' });
+  $('.datepicker').datetimepicker({ format: 'DD/MM/YYYY' });
 });

@@ -58,15 +58,15 @@
       <table class="table table-striped">
         <tr>
           <th>Employee</th>
-          <th>Checking Out</th>
-          <th>Checking In</th>
+          <th>Checkout</th>
+          <th>Checkin</th>
           <th>&nbsp;</th>
         </tr>
         <% @checkouts.each do |checkout| %>
           <tr>
-            <td><%= checkout.employee.try(:name) %></td>
-            <td><%= checkout.checking_out %></td>
-            <td><%= checkout.checking_in %></td>
+            <td><%= checkout.employee.try(:name_or_email) %></td>
+            <td><%= checkout.checkout %></td>
+            <td><%= checkout.check_in %></td>
             <td><%= show_link(checkout_path(checkout)) %></td>
           </tr>
         <% end %>
