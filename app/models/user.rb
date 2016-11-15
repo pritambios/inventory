@@ -13,7 +13,7 @@ class User < ApplicationRecord
     "Anonymous"
   end
 
-  def self.find_or_create_for_auth(auth)
+  def self.find_and_update_from_auth(auth)
     user ||= User.find_by_email(auth.info.email)
 
     if user
@@ -23,7 +23,8 @@ class User < ApplicationRecord
       user.access_token = auth.credentials.token
       user.google_uid   = auth.uid
       user.save
-      user
     end
+
+    user
   end
 end

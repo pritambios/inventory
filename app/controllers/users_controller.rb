@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :get_user, only: [:edit, :update, :destroy]
+
   def index
     @users = User.paginate(page: params[:page])
   end
@@ -13,13 +15,19 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to users_path, flash: { success: "User is added" }
     else
-      redirect_to users_path, flash: { danger: "Sorry!!..Invalid email" }
+      render 'new'
+    end
+  end
+
+  def update
+    if @user.update_attributes(user_params)
+      redirect_to users_path, flash: { success: "User email updated" }
+    else
+      render 'edit'
     end
   end
 
   def destroy
-    @user = User.find(params[:id])
-
     if @user.destroy
       redirect_to users_path, flash: { success: "User deleted successfully" }
     else
@@ -28,6 +36,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def get_user
+    @user = User.find(params[:id])
+  end
 
   def user_params
     params.require(:user).permit(:email)
