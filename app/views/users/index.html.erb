@@ -14,7 +14,7 @@
       <td><%= user.full_name %></td>
       <td><%= user.email %></td>
       <td>
-        <%= edit_link(edit_user_path(user)) %>
+        <%= edit_link(edit_user_path(user), "User") %>
         <%= link_to "Delete", user_path(user), method: :delete,
                 data: { confirm: "Are you sure?" }, class: 'btn btn-danger' %></li>
       </td>

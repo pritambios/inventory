@@ -12,7 +12,7 @@
       <p><span>Designation: </span><%= @employee.designation %></p>
     <% end %>
     <p><span>Status: </span><%= @employee.active? ? "Working" : "Not Working" %></p>
-    <%= edit_link(edit_employee_path(@employee)) %>
+    <%= edit_link(edit_employee_path(@employee), "Employee") %>
   </section>
   <section class="col-xs-12 col-sm-7 other-info">
     <div>

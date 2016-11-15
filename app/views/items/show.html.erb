@@ -17,7 +17,7 @@
     <p>Brand: <span><%= @item.brand.try(:name) %></span></p>
     <p>Warranty Expires On: <span><%= @item.warranty_expires_on %></span></p>
     <p>Purchase Note: <span><%= @item.purchase_note %></span></p>
-    <%= edit_link(edit_item_path(@item)) %>
+    <%= edit_link(edit_item_path(@item), "Item") %>
   </section>
   <section class="col-xs-12 col-sm-7 other-info">
     <div>

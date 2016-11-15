@@ -10,7 +10,7 @@
   <% @categories.each do |category| %>
     <tr>
       <td><%= category.name %></td>
-      <td><%= edit_link(edit_category_path(category)) %></td>
+      <td><%= edit_link(edit_category_path(category), "Category") %></td>
     </tr>
   <% end %>
 </table>

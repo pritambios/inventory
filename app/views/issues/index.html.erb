@@ -18,7 +18,7 @@
       <td><%= link_to issue.item.name, item_path(issue.item) if issue.item %></td>
       <td><%= format_date(issue.closed_at) if issue.closed_at %></td>
       <td>
-        <%= edit_link(edit_issue_path(issue)) %>
+        <%= edit_link(edit_issue_path(issue), "Issue") %>
       </td>
     </tr>
   <% end %>

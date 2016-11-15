@@ -21,6 +21,6 @@
     <% if @issue.note.present? %>
       <p><span>Note: </span><%= @issue.note %></p>
     <% end %>
-    <%= edit_link(edit_issue_path(@issue)) %>
+    <%= edit_link(edit_issue_path(@issue), "Issue") %>
   </section>
 </div>

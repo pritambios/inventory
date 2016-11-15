@@ -9,8 +9,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.new(employee_params)
 
     if @employee.save
-      flash[:success] = "Employee with #{@employee.name} is Created Successfully!"
-      redirect_to employees_path
+      redirect_to :back, flash: { success: "Employee with #{@employee.name} is Created Successfully!" }
     else
       render 'new'
     end
@@ -18,8 +17,7 @@ class EmployeesController < ApplicationController
 
   def update
     if @employee.update_attributes(employee_params)
-      flash[:success] = "Employee Details Updated"
-      redirect_to employees_path
+      redirect_to :back, flash: { success: "Employee Details successfully updated!" }
     else
       render 'edit'
     end
