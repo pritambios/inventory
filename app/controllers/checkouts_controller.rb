@@ -39,6 +39,6 @@ class CheckoutsController < ApplicationController
   end
 
   def checkout_params
-    params.require(:checkout).permit(:employee_id, :item_id, :checking_out, :reason)
+    params.require(:checkout).permit(:employee_id, :item_id, :checking_out, :checking_in, :reason)
   end
 end
