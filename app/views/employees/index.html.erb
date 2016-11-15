@@ -20,7 +20,7 @@
       <td><%= employee.designation %></td>
       <td><%= employee.active? ? "Working" : "Non-Working" %></td>
       <td>
-        <%= edit_link(edit_employee_path(employee)) %>
+        <%= edit_link(edit_employee_path(employee), "Employee") %>
       </td>
     </tr>
   <% end %>

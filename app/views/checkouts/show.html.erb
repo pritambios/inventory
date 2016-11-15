@@ -12,7 +12,7 @@
       <p><span>Checking At: </span><%= format_date(@checkout.checking_in) %></p>
     <% end %>
     <p><span>Reason: </span><%= @checkout.reason %></p>
-    <%= edit_link(edit_checkout_path(@checkout)) %>
+    <%= edit_link(edit_checkout_path(@checkout), "Checkout") %>
     <% unless @checkout.checking_in.present? %>
       <%= link_to 'Checking In', checkin_checkout_path(@checkout), class: 'btn btn-default' %>
     <% end %>

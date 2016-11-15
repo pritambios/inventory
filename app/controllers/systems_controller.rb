@@ -13,8 +13,7 @@ class SystemsController < ApplicationController
     @system = System.new(system_params)
 
     if @system.save
-      flash[:success] = "System was successfully created"
-      redirect_to system_path(@system)
+      redirect_to :back, flash: { success: "System with #{@system.name} is Created Successfully!" }
     else
       render 'new'
     end
@@ -27,8 +26,7 @@ class SystemsController < ApplicationController
 
   def update
     if @system.update_attributes(system_params)
-      flash[:success] = "System Details Updated"
-      redirect_to system_path(@system)
+      redirect_to :back, flash: { success: "System details successfully updated" }
     else
       render 'edit'
     end

@@ -1,5 +1,5 @@
 <div class="page-header">
-  <%= link_to 'New', new_issue_path, class: "btn btn-primary pull-right" %>
+  <%= link_to 'New', new_issue_path, data: { remote_popup: true, title: "Create Issue" }, class: "btn btn-primary pull-right" %>
   <h3>Issues</h3>
 </div>
 
@@ -18,7 +18,7 @@
       <td><%= link_to issue.item.name, item_path(issue.item) if issue.item %></td>
       <td><%= format_date(issue.closed_at) if issue.closed_at %></td>
       <td>
-        <%= edit_link(edit_issue_path(issue)) %>
+        <%= edit_link(edit_issue_path(issue), "Issue") %>
       </td>
     </tr>
   <% end %>

@@ -23,8 +23,8 @@ module ApplicationHelper
     link_to ('<i class="fa fa-arrow-left"></i> Back').html_safe, :back
   end
 
-  def edit_link(path)
-    link_to ('<i class="fa fa-edit" title="Edit Details"></i> Edit').html_safe, path, data: { remote_popup: true, title: "Edit Details" }, class: 'btn btn-sm btn-edit'
+  def edit_link(path, title = "Details")
+    link_to ('<i class="fa fa-edit" title="Edit Details"></i> Edit').html_safe, path, data: { remote_popup: true, title: "Edit #{title}" }, class: 'btn btn-sm btn-edit'
   end
 
   def show_link(path)

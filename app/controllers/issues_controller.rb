@@ -13,8 +13,7 @@ class IssuesController < ApplicationController
     @issue = Issue.new(issue_params)
 
     if @issue.save
-      flash[:success] = "Issue was created successfully"
-      redirect_to issues_path
+      redirect_to :back, flash: { success: "Issue with #{@issue.item.name} is Created Successfully!" }
     else
       render 'new'
     end
@@ -22,8 +21,7 @@ class IssuesController < ApplicationController
 
   def update
     if @issue.update(issue_params)
-      flash[:success] = " Issue was successfully updated"
-      redirect_to issues_path
+      redirect_to :back, flash: { success: "Issue was successfully updated" }
     else
       render 'edit'
     end

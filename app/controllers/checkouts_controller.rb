@@ -9,8 +9,7 @@ class CheckoutsController < ApplicationController
     @checkout = Checkout.new(checkout_params)
 
     if @checkout.save
-      flash[:success] = "#{@checkout.item.serial_number} is recorded Successfully!"
-      redirect_to checkout_path(@checkout)
+      redirect_to :back, flash: { success: "Checkout with #{@checkout.item.serial_number} is recorded Successfully!" }
     else
       render 'new'
     end
@@ -18,8 +17,7 @@ class CheckoutsController < ApplicationController
 
   def update
     if @checkout.update_attributes(checkout_params)
-      flash[:success] = "Checkout Details Updated"
-      redirect_to checkout_path(@checkout)
+      redirect_to :back, flash: { success: "Checkout details successfully updated" }
     else
       render 'edit'
     end

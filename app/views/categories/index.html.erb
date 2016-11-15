@@ -1,5 +1,5 @@
 <div class="page-header">
-  <%= link_to 'Add', new_category_path, class: "btn btn-primary pull-right" %>
+  <%= link_to 'Add', new_category_path, data: { remote_popup: true, title: "Create Category" },  class: "btn btn-primary pull-right" %>
   <h3>Categories(<%= @categories.count %>)</h3>
 </div>
 <table class="table table-striped table-last">
@@ -10,7 +10,7 @@
   <% @categories.each do |category| %>
     <tr>
       <td><%= category.name %></td>
-      <td><%= edit_link(edit_category_path(category)) %></td>
+      <td><%= edit_link(edit_category_path(category), "Category") %></td>
     </tr>
   <% end %>
 </table>
