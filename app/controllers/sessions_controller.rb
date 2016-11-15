@@ -5,8 +5,13 @@ class SessionsController < ApplicationController
     google_auth = request.env["omniauth.auth"]
 
     if google_auth.info.email.present?
-      user = User.find_or_create_for_auth(google_auth)
-      session[:user_id] = user.id
+      user = User.find_and_update_from_auth(google_auth)
+
+      if user
+        session[:user_id] = user.id
+      else
+        flash[:danger] = "Sorry!!..Access denied"
+      end
     end
 
     redirect_to root_path
