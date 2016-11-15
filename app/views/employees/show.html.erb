@@ -32,7 +32,7 @@
             <td><%= item.model_number %></td>
             <td><%= item.serial_number %></td>
             <td><%= item.category.name %></td>
-            <td><%= item.brand.name %></td>
+            <td><%= item.brand.try(:name) %></td>
             <td class="icon-show"><%= show_link(item_path(item)) %></td>
           </tr>
           <% end %>
