@@ -5,14 +5,16 @@
 <div class="table-responsive">
   <table class="table table-striped table-last">
     <tr>
+      <th>Id</th>
       <th>Issue</th>
       <th>System</th>
       <th>Item</th>
       <th>Closed At</th>
       <th>&nbsp;</th>
     </tr>
-    <% @issues.each_with_index do |issue, index| %>
+    <% @issues.each do |issue| %>
       <tr>
+        <td><%= issue.id %></td>
         <td><%= link_to issue.title, issue_path(issue) %></td>
         <td><%= link_to issue.system.name, system_path(issue.system) if issue.system %></td>
         <td><%= link_to issue.item.name, item_path(issue.item) if issue.item %></td>
