@@ -13,7 +13,7 @@
     </tr>
     <% @vendors.each do |vendor| %>
       <tr>
-        <td><%= vendor.id %></td>
+        <td><%= link_to vendor.id, vendor_path(vendor) %></td>
         <td><%= link_to vendor.name, vendor_path(vendor) %></td>
         <td><%= vendor.email if vendor.email.present? %></td>
         <td><%= vendor.mobile %></td>
