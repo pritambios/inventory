@@ -28,8 +28,8 @@
     <%= edit_link(edit_vendor_path(@vendor), "Vendor") %>
   </section>
   <section class="col-xs-12 col-sm-7 other-info">
-    <div>
-      <h3>Purchased Items(<%= @items.count %>)</h3>
+    <h3>Purchased Items (<%= @items.count %>)</h3>
+    <div class="table-responsive">
       <table class="table table-striped">
         <tr>
           <th>Item</th>
@@ -48,9 +48,9 @@
             <td><%= item.brand.name %></td>
             <td class="icon-show"><%= show_link(item_path(item)) %></td>
           </tr>
-          <% end %>
+        <% end %>
       </table>
-      <%= will_paginate @items, param_name: 'items_page' %>
     </div>
+    <%= will_paginate @items, param_name: 'items_page' %>
   </section>
 </div>

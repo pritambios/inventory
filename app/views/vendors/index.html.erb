@@ -2,24 +2,24 @@
   <%= link_to 'Add', new_vendor_path, data: { remote_popup: true, title: "Create Vendor" }, class: "btn btn-primary pull-right" %>
   <h3>Vendors(<%= @vendors.count %>)</h3>
 </div>
-
-<table class="table table-striped table-last">
-  <tr>
-    <th>Names</th>
-    <th>Email</th>
-    <th>Mobile</th>
-    <th>&nbsp;</th>
-  </tr>
-  <% @vendors.each do |vendor| %>
+<div class="table-responsive">
+  <table class="table table-striped table-last">
     <tr>
-      <td><%= link_to vendor.name, vendor_path(vendor) %></td>
-      <td><%= vendor.email if vendor.email.present? %></td>
-      <td><%= vendor.mobile %></td>
-      <td>
-        <%= edit_link(edit_vendor_path(vendor), "Vendor") %>
-      </td>
+      <th>Names</th>
+      <th>Email</th>
+      <th>Mobile</th>
+      <th>&nbsp;</th>
     </tr>
-  <% end %>
-</table>
-
+    <% @vendors.each do |vendor| %>
+      <tr>
+        <td><%= link_to vendor.name, vendor_path(vendor) %></td>
+        <td><%= vendor.email if vendor.email.present? %></td>
+        <td><%= vendor.mobile %></td>
+        <td>
+          <%= edit_link(edit_vendor_path(vendor), "Vendor") %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
 <%= will_paginate %>

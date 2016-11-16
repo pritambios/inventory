@@ -28,7 +28,7 @@ class BrandsController < ApplicationController
   end
 
   def show
-    @brand_items = @brand.items.paginate(page: params[:page], per_page: 5)
+    @brand_items = @brand.items.paginate(page: params[:page])
   end
 
   def destroy

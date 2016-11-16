@@ -2,18 +2,18 @@
   <%= link_to 'Add', new_brand_path, data: { remote_popup: true, title: "Create Brand" }, class: "btn btn-primary pull-right" %>
   <h3>Brands(<%= @brands.count %>)</h3>
 </div>
-
-<table class="table table-striped table-last">
-  <tr>
-    <th>Name</th>
-    <th>&nbsp;</th>
-  </tr>
-  <% @brands.each do |brand| %>
+<div class="table-responsive">
+  <table class="table table-striped table-last">
     <tr>
-      <td><%= brand.name %></td>
-      <td><%= edit_link(edit_brand_path(brand), "Brand") %></td>
+      <th>Name</th>
+      <th>&nbsp;</th>
     </tr>
-  <% end %>
-</table>
-
+    <% @brands.each do |brand| %>
+      <tr>
+        <td><%= brand.name %></td>
+        <td><%= edit_link(edit_brand_path(brand), "Brand") %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
 <%= will_paginate %>
