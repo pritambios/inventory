@@ -14,7 +14,7 @@
     </tr>
     <% @issues.each do |issue| %>
       <tr>
-        <td><%= issue.id %></td>
+        <td><%= link_to issue.id, issue_path(issue) %></td>
         <td><%= link_to issue.title, issue_path(issue) %></td>
         <td><%= link_to issue.system.name, system_path(issue.system) if issue.system %></td>
         <td><%= link_to issue.item.name, item_path(issue.item) if issue.item %></td>

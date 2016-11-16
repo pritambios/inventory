@@ -15,7 +15,7 @@
     </tr>
     <% @systems.each do |system| %>
       <tr>
-        <td><%= system.id %></td>
+        <td><%= link_to system.id, system_path(system) %></td>
         <td><%= link_to system.name, system_path(system) %></td>
         <td><%= system.assembled_on %></td>
         <td><%= system.discarded_at %></td>
