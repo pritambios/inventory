@@ -31,6 +31,11 @@ module ApplicationHelper
     link_to ('<i class="fa fa-eye"></i>').html_safe, path, class: 'btn-show'
   end
 
+  def delete_link(path)
+     link_to ('<i class="fa fa-trash" title="Delete Details"></i> Delete').html_safe, path, method: :delete,
+                data: { confirm: "Are you sure?" }, class: 'btn btn-danger btn-sm'
+  end
+
   def format_date(date)
     date.strftime("%d/%m/%Y")
   end
