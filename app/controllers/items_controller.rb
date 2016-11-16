@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :get_item, only: [:show, :edit, :update, :toggle_status, :destroy]
+  before_action :get_item, only: [:show, :edit, :update, :toggle_status, :destroy, :allocate, :reallocate]
 
   def index
     @items = Item.paginate(page: params[:page])
@@ -36,6 +36,12 @@ class ItemsController < ApplicationController
     @issues = @item.issues.order_desending.paginate(page: params[:issues_page])
   end
 
+  def reallocate
+    @item.update_attribute(reallocate_employee_params)
+    flash[:success] = "item is successfully reallocated"
+    redirect_to :back
+  end
+
   def destroy
     if @item.destroy
       redirect_to items_path, flash: { success: "Item was successfully deleted" }
@@ -52,5 +58,9 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:model_number, :category_id, :brand_id, :serial_number, :purchase_on, :vendor_id, :purchase_note, :working, :system_id, :employee_id, :warranty_expires_on)
+  end
+
+  def reallocate_employee_params
+    params.require(:item).permit(:employee_id)
   end
 end
