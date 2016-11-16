@@ -18,9 +18,7 @@
 <div class="form-group row">
   <div class="col-sm-4"><%= f.label :active, "Status :" %></div>
   <div class="col-sm-8">
-    <%= f.label :active, "Active", value: "true" %>
-    <%= f.radio_button :active, true, checked: "true" %>
-    <%= f.label :working, "Inactive", value: "false" %>
-    <%= f.radio_button :active, false %>
+    Working : <%= f.radio_button(:active, "true", checked: @employee.active) %>
+    Not Working :<%= f.radio_button(:active, "false", checked: !@employee.active) %>
   </div>
 </div>
