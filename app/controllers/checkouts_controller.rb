@@ -24,7 +24,7 @@ class CheckoutsController < ApplicationController
   end
 
   def index
-    @checkouts = Checkout.order_desending.paginate(page: params[:page])
+    @checkouts = Checkout.order_desending.includes(:employee, item: [:brand, :category]).paginate(page: params[:page])
   end
 
   def checkin

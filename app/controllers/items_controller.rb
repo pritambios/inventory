@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :get_item, only: [:show, :edit, :update, :toggle_status, :destroy, :allocate, :reallocate]
 
   def index
-    @items = Item.paginate(page: params[:page])
+    @items = Item.includes(:brand, :category).paginate(page: params[:page])
   end
 
   def new

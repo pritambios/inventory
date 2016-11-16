@@ -2,7 +2,7 @@ class SystemsController < ApplicationController
   before_action :get_system, only: [:edit, :update, :show]
 
   def index
-    @systems = System.paginate(page: params[:page])
+    @systems = System.includes(:employee).paginate(page: params[:page])
   end
 
   def new
