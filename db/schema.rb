@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161114065608) do
+ActiveRecord::Schema.define(version: 20161115103150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,12 +31,12 @@ ActiveRecord::Schema.define(version: 20161114065608) do
 
   create_table "checkouts", force: :cascade do |t|
     t.integer  "employee_id"
-    t.integer  "item_id",      null: false
-    t.date     "checking_out", null: false
-    t.date     "checking_in"
-    t.string   "reason",       null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "item_id",     null: false
+    t.date     "checkout",    null: false
+    t.date     "check_in"
+    t.string   "reason",      null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.index ["employee_id"], name: "index_checkouts_on_employee_id", using: :btree
     t.index ["item_id"], name: "index_checkouts_on_item_id", using: :btree
   end

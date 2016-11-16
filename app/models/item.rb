@@ -20,7 +20,7 @@ class Item < ApplicationRecord
     "#{brand.try(:name)} #{category.name}"
   end
 
-  scope :unavailable, -> { joins(:checkouts).where(checkouts: { checking_in: nil }) }
+  scope :unavailable, -> { joins(:checkouts).where(checkouts: { check_in: nil }) }
   scope :available,   -> { where.not(id: unavailable) }
   scope :unattached,   -> { where(system_id: nil) }
 
