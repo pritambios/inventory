@@ -15,7 +15,9 @@
         <td><%= user.email %></td>
         <td>
           <%= edit_link(edit_user_path(user), "User") %>
-          <%= delete_link(user_path(user)) %>
+          <% unless current_user == user %>
+            <%= delete_link(user_path(user)) %>
+          <% end %>
         </td>
       </tr>
     <% end %>
