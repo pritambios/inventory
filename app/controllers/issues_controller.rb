@@ -13,7 +13,7 @@ class IssuesController < ApplicationController
     @issue = Issue.new(issue_params)
 
     if @issue.save
-      redirect_to :back, flash: { success: "Issue with #{@issue.item.name} is Created Successfully!" }
+      redirect_to :back, flash: { success: "Issue has been Created Successfully!" }
     else
       render 'new'
     end

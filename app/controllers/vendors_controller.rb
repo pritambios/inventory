@@ -28,7 +28,7 @@ class VendorsController < ApplicationController
   end
 
   def show
-    @items = @vendor.items.order_desending.paginate(page: params[:items_page])
+    @items = @vendor.items.includes(:brand, :category).order_desending.paginate(page: params[:items_page])
   end
 
   private
