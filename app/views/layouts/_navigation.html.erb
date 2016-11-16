@@ -12,34 +12,34 @@
       <div class="navbar-collapse collapse collapsed_data">
         <div class="top-links">
           <ul class="nav navbar-nav navbar-left">
-            <li class="links">
+            <li>
               <%= link_to 'Checkin / Checkout', checkouts_path %>
             </li>
-            <li class="links">
+            <li>
               <%= link_to 'Employees', employees_path %>
             </li>
-            <li class="links">
+            <li>
               <%= link_to 'Issues', issues_path %>
             </li>
-            <li class="links">
+            <li>
               <%= link_to 'Items', items_path %>
             </li>
-            <li class="links">
+            <li>
               <%= link_to 'Systems', systems_path %>
             </li>
             <li class="dropdown menu-custom">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">More <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li class="links">
+                <li>
                   <%= link_to 'Brands', brands_path %>
                 </li>
-                <li class="links">
+                <li>
                   <%= link_to 'Categories', categories_path %>
                 </li>
-                <li class="links">
+                <li>
                   <%= link_to 'Vendors', vendors_path %>
                 </li>
-                <li class="links">
+                <li>
                   <%= link_to 'Users', users_path %>
                 </li>
               </ul>
@@ -50,7 +50,7 @@
               <i class="fa fa-user"></i>&nbsp;
               <%= current_user.full_name.present? ? current_user.full_name : current_user.email %>
             </li>
-            <li class="logout">
+            <li>
               <%= link_to('Logout', logout_path, class: 'btn btn-sm logout-btn', title: 'Logout', method: :delete) %>
             </li>
           </ul>

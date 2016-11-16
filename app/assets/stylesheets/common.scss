@@ -39,6 +39,7 @@ a {
   &:hover, &:focus {
     text-decoration: none;
     color: #df4f07;
+    outline: none;
   }
 }
 
@@ -136,10 +137,11 @@ a {
   }
 
   .logout-btn {
+    text-align: left;
     margin-top: 6px;
     background-color: transparent;
     color: #fff;
-    padding: 0;
+    padding: 0 0 0 15px;
 
     &:hover, &:focus {
       background-color: transparent;
@@ -173,6 +175,10 @@ a {
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
   color: #e85d1a;
   background-color: transparent;
+}
+
+.navbar-nav.navbar-right:last-child {
+  margin-right: 0;
 }
 
 .menu-custom {
@@ -225,7 +231,7 @@ footer a:hover {
 }
 
 table th {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .table-last td:last-child {
@@ -263,6 +269,38 @@ section.other-info .icon-show {
   color:  #e85d1a;
 }
 
+.go-to-back {
+  margin-bottom: 15px;
+}
+
+.tweenty {
+  width: 20%;
+}
+
+.tweentythree {
+  width: 23%;
+}
+
+.tweentytwo {
+  width: 22%;
+}
+
+.ten {
+  width: 10%;
+}
+
+.five {
+  width: 5%;
+}
+
+.thirty {
+  width: 30%;
+}
+
+.fourty {
+  width: 40%;
+}
+
 @media (min-width: 768px) {
   .top-links {
     width: 83%;
@@ -271,6 +309,11 @@ section.other-info .icon-show {
 
   .nav > li > a {
     padding: 15px 5px 0px;
+  }
+
+  .nav.navbar-nav .logut-btn {
+    text-align: center;
+    padding: 0;
   }
 }
 
