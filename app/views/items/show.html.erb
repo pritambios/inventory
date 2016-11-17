@@ -4,6 +4,7 @@
 <div class="row">
   <section class="col-xs-12 col-sm-5 main-info">
     <h3 class="table-heading"><%= @item.name %></h3>
+    <p><span>Id: </span><%= @item.id %></p>
     <p>Status: <span><%= @item.working? ? "working" : "Not Working" %></span></p>
 
     <% if @item.model_number.present? %>

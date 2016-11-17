@@ -5,6 +5,7 @@
 <div class="table-responsive">
   <table class="table table-striped table-last">
     <tr>
+      <th>Id</th>
       <th>Names</th>
       <th>Address</th>
       <th>Mobile</th>
@@ -14,6 +15,7 @@
     </tr>
     <% @employees.each do |employee| %>
       <tr>
+        <td><%= link_to employee.id, employee_path(employee) %></td>
         <td><%= link_to employee.name, employee_path(employee) %></td>
         <td><%= employee.email %></td>
         <td><%= employee.mobile %></td>

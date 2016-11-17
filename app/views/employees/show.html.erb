@@ -4,6 +4,7 @@
 <div class="row">
   <section class="col-xs-12 col-sm-5 main-info">
     <h3><%= @employee.name %></h3>
+    <p><span>Id: </span><%= @employee.id %></p>
     <p><span>Email: </span><%= @employee.email %></p>
 
     <% if @employee.mobile.present? %>
