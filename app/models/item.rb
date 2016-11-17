@@ -24,6 +24,10 @@ class Item < ApplicationRecord
   scope :available,   -> { where.not(id: unavailable) }
   scope :unattached,   -> { where(system_id: nil) }
 
+  def unavailable?
+    checkouts.map(&:checkin?).include? false
+  end
+
   private
 
   def update_item_history

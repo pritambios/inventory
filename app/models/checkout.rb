@@ -8,6 +8,10 @@ class Checkout < ApplicationRecord
 
   scope :order_desending, -> { order('created_at DESC') }
 
+  def checkin?
+    check_in.present?
+  end
+
   private
 
   def checkout_limitation

@@ -380,6 +380,11 @@ section.other-info .icon-show {
   padding-bottom: 90px;
 }
 
+.table-striped tbody tr.pending td {
+  font-weight: 700;
+  background-color: #aceff8;
+}
+
 @media (min-width: 768px) {
   .top-links {
     width: 84%;
