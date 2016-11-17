@@ -46,7 +46,7 @@
                 Not Assigned
               <% end %>
             </td>
-            <td><%= system_history.status? ? "Active" : "Inactive" %></td>
+            <td><%= system_history.status? ? "Working" : "Not Working" %></td>
             <td><%= format_date(system_history.created_at) %></td>
           </tr>
         <% end %>

@@ -9,11 +9,11 @@
 </div>
 <div class="form-group row">
   <div class="col-sm-4"><%= f.label :checkout , 'Checkout:', class: 'required' %></div>
-  <div class="col-sm-8"><%= f.text_field :checkout, class: 'datepicker col-md-8', placeholder: "YYYY/MM/DD", required: true, value: format_date(@checkout.checkout) %></div>
+  <div class="col-sm-8"><%= f.text_field :checkout, class: 'datepicker col-md-8', placeholder: "DD/MM/YYYY", required: true, value: format_date(@checkout.checkout) %></div>
 </div>
 <div class="form-group row">
   <div class="col-sm-4"><%= f.label :check_in, 'Checkin:' %></div>
-  <div class="col-sm-8"><%= f.text_field :check_in, class: 'datepicker col-md-8', placeholder: "YYYY/MM/DD", value: format_date(@checkout.check_in) %></div>
+  <div class="col-sm-8"><%= f.text_field :check_in, class: 'datepicker col-md-8', placeholder: "DD/MM/YYYY", value: format_date(@checkout.check_in) %></div>
 </div>
 <div class="form-group">
   <%= f.label :reason , 'Reason:', class: 'required' %>

@@ -17,8 +17,8 @@
       <tr>
         <td><%= link_to system.id, system_path(system) %></td>
         <td><%= link_to system.name, system_path(system) %></td>
-        <td><%= system.assembled_on %></td>
-        <td><%= system.discarded_at %></td>
+        <td><%= format_date(system.assembled_on) %></td>
+        <td><%= format_date(system.discarded_at) %></td>
         <td><%= system.working ? "Working" : "Not Working" %></td>
         <td>
           <% if system.employee.present? %>

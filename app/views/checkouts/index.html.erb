@@ -21,8 +21,8 @@
             For Maintaince
           <% end %>
         </td>
-        <td><%= checkout.checkout %></td>
-        <td><%= checkout.check_in %></td>
+        <td><%= format_date(checkout.checkout) %></td>
+        <td><%= format_date(checkout.check_in) %></td>
         <td>
           <% unless checkout.check_in.present? %>
             <%= link_to 'Checkin', checkin_checkout_path(checkout), class: 'btn btn-default' %>
