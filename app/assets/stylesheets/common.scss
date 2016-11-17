@@ -3,16 +3,80 @@ html {
   min-height: 100%;
 }
 
-body {
-  margin-bottom: 80px;
-}
-
 #logo {
   float: left;
   font-size: 1.7em;
   color: #e85f1c;
   letter-spacing:-1px;
   font-weight: bold;
+}
+
+.login-container {
+  background: url(image_path("inventory_login_bg.jpg")) no-repeat top center;
+  background-size: cover;
+  padding: 120px 0 0;
+  color: #fff;
+  text-align: center;
+}
+
+.login-container p {
+  font-size: 22px;
+  margin-bottom: 25px;
+}
+
+.login-container h1 {
+  font-size: 32px;
+  margin: 0 0 68px;
+  text-transform: uppercase;
+}
+
+.login-container p.inventory-text {
+  font-size: 19px;
+  padding-top: 30px;
+}
+
+.google-content {
+  background-color: rgba(255,255,255,0.4);
+  margin: 30px auto 0;
+  display: block;
+  max-width: 540px;
+}
+
+.google-button {
+  margin-bottom: 30px;
+  display: inline-block;
+}
+
+.google-color-width {
+  width:25%;
+  float: left;
+  height: 6px;
+}
+
+.red {
+  background-color: #f85649;
+}
+
+.blue {
+  background-color: #33a3e3;
+}
+
+.green {
+  background-color: #5aba35;
+}
+
+.yellow {
+  background-color: #facd42;
+}
+
+p.copy {
+  font-size: 12px;
+  bottom: 0;
+  padding: 1rem;
+  position: absolute;
+  width: 100%;
+  color: #fff;
+  margin: 0;
 }
 
 .page-header {
@@ -48,15 +112,10 @@ a {
   font-size: 1.5em;
 }
 
-.red {
-  color: red;
-}
-
 .listing {
   list-style: none;
   padding-left: 0;
 }
-
 
 .user-name {
   overflow: hidden;
@@ -236,6 +295,7 @@ table th {
 
 .table-last td:last-child {
   text-align: right;
+
   .btn-edit {
     margin-left: 15px;
   }
@@ -269,7 +329,7 @@ section.other-info .icon-show {
   color:  #e85d1a;
 }
 
-.go-to-back {
+.back {
   margin-bottom: 15px;
 }
 
@@ -301,6 +361,22 @@ section.other-info .icon-show {
   width: 40%;
 }
 
+.twohundred {
+  width: 200px;
+}
+
+.onefourty {
+  width: 140px;
+}
+
+.hundred {
+  width: 100px;
+}
+
+.form-container {
+  width: 400px;
+}
+
 @media (min-width: 768px) {
   .top-links {
     width: 83%;
@@ -314,6 +390,22 @@ section.other-info .icon-show {
   .nav.navbar-nav .logut-btn {
     text-align: center;
     padding: 0;
+  }
+
+  .login-container p {
+    font-size: 25px;
+  }
+
+  .login-container h1 {
+    font-size: 45px;
+  }
+
+  .login-container p.inventory-text {
+    font-size: 22px;
+  }
+
+  p.copy {
+    font-size: 12px;
   }
 }
 

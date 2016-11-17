@@ -1,4 +1,4 @@
-<div class="go-to-back">
+<div class="back">
   <%= back_link %>
 </div>
 <div class="row">
@@ -39,10 +39,10 @@
     <div class="table-responsive">
       <table class="table table-striped">
         <tr>
-          <th class="thirty">System</th>
-          <th class="thirty">Allocated To</th>
-          <th class="thirty">Status</th>
-          <th class="ten">Date</th>
+          <th class="twohundred">System</th>
+          <th class="twohundred">Allocated To</th>
+          <th class="onefourty">Status</th>
+          <th class="hundred">Date</th>
         </tr>
         <% @item_histories.each do |item_history| %>
           <tr>
@@ -59,10 +59,10 @@
     <div class="table-responsive">
       <table class="table table-striped table-last">
         <tr>
-          <th class="thirty">Employee</th>
-          <th class="thirty">Checkout</th>
-          <th class="thirty">Checkin</th>
-          <th class="ten">&nbsp;</th>
+          <th class="twohundred">Employee</th>
+          <th class="twohundred">Checkout</th>
+          <th class="onefourty">Checkin</th>
+          <th class="hundred">&nbsp;</th>
         </tr>
         <% @checkouts.each do |checkout| %>
           <tr>
@@ -79,10 +79,10 @@
     <div class="table-responsive">
       <table class="table table-striped table-last">
         <tr>
-          <th class="thirty">Issue</th>
-          <th class="thirty">System</th>
-          <th class="thirty">Closed At</th>
-          <th class="ten">&nbsp;</th>
+          <th class="twohundred">Issue</th>
+          <th class="twohundred">System</th>
+          <th class="onefourty">Closed At</th>
+          <th class="hundred">&nbsp;</th>
         </tr>
         <% @issues.each do |issue| %>
           <tr>
