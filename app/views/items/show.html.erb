@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="back">
   <%= back_link %>
 </div>
 <div class="row">
@@ -12,15 +12,15 @@
     <% end %>
 
     <p>Serial Number: <span><%= @item.serial_number %></span></p>
-    <p>Purchase On: <span><%= format_date(@item.purchase_on) %></span></p>
-    <p>Category: <span><%= @item.category.try(:name) %></span></p>
+    <p>Purchased On: <span><%= format_date(@item.purchase_on) %></span></p>
+    <p>Category: <span><%= @item.category.name %></span></p>
 
     <% if @item.brand.present? %>
       <p>Brand: <span><%= @item.brand.try(:name) %></span></p>
     <% end %>
 
     <% if @item.vendor.present? %>
-      <p>Purchase From: <span><%= link_to @item.vendor.name, vendor_path(@item.vendor) %></span></p>
+      <p>Purchased From: <span><%= link_to @item.vendor.name, vendor_path(@item.vendor) %></span></p>
     <% end %>
 
     <% if @item.warranty_expires_on.present? %>
@@ -39,10 +39,10 @@
     <div class="table-responsive">
       <table class="table table-striped">
         <tr>
-          <th>System</th>
-          <th>Allocated To</th>
-          <th>Status</th>
-          <th>Date</th>
+          <th class="twohundred">System</th>
+          <th class="twohundred">Allocated To</th>
+          <th class="onefourty">Status</th>
+          <th class="hundred">Date</th>
         </tr>
         <% @item_histories.each do |item_history| %>
           <tr>
@@ -57,12 +57,12 @@
     </div>
     <h3>Checkouts History (<%= @checkouts.count %>)</h3>
     <div class="table-responsive">
-      <table class="table table-striped">
+      <table class="table table-striped table-last">
         <tr>
-          <th>Employee</th>
-          <th>Checkout</th>
-          <th>Checkin</th>
-          <th>&nbsp;</th>
+          <th class="twohundred">Employee</th>
+          <th class="twohundred">Checkout</th>
+          <th class="onefourty">Checkin</th>
+          <th class="hundred">&nbsp;</th>
         </tr>
         <% @checkouts.each do |checkout| %>
           <tr>
@@ -77,12 +77,12 @@
     </div>
     <h3>Issues (<%= @issues.count %>)</h3>
     <div class="table-responsive">
-      <table class="table table-striped">
+      <table class="table table-striped table-last">
         <tr>
-          <th>Issue</th>
-          <th>System</th>
-          <th>Closed At</th>
-          <th>&nbsp;</th>
+          <th class="twohundred">Issue</th>
+          <th class="twohundred">System</th>
+          <th class="onefourty">Closed At</th>
+          <th class="hundred">&nbsp;</th>
         </tr>
         <% @issues.each do |issue| %>
           <tr>
