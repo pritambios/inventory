@@ -3,6 +3,7 @@
 </div>
 <section class="main-info">
   <h3><%= @issue.title %></h3>
+  <p><span>Id: </span><%= @issue.id %></p>
 
   <% if @issue.system.present? %>
     <p><span>System: </span><%= @issue.system.name %></p>

@@ -4,6 +4,7 @@
 <div class="row">
   <section class="col-xs-12 col-sm-5 main-info">
     <h3><%= @system.name %></h3>
+    <p><span>Id: </span><%= @system.id %></p>
 
     <% if @system.assembled_on.present? %>
       <p><span>Assembled On: </span><%= format_date(@system.assembled_on) %></p>

@@ -3,6 +3,7 @@
 </div>
 <section class="main-info">
   <h3><%= @checkout.item.name %></h3>
+   <p><span>Id: </span><%= @checkout.id %></p>
 
   <% if @checkout.employee.present? %>
     <p><span>Employee: </span><%= link_to @checkout.employee.name_or_email, employee_path(@checkout.employee) %></p>

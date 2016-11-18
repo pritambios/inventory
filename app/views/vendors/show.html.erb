@@ -4,6 +4,7 @@
 <div class="row">
   <section class="col-xs-12 col-sm-5 main-info">
     <h3><%= @vendor.name %></h3>
+    <p><span>Id: </span><%= @vendor.id %></p>
 
     <% if @vendor.email.present? %>
       <p><span>Email: </span><%= @vendor.email %></p>

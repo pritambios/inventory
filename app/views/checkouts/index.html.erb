@@ -5,6 +5,7 @@
 <div class="table-responsive">
   <table class="table table-striped table-last">
     <tr>
+      <th>Id</th>
       <th>Item</th>
       <th>Employee</th>
       <th>Checkout</th>
@@ -13,6 +14,7 @@
     </tr>
     <% @checkouts.each do |checkout| %>
       <tr>
+        <td><%= link_to checkout.id, checkout_path(checkout) %></td>
         <td><%= link_to checkout.item.name, checkout_path(checkout) %></td>
         <td>
           <% if checkout.employee.present? %>
