@@ -19,4 +19,9 @@
   <%= f.label :reason , 'Reason:', class: 'required' %>
   <%= f.text_area :reason, class: 'form-control', rows: '2', placeholder: "Reason", required: true %>
 </div>
-<%= unobtrusive_js("$('.datepicker').datetimepicker({ format: 'DD/MM/YYYY' });") %>
+<%= unobtrusive_js("$('.datepicker').datetimepicker({ format: 'DD/MM/YYYY' });
+                      $('#checkout_item_id').on('change', function() {
+                        var selected = $(this).find('option:selected');
+                        $('#checkout_checkout').data('DateTimePicker').minDate(moment(selected.data('purchase_on'), 'YYYY MM DD'));
+                        });
+                    ") %>
