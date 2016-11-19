@@ -1,7 +1,7 @@
 <%= render 'shared/errors', obj: @checkout %>
 <div class="form-group row">
   <div class="col-sm-4"><%= f.label :item_id , 'Item:', class: 'required' %></div>
-  <div class="col-sm-8"><%= f.select :item_id, options_for_select(Item.available.map{ |i| [i.name, i.id, { 'data-purchase_on': i.purchase_on }] }), prompt: "Select" %></div>
+  <div class="col-sm-8"><%= f.select :item_id, options_for_select(Item.available.map{ |i| [i.name, i.id, { 'data-purchase-on': i.purchase_on }] }), prompt: "Select" %></div>
 </div>
 <div class="form-group row">
   <div class="col-sm-4"><%= f.label :employee_id , 'Employee:' %></div>
@@ -19,9 +19,5 @@
   <%= f.label :reason , 'Reason:', class: 'required' %>
   <%= f.text_area :reason, class: 'form-control', rows: '2', placeholder: "Reason", required: true %>
 </div>
-<%= unobtrusive_js("$('.datepicker').datetimepicker({ format: 'DD/MM/YYYY' });
-                      $('#checkout_item_id').on('change', function() {
-                        var selected = $(this).find('option:selected');
-                        $('#checkout_checkout').data('DateTimePicker').minDate(moment(selected.data('purchase_on'), 'YYYY MM DD'));
-                        });
-                    ") %>
+
+<%= unobtrusive_js("$('.datepicker').datetimepicker({ format: 'DD/MM/YYYY' });") %>
