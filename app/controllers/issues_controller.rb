@@ -1,5 +1,5 @@
 class IssuesController < ApplicationController
-  before_action :get_issue, only: [:edit, :update, :show, :destroy]
+  before_action :get_issue, only: [:edit, :update, :show, :destroy, :get_resolution, :set_resolution]
 
   def index
     @issues = Issue.includes(:system, item: [:brand, :category]).paginate(page: params[:page])
@@ -13,7 +13,7 @@ class IssuesController < ApplicationController
     @issue = Issue.new(issue_params)
 
     if @issue.save
-      redirect_to :back, flash: { success: "Issue has been Created Successfully!" }
+      redirect_back(fallback_location: root_path, flash: { success: "Issue has been Created Successfully!" })
     else
       render 'new'
     end
@@ -21,7 +21,7 @@ class IssuesController < ApplicationController
 
   def update
     if @issue.update(issue_params)
-      redirect_to :back, flash: { success: "Issue was successfully updated" }
+      redirect_back(fallback_location: root_path, flash: { success: "Issue was successfully updated" })
     else
       render 'edit'
     end
@@ -37,6 +37,11 @@ class IssuesController < ApplicationController
     end
   end
 
+  def set_resolution
+    @issue.update_attribute(resolution_params)
+    redirect_back(fallback_location: root_path, flash: { success: "Resolution Updated" })
+  end
+
   private
 
   def get_issue
@@ -44,6 +49,10 @@ class IssuesController < ApplicationController
   end
 
   def issue_params
-    params.require(:issue).permit(:item_id, :system_id, :title, :description, :closed_at, :note)
+    params.require(:issue).permit(:item_id, :system_id, :title, :description, :closed_at, :note, :resolution_id)
+  end
+
+  def resolution_params
+    params.require(:issue).permit(:resolution_id)
   end
 end

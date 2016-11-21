@@ -13,7 +13,7 @@ class BrandsController < ApplicationController
     @brand = Brand.new(brand_params)
 
     if @brand.save
-      redirect_to :back, flash: { success: "Brand with #{@brand.name} is Created Successfully!" }
+      redirect_back(fallback_location: root_path, flash: { success: "Brand with #{@brand.name} is Created Successfully!" })
     else
       render 'new'
     end
@@ -21,7 +21,7 @@ class BrandsController < ApplicationController
 
   def update
     if @brand.update(brand_params)
-      redirect_to :back, flash: { success: "Brand details successfully updated" }
+      redirect_back(fallback_location: root_path, flash: { success: "Brand details successfully updated" })
     else
       render 'edit'
     end

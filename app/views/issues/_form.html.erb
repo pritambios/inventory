@@ -1,11 +1,11 @@
 <%= render 'shared/errors', obj: @issue %>
 <div class="form-group row">
-  <div class="col-sm-4"><%= f.label :items, "Item:" %></div>
-  <div class="col-sm-8"><%= f.collection_select :item_id, Item.all, :id, :name, include_blank: "Select" %></div>
+  <div class="col-sm-4"><%= f.label :items, "Item :" %></div>
+  <div class="col-sm-8"><%= f.collection_select :item_id, Item.all, :id, :name, { include_blank: "Select" }, class: 'form-control' %></div>
 </div>
 <div class="form-group row">
   <div class="col-sm-4"><%= f.label :systems, "System :" %></div>
-  <div class="col-sm-8"><%= f.collection_select :system_id, System.all, :id, :name, include_blank: "Select" %></div>
+  <div class="col-sm-8"><%= f.collection_select :system_id, System.all, :id, :name, { include_blank: "Select" }, class: 'form-control' %></div>
 </div>
 <div class="form-group row">
   <div class="col-sm-4"><%= f.label :title, "Title  :", class: 'required' %></div>
@@ -22,5 +22,9 @@
 <div class="form-group row">
   <div class="col-sm-4"><%= f.label :note, "Notes :" %></div>
   <div class="col-sm-8"><%= f.text_area :note, rows: "2", class: 'form-control', placeholder: "Information" %></div>
+</div>
+<div class="form-group row">
+  <div class="col-sm-4"><%= f.label :resolution, "Resolution :" %></div>
+  <div class="col-sm-8"><%= f.collection_select :resolution_id, Resolution.all, :id, :name, { include_blank: "Select" }, class: 'form-control' %></div>
 </div>
 <%= unobtrusive_js("$('.datepicker').datetimepicker({ format: 'DD/MM/YYYY' });") %>

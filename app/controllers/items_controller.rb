@@ -12,7 +12,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to :back, flash: { success: "Item with #{@item.model_number} is Created Successfully!" }
+      redirect_back(fallback_location: root_path, flash: { success: "Item with #{@item.model_number} is Created Successfully!" })
     else
       render 'new'
     end
@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update_attributes(item_params)
-      redirect_to :back, flash: { success: "Item details successfully updated" }
+      redirect_back(fallback_location: root_path, flash: { success: "Item details successfully updated" })
     else
       render 'edit'
     end
@@ -38,8 +38,7 @@ class ItemsController < ApplicationController
 
   def reallocate
     @item.update_attribute(reallocate_employee_params)
-    flash[:success] = "item is successfully reallocated"
-    redirect_to :back
+    redirect_back(fallback_location: root_path, flash: { success: "Item is successfully reallocated" })
   end
 
   def destroy
