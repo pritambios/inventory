@@ -14,7 +14,7 @@ html {
 .login-container {
   background: url(image_path("inventory_login_bg.jpg")) no-repeat top center;
   background-size: cover;
-  padding: 120px 0 0;
+  padding: 120px 0;
   color: #fff;
   text-align: center;
 }
@@ -119,12 +119,11 @@ a {
 
 .user-name {
   overflow: hidden;
-  padding-right: 10px;
   padding-top: 15px;
   text-align: center;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 137px;
+  width: 134px;
   color: #fff;
 }
 
@@ -200,7 +199,7 @@ a {
     margin-top: 6px;
     background-color: transparent;
     color: #fff;
-    padding: 0 0 0 15px;
+    padding: 0;
 
     &:hover, &:focus {
       background-color: transparent;
@@ -377,9 +376,13 @@ section.other-info .icon-show {
   width: 400px;
 }
 
+.main-content {
+  padding-bottom: 90px;
+}
+
 @media (min-width: 768px) {
   .top-links {
-    width: 83%;
+    width: 84%;
     float: right;
   }
 
@@ -387,9 +390,11 @@ section.other-info .icon-show {
     padding: 15px 5px 0px;
   }
 
-  .nav.navbar-nav .logut-btn {
-    text-align: center;
-    padding: 0;
+  .nav.navbar-nav {
+    .logout-btn {
+      text-align: center;
+      padding: 0;
+    }
   }
 
   .login-container p {

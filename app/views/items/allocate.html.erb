@@ -1,10 +1,10 @@
 <div class="center-block form-container">
   <%= form_for @item, class: "form-horizontal" do |f| %>
     <div class="form-group row">
-      <%= f.label :employee_id , "Reallocate To:", class: "col-sm-4" %>
-      <%= f.collection_select :employee_id, Employee.all, :id, :name_or_email, include_blank: "Select Employee", class: "col-sm-6" %>
+      <div class="col-sm-4"><%= f.label :employee_id , "Reallocate To:" %></div>
+      <div class="col-sm-8"><%= f.collection_select :employee_id, Employee.all, :id, :name_or_email, { include_blank: "Select Employee" }, class: 'form-control' %></div>
     </div>
-    <div class="text-center">
+    <div class="text-right">
       <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
       <%= f.submit "Update", class: "btn btn-primary" %>
     </div>

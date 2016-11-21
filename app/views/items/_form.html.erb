@@ -13,15 +13,15 @@
 </div>
 <div class="form-group row">
   <div class="col-sm-4"><%= f.label :category_id , "Category:", class: 'required' %></div>
-  <div class="col-sm-8"><%= f.collection_select :category_id, Category.all, :id, :name, { include_blank: 'Select' }, required: "true" %></div>
+  <div class="col-sm-8"><%= f.collection_select :category_id, Category.all, :id, :name, { include_blank: 'Select' }, class: 'form-control', required: "true" %></div>
 </div>
 <div class="form-group row">
   <div class="col-sm-4"><%= f.label :brand_id , "Brand:" %></div>
-  <div class="col-sm-8"><%= f.collection_select :brand_id, Brand.all, :id, :name,  { include_blank: 'Select' } %></div>
+  <div class="col-sm-8"><%= f.collection_select :brand_id, Brand.all, :id, :name,  { include_blank: 'Select' }, class: 'form-control' %></div>
 </div>
 <div class="form-group row">
   <div class="col-sm-4"><%= f.label :vendor_id , "Purchased From:" %></div>
-  <div class="col-sm-8"><%= f.collection_select :vendor_id, Vendor.all, :id, :name, { include_blank: 'Select' } %></div>
+  <div class="col-sm-8"><%= f.collection_select :vendor_id, Vendor.all, :id, :name, { include_blank: 'Select' }, class: 'form-control' %></div>
 </div>
 <div class="form-group row">
   <div class="col-sm-4"><%= f.label :purchase_note , "Purchased Note:" %></div>
@@ -40,10 +40,10 @@
 </div>
 <div class="form-group row">
   <div class="col-sm-4"><%= f.label :system_id , "System:" %></div>
-  <div class="col-sm-8"><%= f.collection_select :system_id, System.all, :id, :name,  prompt: 'Select' %></div>
+  <div class="col-sm-8"><%= f.collection_select :system_id, System.all, :id, :name, { prompt: 'Select' }, class: 'form-control' %></div>
 </div>
 <div class="form-group row">
   <div class="col-sm-4"><%= f.label :employee_id , "Employee:" %></div>
-  <div class="col-sm-8"><%= f.collection_select :employee_id, Employee.all, :id, :name_or_email, prompt: 'Select' %></div>
+  <div class="col-sm-8"><%= f.collection_select :employee_id, Employee.all, :id, :name_or_email, { prompt: 'Select' }, class: 'form-control' %></div>
 </div>
 <%= unobtrusive_js("$('.datepicker').datetimepicker({ format: 'DD/MM/YYYY' });") %>
