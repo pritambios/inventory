@@ -19,6 +19,11 @@
         <td><%= item.model_number %></td>
         <td><%= item.serial_number %></td>
         <td>
+          <label class="switch">
+            <%= check_box("status", item.id, {checked: item.working}, action: 'toggle_status', id: item.id, remote: true, method: :put) %>
+            <div class="slider round"></div>
+          </label>
+
           <%= link_to working_status(item), status_update_path(item), remote: true, method: :put, id: "status-#{ item.id }" %>
         </td>
         <td>
