@@ -20,11 +20,9 @@
         <td><%= item.serial_number %></td>
         <td>
           <label class="switch">
-            <%= check_box("status", item.id, {checked: item.working}, action: 'toggle_status', id: item.id, remote: true, method: :put) %>
+            <%= check_box_tag 'Status', item.working, item.working, data: { remote: true, url: url_for( action: 'toggle_status', id: item.id, working: item.working ), method: :put } %>
             <div class="slider round"></div>
           </label>
-
-          <%= link_to working_status(item), status_update_path(item), remote: true, method: :put, id: "status-#{ item.id }" %>
         </td>
         <td>
           <%= edit_link(edit_item_path(item), "Item") %>

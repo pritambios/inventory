@@ -388,11 +388,13 @@ section.other-info .icon-show {
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 50px;
+  height: 20px;
 }
 
-.switch input {display:none;}
+.switch input {
+  display:none;
+}
 
 .slider {
   position: absolute;
@@ -409,17 +411,17 @@ section.other-info .icon-show {
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
+  height: 15px;
+  width: 15px;
   left: 4px;
-  bottom: 4px;
-  background-color: white;
+  bottom: 3px;
+  background-color: #fff;
   -webkit-transition: .4s;
   transition: .4s;
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: #5cb85c;
 }
 
 input:focus + .slider {
@@ -432,7 +434,6 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
-/* Rounded sliders */
 .slider.round {
   border-radius: 34px;
 }
