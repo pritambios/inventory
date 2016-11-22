@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161115103150) do
+ActiveRecord::Schema.define(version: 20161121053748) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,13 +54,15 @@ ActiveRecord::Schema.define(version: 20161115103150) do
   create_table "issues", force: :cascade do |t|
     t.integer  "item_id"
     t.integer  "system_id"
-    t.string   "title",       null: false
+    t.string   "title",         null: false
     t.text     "description"
     t.date     "closed_at"
     t.text     "note"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "resolution_id"
     t.index ["item_id"], name: "index_issues_on_item_id", using: :btree
+    t.index ["resolution_id"], name: "index_issues_on_resolution_id", using: :btree
     t.index ["system_id"], name: "index_issues_on_system_id", using: :btree
   end
 
@@ -94,6 +96,12 @@ ActiveRecord::Schema.define(version: 20161115103150) do
     t.index ["employee_id"], name: "index_items_on_employee_id", using: :btree
     t.index ["system_id"], name: "index_items_on_system_id", using: :btree
     t.index ["vendor_id"], name: "index_items_on_vendor_id", using: :btree
+  end
+
+  create_table "resolutions", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "system_histories", force: :cascade do |t|
@@ -143,6 +151,7 @@ ActiveRecord::Schema.define(version: 20161115103150) do
   add_foreign_key "checkouts", "employees"
   add_foreign_key "checkouts", "items"
   add_foreign_key "issues", "items"
+  add_foreign_key "issues", "resolutions"
   add_foreign_key "issues", "systems"
   add_foreign_key "item_histories", "employees"
   add_foreign_key "item_histories", "items"

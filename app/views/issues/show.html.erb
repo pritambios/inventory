@@ -27,5 +27,10 @@
     <p><span>Note: </span><%= @issue.note %></p>
   <% end %>
 
+  <% if @issue.resolution.present? %>
+    <p><span>Resolution: </span><%= @issue.resolution.try(:name) %></p>
+  <% end %>
+
   <%= edit_link(edit_issue_path(@issue), "Issue") %>
+  <%= link_to 'Resolution', get_resolution_issue_path(@issue), data: { remote_popup: true, title: "Resolution" }, class: "btn btn-primary btn-sm" %>
 </section>

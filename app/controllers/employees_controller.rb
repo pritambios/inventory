@@ -9,7 +9,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.new(employee_params)
 
     if @employee.save
-      redirect_to :back, flash: { success: "Employee with #{@employee.name} is Created Successfully!" }
+      redirect_back(fallback_location: root_path, flash: { success: "Employee with #{@employee.name} is Created Successfully!" })
     else
       render 'new'
     end
@@ -17,7 +17,7 @@ class EmployeesController < ApplicationController
 
   def update
     if @employee.update_attributes(employee_params)
-      redirect_to :back, flash: { success: "Employee Details successfully updated!" }
+      redirect_back(fallback_location: root_path, flash: { success: "Employee Details successfully updated!" })
     else
       render 'edit'
     end

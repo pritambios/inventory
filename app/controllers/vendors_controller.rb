@@ -9,7 +9,7 @@ class VendorsController < ApplicationController
     @vendor = Vendor.new(vendor_params)
 
     if @vendor.save
-      redirect_to :back, flash: { success: "Vendor with #{@vendor.name} successfully created!" }
+      redirect_back(fallback_location: root_path, flash: { success: "Vendor with #{@vendor.name} successfully created!" })
     else
       render 'new'
     end
@@ -17,7 +17,7 @@ class VendorsController < ApplicationController
 
   def update
     if @vendor.update_attributes(vendor_params)
-      redirect_to :back, flash: { success: "Vendor details successfully updated!" }
+      redirect_back(fallback_location: root_path, flash: { success: "Vendor details successfully updated!" })
     else
       render 'edit'
     end
