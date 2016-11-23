@@ -10,6 +10,7 @@
       <th>Model Number</th>
       <th>Serial Number</th>
       <th>Issue</th>
+      <th>Checkout</th>
       <th>Status</th>
       <th>&nbsp;</th>
     </tr>
@@ -28,6 +29,15 @@
             <% end %>
           <% else %>
             No Issue
+          <% end %>
+        </td>
+        <td>
+          <% if item.checkouts.present? %>
+            <% if item.checkouts.order_desending.last.check_in.nil? %>
+              <%= format_date(item.checkouts.order_desending.first.checkout) %>
+            <% else %>
+              <%= link_to "checkouts", checkouts_path(item_id: item.id) %>
+            <% end %>
           <% end %>
         </td>
         <td>
