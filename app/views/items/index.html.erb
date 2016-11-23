@@ -9,6 +9,7 @@
       <th>Item</th>
       <th>Model Number</th>
       <th>Serial Number</th>
+      <th>Issue</th>
       <th>Status</th>
       <th>&nbsp;</th>
     </tr>
@@ -23,6 +24,14 @@
             <%= check_box_tag 'Status', item.working, item.working, data: { remote: true, url: url_for( action: 'toggle_status', id: item.id, working: item.working ), method: :put } %>
             <div class="slider round"></div>
           </label>
+          <% if item.issues.present? %>
+            <%= link_to item.issues.count, issues_path(item_id: item.id) %>
+          <% else %>
+            No Issue
+          <% end %>
+        </td>
+        <td>
+          <%= link_to working_status(item), status_update_path(item), remote: true, method: :put, id: "status-#{ item.id }" %>
         </td>
         <td>
           <%= edit_link(edit_item_path(item), "Item") %>
