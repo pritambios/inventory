@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20161125121635) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "resolution_id"
+    t.integer  "priority"
     t.index ["item_id"], name: "index_issues_on_item_id", using: :btree
     t.index ["resolution_id"], name: "index_issues_on_resolution_id", using: :btree
     t.index ["system_id"], name: "index_issues_on_system_id", using: :btree

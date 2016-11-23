@@ -31,6 +31,10 @@
     <p><span>Resolution: </span><%= @issue.resolution.try(:name) %></p>
   <% end %>
 
+  <% if @issue.priority? %>
+    <p><span>Priority: </span><%= @issue.priority %></p>
+  <% end %>
+
   <%= edit_link(edit_issue_path(@issue), "Issue") %>
   <%= link_to 'close', close_issue_path(@issue), method: :put, data: { confirm: "are you sure the issue will be closed?" }, class: 'btn btn-default' if @issue.closed_at.nil? %>
 </section>
