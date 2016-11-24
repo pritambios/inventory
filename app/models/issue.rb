@@ -10,6 +10,8 @@ class Issue < ActiveRecord::Base
   scope :unclosed,        -> { where(closed_at: nil) }
 
   def closed_at_limitation
-    errors.add(:closed_at, "must be after purchase date") unless closed_at > self.item.purchase_on
+    if closed_at.present? and item.present?
+      errors.add(:closed_at, "must be after purchase date") unless closed_at > self.item.purchase_on
+    end
   end
 end
