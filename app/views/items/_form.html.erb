@@ -42,12 +42,18 @@
   <div class="col-sm-4"><%= f.label :employee_id , "Employee:" %></div>
   <div class="col-sm-8"><%= f.collection_select :employee_id, Employee.company_employees, :id, :name, { prompt: 'Select' }, class: 'form-control' %></div>
 </div>
-<div class="form-group row">
-  <%= f.fields_for :documents, @item.documents.build do |doc| %>
-    <% if doc.object.new_record? %>
-      <div class="col-sm-4"><%= doc.label :attachment, "Attachment:" %></div>
+<hr>
+<%= f.fields_for :documents, @item.documents.build do |doc| %>
+  <% if doc.object.new_record? %>
+    <div class="form-group row">
+      <div class="col-sm-4"><%= doc.label :title, "Attachment Info:" %></div>
+      <div class="col-sm-8"><%= doc.text_field :title, class: 'form-control', placeholder: "Title" %></div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-4"><%= doc.label :attachment, "Attachment File:" %></div>
       <div class="col-sm-8"><%= doc.file_field :attachment %></div>
-    <% end %>
+    </div>
   <% end %>
-</div>
+<% end %>
+
 <%= unobtrusive_js("$('.datepicker').datetimepicker({ format: 'DD/MM/YYYY' });") %>

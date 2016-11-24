@@ -46,7 +46,10 @@
       <p>Attachments:
         <ol>
           <% @item.documents.each do |document| %>
-            <li><%= link_to document.attachment_file_name, document.attachment.url, download: document.attachment_file_name %></li>
+            <li>
+              <%= document.title %>:
+              <%= link_to document.attachment_file_name, document.attachment.url, download: document.attachment_file_name %>
+            </li>
           <% end %>
         </ol>
       </p>
