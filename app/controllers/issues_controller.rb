@@ -3,11 +3,7 @@ class IssuesController < ApplicationController
 
   def index
     @issues = Issue.includes(:system, item: [:brand, :category])
-
-    if params[:item_id].present?
-      @issues = @issues.where(item_id: params[:item_id])
-    end
-
+    @issues = @issues.where(item_id: params[:item_id]) if params[:item_id].present?
     @issues = @issues.paginate(page: params[:page])
   end
 

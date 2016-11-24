@@ -25,7 +25,11 @@
             <div class="slider round"></div>
           </label>
           <% if item.issues.present? %>
-            <%= link_to item.issues.count, issues_path(item_id: item.id) %>
+            <% if item.issues.unclosed.count > 0 %>
+              <%= link_to "unclosed (#{item.issues.unclosed.count})", issues_path(item_id: item.id) %>
+            <% else %>
+              <%= link_to "closed", issues_path(item_id: item.id) %>
+            <% end %>
           <% else %>
             No Issue
           <% end %>
