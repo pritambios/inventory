@@ -2,7 +2,9 @@ class IssuesController < ApplicationController
   before_action :get_issue, only: [:edit, :update, :show, :destroy, :get_resolution, :set_resolution]
 
   def index
-    @issues = Issue.includes(:system, item: [:brand, :category]).paginate(page: params[:page])
+    @issues = Issue.includes(:system, item: [:brand, :category])
+    @issues = @issues.where(item_id: params[:item_id]) if params[:item_id].present?
+    @issues = @issues.paginate(page: params[:page])
   end
 
   def new

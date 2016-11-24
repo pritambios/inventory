@@ -9,6 +9,7 @@
       <th>Item</th>
       <th>Model Number</th>
       <th>Serial Number</th>
+      <th>Issue</th>
       <th>Status</th>
       <th>&nbsp;</th>
     </tr>
@@ -18,6 +19,17 @@
         <td><%= link_to item.name, item_path(item) %></td>
         <td><%= item.model_number %></td>
         <td><%= item.serial_number %></td>
+        <td>
+          <% if item.issues.present? %>
+            <% if item.issues.unclosed.count > 0 %>
+              <%= link_to "unclosed (#{item.issues.unclosed.count})", issues_path(item_id: item.id) %>
+            <% else %>
+              <%= link_to "closed", issues_path(item_id: item.id) %>
+            <% end %>
+          <% else %>
+            No Issue
+          <% end %>
+        </td>
         <td>
           <label class="switch">
             <%= check_box_tag 'Status', item.working, item.working, data: { remote: true, url: url_for( action: 'toggle_status', id: item.id, working: item.working ), method: :put } %>

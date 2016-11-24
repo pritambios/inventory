@@ -22,7 +22,7 @@ class Item < ApplicationRecord
 
   scope :unavailable, -> { joins(:checkouts).where(checkouts: { check_in: nil }) }
   scope :available,   -> { where.not(id: unavailable) }
-  scope :unattached,   -> { where(system_id: nil) }
+  scope :unattached,  -> { where(system_id: nil) }
 
   def unavailable?
     checkouts.map(&:checkin?).include? false
