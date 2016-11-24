@@ -1,8 +1,8 @@
 class IssuesController < ApplicationController
-  before_action :get_issue, only: [:edit, :update, :show, :destroy, :get_resolution, :set_resolution]
+  before_action :get_issue, only: [:edit, :update, :show, :destroy, :set_resolution]
 
   def index
-    @issues = Issue.includes(:system, item: [:brand, :category])
+    @issues = Issue.includes(:system, :resolution, item: [:brand, :category])
     @issues = @issues.where(item_id: params[:item_id]) if params[:item_id].present?
     @issues = @issues.paginate(page: params[:page])
   end
@@ -40,8 +40,7 @@ class IssuesController < ApplicationController
   end
 
   def set_resolution
-    @issue.update_attribute(resolution_params)
-    redirect_back(fallback_location: root_path, flash: { success: "Resolution Updated" })
+    @issue.update_attribute(:resolution_id, params[:resolution_id])
   end
 
   private
@@ -52,9 +51,5 @@ class IssuesController < ApplicationController
 
   def issue_params
     params.require(:issue).permit(:item_id, :system_id, :title, :description, :closed_at, :note, :resolution_id)
-  end
-
-  def resolution_params
-    params.require(:issue).permit(:resolution_id)
   end
 end
