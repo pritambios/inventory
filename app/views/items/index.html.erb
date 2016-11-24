@@ -33,8 +33,8 @@
         </td>
         <td>
           <% if item.checkouts.present? %>
-            <% if item.checkouts.order_desending.last.check_in.nil? %>
-              <%= format_date(item.checkouts.order_desending.first.checkout) %>
+            <% if item.unavailable? %>
+              <%= link_to format_date(item.checkouts.order_desending.first.checkout), checkout_path(item.checkouts.order_desending.first) %>
             <% else %>
               <%= link_to "checkouts", checkouts_path(item_id: item.id) %>
             <% end %>
