@@ -3,12 +3,21 @@ class IssuesController < ApplicationController
 
   def index
     @issues = Issue.includes(:system, :resolution, item: [:brand, :category])
-    @issues = @issues.where(item_id: params[:item_id]) if params[:item_id].present?
+
+    if params[:item_id].present?
+      @item = Item.find(params[:item_id])
+      @issues = @issues.where(item_id: @item.id)
+    end
+
     @issues = @issues.paginate(page: params[:page])
   end
 
   def new
-    @issue = Issue.new
+    if item = Item.find_by_id(params[:item_id])
+      @issue = item.issues.build
+    else
+      @issue = Issue.new
+    end
   end
 
   def create
