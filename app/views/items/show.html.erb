@@ -12,23 +12,13 @@
     <% end %>
 
     <p>Serial Number: <span><%= @item.serial_number %></span></p>
-    <p>Purchased On: <span><%= format_date(@item.purchase_on) %></span></p>
-    <p>Category: <span><%= @item.category.name %></span></p>
-
-    <% if @item.brand.present? %>
-      <p>Brand: <span><%= @item.brand.try(:name) %></span></p>
-    <% end %>
 
     <% if @item.vendor.present? %>
-      <p>Purchased From: <span><%= link_to @item.vendor.name, vendor_path(@item.vendor) %></span></p>
+      <p>Purchased From: <span><%= link_to @item.vendor.name, vendor_path(@item.vendor) %> <%= format_date(@item.purchase_on) %></span></p>
     <% end %>
 
     <% if @item.warranty_expires_on.present? %>
       <p>Warranty Expires On: <span><%= format_date(@item.warranty_expires_on) %></span></p>
-    <% end %>
-
-    <% if @item.purchase_note.present? %>
-      <p>Purchase Note: <span><%= @item.purchase_note %></span></p>
     <% end %>
 
     <%= edit_link(edit_item_path(@item), "Item") %>
