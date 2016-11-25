@@ -24,7 +24,7 @@ module ApplicationHelper
   end
 
   def edit_link(path, title = "Details")
-    link_to ('<i class="fa fa-edit" title="Edit Details"></i> Edit').html_safe, path, data: { remote_popup: true, title: "Edit #{title}" }, class: 'btn btn-sm btn-edit'
+    link_to ('<i class="fa fa-edit" title="Edit Details"></i> Edit').html_safe, path, data: { remote_popup: true, title: "Edit #{title}" }, class: 'link-edit'
   end
 
   def show_link(path)
