@@ -36,6 +36,10 @@ module ApplicationHelper
                 data: { confirm: "Are you sure?" }, class: 'btn btn-danger btn-sm'
   end
 
+  def remove_link(path)
+    link_to ('<i class="fa fa-trash" title="Remove Item"></i> Remove').html_safe, path, method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger btn-sm'
+  end
+
   def format_date(date)
     date.strftime("%d/%m/%Y") if date.present?
   end

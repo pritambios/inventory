@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 20161125100848) do
     t.boolean  "working",             default: true
     t.date     "warranty_expires_on"
     t.integer  "vendor_id"
+    t.date     "discarded_at"
     t.index ["employee_id"], name: "index_items_on_employee_id", using: :btree
     t.index ["system_id"], name: "index_items_on_system_id", using: :btree
     t.index ["vendor_id"], name: "index_items_on_vendor_id", using: :btree
