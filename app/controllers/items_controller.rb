@@ -2,7 +2,15 @@ class ItemsController < ApplicationController
   before_action :get_item, only: [:show, :edit, :update, :toggle_status, :destroy, :allocate, :reallocate]
 
   def index
-    @items = Item.includes(:brand, :category, :checkouts).paginate(page: params[:page])
+    @items = Item.includes(:brand, :category, :checkouts)
+
+    if params[:discarded] == "true"
+      @items = @items.discarded
+    else
+      @items = @items.active
+    end
+
+    @items = @items.paginate(page: params[:page])
   end
 
   def new
@@ -42,11 +50,8 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if @item.destroy
-      redirect_to items_path, flash: { success: "Item was successfully deleted" }
-    else
-      redirect_to items_path, flash: { danger: "Sorry!!, not able to delete this item" }
-    end
+    @item.update_attributes(working: false, discarded_at: Time.now)
+    redirect_to items_path, flash: { success: "Item is successfully removed from the list" }
   end
 
   private

@@ -1,6 +1,10 @@
 <div class="page-header">
-  <%= link_to 'Add', new_item_path, data: { remote_popup: true, title: "Create Item" },  class: "btn btn-primary pull-right" %>
-  <h3>Items</h3>
+  <% if params[:discarded] == "true" %>
+    <h3>Discarded Items</h3>
+  <% else %>
+    <%= link_to 'Add', new_item_path, data: { remote_popup: true, title: "Create Item" },  class: "btn btn-primary pull-right" %>
+    <h3>Items</h3>
+  <% end %>
 </div>
 <div class="table-responsive">
   <table class="table table-striped table-last">
@@ -48,7 +52,10 @@
         </td>
         <td>
           <%= edit_link(edit_item_path(item), "Item") %>
-          <%= link_to 'Allocate', allocate_item_path(item), data: { remote_popup: true, title: "Allocate/Deallocate" }, class: "btn btn-primary btn-sm" %>
+          <% if item.discarded_at.nil? %>
+            <%= remove_link(item_path(item)) %>
+            <%= link_to 'Allocate', allocate_item_path(item), data: { remote_popup: true, title: "Allocate/Deallocate" }, class: "btn btn-primary btn-sm" %>
+          <% end %>
         </td>
       </tr>
     <% end %>
