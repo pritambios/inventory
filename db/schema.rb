@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161125100848) do
+ActiveRecord::Schema.define(version: 20161125121635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,7 +89,6 @@ ActiveRecord::Schema.define(version: 20161125100848) do
     t.integer  "system_id"
     t.string   "serial_number",                      null: false
     t.date     "purchase_on",                        null: false
-    t.text     "purchase_note"
     t.boolean  "working",             default: true
     t.date     "warranty_expires_on"
     t.integer  "vendor_id"

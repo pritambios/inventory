@@ -61,7 +61,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:model_number, :category_id, :brand_id, :serial_number, :purchase_on, :vendor_id, :purchase_note, :working, :system_id, :employee_id, :warranty_expires_on)
+    params.require(:item).permit(:model_number, :category_id, :brand_id, :serial_number, :purchase_on, :vendor_id, :working, :system_id, :employee_id, :warranty_expires_on)
   end
 
   def reallocate_employee_params
