@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     member do
       put 'set_resolution'
       put 'close'
+      put 'set_priority'
     end
   end
   resources :vendors

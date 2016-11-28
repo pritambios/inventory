@@ -10,6 +10,7 @@
       <th>System</th>
       <th>Item</th>
       <th>Resolution</th>
+      <th>Priority</th>
       <th>Closed At</th>
       <th>&nbsp;</th>
     </tr>
@@ -20,6 +21,9 @@
         <td><%= link_to issue.system.name, system_path(issue.system) if issue.system %></td>
         <td><%= link_to issue.item.name, item_path(issue.item) if issue.item %></td>
         <td><%= select_tag :resolution_id, options_from_collection_for_select(Resolution.all, :id, :name, selected: issue.resolution_id), prompt: "Select", data: { remote: true, url: set_resolution_issue_path(issue), method: :put }, class: 'select-option' %></td>
+        <td>
+          <%= select_tag :priority, options_for_select(Issue.priorities.map{|key, value| [key.humanize, key]}, selected: issue.priority), prompt: "Select" , data: { remote: true, url: set_priority_issue_path(issue), method: :put }, class: 'select-option' %>
+        </td>
         <td>
           <% if issue.closed_at %>
             <%= format_date(issue.closed_at) %>

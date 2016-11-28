@@ -10,6 +10,8 @@ class Issue < ActiveRecord::Base
   scope :order_desending, -> { order('created_at DESC') }
   scope :unclosed,        -> { where(closed_at: nil) }
 
+  enum priority: [:high, :medium, :low, :as_soon_as_possible]
+
   def item_closed_at_limitation
     if closed_at.present? and item.present?
       errors.add(:closed_at, "must be after item purchase date") unless closed_at > item.purchase_on

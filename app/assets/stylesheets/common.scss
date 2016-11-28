@@ -294,6 +294,7 @@ table th {
 
 .table-last td:last-child {
   text-align: right;
+  width: 25%;
 
   .link-edit {
     margin-left: 15px;
@@ -442,6 +443,17 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+.select-option {
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+  border: 1px solid #ccc;
+  color: #555;
+  height: 34px;
+  line-height: 1.42857;
+  padding: 6px 12px;
+  width: 100%;
+  background-color: #fff;
+}
 
 @media (min-width: 768px) {
   .top-links {
