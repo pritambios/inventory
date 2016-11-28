@@ -13,7 +13,7 @@ class Item < ApplicationRecord
 
   validates :serial_number, presence: true, length: { minimum: 3, maximum: 50 }
 
-  accepts_nested_attributes_for :documents
+  accepts_nested_attributes_for :documents, reject_if: lambda { |doc| doc[:attachment].blank? }, allow_destroy: true
 
   scope :order_desending, -> { order('created_at DESC') }
   scope :unavailable, -> { joins(:checkouts).where(checkouts: { check_in: nil }) }

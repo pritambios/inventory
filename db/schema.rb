@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161130072209) do
+ActiveRecord::Schema.define(version: 20161130104719) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,7 +74,6 @@ ActiveRecord::Schema.define(version: 20161130072209) do
     t.integer  "resolution_id"
     t.integer  "priority"
     t.index ["item_id"], name: "index_issues_on_item_id", using: :btree
-    t.index ["priority_id"], name: "index_issues_on_priority_id", using: :btree
     t.index ["resolution_id"], name: "index_issues_on_resolution_id", using: :btree
     t.index ["system_id"], name: "index_issues_on_system_id", using: :btree
   end
@@ -107,12 +106,6 @@ ActiveRecord::Schema.define(version: 20161130072209) do
     t.integer  "employee_id"
     t.index ["system_id"], name: "index_items_on_system_id", using: :btree
     t.index ["vendor_id"], name: "index_items_on_vendor_id", using: :btree
-  end
-
-  create_table "priorities", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "resolutions", force: :cascade do |t|
@@ -166,7 +159,6 @@ ActiveRecord::Schema.define(version: 20161130072209) do
   add_foreign_key "checkouts", "items"
   add_foreign_key "documents", "items"
   add_foreign_key "issues", "items"
-  add_foreign_key "issues", "priorities"
   add_foreign_key "issues", "resolutions"
   add_foreign_key "issues", "systems"
   add_foreign_key "item_histories", "items"
