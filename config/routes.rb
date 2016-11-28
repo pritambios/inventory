@@ -19,7 +19,6 @@ Rails.application.routes.draw do
   end
   resources :issues do
     member do
-      get 'get_resolution'
       put 'set_resolution'
     end
   end
