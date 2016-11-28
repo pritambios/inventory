@@ -6,11 +6,11 @@
   <p><span>Id: </span><%= @issue.id %></p>
 
   <% if @issue.system.present? %>
-    <p><span>System: </span><%= @issue.system.name %></p>
+    <p><span>System: </span><%= link_to @issue.system.name, system_path(@issue.system) %></p>
   <% end %>
 
   <% if @issue.item.present? %>
-    <p><span>Item: </span><%= @issue.item.name %></p>
+    <p><span>Item: </span><%= link_to name_with_id(@issue.item), item_path(@issue.item) %></p>
   <% end %>
 
   <% if @issue.description.present? %>

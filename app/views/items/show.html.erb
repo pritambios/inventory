@@ -5,25 +5,32 @@
   <section class="col-xs-12 col-sm-5 main-info">
     <h3 class="table-heading"><%= @item.name %></h3>
     <p><span>Id: </span><%= @item.id %></p>
-    <p>Status: <span><%= @item.working? ? "working" : "Not Working" %></span></p>
+    <p><span>Status: </span><%= @item.working? ? "working" : "Not Working" %></p>
 
     <% if @item.model_number.present? %>
-      <p>Model Number: <span><%= @item.model_number %></span></p>
+      <p><span>Model Number: </span><%= @item.model_number %></p>
     <% end %>
 
-    <p>Serial Number: <span><%= @item.serial_number %></span></p>
-
+    <p><span>Serial Number: </span><%= @item.serial_number %></p>
     <p>
-      <% if @item.vendor.present? %>
-        Purchased From: <span><%= link_to @item.vendor.name, vendor_path(@item.vendor) %></span>
-      <% end %>
+      <% if @item.vendor.present? || @item.purchase_on.present? %>
+        <span>Purchased</span>
 
-      <% if @item.purchase_on.present? %>
-        <%= format_date(@item.try(:purchase_on)) %>
+        <% if @item.vendor.present? %>
+          <span>From: </span><%= link_to @item.vendor.name, vendor_path(@item.vendor) %>
+        <% end %>
+
+        <% if @item.purchase_on.present? %>
+          <span>On: </span><%= format_date(@item.try(:purchase_on)) %>
+        <% end %>
       <% end %>
     </p>
     <% if @item.warranty_expires_on.present? %>
-      <p>Warranty Expires On: <span><%= format_date(@item.warranty_expires_on) %></span></p>
+      <p><span>Warranty Expires On: </span><%= format_date(@item.warranty_expires_on) %></p>
+    <% end %>
+
+    <% if @item.employee.present? %>
+      <p><span>Allocated To: </span><%= link_to @item.employee.name, employee_path(@item.employee) %></p>
     <% end %>
 
     <%= edit_link(edit_item_path(@item), "Item") %>
@@ -44,8 +51,20 @@
         </tr>
         <% @item_histories.each do |item_history| %>
           <tr>
-            <td><%= item_history.system_id.present? ? "System #{item_history.system_id}" : "Unattached" %></td>
-            <td><%= item_history.employee.try(:name) || "Unallocated" %></td>
+            <td>
+              <% if item_history.system.present? %>
+                <%= link_to "#{item_history.system.name}", system_path(item_history.system) %>
+              <% else %>
+                Unattached
+              <% end %>
+            </td>
+            <td>
+              <% if item_history.employee.present? %>
+                <%= link_to item_history.employee.name, employee_path(item_history.employee) %>
+              <% else %>
+                Unallocated
+              <% end %>
+            </td>
             <td><%= item_history.status? ? "Active" : "Inactive" %></td>
             <td><%= format_date(item_history.created_at) %></td>
           </tr>
@@ -64,7 +83,7 @@
         </tr>
         <% @checkouts.each do |checkout| %>
           <tr>
-            <td><%= checkout.employee.try(:name_or_email) %></td>
+            <td><%= link_to checkout.employee.name_or_email if checkout.employee.present? %></td>
             <td><%= format_date(checkout.checkout) %></td>
             <td><%= format_date(checkout.check_in) %></td>
             <td><%= show_link(checkout_path(checkout)) %></td>
@@ -84,8 +103,8 @@
         </tr>
         <% @issues.each do |issue| %>
           <tr>
-            <td><%= issue.title %></td>
-            <td><%= issue.system.name if issue.system_id? %></td>
+            <td><%= link_to issue.title, issue_path(issue) %></td>
+            <td><%= link_to issue.system.name, system_path(issue.system) if issue.system_id? %></td>
             <td><%= format_date(issue.closed_at) if issue.closed_at? %></td>
             <td><%= show_link(issue_path(issue)) %></td>
           </tr>
