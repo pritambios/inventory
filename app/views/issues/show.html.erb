@@ -32,5 +32,5 @@
   <% end %>
 
   <%= edit_link(edit_issue_path(@issue), "Issue") %>
-  <%= link_to 'Resolution', get_resolution_issue_path(@issue), data: { remote_popup: true, title: "Resolution" }, class: "btn btn-primary btn-sm" %>
+  <%= link_to 'close', close_issue_path(@issue), method: :put, data: { confirm: "are you sure the issue will be closed?" }, class: 'btn btn-default' if @issue.closed_at.nil? %>
 </section>

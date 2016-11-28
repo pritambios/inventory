@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :issues do
     member do
       put 'set_resolution'
+      put 'close'
     end
   end
   resources :vendors

@@ -9,8 +9,8 @@
       <th>Issue</th>
       <th>System</th>
       <th>Item</th>
-      <th>Closed At</th>
       <th>Resolution</th>
+      <th>Closed At</th>
       <th>&nbsp;</th>
     </tr>
     <% @issues.each do |issue| %>
@@ -19,8 +19,14 @@
         <td><%= link_to issue.title, issue_path(issue) %></td>
         <td><%= link_to issue.system.name, system_path(issue.system) if issue.system %></td>
         <td><%= link_to issue.item.name, item_path(issue.item) if issue.item %></td>
-        <td><%= format_date(issue.closed_at) if issue.closed_at %></td>
         <td><%= select_tag :resolution_id, options_from_collection_for_select(Resolution.all, :id, :name, selected: issue.resolution_id), prompt: "Select", data: { remote: true, url: set_resolution_issue_path(issue), method: :put }, class: 'select-option' %></td>
+        <td>
+          <% if issue.closed_at %>
+            <%= format_date(issue.closed_at) %>
+          <% else %>
+            <%= link_to 'close', close_issue_path(issue), method: :put, data: { confirm: "are you sure the issue will be closed?" }, class: 'btn btn-default' %>
+          <% end %>
+        </td>
         <td>
           <%= edit_link(edit_issue_path(issue), "Issue") %>
         </td>

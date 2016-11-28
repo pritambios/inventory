@@ -1,5 +1,5 @@
 class IssuesController < ApplicationController
-  before_action :get_issue, only: [:edit, :update, :show, :destroy, :set_resolution]
+  before_action :get_issue, only: [:edit, :update, :show, :destroy, :set_resolution, :close]
 
   def index
     @issues = Issue.includes(:system, :resolution, item: [:brand, :category])
@@ -41,6 +41,11 @@ class IssuesController < ApplicationController
 
   def set_resolution
     @issue.update_attribute(:resolution_id, params[:resolution_id])
+  end
+
+  def close
+    @issue.update_attribute(:closed_at, Time.now)
+    redirect_to issues_path, flash: { success: "Issue resolved" }
   end
 
   private
