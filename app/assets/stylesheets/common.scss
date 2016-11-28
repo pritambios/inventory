@@ -141,9 +141,9 @@ a {
   font-weight: 600;
 }
 
-.btn-edit {
-  background-color: #e85f1c;
-  color: #fff;
+.link-edit {
+  color: #e85f1c;
+  margin-right: 15px;
 }
 
 .btn-edit:hover, .btn-edit:focus {
@@ -295,7 +295,7 @@ table th {
 .table-last td:last-child {
   text-align: right;
 
-  .btn-edit {
+  .link-edit {
     margin-left: 15px;
   }
 }
