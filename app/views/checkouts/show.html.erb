@@ -6,7 +6,7 @@
    <p><span>Id: </span><%= @checkout.id %></p>
 
   <% if @checkout.employee.present? %>
-    <p><span>Employee: </span><%= link_to @checkout.employee.name_or_email, employee_path(@checkout.employee) %></p>
+    <p><span>Employee: </span><%= link_to @checkout.employee.name, employee_path(@checkout.employee) %></p>
   <% end %>
 
   <p><span>Checkout: </span><%= format_date(@checkout.checkout) %></p>

@@ -22,7 +22,7 @@
         <td><%= system.working ? "Working" : "Not Working" %></td>
         <td>
           <% if system.employee.present? %>
-            <%= link_to system.employee.try(:name_or_email), employee_path(system.employee) %>
+            <%= link_to system.employee.name, employee_path(system.employee) %>
           <% else %>
             Not Assigned
           <% end %>
