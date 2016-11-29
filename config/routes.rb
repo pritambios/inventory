@@ -27,7 +27,6 @@ Rails.application.routes.draw do
   end
   resources :vendors
   resources :resolutions, except: [:show, :destroy]
-  put 'toggle_status/:id', to: 'items#toggle_status', as: 'status_update'
   get 'history', to: 'items#history'
   post 'reallocate', to: 'items#reallocate'
   get 'deallocate', to: 'items#deallocate'

@@ -14,14 +14,14 @@
     <p><span>Serial Number: </span><%= @item.serial_number %></p>
     <p>
       <% if @item.vendor.present? || @item.purchase_on.present? %>
-        <span>Purchased</span>
+        <span>Purchased: </span>
 
         <% if @item.vendor.present? %>
-          <span>From: </span><%= link_to @item.vendor.name, vendor_path(@item.vendor) %>
+          from <%= link_to @item.vendor.name, vendor_path(@item.vendor) %>
         <% end %>
 
         <% if @item.purchase_on.present? %>
-          <span>On: </span><%= format_date(@item.try(:purchase_on)) %>
+          on <%= format_date(@item.try(:purchase_on)) %>
         <% end %>
       <% end %>
     </p>
@@ -33,11 +33,20 @@
       <p><span>Allocated To: </span><%= link_to @item.employee.name, employee_path(@item.employee) %></p>
     <% end %>
 
+    <p>
+      <% if @item.unavailable? %>
+        <span>Checkout: </span>
+        <%= checkout_details(@item)%>
+      <% else %>
+        <span>Status: </span><%= @item.working? ? "Working" : "Non-Working" %>
+      <% end %>
+    </p>
+
     <%= edit_link(edit_item_path(@item), "Item") %>
 
     <% if @item.discarded_at.nil? %>
-      <%= remove_link(item_path(@item)) %>
-      <%= link_to 'Allocate', allocate_item_path(@item), data: { remote_popup: true, title: "Allocate/Deallocate" }, class: "btn btn-primary btn-sm" %>
+      <%= delete_link(item_path(@item)) %>
+      <%= link_to allocation_type(@item), allocate_item_path(@item), data: { remote_popup: true, title: allocation_type(@item) }, class: "btn btn-primary btn-sm" %>
       <%= link_to 'New Issue', new_issue_path(item_id: @item), data: { remote_popup: true, title: "Create Issue" }, class: "btn btn-primary btn-sm" %>
     <% end %>
   </section>

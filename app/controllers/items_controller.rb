@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :get_item, only: [:show, :edit, :update, :toggle_status, :destroy, :allocate, :reallocate]
+  before_action :get_item, only: [:show, :edit, :update, :destroy, :allocate, :reallocate]
 
   def index
     @items = Item.includes(:brand, :category, :checkouts)
@@ -32,10 +32,6 @@ class ItemsController < ApplicationController
     else
       render 'edit'
     end
-  end
-
-  def toggle_status
-    @item.toggle!(:working)
   end
 
   def show

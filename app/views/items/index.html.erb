@@ -6,8 +6,8 @@
     <h3>Items</h3>
   <% end %>
 </div>
-<div class="table-responsive">
-  <table class="table table-striped table-last">
+<div class="table-responsive item-index">
+  <table class="table table-striped">
     <tr>
       <th>Id</th>
       <th>Item</th>
@@ -16,6 +16,7 @@
       <th>Issue</th>
       <th>Checkout</th>
       <th>Status</th>
+      <th>&nbsp;</th>
       <th>&nbsp;</th>
     </tr>
     <% @items.each do |item| %>
@@ -38,23 +39,21 @@
         <td>
           <% if item.checkouts.present? %>
             <% if item.unavailable? %>
-              <%= link_to format_date(item.checkouts.order_desending.first.checkout), checkout_path(item.checkouts.order_desending.first) %>
+              <%= checkout_details(item) %>
             <% else %>
               <%= link_to "checkouts", checkouts_path(item_id: item.id) %>
             <% end %>
           <% end %>
         </td>
         <td>
-          <label class="switch">
-            <%= check_box_tag 'Status', item.working, item.working, data: { remote: true, url: url_for( action: 'toggle_status', id: item.id, working: item.working ), method: :put } %>
-            <div class="slider round"></div>
-          </label>
+          <%= item.working? ? "Working" : "Non-Working" %>
         </td>
         <td>
           <%= edit_link(edit_item_path(item), "Item") %>
+        </td>
+        <td>
           <% if item.discarded_at.nil? %>
-            <%= remove_link(item_path(item)) %>
-            <%= link_to 'Allocate', allocate_item_path(item), data: { remote_popup: true, title: "Allocate/Deallocate" }, class: "btn btn-primary btn-sm" %>
+            <%= link_to allocation_type(item), allocate_item_path(item), data: { remote_popup: true, title: allocation_type(item) }, class: "btn btn-primary btn-sm" %>
           <% end %>
         </td>
       </tr>
