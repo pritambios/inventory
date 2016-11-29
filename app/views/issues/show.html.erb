@@ -20,7 +20,8 @@
   <% if @issue.closed_at.present? %>
     <p><span>Resolved at: </span><%= format_date(@issue.closed_at) %></p>
   <% else %>
-    <p><span>Status: </span>Pending</p>
+    <p><span>Status: </span>Pending
+    <%= link_to 'close', close_issue_path(@issue), data: { remote_popup: true, title: "Close Issue" }, class: 'btn btn-default' %></p>
   <% end %>
 
   <% if @issue.note.present? %>
@@ -36,5 +37,5 @@
   <% end %>
 
   <%= edit_link(edit_issue_path(@issue), "Issue") %>
-  <%= link_to 'close', close_issue_path(@issue), method: :put, data: { confirm: "are you sure the issue will be closed?" }, class: 'btn btn-default' if @issue.closed_at.nil? %>
+
 </section>

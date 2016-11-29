@@ -20,7 +20,8 @@ Rails.application.routes.draw do
   resources :issues do
     member do
       put 'set_resolution'
-      put 'close'
+      get 'close'
+      put 'close_issue'
       put 'set_priority'
     end
   end
