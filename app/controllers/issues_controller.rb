@@ -1,5 +1,5 @@
 class IssuesController < ApplicationController
-  before_action :get_issue, only: [:edit, :update, :show, :destroy, :set_resolution, :set_priority, :close]
+  before_action :get_issue, only: [:edit, :update, :show, :destroy, :set_resolution, :set_priority, :close, :close_issue]
 
   def index
     @issues = Issue.includes(:system, :resolution, item: [:brand, :category])
@@ -43,13 +43,18 @@ class IssuesController < ApplicationController
     @issue.update_attribute(:resolution_id, params[:resolution_id])
   end
 
-  def close
-    @issue.update_attribute(:closed_at, Time.now)
-    redirect_to issues_path, flash: { success: "Issue resolved" }
-  end
-
   def set_priority
     @issue.update_attribute(:priority, params[:priority])
+  end
+
+  def close_issue
+    @issue.closed_at = Time.now
+
+    if @issue.update_attributes(resolution_params)
+      redirect_to issues_path, flash: { success: "Issue Closed" }
+    else
+      render 'close'
+    end
   end
 
   private
@@ -59,6 +64,10 @@ class IssuesController < ApplicationController
   end
 
   def issue_params
-    params.require(:issue).permit(:item_id, :system_id, :title, :description, :closed_at, :note, :resolution_id, :priority)
+    params.require(:issue).permit(:item_id, :system_id, :title, :description, :note, :priority)
+  end
+
+  def resolution_params
+    params.require(:issue).permit(:resolution_id)
   end
 end
