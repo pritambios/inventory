@@ -1,31 +1,25 @@
 <%= render 'shared/errors', obj: @vendor %>
-
 <div class="form-group row">
   <div class="col-sm-4"><%= f.label :name ,"Name :", class: "required" %></div>
   <div class="col-sm-8"><%= f.text_field :name, class: 'form-control', placeholder: "Vendor's Name", required: "true" %></div>
 </div>
-
-<div class="form-group row">
-  <div class="col-sm-4"><%= f.label :email,"Email :"  %></div>
-  <div class="col-sm-8"><%= f.email_field :email, class: 'form-control', placeholder: "Email" %></div>
-</div>
-
-<div class="form-group row">
-  <div class="col-sm-4"><%= f.label :mobile,"Mobile :" %></div>
-  <div class="col-sm-8"><%= f.text_field :mobile, class: 'form-control', placeholder: "Mobile number" %></div>
-</div>
-
 <div class="form-group row">
   <div class="col-sm-4"><%= f.label :address,"Address :", class: "required" %></div>
   <div class="col-sm-8"><%= f.text_area :address, class: 'form-control', rows: "2", placeholder: "Address", required: "true" %></div>
 </div>
-
 <div class="form-group row">
   <div class="col-sm-4"><%= f.label :city,"City :" %></div>
   <div class="col-sm-8"><%= f.text_field :city, class: 'form-control', placeholder: "City" %></div>
 </div>
-
 <div class="form-group row">
   <div class="col-sm-4"><%= f.label :state,"State :" %></div>
   <div class="col-sm-8"><%= f.text_field :state, class: 'form-control', placeholder: "State" %></div>
+</div>
+<div class="form-group row">
+  <div class="col-sm-4"><%= f.label :mobile,"Mobile :" %></div>
+  <div class="col-sm-8"><%= f.text_field :mobile, class: 'form-control', placeholder: "Mobile number" %></div>
+</div>
+<div class="form-group row">
+  <div class="col-sm-4"><%= f.label :email,"Email :"  %></div>
+  <div class="col-sm-8"><%= f.email_field :email, class: 'form-control', placeholder: "Email" %></div>
 </div>
