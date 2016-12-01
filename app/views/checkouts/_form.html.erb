@@ -4,20 +4,19 @@
   <div class="col-sm-8"><%= f.select :item_id, options_for_select(Item.available.map{ |i| [ name_with_id(i), i.id, { 'data-purchase-on': i.purchase_on }] }), { prompt: "Select" }, class: 'form-control' %></div>
 </div>
 <div class="form-group row">
-  <div class="col-sm-4"><%= f.label :employee_id , 'Employee:' %></div>
-  <div class="col-sm-8"><%= f.collection_select :employee_id, Employee.all, :id, :name_or_email, { prompt: 'Select Employee' }, class: 'form-control' %></div>
-</div>
-<div class="form-group row">
   <div class="col-sm-4"><%= f.label :checkout , 'Checkout:', class: 'required' %></div>
   <div class="col-sm-8"><%= f.text_field :checkout, class: 'datepicker form-control', placeholder: "DD/MM/YYYY", required: true, value: format_date(@checkout.checkout) %></div>
+</div>
+<div class="form-group row">
+  <div class="col-sm-4"><%= f.label :reason , 'Reason:', class: 'required' %></div>
+  <div class="col-sm-8"><%= f.text_area :reason, class: 'form-control', placeholder: "Reason", required: true %></div>
+</div>
+<div class="form-group row">
+  <div class="col-sm-4"><%= f.label :employee_id , 'Employee:' %></div>
+  <div class="col-sm-8"><%= f.collection_select :employee_id, Employee.all, :id, :name_or_email, { prompt: 'Select Employee' }, class: 'form-control' %></div>
 </div>
 <div class="form-group row">
   <div class="col-sm-4"><%= f.label :check_in, 'Checkin:' %></div>
   <div class="col-sm-8"><%= f.text_field :check_in, class: 'datepicker form-control', placeholder: "DD/MM/YYYY", value: format_date(@checkout.check_in) %></div>
 </div>
-<div class="form-group">
-  <%= f.label :reason , 'Reason:', class: 'required' %>
-  <%= f.text_area :reason, class: 'form-control', rows: '2', placeholder: "Reason", required: true %>
-</div>
-
 <%= unobtrusive_js("$('.datepicker').datetimepicker({ format: 'DD/MM/YYYY' });") %>
