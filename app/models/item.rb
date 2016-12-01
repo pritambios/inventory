@@ -24,9 +24,7 @@ class Item < ApplicationRecord
   end
 
   def employee
-    if employee_id.present?
-      Employee.find(employee_id, { company_id: '1' })
-    end
+    Employee.find(employee_id, { company_id: Rails.application.config.company_id }) if employee_id.present?
   end
 
   def unavailable?

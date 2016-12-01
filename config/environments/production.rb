@@ -83,4 +83,9 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # RESTfull API config
+  config.rest_api_url        = 'http://192.168.1.20:3001/api/'
+  config.rest_api_auth_token = '66a17e730370115d890d0bd31467edd555'
+  config.company_id          = '1'
 end

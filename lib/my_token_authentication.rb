@@ -1,6 +1,6 @@
-class MyTokenAuthentication < Faraday::Middleware
+class APITokenAuthentication < Faraday::Middleware
   def call(env)
-    env[:request_headers]["api_auth_token"] = '66a17e730370115d890d0bd31467edd555'
+    env[:request_headers]["api_auth_token"] = Rails.application.config.rest_api_auth_token
     @app.call(env)
   end
 end

@@ -1,6 +1,8 @@
 class Employee
   include Her::Model
 
+  scope :company_employees, -> { where(company_id: Rails.application.config.company_id).all }
+
   def items
     Item.where(employee_id: id)
   end
@@ -20,6 +22,4 @@ class Employee
   def checkouts
     Checkout.where(employee_id: id)
   end
-
-  scope :particular_company, -> { where(company_id: 1) }
 end
