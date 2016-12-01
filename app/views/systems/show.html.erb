@@ -65,8 +65,8 @@
         </tr>
         <% @issues.each do |issue| %>
           <tr>
-            <td><%= issue.title %></td>
-            <td><%= issue.item.name if issue.item_id? %></td>
+            <td><%= link_to issue.title,issue_path(issue) %></td>
+            <td><%= link_to issue.item.name, item_path(issue.item) if issue.item_id? %></td>
             <td><%= format_date(issue.closed_at) if issue.closed_at? %></td>
             <td><%= show_link(issue_path(issue)) %></td>
           </tr>
