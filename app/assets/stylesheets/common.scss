@@ -127,15 +127,6 @@ a {
   color: #fff;
 }
 
-.nav.navbar-right {
-  margin-right: 0px;
-
-  li a {
-    padding: 10px 15px 0;
-    line-height: 35px;
-  }
-}
-
 .content p {
   font-size: 16px;
   font-weight: 600;
@@ -383,7 +374,7 @@ section.other-info .icon-show {
 
 .table-striped tbody tr.pending td {
   font-weight: 700;
-  background-color: #aceff8;
+  background-color: #f8a884;
 }
 
 .switch {
@@ -452,6 +443,17 @@ input:checked + .slider:before {
   line-height: 1.42857;
   padding: 6px 12px;
   width: 100%;
+  background-color: #fff;
+}
+
+.select-option-showPage {
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+  border: 1px solid #ccc;
+  color: #555;
+  height: 34px;
+  line-height: 1.42857;
+  padding: 6px 12px;
   background-color: #fff;
 }
 

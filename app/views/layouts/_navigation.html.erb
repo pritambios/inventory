@@ -33,19 +33,19 @@
                 <%= link_to 'Categories', categories_path %>
               </li>
               <li>
-                <%= link_to 'Vendors', vendors_path %>
-              </li>
-              <li>
-                <%= link_to 'Users', users_path %>
-              </li>
-              <li>
-                <%= link_to 'Resolutions', resolutions_path %>
+                <%= link_to 'Discarded Items', items_path(discarded: true) %>
               </li>
               <li>
                 <%= link_to 'Employees', employees_path %>
               </li>
               <li>
-                <%= link_to 'Discarded Items', items_path(discarded: true) %>
+                <%= link_to 'Resolutions', resolutions_path %>
+              </li>
+              <li>
+                <%= link_to 'Users', users_path %>
+              </li>
+              <li>
+                <%= link_to 'Vendors', vendors_path %>
               </li>
             </ul>
           </li>
