@@ -12,7 +12,6 @@ class Item < ApplicationRecord
   belongs_to :vendor, optional: true
 
   validates :serial_number, presence: true, length: { minimum: 3, maximum: 50 }
-  validates :purchase_on, presence: true
 
   scope :order_desending, -> { order('created_at DESC') }
 

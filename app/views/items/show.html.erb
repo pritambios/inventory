@@ -13,10 +13,15 @@
 
     <p>Serial Number: <span><%= @item.serial_number %></span></p>
 
-    <% if @item.vendor.present? %>
-      <p>Purchased From: <span><%= link_to @item.vendor.name, vendor_path(@item.vendor) %> <%= format_date(@item.purchase_on) %></span></p>
-    <% end %>
+    <p>
+      <% if @item.vendor.present? %>
+        Purchased From: <span><%= link_to @item.vendor.name, vendor_path(@item.vendor) %></span>
+      <% end %>
 
+      <% if @item.purchase_on.present? %>
+        <%= format_date(@item.try(:purchase_on)) %>
+      <% end %>
+    </p>
     <% if @item.warranty_expires_on.present? %>
       <p>Warranty Expires On: <span><%= format_date(@item.warranty_expires_on) %></span></p>
     <% end %>
