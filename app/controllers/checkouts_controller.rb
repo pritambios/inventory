@@ -24,7 +24,7 @@ class CheckoutsController < ApplicationController
   end
 
   def index
-    @checkouts = Checkout.includes(:employee, item: [:brand, :category]).paginate(page: params[:page]).order_desending
+    @checkouts = Checkout.includes(item: [:brand, :category]).paginate(page: params[:page]).order_desending
     @checkouts = @checkouts.where(item_id: params[:item_id]) if params[:item_id].present?
     @checkouts = @checkouts.paginate(page: params[:page])
   end

@@ -30,7 +30,7 @@
     <% end %>
 
     <% if @item.employee.present? %>
-      <p><span>Allocated To: </span><%= link_to @item.employee.name, employee_path(@item.employee) %></p>
+      <p><span>Allocated To: </span><%= link_to @item.employee.try(:name), employee_path(@item.employee_id) %></p>
     <% end %>
 
     <p>
@@ -71,7 +71,7 @@
             </td>
             <td>
               <% if item_history.employee.present? %>
-                <%= link_to item_history.employee.name, employee_path(item_history.employee) %>
+                <%= link_to item_history.employee.try(:name), employee_path(item_history.employee_id) %>
               <% else %>
                 Unallocated
               <% end %>
@@ -94,7 +94,7 @@
         </tr>
         <% @checkouts.each do |checkout| %>
           <tr>
-            <td><%= link_to checkout.employee.name_or_email if checkout.employee.present? %></td>
+            <td><%= link_to checkout.employee.try(:name), employee_path(checkout.employee_id) if checkout.employee.present? %></td>
             <td><%= format_date(checkout.checkout) %></td>
             <td><%= format_date(checkout.check_in) %></td>
             <td><%= show_link(checkout_path(checkout)) %></td>
