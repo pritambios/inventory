@@ -85,7 +85,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # RESTfull API config
-  config.rest_api_url        = 'http://192.168.1.20:3001/api/'
+  config.rest_api_url        = 'http://payroll.kreeti.com/api/'
   config.rest_api_auth_token = Rails.application.secrets["api_auth_token"]
   config.company_id          = Rails.application.secrets["company_id"]
 end
