@@ -5,14 +5,16 @@ class System < ActiveRecord::Base
   has_many :system_histories
   has_many :issues
 
-  belongs_to :employee, optional: true
-
   validates :assembled_on, presence: true
 
   scope :order_desending, -> { order('created_at DESC') }
 
   def name
     "System #{id}"
+  end
+
+  def employee
+    Employee.find(employee_id, { company_id: Rails.application.config.company_id }) if employee_id.present?
   end
 
   def associable_items

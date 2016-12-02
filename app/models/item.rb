@@ -5,7 +5,6 @@ class Item < ApplicationRecord
   has_many :checkouts
   has_many :issues
 
-  belongs_to :employee, optional: true
   belongs_to :category
   belongs_to :brand, optional: true
   belongs_to :system, optional: true
@@ -14,16 +13,19 @@ class Item < ApplicationRecord
   validates :serial_number, presence: true, length: { minimum: 3, maximum: 50 }
 
   scope :order_desending, -> { order('created_at DESC') }
-
-  def name
-    "#{brand.try(:name)} #{category.name}"
-  end
-
   scope :unavailable, -> { joins(:checkouts).where(checkouts: { check_in: nil }) }
   scope :available,   -> { where.not(id: unavailable) }
   scope :unattached,  -> { where(system_id: nil) }
   scope :active,      -> { where(discarded_at: nil) }
   scope :discarded,  -> { where.not(discarded_at: nil) }
+
+  def name
+    "#{brand.try(:name)} #{category.name}"
+  end
+
+  def employee
+    Employee.find(employee_id, { company_id: Rails.application.config.company_id }) if employee_id.present?
+  end
 
   def unavailable?
     checkouts.map(&:checkin?).include? false
