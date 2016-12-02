@@ -29,6 +29,10 @@ class Item < ApplicationRecord
     checkouts.map(&:checkin?).include? false
   end
 
+  def pending_checkout
+    checkouts.pending.order_desending.first
+  end
+
   private
 
   def update_item_history

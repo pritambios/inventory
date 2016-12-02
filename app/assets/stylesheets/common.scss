@@ -489,6 +489,13 @@ input:checked + .slider:before {
   p.copy {
     font-size: 12px;
   }
+
+  .item-index {
+  margin-bottom: 15px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  width:100%;
+  }
 }
 
 @media (min-width: 992px) {
