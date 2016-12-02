@@ -11,7 +11,7 @@ module ItemsHelper
     value = "for #{item.pending_checkout.reason} on #{format_date(item.pending_checkout.checkout)}"
 
     if item.pending_checkout.employee_id.present?
-      value += " by #{item.pending_checkout.employee.name_or_email}"
+      value += " by #{item.pending_checkout.employee.name}"
     end
 
     value

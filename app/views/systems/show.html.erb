@@ -42,7 +42,7 @@
           <tr>
             <td>
               <% if system_history.employee.present? %>
-                <%= link_to system_history.employee.name, employee_path(system_history.employee) %>
+                <%= link_to system_history.employee.try(:name), employee_path(system_history.employee_id) %>
               <% else %>
                 Not Assigned
               <% end %>

@@ -3,9 +3,9 @@
 </div>
 <div class="row">
   <section class="col-xs-12 col-sm-5 main-info">
-    <h3><%= @employee.name %></h3>
+    <h3><%= @employee.try(:name) %></h3>
     <p><span>Id: </span><%= @employee.id %></p>
-    <p><span>Name: </span><%= @employee.name %></p>
+    <p><span>Name: </span><%= @employee.try(:name) %></p>
   </section>
   <section class="col-xs-12 col-sm-7 other-info">
     <h3>Alloted Items (<%= @items.count %>)</h3>
