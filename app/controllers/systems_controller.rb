@@ -2,7 +2,7 @@ class SystemsController < ApplicationController
   before_action :get_system, only: [:edit, :update]
 
   def index
-    @systems = System.paginate(page: params[:page])
+    @systems = System.includes(:employee).paginate(page: params[:page])
   end
 
   def new
@@ -21,7 +21,7 @@ class SystemsController < ApplicationController
 
   def show
     @system           = System.includes(items: [:brand, :category]).find(params[:id])
-    @system_histories = @system.system_histories.order_desending.paginate(page: params[:system_histories_page])
+    @system_histories = @system.system_histories.includes(:employee).order_desending.paginate(page: params[:system_histories_page])
     @issues           = @system.issues.includes(item: [:brand, :category]).order_desending.paginate(page: params[:issues_page])
   end
 

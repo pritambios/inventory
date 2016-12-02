@@ -52,9 +52,4 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-
-  # RESTfull API config
-  config.rest_api_url        = 'http://192.168.1.20:3001/api/'
-  config.rest_api_auth_token = Rails.application.secrets["api_auth_token"]
-  config.company_id          = Rails.application.secrets["company_id"]
 end

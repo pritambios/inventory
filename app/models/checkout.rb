@@ -1,4 +1,5 @@
 class Checkout < ApplicationRecord
+  belongs_to :employee, optional: true
   belongs_to :item
 
   validates :checkout, presence: true
@@ -7,10 +8,6 @@ class Checkout < ApplicationRecord
 
   scope :order_desending, -> { order('created_at DESC') }
   scope :pending,         -> { where(check_in: nil) }
-
-  def employee
-    Employee.find(employee_id, { company_id: Rails.application.config.company_id }) if employee_id.present?
-  end
 
   def checkin?
     check_in.present?

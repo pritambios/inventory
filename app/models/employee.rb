@@ -1,25 +1,14 @@
-class Employee
-  include Her::Model
+class Employee < ActiveRecord::Base
+  has_many :systems
+  has_many :items
+  has_many :system_histories
 
-  scope :company_employees, -> { where(company_id: Rails.application.config.company_id).all }
+  has_many :checkouts
 
-  def items
-    Item.where(employee_id: id)
-  end
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+  validates :email, presence: true, length: { maximum: 105 }, uniqueness: { case_sensitive: false }, format: { with: VALID_EMAIL_REGEX }
 
-  def systems
-    System.where(employee_id: id)
-  end
-
-  def system_histories
-    SystemHistory.where(employee_id: id)
-  end
-
-  def item_histories
-    ItemHistory.where(employee_id: id)
-  end
-
-  def checkouts
-    Checkout.where(employee_id: id)
+  def name_or_email
+    name.presence || email
   end
 end
