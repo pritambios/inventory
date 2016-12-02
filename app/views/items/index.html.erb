@@ -6,8 +6,8 @@
     <h3>Items</h3>
   <% end %>
 </div>
-<div class="table-responsive item-index">
-  <table class="table table-striped">
+<div class="table-responsive">
+  <table class="table table-striped item-index">
     <tr>
       <th>Id</th>
       <th>Item</th>
@@ -53,7 +53,7 @@
         </td>
         <td>
           <% if item.discarded_at.nil? %>
-            <%= link_to allocation_type(item), allocate_item_path(item), data: { remote_popup: true, title: allocation_type(item) }, class: "btn btn-primary btn-sm" %>
+            <%= link_to allocation_type(item), allocate_item_path(item), data: { remote_popup: true, title: allocation_type(item) }, class: "btn btn-primary btn-sm btn-allocate" %>
           <% end %>
         </td>
       </tr>

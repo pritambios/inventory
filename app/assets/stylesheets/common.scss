@@ -373,7 +373,6 @@ section.other-info .icon-show {
 }
 
 .table-striped tbody tr.pending td {
-  font-weight: 700;
   background-color: #f8a884;
 }
 
@@ -457,6 +456,21 @@ input:checked + .slider:before {
   background-color: #fff;
 }
 
+.item-index {
+  & td:nth-child(6) {
+    width: 25%;
+    word-break: break-all;
+  }
+
+  & td:nth-child(8) {
+    width: 12%;
+  }
+
+  & td:last-child {
+    text-align: right;
+  }
+}
+
 @media (min-width: 768px) {
   .top-links {
     width: 84%;
@@ -488,13 +502,6 @@ input:checked + .slider:before {
 
   p.copy {
     font-size: 12px;
-  }
-
-  .item-index {
-  margin-bottom: 15px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  width:100%;
   }
 }
 
