@@ -49,7 +49,7 @@
             <li class="list-group-item">
               <%= document.title %>:
               <%= link_to document.attachment_file_name, document.attachment.url, download: document.attachment_file_name %>
-              <%= link_to ('<i class="fa fa-trash" style="float: right"></i>').html_safe, document_path(document), method: :delete, data: { confirm: "Are you sure" }, remote: true, class: 'delete_document' %>
+              <%= link_to ('<i class="fa fa-trash" style="float: right"></i>').html_safe, document_path(document), method: :delete, data: { confirm: "Are you sure" }, remote: true, class: 'delete_document', id: "document-#{document.id}" %>
             </li>
           <% end %>
         </ul>
