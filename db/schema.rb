@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161130072209) do
+ActiveRecord::Schema.define(version: 20161130104719) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,18 @@ ActiveRecord::Schema.define(version: 20161130072209) do
     t.datetime "updated_at",  null: false
     t.integer  "employee_id"
     t.index ["item_id"], name: "index_checkouts_on_item_id", using: :btree
+  end
+
+  create_table "documents", force: :cascade do |t|
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+    t.integer  "item_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "title"
+    t.index ["item_id"], name: "index_documents_on_item_id", using: :btree
   end
 
   create_table "issues", force: :cascade do |t|
@@ -135,6 +147,7 @@ ActiveRecord::Schema.define(version: 20161130072209) do
   end
 
   add_foreign_key "checkouts", "items"
+  add_foreign_key "documents", "items"
   add_foreign_key "issues", "items"
   add_foreign_key "issues", "resolutions"
   add_foreign_key "issues", "systems"

@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   end
   resources :vendors
   resources :resolutions, except: [:show, :destroy]
+  resources :documents, only: [:destroy]
   get 'history', to: 'items#history'
   post 'reallocate', to: 'items#reallocate'
   get 'deallocate', to: 'items#deallocate'

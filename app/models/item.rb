@@ -4,6 +4,7 @@ class Item < ApplicationRecord
   has_many :item_histories
   has_many :checkouts
   has_many :issues
+  has_many :documents, inverse_of: :item
 
   belongs_to :category
   belongs_to :brand, optional: true
@@ -11,6 +12,8 @@ class Item < ApplicationRecord
   belongs_to :vendor, optional: true
 
   validates :serial_number, presence: true, length: { minimum: 3, maximum: 50 }
+
+  accepts_nested_attributes_for :documents, reject_if: lambda { |doc| doc[:attachment].blank? }, allow_destroy: true
 
   scope :order_desending, -> { order('created_at DESC') }
   scope :unavailable, -> { joins(:checkouts).where(checkouts: { check_in: nil }) }

@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :get_item, only: [:show, :edit, :update, :destroy, :allocate, :reallocate]
 
   def index
-    @items = Item.includes(:brand, :category, :checkouts)
+    @items = Item.includes(:brand, :category, :issues, :checkouts)
 
     if params[:discarded] == "true"
       @items = @items.discarded
@@ -57,7 +57,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:model_number, :category_id, :brand_id, :serial_number, :purchase_on, :vendor_id, :working, :system_id, :employee_id, :warranty_expires_on)
+    params.require(:item).permit(:model_number, :category_id, :brand_id, :serial_number, :purchase_on, :vendor_id, :working, :system_id, :employee_id, :warranty_expires_on, documents_attributes: [:title, :attachment])
   end
 
   def reallocate_employee_params
