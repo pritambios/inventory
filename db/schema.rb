@@ -52,16 +52,6 @@ ActiveRecord::Schema.define(version: 20161130104719) do
     t.index ["item_id"], name: "index_documents_on_item_id", using: :btree
   end
 
-  create_table "employees", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email",                      null: false
-    t.string   "mobile"
-    t.string   "designation",                null: false
-    t.boolean  "active",      default: true
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-  end
-
   create_table "issues", force: :cascade do |t|
     t.integer  "item_id"
     t.integer  "system_id"

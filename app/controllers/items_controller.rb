@@ -2,7 +2,6 @@ class ItemsController < ApplicationController
   before_action :get_item, only: [:show, :edit, :update, :destroy, :allocate, :reallocate]
 
   def index
-
     @items = Item.includes(:brand, :category, :issues, :checkouts)
 
     if params[:discarded] == "true"

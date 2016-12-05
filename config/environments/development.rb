@@ -57,15 +57,4 @@ Rails.application.configure do
   config.rest_api_url        = 'http://192.168.1.20:3001/api/'
   config.rest_api_auth_token = Rails.application.secrets["api_auth_token"]
   config.company_id          = Rails.application.secrets["company_id"]
-
-  # Amazon aws s3 bucket config
-  config.paperclip_defaults = {
-    storage: :s3,
-    s3_credentials: {
-      bucket: Rails.application.secrets['s3_bucket_name'],
-      access_key_id: Rails.application.secrets['aws_access_key_id'],
-      secret_access_key: Rails.application.secrets['aws_secret_access_key'],
-      s3_region: Rails.application.secrets['aws_region'],
-    }
-  }
 end
