@@ -45,9 +45,9 @@
     <%= edit_link(edit_item_path(@item), "Item") %>
 
     <% if @item.discarded_at.nil? %>
-      <%= delete_link(item_path(@item)) %>
       <%= link_to allocation_type(@item), allocate_item_path(@item), data: { remote_popup: true, title: allocation_type(@item) }, class: "btn btn-primary btn-sm" %>
       <%= link_to 'New Issue', new_issue_path(item_id: @item), data: { remote_popup: true, title: "Create Issue" }, class: "btn btn-primary btn-sm" %>
+      <%= delete_link(item_path(@item)) %>
     <% end %>
   </section>
   <section class="col-xs-12 col-sm-7 other-info">
