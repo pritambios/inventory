@@ -20,7 +20,7 @@
       <th>&nbsp;</th>
     </tr>
     <% @items.each do |item| %>
-      <tr class="<%= 'pending' if item.unavailable? %>">
+      <tr>
         <td><%= link_to item.id, item_path(item) %></td>
         <td><%= link_to item.name, item_path(item) %></td>
         <td><%= item.model_number %></td>

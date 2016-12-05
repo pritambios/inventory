@@ -13,7 +13,7 @@
       <th>&nbsp;</th>
     </tr>
     <% @checkouts.each do |checkout| %>
-      <tr class="<%= 'pending' unless checkout.checkin? %>">
+      <tr>
         <td><%= link_to checkout.id, checkout_path(checkout) %></td>
         <td><%= link_to checkout.item.name, checkout_path(checkout) %></td>
         <td>
