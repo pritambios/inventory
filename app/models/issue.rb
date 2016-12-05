@@ -4,6 +4,7 @@ class Issue < ActiveRecord::Base
   belongs_to :resolution, optional: true
 
   validates :title, presence: true
+  validate  :item_or_system_presence
   validate  :item_closed_at_limitation
   validate  :system_closed_at_limitation
 
@@ -11,6 +12,12 @@ class Issue < ActiveRecord::Base
   scope :unclosed,        -> { where(closed_at: nil) }
 
   enum priority: [:high, :medium, :low, :as_soon_as_possible]
+
+  def item_or_system_presence
+    unless [item, system].any?
+      errors.add :base, 'Item / System must be present!'
+    end
+  end
 
   def item_closed_at_limitation
     if closed_at.present? and item.present?
