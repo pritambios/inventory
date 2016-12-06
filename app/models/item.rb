@@ -15,12 +15,13 @@ class Item < ApplicationRecord
 
   accepts_nested_attributes_for :documents, reject_if: lambda { |doc| doc[:attachment].blank? }, allow_destroy: true
 
+  scope :active,          -> { where(discarded_at: nil) }
+  scope :available,       -> { where.not(id: unavailable) }
+  scope :discarded,       -> { where.not(discarded_at: nil) }
+  scope :not_erased,         -> { where(deleted_at: nil) }
   scope :order_desending, -> { order('created_at DESC') }
-  scope :unavailable, -> { joins(:checkouts).where(checkouts: { check_in: nil }) }
-  scope :available,   -> { where.not(id: unavailable) }
-  scope :unattached,  -> { where(system_id: nil) }
-  scope :active,      -> { where(discarded_at: nil) }
-  scope :discarded,  -> { where.not(discarded_at: nil) }
+  scope :unattached,      -> { where(system_id: nil) }
+  scope :unavailable,     -> { joins(:checkouts).where(checkouts: { check_in: nil }) }
 
   def name
     "#{brand.try(:name)} #{category.name}"

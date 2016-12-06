@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :get_item, only: [:show, :edit, :update, :destroy, :allocate, :reallocate]
+  before_action :get_item, only: [:show, :edit, :update, :destroy, :discard, :allocate, :reallocate]
 
   def index
     @items = Item.includes(:brand, :category, :issues, :checkouts)
@@ -7,7 +7,7 @@ class ItemsController < ApplicationController
     if params[:discarded] == "true"
       @items = @items.discarded
     else
-      @items = @items.active
+      @items = @items.not_erased.active
     end
 
     @items = @items.paginate(page: params[:page])
@@ -46,8 +46,13 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    @item.update_attributes(working: false, deleted_at: Time.now)
+    redirect_to items_path, flash: { success: "Item is successfully deleted!" }
+  end
+
+  def discard
     @item.update_attributes(working: false, discarded_at: Time.now)
-    redirect_to items_path, flash: { success: "Item is successfully removed from the list" }
+    redirect_to items_path, flash: { success: "Item is successfully discarded!" }
   end
 
   private
