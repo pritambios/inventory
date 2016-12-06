@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     member do
       get 'allocate'
       put 'reallocate'
+      put 'discard'
     end
   end
   resources :item_histories, except: [:destroy, :edit, :update]
