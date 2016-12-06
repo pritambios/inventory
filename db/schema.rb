@@ -12,24 +12,21 @@
 
 ActiveRecord::Schema.define(version: 20161206051611) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "brands", force: :cascade do |t|
+  create_table "brands", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_brands_on_name", unique: true, using: :btree
   end
 
-  create_table "categories", force: :cascade do |t|
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_categories_on_name", unique: true, using: :btree
   end
 
-  create_table "checkouts", force: :cascade do |t|
+  create_table "checkouts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "item_id",     null: false
     t.date     "checkout",    null: false
     t.date     "check_in"
@@ -40,7 +37,7 @@ ActiveRecord::Schema.define(version: 20161206051611) do
     t.index ["item_id"], name: "index_checkouts_on_item_id", using: :btree
   end
 
-  create_table "documents", force: :cascade do |t|
+  create_table "documents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "attachment_file_name"
     t.string   "attachment_content_type"
     t.integer  "attachment_file_size"
@@ -52,15 +49,15 @@ ActiveRecord::Schema.define(version: 20161206051611) do
     t.index ["item_id"], name: "index_documents_on_item_id", using: :btree
   end
 
-  create_table "issues", force: :cascade do |t|
+  create_table "issues", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "item_id"
     t.integer  "system_id"
-    t.string   "title",         null: false
-    t.text     "description"
+    t.string   "title",                       null: false
+    t.text     "description",   limit: 65535
     t.date     "closed_at"
-    t.text     "note"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.text     "note",          limit: 65535
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.integer  "resolution_id"
     t.integer  "priority"
     t.index ["item_id"], name: "index_issues_on_item_id", using: :btree
@@ -68,7 +65,7 @@ ActiveRecord::Schema.define(version: 20161206051611) do
     t.index ["system_id"], name: "index_issues_on_system_id", using: :btree
   end
 
-  create_table "item_histories", force: :cascade do |t|
+  create_table "item_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "item_id",                 null: false
     t.boolean  "status",                  null: false
     t.integer  "system_id"
@@ -80,7 +77,7 @@ ActiveRecord::Schema.define(version: 20161206051611) do
     t.index ["system_id"], name: "index_item_histories_on_system_id", using: :btree
   end
 
-  create_table "items", force: :cascade do |t|
+  create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "model_number"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
@@ -95,37 +92,39 @@ ActiveRecord::Schema.define(version: 20161206051611) do
     t.date     "discarded_at"
     t.integer  "employee_id"
     t.date     "deleted_at"
+    t.index ["brand_id"], name: "fk_rails_36708b3aa6", using: :btree
+    t.index ["category_id"], name: "fk_rails_89fb86dc8b", using: :btree
     t.index ["system_id"], name: "index_items_on_system_id", using: :btree
     t.index ["vendor_id"], name: "index_items_on_vendor_id", using: :btree
   end
 
-  create_table "resolutions", force: :cascade do |t|
+  create_table "resolutions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "system_histories", force: :cascade do |t|
-    t.integer  "system_id",   null: false
-    t.boolean  "status",      null: false
-    t.text     "note"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+  create_table "system_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "system_id",                 null: false
+    t.boolean  "status",                    null: false
+    t.text     "note",        limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.integer  "employee_id"
     t.index ["system_id"], name: "index_system_histories_on_system_id", using: :btree
   end
 
-  create_table "systems", force: :cascade do |t|
+  create_table "systems", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.date     "assembled_on"
     t.date     "discarded_at"
-    t.boolean  "working",      default: true
-    t.text     "note"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.boolean  "working",                    default: true
+    t.text     "note",         limit: 65535
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.integer  "employee_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",        null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
@@ -136,7 +135,7 @@ ActiveRecord::Schema.define(version: 20161206051611) do
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
-  create_table "vendors", force: :cascade do |t|
+  create_table "vendors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",       null: false
     t.string   "email"
     t.string   "mobile"
