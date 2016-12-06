@@ -15,8 +15,5 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require bootstrap-sprockets
-//= require react
-//= require react_ujs
-//= require components
 //= require modal
 //= require_tree .
