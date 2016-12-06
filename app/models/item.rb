@@ -18,9 +18,9 @@ class Item < ApplicationRecord
   scope :active,          -> { where(discarded_at: nil) }
   scope :available,       -> { where.not(id: unavailable) }
   scope :discarded,       -> { where.not(discarded_at: nil) }
-  scope :not_erased,         -> { where(deleted_at: nil) }
+  scope :not_erased,      -> { where(deleted_at: nil) }
   scope :order_desending, -> { order('created_at DESC') }
-  scope :unattached,      -> { where(system_id: nil) }
+  scope :unattached,      -> { where(system_id: nil, employee_id: nil) }
   scope :unavailable,     -> { joins(:checkouts).where(checkouts: { check_in: nil }) }
 
   def name
@@ -37,6 +37,12 @@ class Item < ApplicationRecord
 
   def pending_checkout
     checkouts.pending.order_desending.first
+  end
+
+  def reallocate(employee)
+    self.employee_id = employee
+    self.system_id = nil
+    save
   end
 
   private

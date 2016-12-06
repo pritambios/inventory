@@ -41,7 +41,7 @@ class ItemsController < ApplicationController
   end
 
   def reallocate
-    @item.update_attribute(reallocate_employee_params)
+    @item.reallocate(reallocate_employee_params["employee_id"])
     redirect_back(fallback_location: root_path, flash: { success: "Item is successfully reallocated" })
   end
 

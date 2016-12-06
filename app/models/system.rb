@@ -1,5 +1,6 @@
 class System < ActiveRecord::Base
   around_save :update_system_history
+  after_save :assign_items_to_employee
 
   has_many :items
   has_many :system_histories
@@ -8,6 +9,14 @@ class System < ActiveRecord::Base
   validates :assembled_on, presence: true
 
   scope :order_desending, -> { order('created_at DESC') }
+
+  def item_ids=(arg)
+    items.each do |item|
+      item.employee_id = nil
+      item.save!
+    end
+    super(arg)
+  end
 
   def name
     "System #{id}"
@@ -29,5 +38,14 @@ class System < ActiveRecord::Base
     yield
 
     system_history.save if system_history.present?
+  end
+
+  def assign_items_to_employee
+    if employee_id_changed?
+      items.each do |item|
+        item.employee_id = employee_id
+        item.save
+      end
+    end
   end
 end
