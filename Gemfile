@@ -10,9 +10,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'jquery-ui-rails', '~> 4.0.5'
 gem 'momentjs-rails', '>= 2.9.0'
+gem 'mysql2'
 gem "omniauth"
 gem "omniauth-google-oauth2"
-gem 'pg'
 gem 'puma', '~> 3.0'
 gem "paperclip", "~> 5.0.0"
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
