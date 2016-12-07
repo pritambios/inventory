@@ -1,10 +1,6 @@
 module ItemsHelper
-  def working_status(item)
-    item.working ? 'Working' : 'Non Working'
-  end
-
-  def name_with_id(item)
-    "#{item.name} #{item.id}"
+  def allocation_type(item)
+    item.employee_id.present? ? 'Reallocate / Deallocate' : 'Allocate'
   end
 
   def checkout_details(item)
@@ -17,7 +13,11 @@ module ItemsHelper
     value
   end
 
-  def allocation_type(item)
-    item.employee_id.present? ? 'Reallocate / Deallocate' : 'Allocate'
+  def name_with_id(item)
+    "#{item.name} #{item.id}"
+  end
+
+  def working_status(item)
+    item.working ? 'Working' : 'Non Working'
   end
 end

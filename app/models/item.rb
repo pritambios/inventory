@@ -1,13 +1,13 @@
 class Item < ApplicationRecord
   around_save :update_item_history
 
-  has_many :item_histories
   has_many :checkouts
-  has_many :issues
   has_many :documents, inverse_of: :item
+  has_many :issues
+  has_many :item_histories
 
-  belongs_to :category
   belongs_to :brand, optional: true
+  belongs_to :category
   belongs_to :system, optional: true
   belongs_to :vendor, optional: true
 
@@ -23,16 +23,12 @@ class Item < ApplicationRecord
   scope :unattached,      -> { where(system_id: nil, employee_id: nil) }
   scope :unavailable,     -> { joins(:checkouts).where(checkouts: { check_in: nil }) }
 
-  def name
-    "#{brand.try(:name)} #{category.name}"
-  end
-
   def employee
     Employee.find(employee_id, { company_id: Rails.application.config.company_id }) if employee_id.present?
   end
 
-  def unavailable?
-    checkouts.map(&:checkin?).include? false
+  def name
+    "#{brand.try(:name)} #{category.name}"
   end
 
   def pending_checkout
@@ -43,6 +39,10 @@ class Item < ApplicationRecord
     self.employee_id = employee
     self.system_id = nil
     save
+  end
+
+  def unavailable?
+    checkouts.map(&:checkin?).include? false
   end
 
   private
