@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_back(fallback_location: root_path, flash: { success: "User is added" })
+      redirect_back(fallback_location: root_path, flash: { success: t('create') })
     else
       render 'new'
     end
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
-      redirect_back(fallback_location: root_path, flash: { success: "User email updated" })
+      redirect_back(fallback_location: root_path, flash: { success: t('update') })
     else
       render 'edit'
     end
@@ -29,9 +29,9 @@ class UsersController < ApplicationController
 
   def destroy
     if @user.destroy
-      redirect_to users_path, flash: { success: "User deleted successfully" }
+      redirect_to users_path, flash: { success: t('destroy.success') }
     else
-      redirect_to users_path, flash: { danger: "Sorry!!.. Not able to delete this user" }
+      redirect_to users_path, flash: { danger: t('destroy.error') }
     end
   end
 

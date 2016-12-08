@@ -13,7 +13,7 @@ class ResolutionsController < ApplicationController
     @resolution = Resolution.new(resolution_params)
 
     if @resolution.save
-      redirect_back(fallback_location: root_path, flash: { success: "Resolution is added" })
+      redirect_back(fallback_location: root_path, flash: { success: t('create') })
     else
       render 'new'
     end
@@ -21,7 +21,7 @@ class ResolutionsController < ApplicationController
 
   def update
     if @resolution.update_attributes(resolution_params)
-      redirect_back(fallback_location: root_path, flash: { success: "Resolution updated" })
+      redirect_back(fallback_location: root_path, flash: { success: t('update') })
     else
       render 'edit'
     end

@@ -9,7 +9,7 @@ class CheckoutsController < ApplicationController
     @checkout = Checkout.new(checkout_params)
 
     if @checkout.save
-      redirect_back(fallback_location: root_path, flash: { success: "Checkout with #{@checkout.item.serial_number} is recorded Successfully!" })
+      redirect_back(fallback_location: root_path, flash: { success: t('create') })
     else
       render 'new'
     end
@@ -17,7 +17,7 @@ class CheckoutsController < ApplicationController
 
   def update
     if @checkout.update_attributes(checkout_params)
-      redirect_back(fallback_location: root_path, flash: { success: "Checkout details successfully updated" })
+      redirect_back(fallback_location: root_path, flash: { success: t('update') })
     else
       render 'edit'
     end

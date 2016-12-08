@@ -13,7 +13,7 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
 
     if @category.save
-      redirect_back(fallback_location: root_path, flash: { success: "Category with #{@category.name} is Created Successfully!" })
+      redirect_back(fallback_location: root_path, flash: { success: t('create') })
     else
       render 'new'
     end
@@ -21,7 +21,7 @@ class CategoriesController < ApplicationController
 
   def update
     if @category.update(category_params)
-      redirect_back(fallback_location: root_path, flash: { success: "Category details successfully updated" })
+      redirect_back(fallback_location: root_path, flash: { success: t('update') })
     else
       render 'edit'
     end

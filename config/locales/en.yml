@@ -20,4 +20,13 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  create: "Successfully created"
+  update: "successfully updated"
+  reallocate: "successfully reallocated"
+  destroy:
+    success: "successfully deleted!"
+    error: "Sorry!..Not able to delete"
+  discard: "successfully discarded!"
+  session:
+    error: "Sorry!..You are not permitted to access Inventory"
+    logout: "successfully logged out"

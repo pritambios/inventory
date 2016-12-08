@@ -24,7 +24,7 @@ class IssuesController < ApplicationController
     @issue = Issue.new(issue_params)
 
     if @issue.save
-      redirect_back(fallback_location: root_path, flash: { success: "Issue has been Created Successfully!" })
+      redirect_back(fallback_location: root_path, flash: { success: t('create') })
     else
       render 'new'
     end
@@ -32,7 +32,7 @@ class IssuesController < ApplicationController
 
   def update
     if @issue.update(issue_params)
-      redirect_back(fallback_location: root_path, flash: { success: "Issue was successfully updated" })
+      redirect_back(fallback_location: root_path, flash: { success: t('update') })
     else
       render 'edit'
     end

@@ -13,7 +13,7 @@ class BrandsController < ApplicationController
     @brand = Brand.new(brand_params)
 
     if @brand.save
-      redirect_back(fallback_location: root_path, flash: { success: "Brand with #{@brand.name} is Created Successfully!" })
+      redirect_back(fallback_location: root_path, flash: { success: t('create') })
     else
       render 'new'
     end
@@ -21,7 +21,7 @@ class BrandsController < ApplicationController
 
   def update
     if @brand.update(brand_params)
-      redirect_back(fallback_location: root_path, flash: { success: "Brand details successfully updated" })
+      redirect_back(fallback_location: root_path, flash: { success: t('update') })
     else
       render 'edit'
     end
@@ -29,12 +29,6 @@ class BrandsController < ApplicationController
 
   def show
     @brand_items = @brand.items.paginate(page: params[:page])
-  end
-
-  def destroy
-    flash[:danger] = "#{@brand.name} and their articles have been removed."
-    @brand.destroy
-    redirect_to brands_path
   end
 
   private
