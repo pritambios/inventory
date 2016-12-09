@@ -17,7 +17,6 @@ class Item < ApplicationRecord
 
   scope :active,          -> { where(discarded_at: nil) }
   scope :available,       -> { where.not(id: unavailable) }
-  scope :discarded,       -> { where.not(discarded_at: nil) }
   scope :not_erased,      -> { where(deleted_at: nil) }
   scope :order_desending, -> { order('created_at DESC') }
   scope :unattached,      -> { where(system_id: nil, employee_id: nil) }
