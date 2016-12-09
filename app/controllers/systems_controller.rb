@@ -12,10 +12,14 @@ class SystemsController < ApplicationController
   def create
     @system = System.new(system_params)
 
-    if @system.save
-      redirect_back(fallback_location: root_path, flash: { success: t('create') })
+    if request.xhr?
+      @system.save
     else
-      render 'new'
+      if @system.save
+        redirect_back(fallback_location: root_path, flash: { success: t('create') })
+      else
+        render 'new'
+      end
     end
   end
 
@@ -26,10 +30,14 @@ class SystemsController < ApplicationController
   end
 
   def update
-    if @system.update_attributes(system_params)
-      redirect_back(fallback_location: root_path, flash: { success: t('update') })
+    if request.xhr?
+      @system.update_attributes(system_params)
     else
-      render 'edit'
+      if @system.update_attributes(system_params)
+        redirect_back(fallback_location: root_path, flash: { success: t('update') })
+      else
+        render 'edit'
+      end
     end
   end
 

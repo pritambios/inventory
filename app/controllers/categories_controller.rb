@@ -12,18 +12,26 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
 
-    if @category.save
-      redirect_back(fallback_location: root_path, flash: { success: t('create') })
+    if request.xhr?
+      @category.save
     else
-      render 'new'
+      if @category.save
+        redirect_back(fallback_location: root_path, flash: { success: t('create') })
+      else
+        render 'new'
+      end
     end
   end
 
   def update
-    if @category.update(category_params)
-      redirect_back(fallback_location: root_path, flash: { success: t('update') })
+    if request.xhr?
+      @category.update_attributes(category_params)
     else
-      render 'edit'
+      if @category.update_attributes(category_params)
+        redirect_back(fallback_location: root_path, flash: { success: t('update') })
+      else
+        render 'edit'
+      end
     end
   end
 

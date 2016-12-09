@@ -12,18 +12,26 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    if @user.save
-      redirect_back(fallback_location: root_path, flash: { success: t('create') })
+    if request.xhr?
+      @user.save
     else
-      render 'new'
+      if @user.save
+        redirect_back(fallback_location: root_path, flash: { success: t('create') })
+      else
+        render 'new'
+      end
     end
   end
 
   def update
-    if @user.update_attributes(user_params)
-      redirect_back(fallback_location: root_path, flash: { success: t('update') })
+    if request.xhr?
+      @user.update_attributes(user_params)
     else
-      render 'edit'
+      if @user.update_attributes(user_params)
+        redirect_back(fallback_location: root_path, flash: { success: t('update') })
+      else
+        render 'edit'
+      end
     end
   end
 

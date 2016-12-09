@@ -8,18 +8,26 @@ class VendorsController < ApplicationController
   def create
     @vendor = Vendor.new(vendor_params)
 
-    if @vendor.save
-      redirect_back(fallback_location: root_path, flash: { success: t('create') })
+    if request.xhr?
+      @vendor.save
     else
-      render 'new'
+      if @vendor.save
+        redirect_back(fallback_location: root_path, flash: { success: t('create') })
+      else
+        render 'new'
+      end
     end
   end
 
   def update
-    if @vendor.update_attributes(vendor_params)
-      redirect_back(fallback_location: root_path, flash: { success: t('update') })
+    if request.xhr?
+      @vendor.update_attributes(vendor_params)
     else
-      render 'edit'
+      if @vendor.update_attributes(vendor_params)
+        redirect_back(fallback_location: root_path, flash: { success: t('update') })
+      else
+        render 'edit'
+      end
     end
   end
 

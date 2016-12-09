@@ -8,18 +8,26 @@ class CheckoutsController < ApplicationController
   def create
     @checkout = Checkout.new(checkout_params)
 
-    if @checkout.save
-      redirect_back(fallback_location: root_path, flash: { success: t('create') })
+    if request.xhr?
+      @checkout.save
     else
-      render 'new'
+      if @checkout.save
+        redirect_back(fallback_location: root_path, flash: { success: t('create') })
+      else
+        render 'new'
+      end
     end
   end
 
   def update
-    if @checkout.update_attributes(checkout_params)
-      redirect_back(fallback_location: root_path, flash: { success: t('update') })
+    if request.xhr?
+      @checkout.update_attributes(checkout_params)
     else
-      render 'edit'
+      if @checkout.update_attributes(checkout_params)
+        redirect_back(fallback_location: root_path, flash: { success: t('update') })
+      else
+        render 'edit'
+      end
     end
   end
 
