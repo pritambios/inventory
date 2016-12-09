@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_back(fallback_location: root_path, flash: { success: "Item with #{@item.model_number} is Created Successfully!" })
+      redirect_back(fallback_location: root_path, flash: { success: t('create') })
     else
       render 'new'
     end
@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update_attributes(item_params)
-      redirect_back(fallback_location: root_path, flash: { success: "Item details successfully updated" })
+      redirect_back(fallback_location: root_path, flash: { success: t('update') })
     else
       render 'edit'
     end
@@ -42,17 +42,17 @@ class ItemsController < ApplicationController
 
   def reallocate
     @item.reallocate(reallocate_employee_params["employee_id"])
-    redirect_back(fallback_location: root_path, flash: { success: "Item is successfully reallocated" })
+    redirect_back(fallback_location: root_path, flash: { success: t('reallocate') })
   end
 
   def destroy
     @item.update_attributes(working: false, deleted_at: Time.now)
-    redirect_to items_path, flash: { success: "Item is successfully deleted!" }
+    redirect_to items_path, flash: { success: t('destroy.success') }
   end
 
   def discard
     @item.update_attributes(working: false, discarded_at: Time.now)
-    redirect_to items_path, flash: { success: "Item is successfully discarded!" }
+    redirect_to items_path, flash: { success: t('discard') }
   end
 
   private

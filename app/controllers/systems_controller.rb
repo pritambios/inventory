@@ -13,7 +13,7 @@ class SystemsController < ApplicationController
     @system = System.new(system_params)
 
     if @system.save
-      redirect_back(fallback_location: root_path, flash: { success: "System with #{@system.name} is Created Successfully!" })
+      redirect_back(fallback_location: root_path, flash: { success: t('create') })
     else
       render 'new'
     end
@@ -27,7 +27,7 @@ class SystemsController < ApplicationController
 
   def update
     if @system.update_attributes(system_params)
-      redirect_back(fallback_location: root_path, flash: { success: "System details successfully updated" })
+      redirect_back(fallback_location: root_path, flash: { success: t('update') })
     else
       render 'edit'
     end

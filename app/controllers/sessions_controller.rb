@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       if user
         session[:user_id] = user.id
       else
-        flash[:danger] = "Sorry!!..Access denied"
+        flash[:danger] = t('session.error')
       end
     end
 
@@ -19,6 +19,6 @@ class SessionsController < ApplicationController
 
   def destroy
     session.delete(:user_id)
-    redirect_to root_path, flash: { success:  "successfully logged out" }
+    redirect_to root_path, flash: { success: t('session.logout') }
   end
 end

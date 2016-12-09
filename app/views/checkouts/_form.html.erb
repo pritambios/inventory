@@ -5,7 +5,7 @@
 </div>
 <div class="form-group row">
   <div class="col-sm-4"><%= f.label :checkout , 'Checkout:', class: 'required' %></div>
-  <div class="col-sm-8"><%= f.text_field :checkout, class: 'datepicker form-control', placeholder: "DD/MM/YYYY", required: true, value: format_date(@checkout.checkout) %></div>
+  <div class="col-sm-8"><%= f.text_field :checkout, class: 'datepicker form-control', placeholder: t('date'), required: true, value: format_date(@checkout.checkout) %></div>
 </div>
 <div class="form-group row">
   <div class="col-sm-4"><%= f.label :reason , 'Reason:', class: 'required' %></div>
@@ -17,6 +17,6 @@
 </div>
 <div class="form-group row">
   <div class="col-sm-4"><%= f.label :check_in, 'Checkin:' %></div>
-  <div class="col-sm-8"><%= f.text_field :check_in, class: 'datepicker form-control', placeholder: "DD/MM/YYYY", value: format_date(@checkout.check_in) %></div>
+  <div class="col-sm-8"><%= f.text_field :check_in, class: 'datepicker form-control', placeholder: t('date'), value: format_date(@checkout.check_in) %></div>
 </div>
 <%= unobtrusive_js("$('.datepicker').datetimepicker({ format: 'DD/MM/YYYY' });") %>
