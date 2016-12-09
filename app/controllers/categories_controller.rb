@@ -31,12 +31,6 @@ class CategoriesController < ApplicationController
     @category_items = @category.items.paginate(page: params[:page], per_page: 5)
   end
 
-  def destroy
-    flash[:danger] = "#{@category.name} and their items have been removed."
-    @category.destroy
-    redirect_to categories_path
-  end
-
   private
 
   def get_category
