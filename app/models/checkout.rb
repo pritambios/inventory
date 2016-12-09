@@ -19,6 +19,8 @@ class Checkout < ApplicationRecord
   private
 
   def checkout_limitation
-    errors.add(:checkout, "must be after purchase date") unless checkout > self.item.purchase_on
+    if item.purchase_on.present?
+      errors.add(:checkout, "must be after purchase date") unless checkout > self.item.purchase_on
+    end
   end
 end
