@@ -3,4 +3,6 @@ class Vendor < ApplicationRecord
 
   validates :name, presence: true
   validates :address, presence: true
+
+  scope :order_asssending, -> { order('name') }
 end

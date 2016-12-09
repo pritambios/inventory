@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :get_user, only: [:edit, :update, :destroy]
 
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.order_asssending.paginate(page: params[:page])
   end
 
   def new
