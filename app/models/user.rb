@@ -1,6 +1,5 @@
 class User < ApplicationRecord
   has_many :items
-  has_many :allocation_histories
 
   before_save { self.email = email.downcase }
 
