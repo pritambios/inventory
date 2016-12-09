@@ -38,16 +38,6 @@ class IssuesController < ApplicationController
     end
   end
 
-  def destroy
-    if @issue.destroy
-      flash[:success] = "Issue was successfully deleted"
-      redirect_to issues_path
-    else
-      flash[:danger] = "Sorry!! not able to delete"
-      redirect_to issues_path
-    end
-  end
-
   def set_resolution
     @issue.update_attribute(:resolution_id, params[:resolution_id])
   end
