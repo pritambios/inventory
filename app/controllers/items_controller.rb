@@ -3,13 +3,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.includes(:brand, :category, :issues, :checkouts)
-
-    if params[:discarded] == "true"
-      @items = @items.discarded
-    else
-      @items = @items.not_erased.active
-    end
-
+    @items = @items.not_erased.active
     @items = @items.paginate(page: params[:page])
   end
 
