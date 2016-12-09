@@ -42,7 +42,7 @@ class ItemsController < ApplicationController
 
   def reallocate
     @item.reallocate(reallocate_employee_params["employee_id"])
-    redirect_back(fallback_location: root_path, flash: { success: t('controller.reallocate', name: "Item") })
+    redirect_back(fallback_location: root_path, flash: { success: t('reallocate') })
   end
 
   def destroy

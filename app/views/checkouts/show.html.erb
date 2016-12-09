@@ -19,6 +19,6 @@
   <%= edit_link(edit_checkout_path(@checkout), "Checkout") %>
 
   <% unless @checkout.check_in.present? %>
-    <%= link_to 'Check In', checkin_checkout_path(@checkout), method: :get, data: { confirm: "are you sure the item is checkin?" }, class: 'btn btn-default' %>
+    <%= link_to 'Check In', checkin_checkout_path(@checkout), method: :get, data: { confirm: t('checkin_confirm_message') }, class: 'btn btn-default' %>
   <% end %>
 </section>
