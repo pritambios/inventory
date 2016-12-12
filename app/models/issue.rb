@@ -1,4 +1,4 @@
-class Issue < ActiveRecord::Base
+class Issue < ApplicationRecord
   enum priority: [:high, :medium, :low, :as_soon_as_possible]
 
   belongs_to :item, optional: true
