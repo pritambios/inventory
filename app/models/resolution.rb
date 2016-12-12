@@ -3,5 +3,5 @@ class Resolution < ApplicationRecord
 
   validates :name, presence: true
 
-  scope :order_asssending, -> { order('name') }
+  scope :order_by_name, -> { order('name') }
 end

@@ -24,7 +24,7 @@ class VendorsController < ApplicationController
   end
 
   def index
-    @vendors = Vendor.order_asssending.paginate(page: params[:page])
+    @vendors = Vendor.order_by_name.paginate(page: params[:page])
   end
 
   def show
