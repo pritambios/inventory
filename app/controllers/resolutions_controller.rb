@@ -2,7 +2,7 @@ class ResolutionsController < ApplicationController
   before_action :get_resolution, only: [:edit, :update]
 
   def index
-    @resolutions = Resolution.paginate(page: params[:page])
+    @resolutions = Resolution.order_by_name.paginate(page: params[:page])
   end
 
   def new
