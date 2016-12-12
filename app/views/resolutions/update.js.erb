@@ -1,0 +1,6 @@
+<% if @resolution.errors.present? %>
+  $('.modal-body .error-container').html("<%= j(render 'shared/errors', obj: @resolution) %>");
+<% else %>
+  Inventory.Modal.close();
+  window.location.reload();
+<% end %>

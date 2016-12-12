@@ -12,18 +12,26 @@ class BrandsController < ApplicationController
   def create
     @brand = Brand.new(brand_params)
 
-    if @brand.save
-      redirect_back(fallback_location: root_path, flash: { success: t('create') })
+    if request.xhr?
+      @brand.save
     else
-      render 'new'
+      if @brand.save
+        redirect_back(fallback_location: root_path, flash: { success: t('create') })
+      else
+        render 'new'
+      end
     end
   end
 
   def update
-    if @brand.update(brand_params)
-      redirect_back(fallback_location: root_path, flash: { success: t('update') })
+    if request.xhr?
+      @brand.update_attributes(brand_params)
     else
-      render 'edit'
+      if @brand.update_attributes(brand_params)
+        redirect_back(fallback_location: root_path, flash: { success: t('update') })
+      else
+        render 'edit'
+      end
     end
   end
 

@@ -1,0 +1,6 @@
+<% if @item.errors.present? %>
+  $('.modal-body .error-container').html("<%= j(render 'shared/errors', obj: @item) %>");
+<% else %>
+  Inventory.Modal.close();
+  window.location.reload();
+<% end %>

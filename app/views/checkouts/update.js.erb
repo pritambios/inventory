@@ -1,0 +1,6 @@
+<% if @checkout.errors.present? %>
+  $('.modal-body .error-container').html("<%= j(render 'shared/errors', obj: @checkout) %>");
+<% else %>
+  Inventory.Modal.close();
+  window.location.reload();
+<% end %>

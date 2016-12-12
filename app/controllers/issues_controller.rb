@@ -23,18 +23,26 @@ class IssuesController < ApplicationController
   def create
     @issue = Issue.new(issue_params)
 
-    if @issue.save
-      redirect_back(fallback_location: root_path, flash: { success: t('create') })
+    if request.xhr?
+      @issue.save
     else
-      render 'new'
+      if @issue.save
+        redirect_back(fallback_location: root_path, flash: { success: t('create') })
+      else
+        render 'new'
+      end
     end
   end
 
   def update
-    if @issue.update(issue_params)
-      redirect_back(fallback_location: root_path, flash: { success: t('update') })
+    if request.xhr?
+      @issue.update_attributes(issue_params)
     else
-      render 'edit'
+      if @issue.update_attributes(issue_params)
+        redirect_back(fallback_location: root_path, flash: { success: t('update') })
+      else
+        render 'edit'
+      end
     end
   end
 

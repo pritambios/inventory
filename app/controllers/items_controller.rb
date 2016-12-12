@@ -13,18 +13,27 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    if @item.save
-      redirect_back(fallback_location: root_path, flash: { success: t('create') })
+
+    if request.xhr?
+      @item.save
     else
-      render 'new'
+      if @item.save
+        redirect_back(fallback_location: root_path, flash: { success: t('create') })
+      else
+        render 'new'
+      end
     end
   end
 
   def update
-    if @item.update_attributes(item_params)
-      redirect_back(fallback_location: root_path, flash: { success: t('update') })
+    if request.xhr?
+      @item.update_attributes(item_params)
     else
-      render 'edit'
+      if @item.update_attributes(item_params)
+        redirect_back(fallback_location: root_path, flash: { success: t('update') })
+      else
+        render 'edit'
+      end
     end
   end
 

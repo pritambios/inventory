@@ -12,18 +12,26 @@ class ResolutionsController < ApplicationController
   def create
     @resolution = Resolution.new(resolution_params)
 
-    if @resolution.save
-      redirect_back(fallback_location: root_path, flash: { success: t('create') })
+    if request.xhr?
+      @resolution.save
     else
-      render 'new'
+      if @resolution.save
+        redirect_back(fallback_location: root_path, flash: { success: t('create') })
+      else
+        render 'new'
+      end
     end
   end
 
   def update
-    if @resolution.update_attributes(resolution_params)
-      redirect_back(fallback_location: root_path, flash: { success: t('update') })
+    if request.xhr?
+      @resolution.update_attributes(resolution_params)
     else
-      render 'edit'
+      if @resolution.update_attributes(resolution_params)
+        redirect_back(fallback_location: root_path, flash: { success: t('update') })
+      else
+        render 'edit'
+      end
     end
   end
 

@@ -1,4 +1,3 @@
-<%= render 'shared/errors', obj: @system %>
 <div class="form-group row">
   <div class="col-sm-4"><%= f.label :assembled_on, "Assembled On:", class: "required" %></div>
   <div class="col-sm-8"><%= f.text_field :assembled_on, class: 'form-control datepicker', placeholder: t('date'), required: "true", value: format_date(@system.assembled_on) %></div>
