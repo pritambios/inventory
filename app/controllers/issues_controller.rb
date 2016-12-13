@@ -1,5 +1,5 @@
 class IssuesController < ApplicationController
-  before_action :get_issue, only: [:edit, :update, :show, :destroy, :set_resolution, :set_priority, :close, :close_issue]
+  before_action :get_issue, only: [:edit, :update, :show, :set_resolution, :set_priority, :close, :close_issue]
 
   def index
     @issues = Issue.includes(:system, :resolution, item: [:brand, :category])
