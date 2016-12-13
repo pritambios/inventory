@@ -1,0 +1,19 @@
+en:
+  brands:
+    form:
+      title:
+        name: "Name:"
+      placeholder:
+        name: "Brand Name"
+    index:
+      add:
+        popup:
+          title: "Create Brand"
+      edit:
+        popup:
+          title: "Brand"
+      heading: "Brands"
+      table:
+        th:
+          id: "Id"
+          name: "Name"
