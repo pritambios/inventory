@@ -4,20 +4,20 @@
 <div class="row">
   <section class="col-xs-12 col-sm-5 main-info">
     <h3 class="table-heading"><%= @employee.try(:name) %></h3>
-    <p><span>Id: </span><%= @employee.id %></p>
-    <p><span>Name: </span><%= @employee.try(:name) %></p>
+    <p><span><%= t('.title.id') %> </span><%= @employee.id %></p>
+    <p><span><%= t('.title.name') %> </span><%= @employee.try(:name) %></p>
   </section>
   <section class="col-xs-12 col-sm-7 other-info">
-    <h3>Alloted Items (<%= @items.count %>)</h3>
+    <h3><%= t('.item_history.heading') %> (<%= @items.count %>)</h3>
     <div class="table-responsive">
       <table class="table table-striped table-last">
         <tr>
-          <th class="tweenty">Item</th>
-          <th class="tweentythree">Model Number</th>
-          <th class="tweentytwo">Serial Number</th>
-          <th class="tweenty">Category</th>
-          <th class="ten">Brand</th>
-          <th class="five">&nbsp;</th>
+          <th class="tweenty"><%= t('.item_history.table.th.item') %></th>
+          <th class="tweentythree"><%= t('.item_history.table.th.model_number') %></th>
+          <th class="tweentytwo"><%= t('.item_history.table.th.serial_number') %></th>
+          <th class="tweenty"><%= t('.item_history.table.th.category') %></th>
+          <th class="ten"><%= t('.item_history.table.th.brand') %></th>
+          <th class="five"></th>
         </tr>
         <% @items.each do |item| %>
           <tr class="<%= 'pending' if item.unavailable? %>">
@@ -32,13 +32,13 @@
       </table>
       <%= will_paginate @items, param_name: 'items_page' %>
     </div>
-    <h3>Alloted Systems (<%= @systems.count %>)</h3>
+    <h3><%= t('.system_history.heading') %> (<%= @systems.count %>)</h3>
     <div class="table-responsive">
       <table class="table table-striped table-last">
         <tr>
-          <th class="tweenty">System</th>
-          <th class="seventyfive">Assembled on</th>
-          <th class="five">&nbsp;</th>
+          <th class="tweenty"><%= t('.system_history.table.th.system') %></th>
+          <th class="seventyfive"><%= t('.system_history.table.th.assembled_on') %></th>
+          <th class="five"></th>
         </tr>
         <% @systems.each do |system| %>
           <tr>

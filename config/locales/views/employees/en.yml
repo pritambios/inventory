@@ -1,0 +1,27 @@
+en:
+  employees:
+    index:
+      heading: "Employees"
+      table:
+        th:
+          id: "Id"
+          name: "Name"
+    show:
+      title:
+        id: "Id:"
+        name: "Name:"
+      item_history:
+        heading: "Alloted Items"
+        table:
+          th:
+            item: "Item"
+            model_number: "Model Number"
+            serial_number: "Serial Number"
+            category: "Category"
+            brand: "Brand"
+      system_history:
+        heading: "Alloted Systems"
+        table:
+          th:
+            system: "System"
+            assembled_on: "Assembled on"

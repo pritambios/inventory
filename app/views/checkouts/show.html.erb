@@ -3,22 +3,22 @@
 </div>
 <section class="main-info">
   <h3><%= @checkout.item.name %></h3>
-   <p><span>Id: </span><%= @checkout.id %></p>
+   <p><span><%= t('.id') %> </span><%= @checkout.id %></p>
 
   <% if @checkout.employee.present? %>
-    <p><span>Employee: </span><%= link_to @checkout.employee.try(:name), employee_path(@checkout.employee_id) %></p>
+    <p><span><%= t('.employee') %> </span><%= link_to @checkout.employee.try(:name), employee_path(@checkout.employee_id) %></p>
   <% end %>
 
-  <p><span>Checkout: </span><%= format_date(@checkout.checkout) %></p>
+  <p><span><%= t('.checkout')%> </span><%= format_date(@checkout.checkout) %></p>
 
   <% if @checkout.check_in.present? %>
-    <p><span>Checkin: </span><%= format_date(@checkout.check_in) %></p>
+    <p><span><%= t('.checkin') %> </span><%= format_date(@checkout.check_in) %></p>
   <% end %>
 
-  <p><span>Reason: </span><%= @checkout.reason %></p>
-  <%= edit_link(edit_checkout_path(@checkout), "Checkout") %>
+  <p><span><%= t('.reason') %> </span><%= @checkout.reason %></p>
+  <%= edit_link(edit_checkout_path(@checkout), t('checkout.index.edit.popup.title')) %>
 
   <% unless @checkout.check_in.present? %>
-    <%= link_to 'Check In', checkin_checkout_path(@checkout), method: :get, data: { confirm: t('checkin_confirm_message') }, class: 'btn btn-default' %>
+    <%= link_to t('button.checkin'), checkin_checkout_path(@checkout), method: :get, data: { confirm: t('.checkin_confirm_message') }, class: 'btn btn-default' %>
   <% end %>
 </section>

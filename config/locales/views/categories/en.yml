@@ -1,0 +1,19 @@
+en:
+  categories:
+    form:
+      title:
+        name: "Name:"
+      placeholder:
+        name: "Category Name"
+    index:
+      add:
+        popup:
+          title: "Create Category"
+      edit:
+        popup:
+          title: "Category"
+      heading: "Categories"
+      table:
+        th:
+          id: "Id"
+          name: "Name"

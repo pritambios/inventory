@@ -1,0 +1,38 @@
+en:
+  checkouts:
+    form:
+      title:
+        item: "Item:"
+        checkout: "Checkout:"
+        reason: "Reason:"
+        employee: "Empoyee:"
+        checkin: "Checkin:"
+      placeholder:
+        select_item: "Select Item"
+        reason: "Reason"
+        select_employee: "Select Employee"
+    index:
+      add:
+        popup:
+          title: "Create Checkouts"
+      edit:
+        popup:
+          title: "Checkout"
+      heading: "Checkouts"
+      table:
+        th:
+          id: "Id"
+          item: "Item"
+          employee: "Employee"
+          checkout: "Checkout"
+          checkin: "Checkin"
+        td:
+          for_maintaince: "For Maintaince"
+      checkin_confirm_message: "are you sure the item is checkin?"
+    show:
+      id: "Id:"
+      employee: "Employee:"
+      checkout: "Checkout:"
+      checkin: "Checkin:"
+      reason: "Reason:"
+      checkin_confirm_message: "are you sure item is checkin?"
