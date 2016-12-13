@@ -1,56 +1,56 @@
 <div class="form-group row">
-  <div class="col-sm-4"><%= f.label :category_id , "Category:", class: 'required' %></div>
-  <div class="col-sm-8"><%= f.collection_select :category_id, Category.all, :id, :name, { include_blank: 'Select' }, class: 'form-control', required: "true" %></div>
+  <div class="col-sm-4"><%= f.label :category_id, t('.title.category'), class: 'required' %></div>
+  <div class="col-sm-8"><%= f.collection_select :category_id, Category.all, :id, :name, { include_blank: t('.placeholder.select_category') }, class: 'form-control', required: "true" %></div>
 </div>
 <div class="form-group row">
-  <div class="col-sm-4"><%= f.label :serial_number , "Serial Number:" , class: 'required' %></div>
-  <div class="col-sm-8"><%= f.text_field :serial_number, class: 'form-control', placeholder: "Serial Number", required: true %></div>
+  <div class="col-sm-4"><%= f.label :serial_number , t('.title.serial_number'), class: 'required' %></div>
+  <div class="col-sm-8"><%= f.text_field :serial_number, class: 'form-control', placeholder: t('.placeholder.serial_number'), required: true %></div>
 </div>
 <div class="form-group row">
-  <div class="col-sm-4"><%= f.label :brand_id , "Brand:" %></div>
-  <div class="col-sm-8"><%= f.collection_select :brand_id, Brand.all, :id, :name,  { include_blank: 'Select' }, class: 'form-control' %></div>
+  <div class="col-sm-4"><%= f.label :brand_id, t('.title.brand') %></div>
+  <div class="col-sm-8"><%= f.collection_select :brand_id, Brand.all, :id, :name,  { include_blank: t('.placeholder.select_brand')}, class: 'form-control' %></div>
 </div>
 <div class="form-group row">
-  <div class="col-sm-4"><%= f.label :model_number, "Model Number:" %></div>
-  <div class="col-sm-8"><%= f.text_field :model_number, class: 'form-control', placeholder: "Model number" %></div>
+  <div class="col-sm-4"><%= f.label :model_number, t('.title.model_number') %></div>
+  <div class="col-sm-8"><%= f.text_field :model_number, class: 'form-control', placeholder: t('.placeholder.model_number') %></div>
 </div>
 <div class="form-group row">
-  <div class="col-sm-4"><%= f.label :vendor_id , "Purchased From:" %></div>
-  <div class="col-sm-8"><%= f.collection_select :vendor_id, Vendor.all, :id, :name, { include_blank: 'Select' }, class: 'form-control' %></div>
+  <div class="col-sm-4"><%= f.label :vendor_id, t('.title.purchased_from') %></div>
+  <div class="col-sm-8"><%= f.collection_select :vendor_id, Vendor.all, :id, :name, { include_blank: t('.placeholder.select_vendor') }, class: 'form-control' %></div>
 </div>
 <div class="form-group row">
-    <div class="col-sm-4"><%= f.label :purchase_on , "Purchased On:" %></div>
+    <div class="col-sm-4"><%= f.label :purchase_on , t('.title.purchased_on') %></div>
     <div class="col-sm-8"><%= f.text_field :purchase_on, class: 'form-control datepicker', placeholder: t('date'), value: format_date(@item.purchase_on) %></div>
 </div>
 <div class="form-group row">
-  <div class="col-sm-4"><%= f.label :warranty_expires_on , "Warranty Expires On:" %></div>
+  <div class="col-sm-4"><%= f.label :warranty_expires_on , t('.title.warranty') %></div>
   <div class="col-sm-8"><%= f.text_field :warranty_expires_on, class: 'form-control datepicker', placeholder: t('date'), value: format_date(@item.warranty_expires_on) %></div>
 </div>
 <div class="form-group row">
-  <div class="col-sm-4"><%= f.label :working, "Status:" %></div>
+  <div class="col-sm-4"><%= f.label :working, t('.title.status') %></div>
   <div class="col-sm-8">
     Working : <%= f.radio_button(:working, "true", checked: @item.working) %>
     Not Working :<%= f.radio_button(:working, "false", checked: !@item.working) %>
   </div>
 </div>
 <div class="form-group row">
-  <div class="col-sm-4"><%= f.label :system_id , "System:" %></div>
-  <div class="col-sm-8"><%= f.collection_select :system_id, System.all, :id, :name, { prompt: 'Select' }, class: 'form-control' %></div>
+  <div class="col-sm-4"><%= f.label :system_id , t('.title.system') %></div>
+  <div class="col-sm-8"><%= f.collection_select :system_id, System.all, :id, :name, { prompt: t('.placeholder.select_system') }, class: 'form-control' %></div>
 </div>
 <div class="form-group row">
-  <div class="col-sm-4"><%= f.label :employee_id , "Employee:" %></div>
-  <div class="col-sm-8"><%= f.collection_select :employee_id, Employee.company_employees, :id, :name, { prompt: 'Select' }, class: 'form-control' %></div>
+  <div class="col-sm-4"><%= f.label :employee_id , t('.title.employee') %></div>
+  <div class="col-sm-8"><%= f.collection_select :employee_id, Employee.company_employees, :id, :name, { prompt: t('.placeholder.select_employee') }, class: 'form-control' %></div>
 </div>
-<h4>Attachment:</h4>
+<h4><%= t('.heading_attachment') %></h4>
 <hr>
 <%= f.fields_for :documents, @item.documents.build do |doc| %>
   <% if doc.object.new_record? %>
     <div class="form-group row">
-      <div class="col-sm-4"><%= doc.label :title, "Title:" %></div>
-      <div class="col-sm-8"><%= doc.text_field :title, class: 'form-control', placeholder: "Information" %></div>
+      <div class="col-sm-4"><%= doc.label :title, t('.title.attachment_title') %></div>
+      <div class="col-sm-8"><%= doc.text_field :title, class: 'form-control', placeholder: t('.placeholder.attachment') %></div>
     </div>
     <div class="form-group row">
-      <div class="col-sm-4"><%= doc.label :attachment, "Document:" %></div>
+      <div class="col-sm-4"><%= doc.label :attachment, t('.title.document') %></div>
       <div class="col-sm-8"><%= doc.file_field :attachment %></div>
     </div>
   <% end %>

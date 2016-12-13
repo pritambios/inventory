@@ -4,17 +4,17 @@
 <div class="row">
   <section class="col-xs-12 col-sm-5 main-info">
     <h3 class="table-heading"><%= @item.name %></h3>
-    <p><span>Id: </span><%= @item.id %></p>
-    <p><span>Status: </span><%= @item.working? ? "working" : "Not Working" %></p>
+    <p><span><%= t('.id') %> </span><%= @item.id %></p>
+    <p><span><%= t('.status') %> </span><%= @item.working? ? t('.working') : t('.not_working') %></p>
 
     <% if @item.model_number.present? %>
-      <p><span>Model Number: </span><%= @item.model_number %></p>
+      <p><span><%= t('.model_number') %> </span><%= @item.model_number %></p>
     <% end %>
 
-    <p><span>Serial Number: </span><%= @item.serial_number %></p>
+    <p><span><%= t('.serial_number') %> </span><%= @item.serial_number %></p>
     <p>
       <% if @item.vendor.present? || @item.purchase_on.present? %>
-        <span>Purchased: </span>
+        <span><%= t('.purchased') %> </span>
 
         <% if @item.vendor.present? %>
           from <%= link_to @item.vendor.name, vendor_path(@item.vendor) %>
@@ -26,54 +26,54 @@
       <% end %>
     </p>
     <% if @item.warranty_expires_on.present? %>
-      <p><span>Warranty Expires On: </span><%= format_date(@item.warranty_expires_on) %></p>
+      <p><span><%= t('.warranty') %> </span><%= format_date(@item.warranty_expires_on) %></p>
     <% end %>
 
     <% if @item.employee.present? %>
-      <p><span>Allocated To: </span><%= link_to @item.employee.try(:name), employee_path(@item.employee_id) %></p>
+      <p><span><%= t('.allocated_to') %> </span><%= link_to @item.employee.try(:name), employee_path(@item.employee_id) %></p>
     <% end %>
 
     <p>
       <% if @item.unavailable? %>
-        <span>Checkout: </span>
+        <span><%= t('.checkout') %> </span>
         <%= checkout_details(@item)%>
       <% else %>
-        <span>Status: </span><%= @item.working? ? "Working" : "Non-Working" %>
+        <span><%= t('.status') %> </span><%= @item.working? ? t('.working') : t('.not_working') %>
       <% end %>
     </p>
 
     <% if @item.documents.present? %>
-      <p>Attachments:
+      <p><%= t('.attachments') %>
         <ul class="list-group">
           <% @item.documents.each do |document| %>
             <li class="list-group-item">
               <%= document.title %>
               <%= link_to document.attachment_file_name, document.attachment.url, download: document.attachment_file_name %>
-              <%= link_to ('<i class="fa fa-trash" style="float: right"></i>').html_safe, document_path(document), method: :delete, data: { confirm: "Are you sure, you want to delete this attachment?" }, remote: true, class: 'delete_document', id: "document-#{document.id}" %>
+              <%= link_to ('<i class="fa fa-trash" style="float: right"></i>').html_safe, document_path(document), method: :delete, data: { confirm: t('.delete_attachment_confirm_message') }, remote: true, class: 'delete_document', id: "document-#{document.id}" %>
             </li>
           <% end %>
         </ul>
       </p>
     <% end %>
 
-    <%= edit_link(edit_item_path(@item), "Item") %>
+    <%= edit_link(edit_item_path(@item), t('.edit.popup.title')) %>
 
     <% if @item.discarded_at.nil? %>
       <%= link_to allocation_type(@item), allocate_item_path(@item), data: { remote_popup: true, title: allocation_type(@item) }, class: "btn btn-primary btn-sm" %>
-      <%= link_to 'New Issue', new_issue_path(item_id: @item), data: { remote_popup: true, title: "Create Issue" }, class: "btn btn-primary btn-sm" %>
-      <%= link_to 'Discard', discard_item_path(@item), method: :put, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
+      <%= link_to t('.new_issue'), new_issue_path(item_id: @item), data: { remote_popup: true, title: t('.issue.popup.title') }, class: "btn btn-primary btn-sm" %>
+      <%= link_to t('.discard'), discard_item_path(@item), method: :put, data: { confirm: t('.delete_confirm_message') }, class: "btn btn-danger btn-sm" %>
       <%= delete_link(item_path(@item)) %>
     <% end %>
   </section>
   <section class="col-xs-12 col-sm-7 other-info">
-    <h3>Item History (<%= @item_histories.count %>)</h3>
+    <h3><%= t('.item_history.heading') %> (<%= @item_histories.count %>)</h3>
     <div class="table-responsive">
       <table class="table table-striped">
         <tr>
-          <th class="twohundred">System</th>
-          <th class="twohundred">Allocated To</th>
-          <th class="onefourty">Status</th>
-          <th class="hundred">Date</th>
+          <th class="twohundred"><%= t('.item_history.table.th.system') %></th>
+          <th class="twohundred"><%= t('.item_history.table.th.allocated_to') %></th>
+          <th class="onefourty"><%= t('.item_history.table.th.status') %></th>
+          <th class="hundred"><%= t('.item_history.table.th.date') %></th>
         </tr>
         <% @item_histories.each do |item_history| %>
           <tr>
@@ -81,31 +81,31 @@
               <% if item_history.system.present? %>
                 <%= link_to "#{item_history.system.name}", system_path(item_history.system) %>
               <% else %>
-                Unattached
+                <%= t('.item_history.table.td.unattached') %>
               <% end %>
             </td>
             <td>
               <% if item_history.employee.present? %>
                 <%= link_to item_history.employee.try(:name), employee_path(item_history.employee_id) %>
               <% else %>
-                Unallocated
+                <%= t('.item_history.table.td.unallocated') %>
               <% end %>
             </td>
-            <td><%= item_history.status? ? "Active" : "Inactive" %></td>
+            <td><%= item_history.status? ? t('.item_history.table.td.active') : t('.item_history.table.td.inactive') %></td>
             <td><%= format_date(item_history.created_at) %></td>
           </tr>
         <% end %>
       </table>
       <%= will_paginate @item_histories, param_name: 'item_histories_page' %>
     </div>
-    <h3>Checkouts History (<%= @checkouts.count %>)</h3>
+    <h3><%= t('.checkout_history.heading') %> (<%= @checkouts.count %>)</h3>
     <div class="table-responsive">
       <table class="table table-striped table-last">
         <tr>
-          <th class="twohundred">Employee</th>
-          <th class="twohundred">Checkout</th>
-          <th class="onefourty">Checkin</th>
-          <th class="hundred">&nbsp;</th>
+          <th class="twohundred"><%= t('.checkout_history.table.employee') %></th>
+          <th class="twohundred"><%= t('.checkout_history.table.checkout') %></th>
+          <th class="onefourty"><%= t('.checkout_history.table.checkin') %></th>
+          <th class="hundred"></th>
         </tr>
         <% @checkouts.each do |checkout| %>
           <tr>
@@ -118,14 +118,14 @@
       </table>
       <%= will_paginate @checkouts, param_name: 'checkouts_page' %>
     </div>
-    <h3>Issues (<%= @issues.count %>)</h3>
+    <h3><%= t('.issue.heading') %> (<%= @issues.count %>)</h3>
     <div class="table-responsive">
       <table class="table table-striped table-last">
         <tr>
-          <th class="twohundred">Issue</th>
-          <th class="twohundred">System</th>
-          <th class="onefourty">Closed At</th>
-          <th class="hundred">&nbsp;</th>
+          <th class="twohundred"><%= t('.issue.table.th.issue') %></th>
+          <th class="twohundred"><%= t('.issue.table.th.system') %></th>
+          <th class="onefourty"><%= t('.issue.table.th.closed_at') %></th>
+          <th class="hundred"></th>
         </tr>
         <% @issues.each do |issue| %>
           <tr>
