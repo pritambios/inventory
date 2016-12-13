@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :get_category, only: [:edit, :update, :show, :destroy]
+  before_action :get_category, only: [:edit, :update]
 
   def index
     @categories = Category.order_by_name.paginate(page: params[:page])
