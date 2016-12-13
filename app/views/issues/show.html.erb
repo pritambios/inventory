@@ -3,38 +3,38 @@
 </div>
 <section class="main-info">
   <h3><%= @issue.title %></h3>
-  <p><span>Id: </span><%= @issue.id %></p>
+  <p><span><%= t('.id') %> </span><%= @issue.id %></p>
 
   <% if @issue.system.present? %>
-    <p><span>System: </span><%= link_to @issue.system.name, system_path(@issue.system) %></p>
+    <p><span><%= t('.system') %> </span><%= link_to @issue.system.name, system_path(@issue.system) %></p>
   <% end %>
 
   <% if @issue.item.present? %>
-    <p><span>Item: </span><%= link_to name_with_id(@issue.item), item_path(@issue.item) %></p>
+    <p><span><%= t('.item') %> </span><%= link_to name_with_id(@issue.item), item_path(@issue.item) %></p>
   <% end %>
 
   <% if @issue.description.present? %>
-    <p><span>Description: </span><%= @issue.description %></p>
+    <p><span><%= t('.description') %>  </span><%= @issue.description %></p>
   <% end %>
 
   <% if @issue.closed_at.present? %>
-    <p><span>Resolved at: </span><%= format_date(@issue.closed_at) %></p>
+    <p><span><%= t('.closed') %> </span><%= format_date(@issue.closed_at) %></p>
   <% else %>
-    <p><span>Status: </span>Pending
-    <%= link_to 'close', close_issue_path(@issue), data: { remote_popup: true, title: "Close Issue" }, class: 'btn btn-default' %></p>
+    <p><span><%= t('.status') %> </span><%= t('.pending') %>
+    <%= link_to t('button.close'), close_issue_path(@issue), data: { remote_popup: true, title: "Close Issue" }, class: 'btn btn-default' %></p>
   <% end %>
 
   <% if @issue.note.present? %>
-    <p><span>Note: </span><%= @issue.note %></p>
+    <p><span><%= t('.note') %> </span><%= @issue.note %></p>
   <% end %>
 
-  <p><span>Resolution: </span>
-  <%= select_tag :resolution_id, options_from_collection_for_select(Resolution.all, :id, :name, selected: @issue.resolution_id), prompt: "Select", data: { remote: true, url: set_resolution_issue_path(@issue), method: :put }, class: 'select-option-showPage' %></p>
+  <p><span><%= t('.resolution') %> </span>
+  <%= select_tag :resolution_id, options_from_collection_for_select(Resolution.all, :id, :name, selected: @issue.resolution_id), prompt: t('.placeholder.select'), data: { remote: true, url: set_resolution_issue_path(@issue), method: :put }, class: 'select-option-showPage' %></p>
 
   <% if @issue.priority? %>
-    <p><span>Priority: </span><%= @issue.priority %></p>
+    <p><span><%= t('.priority') %> </span><%= @issue.priority %></p>
   <% end %>
 
-  <%= edit_link(edit_issue_path(@issue), "Issue") %>
+  <%= edit_link(edit_issue_path(@issue), t('.edit.popup.title')) %>
 
 </section>

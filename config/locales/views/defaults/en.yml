@@ -6,3 +6,5 @@ en:
     add: "Add"
     checkout: "Checkout"
     checkin: "Checkin"
+    close: "Close"
+    new: "New"

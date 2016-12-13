@@ -2,6 +2,7 @@ en:
   create: "Successfully created"
   update: "successfully updated"
   reallocate: "successfully reallocated"
+  close: "successfully closed"
   destroy:
     success: "successfully deleted!"
     error: "Sorry!..Not able to delete"
