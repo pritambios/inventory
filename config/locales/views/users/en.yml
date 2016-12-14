@@ -1,0 +1,20 @@
+en:
+  users:
+    form:
+      title:
+        email: "Email:"
+      placeholder:
+        email: "Email Address"
+    index:
+      heading: "Users"
+      table:
+        th:
+          id: "Id"
+          name: "Name"
+          email: "Email"
+      add:
+        popup:
+          title: "Create User"
+      edit:
+        popup:
+          title: User
