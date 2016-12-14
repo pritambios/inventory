@@ -58,6 +58,7 @@ en:
       allocated_to: "Allocated To:"
       checkout: "Checkout:"
       status: "Status:"
+      attach_with_system: "Attached with:"
       working: "Working"
       not_working: "Not Working"
       attachments: "Attachments:"
