@@ -1,4 +1,5 @@
 en:
+  date: "DD/MM/YYYY"
   button:
     cancel: "Cancel"
     update: "Update"

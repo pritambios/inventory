@@ -10,6 +10,3 @@ en:
   session:
     error: "Sorry!..You are not permitted to access Inventory"
     logout: "successfully logged out"
-  date: "DD/MM/YYYY"
-  checkin_confirm_message: "are you sure the item is checkin?"
-  delete_confirm_message: "Are you sure you want to delete the item?"
