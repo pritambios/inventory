@@ -3,4 +3,6 @@ en:
     cancel: "Cancel"
     update: "Update"
     create: "Create"
+    add: "Add"
+    checkout: "Checkout"
     checkin: "Checkin"

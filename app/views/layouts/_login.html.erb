@@ -7,8 +7,8 @@
     <div class="blue google-color-width"></div>
     <div class="green google-color-width"></div>
     <div class="yellow google-color-width"></div>
-    <p class="inventory-text">Sign in or Sign up in just a click!</p>
+    <p class="inventory-text"><%= t('.signin_text') %></p>
     <%= link_to image_tag("google_btn.png"), login_path, class: 'google-button' %>
   </div>
 </div>
-<p class="copy"><%= t('.footer') %></p>
+<p class="copy"><%= raw t('.footer') %></p>
