@@ -1,0 +1,64 @@
+en:
+  systems:
+    form:
+      title:
+        assembled: "Assembled On:"
+        allocated: "Allocated To:"
+        discarded: "Discarded At:"
+        items: "Items:"
+        status: "Status:"
+        note: "Note:"
+        working: "Working:"
+        not_working: "Not Working:"
+      placeholder:
+        select_employee: "Select Employee"
+        note: "Note"
+    index:
+      heading: "Systems"
+      add:
+        popup:
+          title: "Create System"
+      edit:
+        popup:
+          title: "System"
+      table:
+        th:
+          id: "Id"
+          assembled: "Assembled On"
+          allocated: "Allocated To"
+          discarded: "Discarded At"
+          systems: "Systems"
+          status: "Status"
+        td:
+          working: "Working"
+          not_working: "Not Working"
+          unassigned: "Not Assigned"
+    show:
+      id: "Id:"
+      assembled: "Assembled On:"
+      allocated: "Allocated To:"
+      discarded: "Discarded At:"
+      status: "Status:"
+      working: "Working"
+      not_working: "Not Working"
+      note: "Note:"
+      items: "Items:"
+      edit:
+        popup:
+          title: "System"
+      system_history:
+        heading: "History"
+        table:
+          th:
+            employee: "Employee"
+            status: "Status"
+            date: "Date"
+          td:
+            unassigned: "Not Assigned"
+      issue:
+        heading: "Issues"
+        table:
+          th:
+            issue: "Issue"
+            item: "Item"
+            closed: "Closed At"
