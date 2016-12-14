@@ -1,14 +1,14 @@
 <div class="page-header">
-  <%= link_to 'Add', new_user_path, data: { remote_popup: true, title: "Create User" }, class: "btn btn-primary pull-right" %>
-  <h3>Users</h3>
+  <%= link_to t('button.add'), new_user_path, data: { remote_popup: true, title: t('.add.popup.title') }, class: "btn btn-primary pull-right" %>
+  <h3><%= t('.heading') %></h3>
 </div>
 <div class="table-responsive">
   <table class="table table-striped table-last">
     <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>&nbsp;</th>
+      <th><%= t('.table.th.id') %></th>
+      <th><%= t('.table.th.name') %></th>
+      <th><%= t('.table.th.email') %></th>
+      <th></th>
     </tr>
     <% @users.each do |user| %>
       <tr>
@@ -16,7 +16,7 @@
         <td><%= user.full_name %></td>
         <td><%= user.email %></td>
         <td>
-          <%= edit_link(edit_user_path(user), "User") %>
+          <%= edit_link(edit_user_path(user), t('.edit.popup.title')) %>
           <% unless current_user == user %>
             <%= delete_link(user_path(user)) %>
           <% end %>
