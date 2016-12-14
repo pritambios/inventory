@@ -28,11 +28,7 @@ class System < ApplicationRecord
   end
 
   def item_ids=(arg)
-    items.where(id: (item_ids.map!(&:to_s) - arg)).each do |item|
-      item.employee_id = nil
-      item.system_id   = nil
-      item.save!
-    end
+    items.where(id: item_ids - arg.map(&:to_i)).update_all(employee_id: nil, system_id: nil)
 
     super(arg)
   end

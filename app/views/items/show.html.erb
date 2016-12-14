@@ -42,6 +42,14 @@
       <% end %>
     </p>
 
+    <p>
+      <span><%= t('.attach_with_system') %></span>
+
+      <% if @item.system.present? %>
+        <%= link_to @item.system.name, system_path(@item.system) %>
+      <% end %>
+    </p>
+
     <% if @item.documents.present? %>
       <p><%= t('.attachments') %>
         <ul class="list-group">
