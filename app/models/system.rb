@@ -11,7 +11,7 @@ class System < ApplicationRecord
   scope :order_desending, -> { order('created_at DESC') }
 
   def assign_items_to_employee
-    if employee_id_changed?
+    if employee_id.present?
       items.each do |item|
         item.employee_id = employee_id
         item.save
@@ -28,10 +28,12 @@ class System < ApplicationRecord
   end
 
   def item_ids=(arg)
-    items.each do |item|
+    items.where(id: (item_ids.map!(&:to_s) - arg)).each do |item|
       item.employee_id = nil
+      item.system_id   = nil
       item.save!
     end
+
     super(arg)
   end
 
