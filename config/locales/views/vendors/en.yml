@@ -1,0 +1,50 @@
+en:
+  vendors:
+    form:
+      title:
+        name: "Name:"
+        address: "Address:"
+        city: "City:"
+        state: "State:"
+        mobile: "Mobile:"
+        email: "Email:"
+      placeholder:
+        name: "Vendor's Name"
+        address: "Address"
+        city: "City"
+        state: "State"
+        mobile: "Mobile Number"
+        email: "Email"
+    index:
+      heading: "Vendors"
+      table:
+        th:
+          id: "Id"
+          name: "Name"
+          email: "Email"
+          mobile: "Mobile"
+      add:
+        popup:
+          title: "Create Vendor"
+      edit:
+        popup:
+          title: "Vendor"
+    show:
+      id: "Id:"
+      email: "Email:"
+      mobile: "Mobile:"
+      address: "Address:"
+      city: "City:"
+      state: "State:"
+      purchased_item:
+        heading: "Purchased Items"
+        table:
+          th:
+            item: "Item"
+            model_number: "Model Number"
+            serial_number: "Serial Number"
+            category: "Category"
+            brand: "Brand"
+      edit:
+        popup:
+          title: "Vendor"
