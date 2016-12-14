@@ -4,41 +4,41 @@
 <div class="row">
   <section class="col-xs-12 col-sm-5 main-info">
     <h3><%= @vendor.name %></h3>
-    <p><span>Id: </span><%= @vendor.id %></p>
+    <p><span><%= t('.id') %> </span><%= @vendor.id %></p>
 
     <% if @vendor.email.present? %>
-      <p><span>Email: </span><%= @vendor.email %></p>
+      <p><span><%= t('.email') %> </span><%= @vendor.email %></p>
     <% end %>
 
     <% if @vendor.mobile.present? %>
-      <p><span>Mobile: </span><%= @vendor.mobile %></p>
+      <p><span><%= t('.mobile') %> </span><%= @vendor.mobile %></p>
     <% end %>
 
     <% if @vendor.address.present? %>
-      <p><span>Address: </span><%= @vendor.address %></p>
+      <p><span><%= t('.address') %> </span><%= @vendor.address %></p>
     <% end %>
 
     <% if @vendor.city.present? %>
-      <p><span>City: </span><%= @vendor.city %></p>
+      <p><span><%= t('.city') %> </span><%= @vendor.city %></p>
     <% end %>
 
     <% if @vendor.state.present? %>
-      <p><span>State: </span><%= @vendor.state %></p>
+      <p><span><%= t('.state') %> </span><%= @vendor.state %></p>
     <% end %>
 
-    <%= edit_link(edit_vendor_path(@vendor), "Vendor") %>
+    <%= edit_link(edit_vendor_path(@vendor), t('.edit.popup.title')) %>
   </section>
   <section class="col-xs-12 col-sm-7 other-info">
-    <h3>Purchased Items (<%= @items.count %>)</h3>
+    <h3><%= t('.purchased_item.heading') %> (<%= @items.count %>)</h3>
     <div class="table-responsive">
       <table class="table table-striped">
         <tr>
-          <th>Item</th>
-          <th>Model Number</th>
-          <th>Serial Number</th>
-          <th>Category</th>
-          <th>Brand</th>
-          <th>&nbsp;</th>
+          <th><%= t('.purchased_item.table.th.item') %></th>
+          <th><%= t('.purchased_item.table.th.model_number') %></th>
+          <th><%= t('.purchased_item.table.th.serial_number') %></th>
+          <th><%= t('.purchased_item.table.th.category') %></th>
+          <th><%= t('.purchased_item.table.th.brand') %></th>
+          <th></th>
         </tr>
         <% @items.each do |item| %>
           <tr>

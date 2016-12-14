@@ -1,0 +1,19 @@
+en:
+  resolutions:
+    form:
+      title:
+        name: "Name:"
+      placeholder:
+        name: "Name"
+    index:
+      heading: Resolutions
+      table:
+        th:
+          id: "Id"
+          name: "Name"
+      add:
+        popup:
+          title: "Create Resolution"
+      edit:
+        popup:
+          title: "Resolution"

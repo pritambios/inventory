@@ -1,0 +1,30 @@
+en:
+  layouts:
+    application:
+      title: "Kreeti Technologies"
+    footer:
+      content: "Copyright &copy; 2016 Kreeti Technologies Pvt. Ltd. All rights reserved."
+    login:
+      welcome: "Welcome to"
+      heading: "Inventory Management System"
+      signin_text: "Sign in or Sign up in just a click!"
+      footer: "Copyright &copy; 2016 Kreeti Technologies Pvt. Ltd. All rights reserved."
+    navigation:
+      brand: "Inventory"
+      list:
+        checkin_checkout: "Checkin / Checkout"
+        issues: "Issues"
+        items: "Items"
+        systems: "Systems"
+        more:
+          brands: "Brands"
+          categories: "Categories"
+          employees: "Employees"
+          resolutions: "Resolutions"
+          users: "Users"
+          vendors: "Vendors"
+      dropdown:
+        settings: "Settings"
+        logout: "Log out"
+        popup:
+          title: "Edit User"

@@ -58,7 +58,7 @@ class IssuesController < ApplicationController
     @issue.closed_at = Time.now
 
     if @issue.update_attributes(resolution_params)
-      redirect_to issues_path, flash: { success: "Issue Closed" }
+      redirect_to issues_path, flash: { success: t('close') }
     else
       render 'close'
     end

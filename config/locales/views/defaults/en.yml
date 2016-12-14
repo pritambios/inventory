@@ -1,6 +1,11 @@
 en:
+  date: "DD/MM/YYYY"
   button:
     cancel: "Cancel"
     update: "Update"
     create: "Create"
+    add: "Add"
+    checkout: "Checkout"
     checkin: "Checkin"
+    close: "Close"
+    new: "New"

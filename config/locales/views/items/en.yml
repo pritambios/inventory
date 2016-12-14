@@ -1,0 +1,103 @@
+en:
+  items:
+    form:
+      heading_attachment: "Attachment:"
+      title:
+        category: "Category:"
+        serial_number: "Serial Number:"
+        brand: "Brand:"
+        model_number: "Model Number:"
+        purchased_from: "Purchased From:"
+        purchased_on: "Purchased On:"
+        warranty: "Warranty Expires On:"
+        status: "Status:"
+        system: "System:"
+        employee: "Employee:"
+        attachment_title: "Title:"
+        document: "Document:"
+      placeholder:
+        select_category: "Select"
+        serial_number: "Serial Number"
+        select_brand: "Brand"
+        model_number: "Model Number"
+        select_vendor: "Select Vendor"
+        select_system: "Select"
+        select_employee: "Select"
+        attachment: "Information"
+    index:
+      heading: "Items"
+      add:
+        popup:
+          title: "Create Item"
+      edit:
+        popup:
+          title: "Item"
+      table:
+        th:
+          id: "Id"
+          item: "Item"
+          model_number: "Model Number"
+          serial_number: "Serial Number"
+          issue: "Issue"
+          checkout: "Checkout"
+          status: "Checkout"
+        td:
+          unclosed: unclosed
+          closed: "closed"
+          no_issue: "No Issue"
+          checkouts: "Checkouts"
+          working: "Working"
+          non_working: "Non-Working"
+    show:
+      id: "Id:"
+      status: "Status:"
+      model_number: "Model Number:"
+      serial_number: "Serial Number:"
+      purchased: "Purchased:"
+      warranty: "Warranty Expires On:"
+      allocated_to: "Allocated To:"
+      checkout: "Checkout:"
+      status: "Status:"
+      working: "Working"
+      not_working: "Not Working"
+      attachments: "Attachments:"
+      delete_attachment_confirm_message: "Are you sure, you want to delete this attachment?"
+      new_issue: "New Issue"
+      discard: "Discard"
+      edit:
+        popup:
+          title: "Item"
+      issue:
+        popup:
+          title: "Create Issue"
+      delete_confirm_message: "Are you sure?"
+      item_history:
+        heading: "Item History"
+        table:
+          th:
+            system: "System"
+            allocated_to: "Allocated To"
+            status: "Status"
+            date: "Date"
+          td:
+            unattached: "Unattached"
+            unallocated: "Unallocated"
+            active: "Active"
+            inactive: "Inactive"
+      checkout_history:
+        heading: "Checkouts History"
+        table:
+          th:
+            employee: "Employee"
+            checkout: "Checkout"
+            checkin: "Checkin"
+      issue:
+        heading: "Issues"
+        table:
+          th:
+            issue: "Issue"
+            system: "System"
+            closed_at: "Closed At"
+    allocate:
+      reallocate_to: "Reallocate to:"
+      select_employee: "Select Employee"
