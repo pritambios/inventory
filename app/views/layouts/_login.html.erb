@@ -1,7 +1,7 @@
 <div class="container">
   <%= render partial: 'shared/flash_messages' %>
-  <p>Welcome to</p>
-  <h1>Inventory Management System</h1>
+  <p><%= t('.welcome') %></p>
+  <h1><%= t('.heading') %></h1>
   <div class="google-content">
     <div class="red google-color-width"></div>
     <div class="blue google-color-width"></div>
@@ -11,4 +11,4 @@
     <%= link_to image_tag("google_btn.png"), login_path, class: 'google-button' %>
   </div>
 </div>
-<p class="copy">Copyright &copy; 2016 Kreeti Technologies Pvt. Ltd. All rights reserved. </p>
+<p class="copy"><%= t('.footer') %></p>
