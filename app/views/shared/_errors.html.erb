@@ -3,7 +3,7 @@
     <div class="panel-heading">
       <h2 class="panel-title">
         <%= pluralize(obj.errors.count, "error") %>
-        prohibited this form from being saved:
+        <%= t('.error_message') %>
       </h2>
       <div class="panel-body">
         <ul>
