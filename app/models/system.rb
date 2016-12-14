@@ -20,7 +20,7 @@ class System < ApplicationRecord
   end
 
   def associable_items
-    Item.available.unattached.to_a.concat(items)
+    Item.not_erased.active.available.unattached.to_a.concat(items)
   end
 
   def employee
