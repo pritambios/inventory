@@ -1,4 +1,4 @@
-class CreateSystemHistories < ActiveRecord::Migration[5.0]
+class CreateSystemHistories < ActiveRecord::Migration
   def change
     create_table :system_histories do |t|
       t.belongs_to :system, null: false

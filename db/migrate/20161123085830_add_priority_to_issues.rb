@@ -1,4 +1,4 @@
-class AddPriorityToIssues < ActiveRecord::Migration[5.0]
+class AddPriorityToIssues < ActiveRecord::Migration
   def change
     add_column :issues, :priority, :integer
   end

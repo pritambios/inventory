@@ -1,4 +1,4 @@
-class VendorAddressMandatroy < ActiveRecord::Migration[5.0]
+class VendorAddressMandatroy < ActiveRecord::Migration
   def up
     change_column :vendors, :address, :string, null: false
   end

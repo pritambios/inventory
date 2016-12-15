@@ -1,4 +1,4 @@
-class CreateSystem < ActiveRecord::Migration[5.0]
+class CreateSystem < ActiveRecord::Migration
   def change
     create_table :systems do |t|
      t.belongs_to :employee

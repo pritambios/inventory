@@ -1,4 +1,4 @@
-class ChangeUser < ActiveRecord::Migration[5.0]
+class ChangeUser < ActiveRecord::Migration
   def up
     change_column :users, :first_name, :string, null: true
     change_column :users, :access_token, :string, null: true

@@ -18,7 +18,7 @@ class ItemsController < ApplicationController
       @item.save
     else
       if @item.save
-        redirect_back(fallback_location: root_path, flash: { success: t('create') })
+        redirect_to :back, flash: { success: t('create') }
       else
         render 'new'
       end
@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
       @item.update_attributes(item_params)
     else
       if @item.update_attributes(item_params)
-        redirect_back(fallback_location: root_path, flash: { success: t('update') })
+        redirect_to :back, flash: { success: t('update') }
       else
         render 'edit'
       end
@@ -45,7 +45,7 @@ class ItemsController < ApplicationController
 
   def reallocate
     @item.reallocate(reallocate_employee_params["employee_id"])
-    redirect_back(fallback_location: root_path, flash: { success: t('reallocate') })
+    redirect_to :back, flash: { success: t('reallocate') }
   end
 
   def destroy

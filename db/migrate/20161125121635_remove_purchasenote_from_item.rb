@@ -1,4 +1,4 @@
-class RemovePurchasenoteFromItem < ActiveRecord::Migration[5.0]
+class RemovePurchasenoteFromItem < ActiveRecord::Migration
   def change
     remove_column :items, :purchase_note
   end

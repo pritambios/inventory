@@ -1,8 +1,7 @@
-class Checkout < ApplicationRecord
+class Checkout < ActiveRecord::Base
   belongs_to :item
 
-  validates :checkout, presence: true
-  validates :reason, presence: true
+  validates :item, :checkout, :reason, presence: true
   validate  :checkout_limitation
 
   scope :order_desending, -> { order('created_at DESC') }

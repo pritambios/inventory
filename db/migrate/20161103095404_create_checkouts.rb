@@ -1,4 +1,4 @@
-class CreateCheckouts < ActiveRecord::Migration[5.0]
+class CreateCheckouts < ActiveRecord::Migration
   def change
     create_table :checkouts do |t|
       t.belongs_to :employee, foreign_key: true

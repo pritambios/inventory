@@ -1,4 +1,4 @@
-class AddForeignKey < ActiveRecord::Migration[5.0]
+class AddForeignKey < ActiveRecord::Migration
   def change
     add_foreign_key :items, :employees
     add_foreign_key :items, :systems

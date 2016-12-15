@@ -1,4 +1,4 @@
-class Item < ApplicationRecord
+class Item < ActiveRecord::Base
   around_save :update_item_history
 
   has_many :checkouts
@@ -6,11 +6,12 @@ class Item < ApplicationRecord
   has_many :issues
   has_many :item_histories
 
-  belongs_to :brand, optional: true
+  belongs_to :brand
   belongs_to :category
-  belongs_to :system, optional: true
-  belongs_to :vendor, optional: true
+  belongs_to :system
+  belongs_to :vendor
 
+  validates :category, presence: true
   validates :serial_number, presence: true, length: { minimum: 3, maximum: 50 }
 
   accepts_nested_attributes_for :documents, reject_if: lambda { |doc| doc[:attachment].blank? }, allow_destroy: true

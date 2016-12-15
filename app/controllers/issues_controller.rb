@@ -27,7 +27,7 @@ class IssuesController < ApplicationController
       @issue.save
     else
       if @issue.save
-        redirect_back(fallback_location: root_path, flash: { success: t('create') })
+        redirect_to :back, flash: { success: t('create') }
       else
         render 'new'
       end
@@ -39,7 +39,7 @@ class IssuesController < ApplicationController
       @issue.update_attributes(issue_params)
     else
       if @issue.update_attributes(issue_params)
-        redirect_back(fallback_location: root_path, flash: { success: t('update') })
+        redirect_to :back, flash: { success: t('update') }
       else
         render 'edit'
       end
@@ -48,10 +48,18 @@ class IssuesController < ApplicationController
 
   def set_resolution
     @issue.update_attribute(:resolution_id, params[:resolution_id])
+
+    if request.xhr?
+      render nothing: true
+    end
   end
 
   def set_priority
     @issue.update_attribute(:priority, params[:priority])
+
+    if request.xhr?
+      render nothing: true
+    end
   end
 
   def close_issue

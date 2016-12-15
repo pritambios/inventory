@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
       @category.save
     else
       if @category.save
-        redirect_back(fallback_location: root_path, flash: { success: t('create') })
+        redirect_to :back, flash: { success: t('create') }
       else
         render 'new'
       end
@@ -28,7 +28,7 @@ class CategoriesController < ApplicationController
       @category.update_attributes(category_params)
     else
       if @category.update_attributes(category_params)
-        redirect_back(fallback_location: root_path, flash: { success: t('update') })
+        redirect_to :back, flash: { success: t('update') }
       else
         render 'edit'
       end

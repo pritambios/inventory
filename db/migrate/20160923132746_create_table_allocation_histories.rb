@@ -1,4 +1,4 @@
-class CreateTableAllocationHistories < ActiveRecord::Migration[5.0]
+class CreateTableAllocationHistories < ActiveRecord::Migration
   def up
     create_table :allocation_histories do |t|
       t.references :item

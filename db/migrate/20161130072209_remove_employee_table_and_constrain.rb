@@ -1,4 +1,4 @@
-class RemoveEmployeeTableAndConstrain < ActiveRecord::Migration[5.0]
+class RemoveEmployeeTableAndConstrain < ActiveRecord::Migration
   def up
     remove_foreign_key :items, :employees
     remove_reference :items, :employee, index: true

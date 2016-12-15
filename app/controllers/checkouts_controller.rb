@@ -12,7 +12,7 @@ class CheckoutsController < ApplicationController
       @checkout.save
     else
       if @checkout.save
-        redirect_back(fallback_location: root_path, flash: { success: t('create') })
+        redirect_to :back, flash: { success: t('create') }
       else
         render 'new'
       end
@@ -24,7 +24,7 @@ class CheckoutsController < ApplicationController
       @checkout.update_attributes(checkout_params)
     else
       if @checkout.update_attributes(checkout_params)
-        redirect_back(fallback_location: root_path, flash: { success: t('update') })
+        redirect_to :back, flash: { success: t('update') }
       else
         render 'edit'
       end

@@ -16,7 +16,7 @@ class UsersController < ApplicationController
       @user.save
     else
       if @user.save
-        redirect_back(fallback_location: root_path, flash: { success: t('create') })
+        redirect_to :back, flash: { success: t('create') }
       else
         render 'new'
       end
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
       @user.update_attributes(user_params)
     else
       if @user.update_attributes(user_params)
-        redirect_back(fallback_location: root_path, flash: { success: t('update') })
+        redirect_to :back, flash: { success: t('update') }
       else
         render 'edit'
       end

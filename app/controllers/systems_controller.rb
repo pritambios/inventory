@@ -16,7 +16,7 @@ class SystemsController < ApplicationController
       @system.save
     else
       if @system.save
-        redirect_back(fallback_location: root_path, flash: { success: t('create') })
+        redirect_to :back, flash: { success: t('create') }
       else
         render 'new'
       end
@@ -34,7 +34,7 @@ class SystemsController < ApplicationController
       @system.update_attributes(system_params)
     else
       if @system.update_attributes(system_params)
-        redirect_back(fallback_location: root_path, flash: { success: t('update') })
+        redirect_to :back, flash: { success: t('update') }
       else
         render 'edit'
       end

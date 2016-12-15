@@ -1,4 +1,4 @@
-class Resolution < ApplicationRecord
+class Resolution < ActiveRecord::Base
   has_many :issues
 
   validates :name, presence: true

@@ -1,4 +1,4 @@
-class AddSoftDeleteItem < ActiveRecord::Migration[5.0]
+class AddSoftDeleteItem < ActiveRecord::Migration
   def change
     add_column :items, :discarded_at, :date
   end
