@@ -1,4 +1,4 @@
-class CreateItemHistories < ActiveRecord::Migration[5.0]
+class CreateItemHistories < ActiveRecord::Migration
   def change
     create_table :item_histories do |t|
       t.belongs_to :item, null: false

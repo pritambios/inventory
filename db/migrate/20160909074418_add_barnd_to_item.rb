@@ -1,4 +1,4 @@
-class AddBarndToItem < ActiveRecord::Migration[5.0]
+class AddBarndToItem < ActiveRecord::Migration
   def change
       add_column :items, :brand_id, :integer
   end

@@ -1,4 +1,4 @@
-class UpdateUsers < ActiveRecord::Migration[5.0]
+class UpdateUsers < ActiveRecord::Migration
   def change
     remove_column :users, :encrypted_password, :string
     remove_column :users, :reset_password_token, :string

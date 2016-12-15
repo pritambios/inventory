@@ -1,4 +1,4 @@
-class ChangeItemColumns < ActiveRecord::Migration[5.0]
+class ChangeItemColumns < ActiveRecord::Migration
   def up
     remove_foreign_key :items, :users
     remove_column :items, :user_id

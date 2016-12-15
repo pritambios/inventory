@@ -1,9 +1,9 @@
-class Issue < ApplicationRecord
+class Issue < ActiveRecord::Base
   enum priority: [:high, :medium, :low, :as_soon_as_possible]
 
-  belongs_to :item, optional: true
-  belongs_to :resolution, optional: true
-  belongs_to :system, optional: true
+  belongs_to :item
+  belongs_to :resolution
+  belongs_to :system
 
   validates :title, presence: true
   validate  :item_or_system_presence

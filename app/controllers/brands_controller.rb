@@ -16,7 +16,7 @@ class BrandsController < ApplicationController
       @brand.save
     else
       if @brand.save
-        redirect_back(fallback_location: root_path, flash: { success: t('create') })
+        redirect_to :back, flash: { success: t('create') }
       else
         render 'new'
       end
@@ -28,7 +28,7 @@ class BrandsController < ApplicationController
       @brand.update_attributes(brand_params)
     else
       if @brand.update_attributes(brand_params)
-        redirect_back(fallback_location: root_path, flash: { success: t('update') })
+        redirect_to :back, flash: { success: t('update') }
       else
         render 'edit'
       end

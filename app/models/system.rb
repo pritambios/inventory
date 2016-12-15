@@ -1,4 +1,4 @@
-class System < ApplicationRecord
+class System < ActiveRecord::Base
   after_save :assign_items_to_employee
   around_save :update_system_history
 

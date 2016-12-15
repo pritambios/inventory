@@ -1,4 +1,4 @@
-class RemoveConstraintFromItem < ActiveRecord::Migration[5.0]
+class RemoveConstraintFromItem < ActiveRecord::Migration
   def up
     change_column :items, :model_number, :string, null: true
     change_column :items, :purchase_from, :string, null: true

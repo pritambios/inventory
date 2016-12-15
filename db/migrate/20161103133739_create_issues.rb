@@ -1,4 +1,4 @@
-class CreateIssues < ActiveRecord::Migration[5.0]
+class CreateIssues < ActiveRecord::Migration
   def change
     create_table :issues do |t|
       t.belongs_to :item, foreign_key: true

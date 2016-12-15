@@ -18,7 +18,7 @@ en:
       placeholder:
         select_category: "Select"
         serial_number: "Serial Number"
-        select_brand: "Brand"
+        select_brand: "Select"
         model_number: "Model Number"
         select_vendor: "Select Vendor"
         select_system: "Select"
@@ -68,7 +68,7 @@ en:
       edit:
         popup:
           title: "Item"
-      issue:
+      item_issue:
         popup:
           title: "Create Issue"
       delete_confirm_message: "Are you sure?"

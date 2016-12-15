@@ -1,4 +1,4 @@
-class AddDeletedAtToItem < ActiveRecord::Migration[5.0]
+class AddDeletedAtToItem < ActiveRecord::Migration
   def change
     add_column :items, :deleted_at, :date
   end
