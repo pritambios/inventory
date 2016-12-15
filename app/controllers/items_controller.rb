@@ -49,12 +49,12 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item.update_attributes(working: false, deleted_at: Time.now)
+    @item.update_attributes(system_id: nil, working: false, deleted_at: Time.now, employee_id: nil)
     redirect_to items_path, flash: { success: t('destroy.success') }
   end
 
   def discard
-    @item.update_attributes(working: false, discarded_at: Time.now)
+    @item.update_attributes(system_id: nil, working: false, discarded_at: Time.now, employee_id: nil)
     redirect_to items_path, flash: { success: t('discard') }
   end
 
