@@ -10,3 +10,11 @@ set :log_level, :info
 
 set :linked_files, %w{config/database.yml config/secrets.yml config/puma.rb}
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets tmp/puma public/system}
+
+namespace :deploy do
+  after :publishing, :restart do
+    on roles(:web), in: :groups, limit: 3, wait: 10 do
+      execute :sudo, :systemctl, "restart payroll"
+    end
+  end
+end
