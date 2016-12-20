@@ -84,4 +84,16 @@ Rails.application.configure do
   config.rest_api_url        = 'http://payroll.kreeti.com/api/'
   config.rest_api_auth_token = Rails.application.secrets["api_auth_token"]
   config.company_id          = Rails.application.secrets["company_id"]
+
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+    email: {
+      deliver_with: :deliver, # Rails >= 4.2.1 do not need this option since it defaults to :deliver_now
+      email_prefix: "[Inventory Error] ",
+      sender_address: %{"notifier" <info@kreeti.com>},
+      exception_recipients: %w{ssinghi@kreeti.com nbanerjee@kreeti.com aroy@kreeti.com}
+    }
+
+  config.action_mailer.delivery_method = :amazon_ses
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
 end
