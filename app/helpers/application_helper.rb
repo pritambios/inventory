@@ -1,15 +1,15 @@
 module ApplicationHelper
   def back_link
-    link_to ('<i class="fa fa-arrow-left"></i> Back').html_safe, :back
+    link_to ("<i class='fa fa-arrow-left'></i> #{ t('button.back') }").html_safe, :back
   end
 
   def delete_link(path)
-     link_to ('<i class="fa fa-trash" title="Delete Details"></i> Delete').html_safe, path, method: :delete,
-                data: { confirm: "Are you sure?" }, class: 'btn btn-danger btn-sm'
+     link_to ("<i class='fa fa-trash' title=t('button_delete_title')></i> #{ t('button.delete.name') }").html_safe, path, method: :delete,
+                data: { confirm: t('button.delete.confirm_message') }, class: 'btn btn-danger btn-sm'
   end
 
-  def edit_link(path, title = "Details")
-    link_to ('<i class="fa fa-edit" title="Edit Details"></i> Edit').html_safe, path, data: { remote_popup: true, title: "Edit #{title}" }, class: 'link-edit'
+  def edit_link(path, title = t('button.edit.title'))
+    link_to ("<i class='fa fa-edit' title=t('button.edit.button_title')></i> #{ t('button.edit.name') }").html_safe, path, data: { remote_popup: true, title: "#{ t('button.edit.popup_title') } #{title}" }, class: 'link-edit'
   end
 
   def flash_message_type(message_type)

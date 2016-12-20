@@ -9,3 +9,15 @@ en:
     checkin: "Checkin"
     close: "Close"
     new: "New"
+    back: "Back"
+    delete:
+      name: "Delete"
+      title: "Delete Details"
+      confirm_message: "Are you sure?"
+    edit:
+      name: "Edit"
+      title: "Details"
+      button_title: "Edit Details"
+      popup_title: "Edit"
+    reallocate_deallocate: "Reallocate / Deallocate"
+    item_allocate: "Allocate"
