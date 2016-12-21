@@ -10,7 +10,7 @@
   <% end %>
 
   <% if @issue.item.present? %>
-    <p><span><%= t('.item') %> </span><%= link_to name_with_id(@issue.item), item_path(@issue.item) %></p>
+    <p><span><%= t('.item') %> </span><%= link_to @issue.item.name_with_id, item_path(@issue.item) %></p>
   <% end %>
 
   <% if @issue.description.present? %>
