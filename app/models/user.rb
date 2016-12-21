@@ -9,8 +9,7 @@ class User < ActiveRecord::Base
   scope :order_by_name, -> { order('first_name') }
 
   def full_name
-    return "#{first_name} #{last_name}".strip if(first_name || last_name)
-    "Anonymous"
+    "#{first_name} #{last_name}".squish
   end
 
   def self.find_and_update_from_auth(auth)
