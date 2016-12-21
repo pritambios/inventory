@@ -5,7 +5,7 @@
 <div class="form-group row">
   <div class="col-sm-4"><%= f.label :items, t('.title.item') %></div>
   <div class="col-sm-8">
-    <%= f.select :item_id, options_for_select(Item.not_erased.active.map{ |i| [name_with_id(i), i.id, { 'data-purchase-on': i.purchase_on }] }, selected: params[:item_id]), { include_blank: t('.placeholder.select') }, class: 'form-control' %>
+    <%= f.select :item_id, options_for_select(Item.not_erased.active.map{ |i| [i.name_with_id, i.id, { 'data-purchase-on': i.purchase_on }] }, selected: params[:item_id]), { include_blank: t('.placeholder.select') }, class: 'form-control' %>
   </div>
 </div>
 <div class="form-group row">

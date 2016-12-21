@@ -2,7 +2,7 @@
   <%= link_to t('button.new'), new_issue_path(item_id: @item), data: { remote_popup: true, title: t('.add.popup.title') }, class: "btn btn-primary pull-right" %>
   <h3>
     <% if params[:item_id].present? %>
-      <%= t('.item') %> <%= name_with_id(@item) %>
+      <%= t('.item') %> <%= @item.name_with_id %>
     <% else %>
       <%= t('.heading') %>
     <% end %>
@@ -25,7 +25,7 @@
         <td><%= link_to issue.id, issue_path(issue) %></td>
         <td><%= link_to issue.title, issue_path(issue) %></td>
         <td><%= link_to issue.system.name, system_path(issue.system) if issue.system %></td>
-        <td><%= link_to name_with_id(issue.item), item_path(issue.item) if issue.item %></td>
+        <td><%= link_to issue.item.name_with_id, item_path(issue.item) if issue.item %></td>
         <td><%= issue.resolution.try(:name) %></td>
         <td>
           <%= select_tag :priority, options_for_select(Issue.priorities.map{|key, value| [key.humanize, key]}, selected: issue.priority), prompt: t('.table.td.placeholder.select') , data: { remote: true, url: set_priority_issue_path(issue), method: :put }, class: 'select-option' %>

@@ -12,8 +12,4 @@ module ItemsHelper
 
     value
   end
-
-  def name_with_id(item)
-    "#{item.name} #{item.id}"
-  end
 end

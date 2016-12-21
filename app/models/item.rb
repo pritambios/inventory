@@ -31,6 +31,10 @@ class Item < ActiveRecord::Base
     "#{brand.try(:name)} #{category.name}"
   end
 
+  def name_with_id
+    "#{name} #{id}"
+  end
+
   def pending_checkout
     checkouts.pending.order_desending.first
   end
