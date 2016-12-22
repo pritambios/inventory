@@ -3,6 +3,10 @@ $(function() {
   $('.datepicker').datetimepicker({ format: 'DD/MM/YYYY' });
 });
 
+$(document).on('change', '.brand-dropdown,.category-dropdown', function() {
+  $(this).parent().submit();
+});
+
 $(document).on('change', "#checkout_item_id", function() {
   var selected = $(this).find('option:selected');
   $('#checkout_checkout').data('DateTimePicker').minDate(moment(selected.data('purchase-on'), 'YYYY MM DD'));
