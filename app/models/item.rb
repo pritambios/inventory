@@ -14,7 +14,7 @@ class Item < ActiveRecord::Base
   validates :category, presence: true
   validates :serial_number, presence: true, length: { minimum: 3, maximum: 50 }
 
-  accepts_nested_attributes_for :documents, reject_if: lambda { |doc| doc[:attachment].blank? }, allow_destroy: true
+  accepts_nested_attributes_for :documents, reject_if: :all_blank, allow_destroy: true
 
   scope :active,          -> { where(discarded_at: nil) }
   scope :available,       -> { where.not(id: unavailable) }

@@ -1,5 +1,6 @@
 <div class="center-block form-container">
   <%= form_for @item, class: "form-horizontal", remote: true, authenticity_token: true do |f| %>
+    <%= render 'shared/errors', obj: @item %>
     <%= render 'form', f: f %>
     <div class="text-right">
       <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('button.cancel') %></button>
