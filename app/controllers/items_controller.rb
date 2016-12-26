@@ -4,6 +4,8 @@ class ItemsController < ApplicationController
   def index
     @items = Item.includes(:brand, :category, :issues, :checkouts)
     @items = @items.not_erased.active
+    @items = @items.where(category_id: params[:category]) if params[:category].present?
+    @items = @items.where(brand_id: params[:brand]) if params[:brand].present?
     @items = @items.paginate(page: params[:page])
   end
 
