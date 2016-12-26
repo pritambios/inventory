@@ -11,6 +11,7 @@
       <th><%= t('.table.th.serial_number') %></th>
       <th><%= t('.table.th.issue') %></th>
       <th><%= t('.table.th.checkout') %></th>
+      <th><%= t('.table.th.employee') %></th>
       <th><%= t('.table.th.status') %></th>
       <th></th>
       <th></th>
@@ -40,6 +41,13 @@
               <%= link_to t('.table.td.checkouts'), checkouts_path(item_id: item.id) %>
             <% end %>
           <% end %>
+        </td>
+        <td>
+          <%  if item.employee.present? %>
+            <%= link_to item.employee.name, employee_path(item.employee_id) %>
+          <% else %>
+             <%= t('.table.td.unallocated') %> 
+          <% end %>  
         </td>
         <td>
           <%= item.working? ? t('.table.td.working') : t('.table.td.non_working') %>
