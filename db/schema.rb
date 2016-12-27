@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 20161227061601) do
     t.date     "discarded_at"
     t.integer  "employee_id",         limit: 4
     t.date     "deleted_at"
+    t.text     "note",                limit: 65535
   end
 
   add_index "items", ["brand_id"], name: "fk_rails_36708b3aa6", using: :btree

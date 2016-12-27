@@ -50,6 +50,13 @@
       <% end %>
     </p>
 
+    <p>
+      <% if @item.note.present? %>
+        <span><%= t('.note') %></span>
+        <%= @item.note %>
+      <% end %>
+    </p>  
+
     <% if @item.documents.present? %>
       <p><%= t('.attachments') %>
         <ul class="list-group">

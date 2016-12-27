@@ -1,20 +1,20 @@
 <div class="page-header">
   <div class= "row">
-    <h3 class="col-sm-6">
+    <h3 class="col-sm-4 col-md-6">
       <%= t('.heading') %>
     </h3>
-    <div class="col-sm-4 page-heading">
+    <div class="col-sm-6 col-md-4 page-heading">
       <%= form_tag items_path, { method: :get, class: "form-inline"} do %>
         <%= select_tag :category, options_from_collection_for_select(Category.active, :id, :name, { selected: params[:category]} ), prompt: "Select Category", class: "category-dropdown form-control search" %>
         <%= select_tag :brand, options_from_collection_for_select(Brand.all, :id, :name, { selected: params[:brand]} ), prompt: "Select Brand", class: "brand-dropdown form-control" %>
       <% end %>
     </div>
-    <div class="col-sm-2  page-heading link-right">
+    <div class="col-sm-2 col-md-2 page-heading link-right">
       <%= link_to t('button.add'), new_item_path, data: { remote_popup: true, title: t('.add.popup.title') },  class: "btn btn-primary pull-right" %>
     </div>
   </div>
 </div>
-<div class="table-responsive">
+<div class="table-responsive item-index-responsive">
   <table class="table table-striped item-index">
     <tr>
       <th><%= t('.table.th.id') %></th>

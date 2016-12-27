@@ -338,13 +338,17 @@ section.other-info .icon-show {
     word-break: break-all;
   }
 
-  & td:nth-child(8) {
+  & td:nth-child(9) {
     width: 12%;
   }
 
   & td:last-child {
     text-align: right;
   }
+}
+
+.item-index>thead>tr>th, .item-index>thead>tr>td, .item-index>tbody>tr>th, .item-index>tbody>tr>td, .item-index>tfoot>tr>th, .item-index>tfoot>tr>td {
+  padding: 8px 4px;
 }
 
 .page-heading {
@@ -380,11 +384,29 @@ section.other-info .icon-show {
   p.copy {
     font-size: 12px;
   }
+
+  .item-index-responsive {
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 100%;
+    margin-bottom: 15px;                  
+  }
+
+  .btn-allocate {
+    white-space: normal;
+    width: 86px;
+    word-wrap: break-word;
+  }
 }
 
 @media (min-width: 992px) {
   .top-links {
     width: 55%;
+  }
+
+  .btn-allocate {
+    white-space:nowrap;
+    width: auto;    
   }
 }
 
