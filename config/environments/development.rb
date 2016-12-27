@@ -51,7 +51,7 @@ Rails.application.configure do
   #config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   # RESTfull API config
-  config.rest_api_url        = 'http://192.168.1.20:3001/api/'
+  config.rest_api_url        = Rails.application.secrets["rest_api_url"]
   config.rest_api_auth_token = Rails.application.secrets["api_auth_token"]
   config.company_id          = Rails.application.secrets["company_id"]
 end
