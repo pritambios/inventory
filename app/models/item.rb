@@ -16,7 +16,7 @@ class Item < ActiveRecord::Base
 
   accepts_nested_attributes_for :documents, reject_if: :all_blank, allow_destroy: true
 
-  scope :active,          -> { where(discarded_at: nil) }
+  scope :active,          -> { joins(:category).where(discarded_at: nil, categories: { deleted_at: nil }) }
   scope :available,       -> { where.not(id: unavailable) }
   scope :not_erased,      -> { where(deleted_at: nil) }
   scope :order_desending, -> { order('created_at DESC') }

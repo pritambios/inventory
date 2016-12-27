@@ -1,8 +1,8 @@
 class CategoriesController < ApplicationController
-  before_action :get_category, only: [:edit, :update]
+  before_action :get_category, only: [:edit, :update, :destroy]
 
   def index
-    @categories = Category.order_by_name.paginate(page: params[:page])
+    @categories = Category.active.order_by_name.paginate(page: params[:page])
   end
 
   def new
@@ -39,6 +39,10 @@ class CategoriesController < ApplicationController
     @category_items = @category.items.paginate(page: params[:page], per_page: 5)
   end
 
+  def destroy
+    @category.update_attributes(deleted_at: Time.now)
+    redirect_to categories_path, flash: { success: t('destroy.success') }
+  end
   private
 
   def get_category

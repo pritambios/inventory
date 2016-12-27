@@ -13,7 +13,10 @@
       <tr>
         <td><%= category.id %></td>
         <td><%= category.name %></td>
-        <td><%= edit_link(edit_category_path(category), t('.edit.popup.title')) %></td>
+        <td>
+          <%= edit_link(edit_category_path(category), t('.edit.popup.title')) %>
+          <%= delete_link(category_path(category)) %>
+        </td>
       </tr>
     <% end %>
   </table>
