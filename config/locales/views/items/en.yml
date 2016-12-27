@@ -40,7 +40,8 @@ en:
           serial_number: "Serial Number"
           issue: "Issue"
           checkout: "Checkout"
-          status: "Checkout"
+          employee: "Employee"
+          status: "Status"
         td:
           unclosed: unclosed
           closed: "closed"
