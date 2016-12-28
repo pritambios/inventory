@@ -14,7 +14,7 @@ set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets tmp/puma public/system}
 namespace :deploy do
   after :publishing, :restart do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
-      execute :sudo, :systemctl, "restart payroll"
+      execute :sudo, :systemctl, "restart inventory"
     end
   end
 end
