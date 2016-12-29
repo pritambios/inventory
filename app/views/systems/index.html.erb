@@ -22,7 +22,7 @@
         <td><%= system.working ? t('.table.td.working') : t('.table.td.not_working') %></td>
         <td>
           <% if system.employee.present? %>
-            <%= link_to system.employee.try(:name), employee_path(system.employee_id) %>
+            <%= link_to system.employee.name, employee_path(system.employee_id) %>
           <% else %>
             <%= t('.table.td.unassigned') %>
           <% end %>

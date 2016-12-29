@@ -3,9 +3,23 @@
 </div>
 <div class="row">
   <section class="col-xs-12 col-sm-5 main-info">
-    <h3 class="table-heading"><%= @employee.try(:name) %></h3>
+    <h3 class="table-heading"><%= @employee.name %></h3>
     <p><span><%= t('.title.id') %> </span><%= @employee.id %></p>
-    <p><span><%= t('.title.name') %> </span><%= @employee.try(:name) %></p>
+
+    <% if @employee.email.present? %>
+      <p><span><%= t('.title.email') %> </span><%= @employee.email %></p>
+    <% end %>
+ 
+    <p><span><%= t('.title.status') %> </span><%= @employee.active? ? t('.active') : t('.inactive') %></p>
+
+    <% if @employee.external_id.present? %>
+      <p><span><%= t('.title.external_id') %> </span><%= @employee.external_id %></p>
+    <% end %>
+                               
+    <% unless @employee.external_id? %>
+      <%= edit_link(edit_employee_path(@employee), t('.edit.popup.title')) %>
+      <%= delete_link(employee_path(@employee)) %>
+    <% end %>  
   </section>
   <section class="col-xs-12 col-sm-7 other-info">
     <h3><%= t('.item_history.heading') %> (<%= @items.count %>)</h3>

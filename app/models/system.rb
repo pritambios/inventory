@@ -6,6 +6,8 @@ class System < ActiveRecord::Base
   has_many :items
   has_many :system_histories
 
+  belongs_to :employee
+
   validates :assembled_on, presence: true
 
   scope :order_desending, -> { order('created_at DESC') }
@@ -21,10 +23,6 @@ class System < ActiveRecord::Base
 
   def associable_items
     Item.not_erased.active.available.unattached.to_a.concat(items)
-  end
-
-  def employee
-    Employee.find(employee_id, { company_id: Rails.application.config.company_id }) if employee_id.present?
   end
 
   def item_ids=(arg)

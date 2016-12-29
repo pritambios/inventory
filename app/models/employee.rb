@@ -1,25 +1,12 @@
-class Employee
-  include Her::Model
+class Employee < ActiveRecord::Base
+  has_many :items, dependent: :nullify
+  has_many :item_histories, dependent: :nullify
+  has_many :systems, dependent: :nullify
+  has_many :system_histories, dependent: :nullify
+  has_many :checkouts, dependent: :nullify
 
-  scope :company_employees, -> { where(company_id: Rails.application.config.company_id).all }
+  validates :name, presence: true
+  validates :email, uniqueness: { case_sensitive: false }, format: { with: User::VALID_EMAIL_REGEX }, allow_blank: true
 
-  def checkouts
-    Checkout.where(employee_id: id)
-  end
-
-  def items
-    Item.where(employee_id: id)
-  end
-
-  def item_histories
-    ItemHistory.where(employee_id: id)
-  end
-
-  def systems
-    System.where(employee_id: id)
-  end
-
-  def system_histories
-    SystemHistory.where(employee_id: id)
-  end
+  scope :order_by_name, -> { order('name') }
 end

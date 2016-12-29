@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :documents, only: [:destroy]
-  resources :employees, only: [:index, :show]
+  resources :employees
 
   resources :issues, except: [:destroy] do
     member do
