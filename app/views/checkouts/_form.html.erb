@@ -1,6 +1,6 @@
 <div class="form-group row">
   <div class="col-sm-4"><%= f.label :item_id , t('.title.item'), class: 'required' %></div>
-  <div class="col-sm-8"><%= f.select :item_id, options_for_select(Item.not_erased.active.available.sort_by(&:name).map{ |i| [i.name_with_id, i.id, { 'data-purchase-on': i.purchase_on }] }), { prompt: t('.placeholder.select_item') }, class: 'form-control' %></div>
+  <div class="col-sm-8"><%= f.select :item_id, options_for_select(Item.not_erased.active.available.sort_by(&:name).map{ |i| [i.name_with_id, i.id, { 'data-purchase-on' => i.purchase_on }] }), { prompt: t('.placeholder.select_item') }, class: 'form-control' %></div>
 </div>
 <div class="form-group row">
   <div class="col-sm-4"><%= f.label :checkout , t('.title.checkout'), class: 'required' %></div>
