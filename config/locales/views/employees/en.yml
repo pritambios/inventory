@@ -37,6 +37,7 @@ en:
             serial_number: "Serial Number"
             category: "Category"
             brand: "Brand"
+            id: "Id"
       system_history:
         heading: "Alloted Systems"
         table:
