@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20161229111108) do
     t.integer  "employee_id", limit: 4
   end
 
+  add_index "checkouts", ["employee_id"], name: "index_checkouts_on_employee_id", using: :btree
   add_index "checkouts", ["item_id"], name: "fk_rails_4c37c40778", using: :btree
 
   create_table "documents", force: :cascade do |t|
@@ -54,6 +55,15 @@ ActiveRecord::Schema.define(version: 20161229111108) do
   end
 
   add_index "documents", ["item_id"], name: "fk_rails_9fa64cfbd0", using: :btree
+
+  create_table "employees", force: :cascade do |t|
+    t.string   "name",        limit: 255,                null: false
+    t.string   "email",       limit: 255
+    t.boolean  "active",                  default: true
+    t.integer  "external_id", limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "issues", force: :cascade do |t|
     t.integer  "item_id",       limit: 4
@@ -82,6 +92,7 @@ ActiveRecord::Schema.define(version: 20161229111108) do
     t.integer  "employee_id", limit: 4
   end
 
+  add_index "item_histories", ["employee_id"], name: "index_item_histories_on_employee_id", using: :btree
   add_index "item_histories", ["item_id"], name: "fk_rails_8474d7045a", using: :btree
   add_index "item_histories", ["system_id"], name: "fk_rails_d3de93f21e", using: :btree
 
@@ -98,13 +109,14 @@ ActiveRecord::Schema.define(version: 20161229111108) do
     t.date     "warranty_expires_on"
     t.integer  "vendor_id",           limit: 4
     t.date     "discarded_at"
-    t.integer  "employee_id",         limit: 4
     t.date     "deleted_at"
     t.text     "note",                limit: 65535
+    t.integer  "employee_id",         limit: 4
   end
 
   add_index "items", ["brand_id"], name: "fk_rails_36708b3aa6", using: :btree
   add_index "items", ["category_id"], name: "fk_rails_89fb86dc8b", using: :btree
+  add_index "items", ["employee_id"], name: "index_items_on_employee_id", using: :btree
   add_index "items", ["system_id"], name: "index_items_on_system_id", using: :btree
   add_index "items", ["vendor_id"], name: "fk_rails_e1bcf5469c", using: :btree
 
@@ -123,6 +135,7 @@ ActiveRecord::Schema.define(version: 20161229111108) do
     t.integer  "employee_id", limit: 4
   end
 
+  add_index "system_histories", ["employee_id"], name: "index_system_histories_on_employee_id", using: :btree
   add_index "system_histories", ["system_id"], name: "fk_rails_ccba30084c", using: :btree
 
   create_table "systems", force: :cascade do |t|
@@ -134,6 +147,8 @@ ActiveRecord::Schema.define(version: 20161229111108) do
     t.datetime "updated_at"
     t.integer  "employee_id",  limit: 4
   end
+
+  add_index "systems", ["employee_id"], name: "index_systems_on_employee_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",        limit: 255, null: false
@@ -158,16 +173,21 @@ ActiveRecord::Schema.define(version: 20161229111108) do
     t.datetime "updated_at"
   end
 
+  add_foreign_key "checkouts", "employees"
   add_foreign_key "checkouts", "items"
   add_foreign_key "documents", "items"
   add_foreign_key "issues", "items"
   add_foreign_key "issues", "resolutions"
   add_foreign_key "issues", "systems"
+  add_foreign_key "item_histories", "employees"
   add_foreign_key "item_histories", "items"
   add_foreign_key "item_histories", "systems"
   add_foreign_key "items", "brands"
   add_foreign_key "items", "categories"
+  add_foreign_key "items", "employees"
   add_foreign_key "items", "systems"
   add_foreign_key "items", "vendors"
+  add_foreign_key "system_histories", "employees"
   add_foreign_key "system_histories", "systems"
+  add_foreign_key "systems", "employees"
 end

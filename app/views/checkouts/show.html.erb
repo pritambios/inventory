@@ -6,7 +6,7 @@
    <p><span><%= t('.id') %> </span><%= @checkout.id %></p>
 
   <% if @checkout.employee.present? %>
-    <p><span><%= t('.employee') %> </span><%= link_to @checkout.employee.try(:name), employee_path(@checkout.employee_id) %></p>
+    <p><span><%= t('.employee') %> </span><%= link_to @checkout.employee.name, employee_path(@checkout.employee_id) %></p>
   <% end %>
 
   <p><span><%= t('.checkout')%> </span><%= format_date(@checkout.checkout) %></p>

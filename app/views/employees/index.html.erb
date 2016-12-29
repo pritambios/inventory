@@ -1,17 +1,30 @@
 <div class="page-header">
+  <%= link_to t('button.add'), new_employee_path, data: { remote_popup: true, title: t('.add.popup.title') }, class: "btn btn-primary pull-right" %>
   <h3><%= t('.heading') %></h3>
 </div>
 <div class="table-responsive">
-  <table class="table table-striped">
+  <table class="table table-striped table-last">
     <tr>
       <th><%= t('.table.th.id') %></th>
       <th><%= t('.table.th.name') %></th>
+      <th><%= t('.table.th.email') %></th>
+      <th><%= t('.table.th.status') %></th>
+      <th></th>
     </tr>
     <% @employees.each do |employee| %>
       <tr>
         <td><%= link_to employee.id, employee_path(employee) %></td>
         <td><%= link_to employee.name, employee_path(employee) %></td>
+        <td><%= link_to employee.email, employee_path(employee) if employee.email? %></td>
+        <td><%= employee.active? ? t('.table.td.active') : t('.table.td.inactive') %></td>
+        <td>
+          <% unless employee.external_id? %>
+            <%= edit_link(edit_employee_path(employee), t('.edit.popup.title')) %>
+            <%= delete_link(employee_path(employee))  %>
+          <% end %>  
+        </td>
       </tr>
     <% end %>
   </table>
 </div>
+<%= will_paginate %>

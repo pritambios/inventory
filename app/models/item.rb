@@ -8,6 +8,7 @@ class Item < ActiveRecord::Base
 
   belongs_to :brand
   belongs_to :category
+  belongs_to :employee
   belongs_to :system
   belongs_to :vendor
 
@@ -21,10 +22,6 @@ class Item < ActiveRecord::Base
   scope :order_desending, -> { order('created_at DESC') }
   scope :unattached,      -> { where(system_id: nil, employee_id: nil) }
   scope :unavailable,     -> { joins(:checkouts).where(checkouts: { check_in: nil }) }
-
-  def employee
-    Employee.find(employee_id, { company_id: Rails.application.config.company_id }) if employee_id.present?
-  end
 
   def name
     "#{brand.try(:name)} #{category.name}"
