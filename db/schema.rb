@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161227061601) do
+ActiveRecord::Schema.define(version: 20161229111108) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 20161227061601) do
     t.integer  "category_id",         limit: 4,                  null: false
     t.integer  "brand_id",            limit: 4
     t.integer  "system_id",           limit: 4
-    t.string   "serial_number",       limit: 255,                null: false
+    t.string   "serial_number",       limit: 255
     t.date     "purchase_on"
     t.boolean  "working",                         default: true
     t.date     "warranty_expires_on"

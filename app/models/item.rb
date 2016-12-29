@@ -12,7 +12,6 @@ class Item < ActiveRecord::Base
   belongs_to :vendor
 
   validates :category, presence: true
-  validates :serial_number, presence: true, length: { minimum: 3, maximum: 50 }
 
   accepts_nested_attributes_for :documents, reject_if: :all_blank, allow_destroy: true
 
