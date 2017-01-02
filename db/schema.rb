@@ -100,12 +100,12 @@ ActiveRecord::Schema.define(version: 20161229111108) do
     t.string   "model_number",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "category_id",         limit: 4,                  null: false
+    t.integer  "category_id",         limit: 4,                    null: false
     t.integer  "brand_id",            limit: 4
     t.integer  "system_id",           limit: 4
     t.string   "serial_number",       limit: 255
     t.date     "purchase_on"
-    t.boolean  "working",                         default: true
+    t.boolean  "working",                           default: true
     t.date     "warranty_expires_on"
     t.integer  "vendor_id",           limit: 4
     t.date     "discarded_at"
