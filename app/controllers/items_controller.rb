@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :get_item, only: [:show, :edit, :update, :destroy, :discard, :allocate, :reallocate]
+  before_action :get_item, only: [:show, :edit, :update, :destroy, :discard, :allocate, :reallocate, :discard_reason]
 
   def index
     @items = Item.includes(:brand, :category, :issues, :checkouts)
@@ -39,6 +39,11 @@ class ItemsController < ApplicationController
     end
   end
 
+  def discard
+    @item.discard(discard_params["discard_reason"])
+    redirect_to items_path, flash: { success: t('discard') }
+  end
+
   def show
     @item_histories = @item.item_histories.order_desending.includes(:system).paginate(page: params[:item_histories_page])
     @checkouts      = @item.checkouts.order_desending.paginate(page: params[:checkouts_page])
@@ -55,11 +60,6 @@ class ItemsController < ApplicationController
     redirect_to items_path, flash: { success: t('destroy.success') }
   end
 
-  def discard
-    @item.update_attributes(system_id: nil, working: false, discarded_at: Time.now, employee_id: nil)
-    redirect_to items_path, flash: { success: t('discard') }
-  end
-
   private
 
   def get_item
@@ -72,5 +72,9 @@ class ItemsController < ApplicationController
 
   def reallocate_employee_params
     params.require(:item).permit(:employee_id)
+  end
+
+   def discard_params
+    params.require(:item).permit(:discard_reason)
   end
 end

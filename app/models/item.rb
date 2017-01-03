@@ -45,6 +45,10 @@ class Item < ActiveRecord::Base
     checkouts.map(&:checkin?).include? false
   end
 
+  def discard(reason)
+    update_attributes(system_id: nil, working: false, discarded_at: Time.now, employee_id: nil, discard_reason: reason)
+  end
+
   private
 
   def update_item_history
