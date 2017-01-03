@@ -1,3 +1,3 @@
-task :fetch => :environment do
+task fetch: :environment do
    FetchExternalEmployee.add_employees
 end
