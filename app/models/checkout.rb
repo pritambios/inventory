@@ -1,4 +1,5 @@
 class Checkout < ActiveRecord::Base
+  belongs_to :employee
   belongs_to :item
 
   validates :item, :checkout, :reason, presence: true
@@ -9,10 +10,6 @@ class Checkout < ActiveRecord::Base
 
   def checkin?
     check_in.present?
-  end
-
-  def employee
-    Employee.find(employee_id, { company_id: Rails.application.config.company_id }) if employee_id.present?
   end
 
   private

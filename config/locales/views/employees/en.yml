@@ -6,10 +6,28 @@ en:
         th:
           id: "Id"
           name: "Name"
+          email: "Email"
+          status: "Working Status"
+        td:
+          active: "Active"
+          inactive: "Inactive"
+      add:
+        popup:
+          title: "Create Employees"
+      edit:
+        popup:
+          title: "Employee"
     show:
       title:
         id: "Id:"
-        name: "Name:"
+        email: "Email:"
+        status: "Working Status:"
+        external_id: "Employee Id:"
+      active: "Active"
+      inactive: "Inactive"
+      edit:
+        popup:
+          title: "Employee"
       item_history:
         heading: "Alloted Items"
         table:
@@ -25,3 +43,13 @@ en:
           th:
             system: "System"
             assembled_on: "Assembled on"
+    form:
+      title:
+        name: "Name:"
+        email: "Email:"
+        active: "Status:"
+        working: "Working:"
+        not_working: "Not Working:"
+      placeholder:
+        name: "Enter Name"
+        email: "Enter Email"
