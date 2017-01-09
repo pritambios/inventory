@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     member do
       get 'allocate'
       put 'reallocate'
+      get 'discard_reason'
       put 'discard'
     end
   end

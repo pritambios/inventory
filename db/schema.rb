@@ -11,8 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170105130318) do
-
+ActiveRecord::Schema.define(version: 20170103094640) do
+  
   create_table "brands", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.datetime "created_at"
@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(version: 20170105130318) do
     t.date     "deleted_at"
     t.text     "note",                limit: 65535
     t.integer  "employee_id",         limit: 4
+    t.string   "discard_reason",      limit: 255
   end
 
   add_index "items", ["brand_id"], name: "fk_rails_36708b3aa6", using: :btree

@@ -21,3 +21,4 @@ en:
       popup_title: "Edit"
     reallocate_deallocate: "Reallocate / Deallocate"
     item_allocate: "Allocate"
+    discard_reason: "Discard reason"

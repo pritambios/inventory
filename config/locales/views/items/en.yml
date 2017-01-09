@@ -69,6 +69,7 @@ en:
       delete_attachment_confirm_message: "Are you sure, you want to delete this attachment?"
       new_issue: "New Issue"
       discard: "Discard"
+      discard_reason_title: "Discard reason"
       edit:
         popup:
           title: "Item"
@@ -106,3 +107,6 @@ en:
     allocate:
       reallocate_to: "Reallocate to:"
       select_employee: "Select Employee"
+    discard:
+      discard_reason: "Discard reason:"
+      submit: "Submit"
