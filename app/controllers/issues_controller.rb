@@ -2,7 +2,7 @@ class IssuesController < ApplicationController
   before_action :get_issue, only: [:edit, :update, :show, :set_resolution, :set_priority, :close, :close_issue]
 
   def index
-    @issues = Issue.includes(:system, :resolution, item: [:brand, :category])
+    @issues = Issue.includes(:resolution, item: [:brand, :category])
 
     if params[:item_id].present?
       @item = Item.find(params[:item_id])
@@ -79,7 +79,7 @@ class IssuesController < ApplicationController
   end
 
   def issue_params
-    params.require(:issue).permit(:item_id, :system_id, :title, :description, :note, :priority)
+    params.require(:issue).permit(:item_id, :title, :description, :note, :priority)
   end
 
   def resolution_params

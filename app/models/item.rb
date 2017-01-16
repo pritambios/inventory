@@ -22,7 +22,8 @@ class Item < ActiveRecord::Base
   scope :order_desending, -> { order('created_at DESC') }
   scope :unattached,      -> { where(system_id: nil, employee_id: nil) }
   scope :unavailable,     -> { joins(:checkouts).where(checkouts: { check_in: nil }) }
-  scope :item_parent,     -> { pluck(:parent_id).compact }
+  scope :parent_item,     -> { find(pluck(:parent_id).compact) }
+  scope :other_item,      -> { where(parent_id: nil) }
 
   def name
     "#{brand.try(:name)} #{category.name}"

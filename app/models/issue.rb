@@ -3,7 +3,6 @@ class Issue < ActiveRecord::Base
 
   belongs_to :item
   belongs_to :resolution
-  belongs_to :system
 
   validates :title, presence: true
   validate  :item_or_system_presence
