@@ -9,7 +9,7 @@ class Item < ActiveRecord::Base
   belongs_to :brand
   belongs_to :category
   belongs_to :employee
-  belongs_to :system
+  belongs_to :system, class_name: "Item", foreign_key: "parent_id"
   belongs_to :vendor
 
   validates :category, presence: true
@@ -22,6 +22,7 @@ class Item < ActiveRecord::Base
   scope :order_desending, -> { order('created_at DESC') }
   scope :unattached,      -> { where(system_id: nil, employee_id: nil) }
   scope :unavailable,     -> { joins(:checkouts).where(checkouts: { check_in: nil }) }
+  scope :item_parent,     -> { pluck(:parent_id).compact }
 
   def name
     "#{brand.try(:name)} #{category.name}"
@@ -37,7 +38,7 @@ class Item < ActiveRecord::Base
 
   def reallocate(employee)
     self.employee_id = employee
-    self.system_id = nil
+    #self.system_id = nil
     save
   end
 
@@ -52,8 +53,8 @@ class Item < ActiveRecord::Base
   private
 
   def update_item_history
-    if system_id_changed? || employee_id_changed? || working_changed? || new_record?
-      item_history = item_histories.build(employee_id: employee_id, system_id: system_id, status: working)
+    if employee_id_changed? || working_changed? || new_record?
+      item_history = item_histories.build(employee_id: employee_id,  status: working)
     end
 
     yield

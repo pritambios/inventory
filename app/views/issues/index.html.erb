@@ -13,7 +13,6 @@
     <tr>
       <th><%= t('.table.th.id') %></th>
       <th><%= t('.table.th.issue') %></th>
-      <th><%= t('.table.th.system') %></th>
       <th><%= t('.table.th.item') %></th>
       <th><%= t('.table.th.resolution') %></th>
       <th><%= t('.table.th.priority') %></th>
@@ -24,7 +23,6 @@
       <tr>
         <td><%= link_to issue.id, issue_path(issue) %></td>
         <td><%= link_to issue.title, issue_path(issue) %></td>
-        <td><%= link_to issue.system.name, system_path(issue.system) if issue.system %></td>
         <td><%= link_to issue.item.name_with_id, item_path(issue.item) if issue.item %></td>
         <td><%= issue.resolution.try(:name) %></td>
         <td>

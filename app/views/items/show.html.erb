@@ -93,8 +93,8 @@
         <% @item_histories.each do |item_history| %>
           <tr>
             <td>
-              <% if item_history.system.present? %>
-                <%= link_to "#{item_history.system.name}", system_path(item_history.system) %>
+              <% if @item.parent_id.present? %>
+                <%= link_to "#{item_history.item.name}", item_path(item_history.item) %>
               <% else %>
                 <%= t('.item_history.table.td.unattached') %>
               <% end %>

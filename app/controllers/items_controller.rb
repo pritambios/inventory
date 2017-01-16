@@ -45,7 +45,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item_histories = @item.item_histories.order_desending.includes(:system).paginate(page: params[:item_histories_page])
+    @item_histories = @item.item_histories.order_desending.paginate(page: params[:item_histories_page])
     @checkouts      = @item.checkouts.order_desending.paginate(page: params[:checkouts_page])
     @issues         = @item.issues.includes(:system).order_desending.paginate(page: params[:issues_page])
   end
