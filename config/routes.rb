@@ -27,6 +27,10 @@ Rails.application.routes.draw do
       put 'reallocate'
       get 'discard_reason'
       put 'discard'
+      put 'remove_item'
+      get 'addparent'
+      put 'change_parent'
+      get 'item_render'
     end
   end
 

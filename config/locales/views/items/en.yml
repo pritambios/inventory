@@ -64,6 +64,8 @@ en:
       status: "Status:"
       attach_with_system: "Attached with:"
       working: "Working"
+      parent_item: "Parent Item:"
+      child_item: "Associated Items:"
       not_working: "Not Working"
       note: "Note:"
       attachments: "Attachments:"

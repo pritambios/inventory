@@ -22,8 +22,7 @@ class Item < ActiveRecord::Base
   scope :order_desending, -> { order('created_at DESC') }
   scope :unattached,      -> { where(system_id: nil, employee_id: nil) }
   scope :unavailable,     -> { joins(:checkouts).where(checkouts: { check_in: nil }) }
-  scope :parent_item,     -> { find(pluck(:parent_id).compact) }
-  scope :other_item,      -> { where(parent_id: nil) }
+  scope :filter_subitem,  -> (item) { where(parent_id: item) }
 
   def name
     "#{brand.try(:name)} #{category.name}"
@@ -54,7 +53,8 @@ class Item < ActiveRecord::Base
   private
 
   def update_item_history
-    if employee_id_changed? || working_changed? || new_record?
+
+    if employee_id_changed? || working_changed? || new_record? || parent_id_changed?
       item_history = item_histories.build(employee_id: employee_id,  status: working)
     end
 

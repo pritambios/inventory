@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :get_item, only: [:show, :edit, :update, :destroy, :discard, :allocate, :reallocate, :discard_reason]
+
+  before_action :get_item, only: [:show, :edit, :update, :destroy, :discard, :allocate, :reallocate, :remove_item, :change_parent, :addparent,:item_render]
 
   def index
     @items = Item.includes(:brand, :category, :issues, :checkouts)
@@ -48,6 +49,13 @@ class ItemsController < ApplicationController
     @item_histories = @item.item_histories.order_desending.paginate(page: params[:item_histories_page])
     @checkouts      = @item.checkouts.order_desending.paginate(page: params[:checkouts_page])
     @issues         = @item.issues.includes(:system).order_desending.paginate(page: params[:issues_page])
+    @subitem        = Item.filter_subitem(@item)
+    @parent         = Item.find_by_id(@item.parent_id)
+
+  end
+
+  def item_render
+    @subitem = Item.filter_subitem(params[:id])
   end
 
   def reallocate
@@ -56,10 +64,28 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item.update_attributes(system_id: nil, working: false, deleted_at: Time.now, employee_id: nil)
+    @item.update_attributes(parent_id: nil, working: false, deleted_at: Time.now, employee_id: nil)
     redirect_to items_path, flash: { success: t('destroy.success') }
   end
 
+<<<<<<< HEAD
+=======
+  def discard
+    @item.update_attributes(parent_id: nil, working: false, discarded_at: Time.now, employee_id: nil)
+    redirect_to items_path, flash: { success: t('discard') }
+  end
+
+  def remove_item
+    @item.update_attributes(parent_id: nil)
+    redirect_to item_path
+  end
+
+  def change_parent
+    @item.update_attributes(parent_id: parent_params["parent_id"])
+    redirect_to item_path
+  end
+
+>>>>>>> Added a button on item show page to change parent id
   private
 
   def get_item
@@ -67,14 +93,19 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:model_number, :category_id, :brand_id, :serial_number, :purchase_on, :vendor_id, :working, :system_id, :employee_id, :warranty_expires_on, :note, documents_attributes: [:title, :attachment])
+    params.require(:item).permit(:model_number, :category_id, :brand_id, :serial_number, :purchase_on, :vendor_id, :working, :system_id, :employee_id, :parent_id,  :warranty_expires_on, :note, documents_attributes: [:title, :attachment])
   end
 
   def reallocate_employee_params
     params.require(:item).permit(:employee_id)
   end
 
+<<<<<<< HEAD
    def discard_params
     params.require(:item).permit(:discard_reason)
+=======
+  def parent_params
+    params.require(:item).permit(:parent_id)
+>>>>>>> Added a button on item show page to change parent id
   end
 end
