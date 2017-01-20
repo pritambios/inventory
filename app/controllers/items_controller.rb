@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
 
-  before_action :get_item, only: [:show, :edit, :update, :destroy, :discard, :allocate, :reallocate, :remove_item, :change_parent, :addparent,:item_render, :change_child, :addchild, :parent_render]
+  before_action :get_item, only: [:show, :edit, :update, :destroy, :discard, :allocate, :reallocate, :remove_item, :change_parent, :change_child, :addchild]
 
   def index
     @items = Item.includes(:brand, :category, :issues, :checkouts)
@@ -51,7 +51,6 @@ class ItemsController < ApplicationController
     @issues         = @item.issues.includes(:system).order_desending.paginate(page: params[:issues_page])
     @subitem        = Item.filter_subitem(@item)
     @parent         = Item.find_by_id(@item.parent_id)
-
   end
 
   def reallocate
@@ -77,24 +76,42 @@ class ItemsController < ApplicationController
   end
 
   def change_parent
-    @item.update_attributes(parent_id: parent_params["parent_id"])
-    redirect_to item_path
+    if Item.find_by_id(parent_params["parent_id"]).present? && @item.id != parent_params["parent_id"].to_i
+      @item.update_attributes(parent_id: parent_params["parent_id"])
+      redirect_to item_path
+    else
+      flash[:alert] = t('change_parent')
+      render :addparent
+    end
+  end
+
+  def addparent
+    @item = Item.find_by_id(params[:id])
   end
 
 <<<<<<< HEAD
 >>>>>>> Added a button on item show page to change parent id
 =======
   def item_render
-    @subitem = Item.filter_subitem(params[:id])
+    if @item = Item.find_by_id(params[:id])
+      @subitem = Item.filter_subitem(params[:id])
+    end
   end
 
   def parent_render
-    @parent  = Item.find(@item.parent_id) if @item.parent_id.present?
+    if @item = Item.find_by_id(params[:id])
+      @parent = Item.find(@item.parent_id) if @item.parent_id.present?
+    end
   end
 
   def change_child
+   if Item.find_by_id(parent_params["parent_id"]).present?
     @update_child =Item.find(parent_params["parent_id"]).update_attributes(parent_id: params[:id])
     redirect_to item_path
+   else
+     flash[:alert] = t('change_child')
+     render :addchild
+   end
   end
 
 >>>>>>> Add new item from show page

@@ -13,7 +13,6 @@ class Item < ActiveRecord::Base
   belongs_to :vendor
 
   validates :category, presence: true
-  validate :item_exist
 
   accepts_nested_attributes_for :documents, reject_if: :all_blank, allow_destroy: true
 
@@ -24,6 +23,7 @@ class Item < ActiveRecord::Base
   scope :unattached,      -> { where(system_id: nil, employee_id: nil) }
   scope :unavailable,     -> { joins(:checkouts).where(checkouts: { check_in: nil }) }
   scope :filter_subitem,  -> (item) { where(parent_id: item) }
+  scope :filter_item,     -> (item) { Item.where.not(id: item) }
 
   def name
     "#{brand.try(:name)} #{category.name}"
@@ -39,7 +39,6 @@ class Item < ActiveRecord::Base
 
   def reallocate(employee)
     self.employee_id = employee
-    #self.system_id = nil
     save
   end
 
@@ -54,7 +53,6 @@ class Item < ActiveRecord::Base
   private
 
   def update_item_history
-
     if employee_id_changed? || working_changed? || new_record? || parent_id_changed?
       item_history = item_histories.build(employee_id: employee_id,  status: working)
     end
@@ -63,6 +61,4 @@ class Item < ActiveRecord::Base
 
     item_history.save if item_history.present?
   end
-
-
 end

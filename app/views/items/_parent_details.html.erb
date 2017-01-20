@@ -1,18 +1,28 @@
-<section class="col-xs-12 col-sm-5 main-info">
-  <p><span><%= @item.name_with_id %></span></p><hr>
-  <% if @item.serial_number.present? %>
-    <p><span><%= "Serial number" %>: </span><%= @item.serial_number %></p>
-  <% end %>
-  <% if @item.model_number.present? %>
-    <p><span><%= "Model Number" %></span><%= @item.model_number %></p>
-  <% end %>
-  <p><span><%= "Status" %>: </span> <%= @item.working? ? "Working" : "Not Working" %></p>
-  <% if @parent.present? %>
-    <span><%= "Parent Item:" %></span>
-    <ul class="list-group">
+<% if @item.present? %>
+  <section class="col-xs-12 col-sm-5 main-info">
+    <p><span><%= @item.name_with_id %></span></p><hr>
+
+    <% if @item.serial_number.present? %>
+      <p><span><%= t('.serial_number') %> </span><%= @item.serial_number %></p>
+    <% end %>
+
+    <% if @item.model_number.present? %>
+      <p><span><%= t('.model_number') %></span><%= @item.model_number %></p>
+    <% end %>
+
+    <p><span><%= t('.status') %>: </span> <%= @item.working? ? t('.working') : t('.not_working') %></p>
+
+    <% if @parent.present? %>
+      <span><%= t('.parent_item') %></span>
+      <ul class="list-group">
         <li class="list-group-item">
           <%= link_to @parent.name_with_id, item_path(@parent) %>
         </li>
-    </ul>
-  <% end %>
+      </ul>
+    <% end %>
 </section>
+<% else %>
+  <section class="col-xs-12 col-sm-5 main-info">
+    <p> <%= t('.item_not_present') %> </p>
+  </section>
+<% end %>

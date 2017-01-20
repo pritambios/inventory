@@ -1,20 +1,28 @@
-<section class="col-xs-12 col-sm-5 main-info">
-  <p><span><%= @item.name_with_id %></span></p><hr>
-  <% if @item.serial_number.present? %>
-    <p><span><%= "Serial number" %>: </span><%= @item.serial_number %></p>
-  <% end %>
-  <% if @item.model_number.present? %>
-    <p><span><%= "Model Number" %></span><%= @item.model_number %></p>
-  <% end %>
-  <p><span><%= "Status" %>: </span> <%= @item.working? ? "Working" : "Not Working" %></p>
-  <% if @subitem.present? %>
-    <span><%= "Associated Items:" %></span>
-    <ul class="list-group">
-      <% @subitem.each do |subitem| %>
-        <li class="list-group-item">
-          <%= link_to subitem.name_with_id, item_path(subitem) %>
-        </li>
-      <% end %>
-    </ul>
-  <% end %>
-</section>
+<% if @item.present? %>
+  <section class="col-xs-12 col-sm-5 main-info">
+    <p><span><%= @item.name_with_id %></span></p><hr>
+
+    <% if @item.serial_number.present? %>
+      <p><span><%= "Serial number" %>: </span><%= @item.serial_number %></p>
+    <% end %>
+
+    <% if @item.model_number.present? %>
+      <p><span><%= "Model Number" %></span><%= @item.model_number %></p>
+    <% end %>
+
+    <p><span><%= "Status" %>: </span> <%= @item.working? ? t('.working') : t('.not_working') %></p>
+
+    <% if @subitem.present? %>
+      <span><%= t('.associated_items') %></span>
+      <ul class="list-group">
+        <% @subitem.each do |subitem| %>
+          <li class="list-group-item">
+            <%= link_to subitem.name_with_id, item_path(subitem) %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </section>
+<% else %>
+  <p><%= t('.item_not_present') %></p>
+<% end %>

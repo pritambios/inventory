@@ -1,6 +1,1 @@
-<% if @item.present? %>
-  $('.display-item ').html("<%= j(render 'details', obj: @item) %>");
-<% else %>
-  Inventory.Modal.close();
-  window.location.reload();
-<% end %>
+$('.display-item ').html("<%= j(render 'details', obj: @item) %>");

@@ -4,7 +4,6 @@ class RemoveSystemHistory < ActiveRecord::Migration
   end
 
   def down
-
     create_table :system_histories do |t|
       t.boolean  "status"
       t.text     "note"

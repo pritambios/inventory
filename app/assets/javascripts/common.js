@@ -7,23 +7,21 @@ $(document).on('change', '.brand-dropdown,.category-dropdown', function() {
   $(this).parent().submit();
 });
 
-$(document).on('change', '.change-parent, #item_parent_id', function() {
+$(document).on('change', '.change-parent, #change_parent', function() {
     $.ajax({
       type: "GET",
-      url: '/items/'+ $("#item_parent_id").val() +'/item_render/'
+      url: '/items/'+ $("#change_parent").val() +'/item_render/'
     });
   $(this).parent().submit();
 });
 
 $(document).on('change', '.change-child, #item_parent_id', function() {
-  console.log("hello")
     $.ajax({
       type: "GET",
       url: '/items/'+ $("#item_parent_id").val() +'/parent_render/'
     });
   $(this).parent().submit();
 });
-
 
 $(document).on('change', "#checkout_item_id", function() {
   var selected = $(this).find('option:selected');
