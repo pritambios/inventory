@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
 
-  before_action :get_item, only: [:show, :edit, :update, :destroy, :discard, :allocate, :reallocate, :remove_item, :change_parent, :addparent,:item_render]
+  before_action :get_item, only: [:show, :edit, :update, :destroy, :discard, :allocate, :reallocate, :remove_item, :change_parent, :addparent,:item_render, :change_child, :addchild, :parent_render]
 
   def index
     @items = Item.includes(:brand, :category, :issues, :checkouts)
@@ -54,10 +54,6 @@ class ItemsController < ApplicationController
 
   end
 
-  def item_render
-    @subitem = Item.filter_subitem(params[:id])
-  end
-
   def reallocate
     @item.reallocate(reallocate_employee_params["employee_id"])
     redirect_to :back, flash: { success: t('reallocate') }
@@ -85,7 +81,23 @@ class ItemsController < ApplicationController
     redirect_to item_path
   end
 
+<<<<<<< HEAD
 >>>>>>> Added a button on item show page to change parent id
+=======
+  def item_render
+    @subitem = Item.filter_subitem(params[:id])
+  end
+
+  def parent_render
+    @parent  = Item.find(@item.parent_id) if @item.parent_id.present?
+  end
+
+  def change_child
+    @update_child =Item.find(parent_params["parent_id"]).update_attributes(parent_id: params[:id])
+    redirect_to item_path
+  end
+
+>>>>>>> Add new item from show page
   private
 
   def get_item

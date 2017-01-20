@@ -52,24 +52,20 @@
     <p>
       <% if @parent.present? %>
         <span><%= t('.parent_item') %></span>
-          <ul class="list-group">
-            <li class="list-group-item">
-              <%= link_to @parent.name_with_id, item_path(@parent) %>
-              <%= link_to "Change parent", addparent_item_path(@item), data: { remote_popup: true, title: "Change Parent" }, class: "btn btn-danger btn-sm" %>
-            </li>
-          </ul>
+        <%= link_to @parent.name_with_id, item_path(@parent) %>
+        <%= link_to "Change", addparent_item_path(@item), data: { remote_popup: true, title: "Change Parent" }, class: "btn btn-danger btn-sm btn-style" %>
       <% end %>
     </p>
 
     <p>
       <% if @subitem.present? %>
-        <span><%= t('.child_item') %></span>
-          <ul class="list-group">
-            <% @subitem.each do |subitem| %>
-              <li class="list-group-item">
-                <%= link_to subitem.name_with_id, item_path(subitem) %>
-                <%= link_to "", remove_item_item_path(subitem), method: :put, data: { confirm: t('.delete_confirm_message') }, class: "fa fa-trash navbar-right" %>
-             </li>
+        <span><%= t('.child_item') %><%= link_to "Add Item", addchild_item_path(@item), data: { remote_popup: true, title: "Add SubItem" }, class: "btn-style1 btn btn-danger btn-sm" %></span>
+        <ul class="list-group">
+          <% @subitem.each do |subitem| %>
+            <li class="list-group-item">
+              <%= link_to subitem.name_with_id, item_path(subitem) %>
+              <%= link_to "", remove_item_item_path(subitem), method: :put, data: { confirm: t('.delete_confirm_message') }, class: "fa fa-trash navbar-right" %>
+            </li>
           <% end %>
         </ul>
       <% end %>

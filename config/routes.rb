@@ -31,6 +31,9 @@ Rails.application.routes.draw do
       get 'addparent'
       put 'change_parent'
       get 'item_render'
+      get 'parent_render'
+      get 'addchild'
+      put 'change_child'
     end
   end
 

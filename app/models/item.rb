@@ -13,6 +13,7 @@ class Item < ActiveRecord::Base
   belongs_to :vendor
 
   validates :category, presence: true
+  validate :item_exist
 
   accepts_nested_attributes_for :documents, reject_if: :all_blank, allow_destroy: true
 
@@ -62,4 +63,6 @@ class Item < ActiveRecord::Base
 
     item_history.save if item_history.present?
   end
+
+
 end
