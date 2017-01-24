@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170118101231) do
+ActiveRecord::Schema.define(version: 20170125102033) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -55,6 +55,15 @@ ActiveRecord::Schema.define(version: 20170118101231) do
 
   add_index "documents", ["item_id"], name: "fk_rails_9fa64cfbd0", using: :btree
 
+  create_table "employees", force: :cascade do |t|
+    t.string   "name",        limit: 255,                null: false
+    t.string   "email",       limit: 255
+    t.boolean  "active",                  default: true
+    t.integer  "external_id", limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "issues", force: :cascade do |t|
     t.integer  "item_id",       limit: 4
     t.string   "title",         limit: 255,   null: false
@@ -77,6 +86,7 @@ ActiveRecord::Schema.define(version: 20170118101231) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "employee_id", limit: 4
+    t.integer  "parent_id",   limit: 4
   end
 
   add_index "item_histories", ["item_id"], name: "fk_rails_8474d7045a", using: :btree
@@ -96,6 +106,7 @@ ActiveRecord::Schema.define(version: 20170118101231) do
     t.integer  "employee_id",         limit: 4
     t.date     "deleted_at"
     t.text     "note",                limit: 65535
+    t.string   "discard_reason",      limit: 255
     t.integer  "parent_id",           limit: 4
   end
 

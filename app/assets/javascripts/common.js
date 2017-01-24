@@ -7,20 +7,11 @@ $(document).on('change', '.brand-dropdown,.category-dropdown', function() {
   $(this).parent().submit();
 });
 
-$(document).on('change', '.change-parent, #change_parent', function() {
-    $.ajax({
-      type: "GET",
-      url: '/items/'+ $("#change_parent").val() +'/item_render/'
-    });
-  $(this).parent().submit();
-});
-
-$(document).on('change', '.change-child, #item_parent_id', function() {
-    $.ajax({
-      type: "GET",
-      url: '/items/'+ $("#item_parent_id").val() +'/parent_render/'
-    });
-  $(this).parent().submit();
+$(document).on('change', '.change-parent', function() {
+  $.ajax({
+    type: "GET",
+    url: '/items/'+ $(".change-parent").val() +'/item_render/'
+  });
 });
 
 $(document).on('change', "#checkout_item_id", function() {

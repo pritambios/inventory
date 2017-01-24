@@ -10,16 +10,25 @@
       <p><span><%= "Model Number" %></span><%= @item.model_number %></p>
     <% end %>
 
-    <p><span><%= "Status" %>: </span> <%= @item.working? ? t('.working') : t('.not_working') %></p>
+    <p><span><%= t('.detail') %>: </span> <%= @item.working? ? t('.working') : t('.not_working') %></p>
 
-    <% if @subitem.present? %>
+    <% if @item.childrens.present? %>
       <span><%= t('.associated_items') %></span>
       <ul class="list-group">
-        <% @subitem.each do |subitem| %>
+        <% @item.childrens.each do |child_items| %>
           <li class="list-group-item">
-            <%= link_to subitem.name_with_id, item_path(subitem) %>
+            <%= link_to child_items.name_with_id, item_path(child_items) %>
           </li>
         <% end %>
+      </ul>
+    <% end %>
+
+    <% if @item.parent.present? %>
+      <span><%= t('.parent_item') %></span>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <%= link_to @item.parent.name_with_id, item_path(@item.parent) %>
+        </li>
       </ul>
     <% end %>
   </section>

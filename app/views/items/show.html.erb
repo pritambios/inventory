@@ -44,27 +44,27 @@
 
     <p>
       <span><%= t('.attach_with_system') %></span>
-      <% if @item.system.present? %>
-        <%= link_to @item.system.name, system_path(@item.system) %>
+      <% if @item.present? %>
+        <%= link_to @item.name, item_path(@item) %>
       <% end %>
     </p>
 
     <p>
-      <% if @parent.present? %>
+      <% if @item.parent.present? %>
         <span><%= t('.parent_item') %></span>
-        <%= link_to @parent.name_with_id, item_path(@parent) %>
-        <%= link_to t('.change'), addparent_item_path(@item), data: { remote_popup: true, title: t('.change_parent') }, class: "btn btn-danger btn-sm btn-style" %>
+        <%= link_to @item.parent.name_with_id, item_path(@item.parent) %>
+        <%= link_to t('.change'), change_parent_item_path(@item), data: { remote_popup: true, title: t('.change_parent') }, class: "btn btn-danger btn-sm pull-right" %>
       <% end %>
     </p>
 
     <p>
-      <% if @subitem.present? %>
-        <span><%= t('.child_item') %><%= link_to t('.add_item'), addchild_item_path(@item), data: { remote_popup: true, title: t('.add_sub_item')}, class: "btn-style1 btn btn-danger btn-sm" %></span>
+      <% if @item.childrens.present? %>
+        <span><%= t('.child_item') %><%= link_to t('.add_item'), add_item_item_path(@item), data: { remote_popup: true, title: t('.add_sub_item')}, class: "btn btn-danger btn-sm pull-right" %></span>
         <ul class="list-group">
-          <% @subitem.each do |subitem| %>
+          <% @item.childrens.each do |child_items| %>
             <li class="list-group-item">
-              <%= link_to subitem.name_with_id, item_path(subitem) %>
-              <%= link_to "", remove_item_item_path(subitem), method: :put, data: { confirm: t('.delete_confirm_message') }, class: "fa fa-trash navbar-right" %>
+              <%= link_to child_items.name_with_id, item_path(child_items) %>
+              <%= link_to "", remove_item_item_path(child_items), method: :put, data: { confirm: t('.delete_confirm_message') }, class: "fa fa-trash navbar-right" %>
             </li>
           <% end %>
         </ul>
@@ -114,15 +114,15 @@
         <% @item_histories.each do |item_history| %>
           <tr>
             <td>
-              <% if @item.parent_id.present? %>
-                <%= link_to "#{item_history.item.name}", item_path(item_history.item) %>
+              <% if item_history.parent.present? %>
+                <%= link_to item_history.parent.try(:name_with_id), item_path(item_history.parent.id) %>
               <% else %>
                 <%= t('.item_history.table.td.unattached') %>
               <% end %>
             </td>
             <td>
               <% if item_history.employee.present? %>
-                <%= link_to item_history.employee.try(:name), employee_path(item_history.employee_id) %>
+                <%= link_to item_history.employee.try(:name), employee_path(item_history) %>
               <% else %>
                 <%= t('.item_history.table.td.unallocated') %>
               <% end %>

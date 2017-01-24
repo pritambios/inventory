@@ -28,16 +28,14 @@ Rails.application.routes.draw do
       get 'discard_reason'
       put 'discard'
       put 'remove_item'
-      get 'addparent'
-      put 'change_parent'
+      get 'change_parent'
+      put 'update_parent'
       get 'item_render'
-      get 'parent_render'
-      get 'addchild'
-      put 'change_child'
+      get 'add_item'
+      put 'add_child'
     end
   end
 
-  resources :systems, except: [:destroy]
   resources :resolutions, except: [:show, :destroy]
   resources :users, except: [:show]
   resources :vendors, except: [:destroy]
