@@ -9,32 +9,32 @@
     <% if @employee.email.present? %>
       <p><span><%= t('.title.email') %> </span><%= @employee.email %></p>
     <% end %>
- 
+
     <p><span><%= t('.title.status') %> </span><%= @employee.active? ? t('.active') : t('.inactive') %></p>
 
     <% if @employee.external_id.present? %>
       <p><span><%= t('.title.external_id') %> </span><%= @employee.external_id %></p>
     <% end %>
-                               
-    <% unless @employee.external_id? %>
-      <%= edit_link(edit_employee_path(@employee), t('.edit.popup.title')) %>
-      <%= delete_link(employee_path(@employee)) %>
-    <% end %>  
+
+    <%= edit_link(edit_employee_path(@employee), t('.edit.popup.title')) %>
+    <%= delete_link(employee_path(@employee)) %>
   </section>
   <section class="col-xs-12 col-sm-7 other-info">
     <h3><%= t('.item_history.heading') %> (<%= @items.count %>)</h3>
     <div class="table-responsive">
       <table class="table table-striped table-last">
         <tr>
+          <th class="five"><%= t('.item_history.table.th.id')%></th>
           <th class="tweenty"><%= t('.item_history.table.th.item') %></th>
-          <th class="tweentythree"><%= t('.item_history.table.th.model_number') %></th>
-          <th class="tweentytwo"><%= t('.item_history.table.th.serial_number') %></th>
+          <th class="tweenty"><%= t('.item_history.table.th.model_number') %></th>
+          <th class="tweenty"><%= t('.item_history.table.th.serial_number') %></th>
           <th class="tweenty"><%= t('.item_history.table.th.category') %></th>
           <th class="ten"><%= t('.item_history.table.th.brand') %></th>
           <th class="five"></th>
         </tr>
         <% @items.each do |item| %>
           <tr class="<%= 'pending' if item.unavailable? %>">
+            <td><%= item.id %></td>
             <td><%= link_to item.name_with_id, item_path(item)  %></td>
             <td><%= item.model_number %></td>
             <td><%= item.serial_number %></td>
