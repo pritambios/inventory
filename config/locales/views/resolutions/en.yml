@@ -9,7 +9,6 @@ en:
       heading: Resolutions
       table:
         th:
-          id: "Id"
           name: "Name"
       add:
         popup:

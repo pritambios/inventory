@@ -15,5 +15,4 @@ en:
       heading: "Categories"
       table:
         th:
-          id: "Id"
           name: "Name"
