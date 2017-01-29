@@ -3,8 +3,7 @@ en:
     index:
       heading: "Employees"
       table:
-        th:
-          id: "Id"
+        th:          
           name: "Name"
           email: "Email"
           status: "Working Status"
@@ -18,8 +17,7 @@ en:
         popup:
           title: "Employee"
     show:
-      title:
-        id: "Id:"
+      title:        
         email: "Email:"
         status: "Working Status:"
         external_id: "Employee Id:"
