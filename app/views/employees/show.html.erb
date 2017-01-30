@@ -3,8 +3,7 @@
 </div>
 <div class="row">
   <section class="col-xs-12 col-sm-5 main-info">
-    <h3 class="table-heading"><%= @employee.name %></h3>
-    <p><span><%= t('.title.id') %> </span><%= @employee.id %></p>
+    <h3 class="table-heading"><%= @employee.name %></h3>    
 
     <% if @employee.email.present? %>
       <p><span><%= t('.title.email') %> </span><%= @employee.email %></p>

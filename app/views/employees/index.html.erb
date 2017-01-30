@@ -4,16 +4,14 @@
 </div>
 <div class="table-responsive">
   <table class="table table-striped table-last">
-    <tr>
-      <th><%= t('.table.th.id') %></th>
+    <tr>      
       <th><%= t('.table.th.name') %></th>
       <th><%= t('.table.th.email') %></th>
       <th><%= t('.table.th.status') %></th>
       <th></th>
     </tr>
     <% @employees.each do |employee| %>
-      <tr>
-        <td><%= link_to employee.id, employee_path(employee) %></td>
+      <tr>        
         <td><%= link_to employee.name, employee_path(employee) %></td>
         <td><%= link_to employee.email, employee_path(employee) if employee.email? %></td>
         <td><%= employee.active? ? t('.table.td.active') : t('.table.td.inactive') %></td>
