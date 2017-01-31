@@ -1,0 +1,37 @@
+<% if @item.present? %>
+  <section class="col-xs-12 col-sm-5 main-info">
+    <p><span><%= @item.name_with_id %></span></p><hr>
+
+    <% if @item.serial_number.present? %>
+      <p><span><%= "Serial number" %>: </span><%= @item.serial_number %></p>
+    <% end %>
+
+    <% if @item.model_number.present? %>
+      <p><span><%= "Model Number" %></span><%= @item.model_number %></p>
+    <% end %>
+
+    <p><span><%= t('.detail') %>: </span> <%= @item.working? ? t('.working') : t('.not_working') %></p>
+
+    <% if @item.childrens.present? %>
+      <span><%= t('.associated_items') %></span>
+      <ul class="list-group">
+        <% @item.childrens.each do |child_items| %>
+          <li class="list-group-item">
+            <%= link_to child_items.name_with_id, item_path(child_items) %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <% if @item.parent.present? %>
+      <span><%= t('.parent_item') %></span>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <%= link_to @item.parent.name_with_id, item_path(@item.parent) %>
+        </li>
+      </ul>
+    <% end %>
+  </section>
+<% else %>
+  <p><%= t('.item_not_present') %></p>
+<% end %>

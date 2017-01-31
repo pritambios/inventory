@@ -11,7 +11,8 @@ en:
         purchased_on: "Purchased On:"
         warranty: "Warranty Expires On:"
         status: "Status:"
-        system: "System:"
+        parent_item: "Parent Item:"
+        other_item: "Other Item"
         employee: "Employee:"
         attachment_title: "Title:"
         document: "Document:"
@@ -54,6 +55,10 @@ en:
     show:
       id: "Id:"
       status: "Status:"
+      change: "Change"
+      add_item: "Add Item"
+      add_sub_item: "Add SubItem"
+      change_parent: "Change Parent"
       model_number: "Model Number:"
       serial_number: "Serial Number:"
       purchased: "Purchased:"
@@ -63,6 +68,8 @@ en:
       status: "Status:"
       attach_with_system: "Attached with:"
       working: "Working"
+      parent_item: "Parent Item:"
+      child_item: "Associated Items:"
       not_working: "Not Working"
       note: "Note:"
       attachments: "Attachments:"
@@ -110,3 +117,20 @@ en:
     discard:
       discard_reason: "Discard reason:"
       submit: "Submit"
+    addchild:
+      add_subitem: "Add SubItem:"
+    addparent:
+      change_parent: "Change Parent:"
+    details:
+      working: "Working"
+      not_working: "Not Working"
+      associated_items: "Associated Items:"
+      item_not_present: "Item not present"
+    parent_details:
+      serial_number: "Serial number"
+      model_number: "Model Number"
+      status: "Status"
+      working: "Working"
+      not_working: "Not Working"
+      parent_item: "Parent Item:"
+      item_not_present: "Item not present"

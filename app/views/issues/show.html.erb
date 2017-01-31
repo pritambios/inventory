@@ -5,10 +5,6 @@
   <h3><%= @issue.title %></h3>
   <p><span><%= t('.id') %> </span><%= @issue.id %></p>
 
-  <% if @issue.system.present? %>
-    <p><span><%= t('.system') %> </span><%= link_to @issue.system.name, system_path(@issue.system) %></p>
-  <% end %>
-
   <% if @issue.item.present? %>
     <p><span><%= t('.item') %> </span><%= link_to @issue.item.name_with_id, item_path(@issue.item) %></p>
   <% end %>

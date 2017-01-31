@@ -44,9 +44,30 @@
 
     <p>
       <span><%= t('.attach_with_system') %></span>
+      <% if @item.present? %>
+        <%= link_to @item.name, item_path(@item) %>
+      <% end %>
+    </p>
 
-      <% if @item.system.present? %>
-        <%= link_to @item.system.name, system_path(@item.system) %>
+    <p>
+      <% if @item.parent.present? %>
+        <span><%= t('.parent_item') %></span>
+        <%= link_to @item.parent.name_with_id, item_path(@item.parent) %>
+        <%= link_to t('.change'), change_parent_item_path(@item), data: { remote_popup: true, title: t('.change_parent') }, class: "btn btn-danger btn-sm pull-right" %>
+      <% end %>
+    </p>
+
+    <p>
+      <% if @item.childrens.present? %>
+        <span><%= t('.child_item') %><%= link_to t('.add_item'), add_item_item_path(@item), data: { remote_popup: true, title: t('.add_sub_item')}, class: "btn btn-danger btn-sm pull-right" %></span>
+        <ul class="list-group">
+          <% @item.childrens.each do |child_items| %>
+            <li class="list-group-item">
+              <%= link_to child_items.name_with_id, item_path(child_items) %>
+              <%= link_to "", remove_item_item_path(child_items), method: :put, data: { confirm: t('.delete_confirm_message') }, class: "fa fa-trash navbar-right" %>
+            </li>
+          <% end %>
+        </ul>
       <% end %>
     </p>
 
@@ -93,15 +114,15 @@
         <% @item_histories.each do |item_history| %>
           <tr>
             <td>
-              <% if item_history.system.present? %>
-                <%= link_to "#{item_history.system.name}", system_path(item_history.system) %>
+              <% if item_history.parent.present? %>
+                <%= link_to item_history.parent.try(:name_with_id), item_path(item_history.parent.id) %>
               <% else %>
                 <%= t('.item_history.table.td.unattached') %>
               <% end %>
             </td>
             <td>
               <% if item_history.employee.present? %>
-                <%= link_to item_history.employee.try(:name), employee_path(item_history.employee_id) %>
+                <%= link_to item_history.employee.try(:name), employee_path(item_history) %>
               <% else %>
                 <%= t('.item_history.table.td.unallocated') %>
               <% end %>
@@ -145,7 +166,6 @@
         <% @issues.each do |issue| %>
           <tr>
             <td><%= link_to issue.title, issue_path(issue) %></td>
-            <td><%= link_to issue.system.name, system_path(issue.system) if issue.system_id? %></td>
             <td><%= format_date(issue.closed_at) if issue.closed_at? %></td>
             <td><%= show_link(issue_path(issue)) %></td>
           </tr>

@@ -10,3 +10,5 @@ en:
   session:
     error: "Sorry!..You are not permitted to access Inventory"
     logout: "successfully logged out"
+  update_parent_fail: "Invalid Parent Id"
+  add_child_fail: "Invalid Child Id"

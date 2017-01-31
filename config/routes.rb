@@ -27,10 +27,15 @@ Rails.application.routes.draw do
       put 'reallocate'
       get 'discard_reason'
       put 'discard'
+      put 'remove_item'
+      get 'change_parent'
+      put 'update_parent'
+      get 'item_render'
+      get 'add_item'
+      put 'add_child'
     end
   end
 
-  resources :systems, except: [:destroy]
   resources :resolutions, except: [:show, :destroy]
   resources :users, except: [:show]
   resources :vendors, except: [:destroy]

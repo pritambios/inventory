@@ -1,0 +1,14 @@
+<div class="center-block form-container">
+  <%= form_for @item, url: { action: "add_child" }, html: { method: :put }, class: "form-horizontal" do |f| %>
+    <div class="form-group row">
+      <div class="col-sm-4"><%= f.label :change_child, t('.add_subitem'), class: 'required' %></div>
+      <div class="col-sm-8"><%= f.text_field :parent_id, required: true, class: "change-parent form-control"  %></div>
+    </div>
+    <div class="display-item">
+    </div>
+    <div class="text-right">
+      <%= button_tag t('button.cancel'), class: 'btn btn-default', data: { dismiss: "modal" } %>
+      <%= f.submit t('button.update'), class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

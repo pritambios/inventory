@@ -1,7 +1,7 @@
 class ItemHistory < ActiveRecord::Base
   belongs_to :employee
   belongs_to :item
-  belongs_to :system
+  belongs_to :parent, class_name: "Item"
 
   validates :item, presence: true
   validates :note, length: { maximum: 500 }

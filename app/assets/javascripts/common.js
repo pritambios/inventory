@@ -7,6 +7,13 @@ $(document).on('change', '.brand-dropdown,.category-dropdown', function() {
   $(this).parent().submit();
 });
 
+$(document).on('change', '.change-parent', function() {
+  $.ajax({
+    type: "GET",
+    url: '/items/'+ $(".change-parent").val() +'/item_render/'
+  });
+});
+
 $(document).on('change', "#checkout_item_id", function() {
   var selected = $(this).find('option:selected');
   $('#checkout_checkout').data('DateTimePicker').minDate(moment(selected.data('purchase-on'), 'YYYY MM DD'));
