@@ -19,7 +19,8 @@
     <%= delete_link(employee_path(@employee)) %>
   </section>
   <section class="col-xs-12 col-sm-7 other-info">
-    <h3><%= t('.item_history.heading') %> (<%= @items.count %>)</h3>
+    <h3><%= t('.item_history.heading') %> (<%= @items.count %>) <%=  link_to t('.allocate'), allocate_item_employee_path(@employee, from_emp: true), data: { remote_popup: true, title: t('.allocate_item') }, class: "btn btn-primary btn-sm pull-right" %> </h3>
+
     <div class="table-responsive">
       <table class="table table-striped table-last">
         <tr>
