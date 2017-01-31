@@ -1,5 +1,5 @@
 class EmployeesController < ApplicationController
-  before_action :get_employee, only: [:edit, :update, :show, :destroy]
+  before_action :get_employee, only: [:edit, :update, :show, :destroy, :allocate_item, :add_item]
 
   def new
     @employee = Employee.new
@@ -39,6 +39,14 @@ class EmployeesController < ApplicationController
     @items = @employee.items.includes(:brand, :category).order_desending.paginate(page: params[:items_page])
   end
 
+  def add_item
+    if item = Item.find_by_id(employee_params[:id])
+      item.update_attributes(employee_id: params[:id])
+    end
+
+    redirect_to employee_path
+  end
+
   def destroy
     @employee.update_attributes(active: false)
 
@@ -54,6 +62,6 @@ class EmployeesController < ApplicationController
   end
 
   def employee_params
-    params.require(:employee).permit(:name, :email, :active)
+    params.require(:employee).permit(:name, :email, :active, :id)
   end
 end

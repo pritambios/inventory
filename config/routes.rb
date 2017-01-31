@@ -10,7 +10,13 @@ Rails.application.routes.draw do
   end
 
   resources :documents, only: [:destroy]
-  resources :employees
+
+  resources :employees do
+    member do
+      get 'allocate_item'
+      put 'add_item'
+    end
+  end
 
   resources :issues, except: [:destroy] do
     member do

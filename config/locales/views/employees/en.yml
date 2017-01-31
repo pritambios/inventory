@@ -3,7 +3,7 @@ en:
     index:
       heading: "Employees"
       table:
-        th:          
+        th:
           name: "Name"
           email: "Email"
           status: "Working Status"
@@ -17,7 +17,9 @@ en:
         popup:
           title: "Employee"
     show:
-      title:        
+      allocate: "Allocate"
+      allocate_item: "Allocate Item"
+      title:
         email: "Email:"
         status: "Working Status:"
         external_id: "Employee Id:"
@@ -52,3 +54,6 @@ en:
       placeholder:
         name: "Enter Name"
         email: "Enter Email"
+    allocate_item:
+      items: "Item"
+      select_item: "Select Item"
