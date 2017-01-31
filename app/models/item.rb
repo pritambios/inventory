@@ -28,10 +28,6 @@ class Item < ActiveRecord::Base
     where.not(id: item.childrens.pluck(:id,item.id))
   end
 
-  def employee
-    Employee.find(employee_id, { company_id: Rails.application.config.company_id }) if employee_id.present?
-  end
-
   def change_parent(parent)
     if parent.present? && self != parent
 

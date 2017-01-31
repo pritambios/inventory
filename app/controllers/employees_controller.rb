@@ -37,7 +37,6 @@ class EmployeesController < ApplicationController
 
   def show
     @items = @employee.items.includes(:brand, :category).order_desending.paginate(page: params[:items_page])
-    @systems = @employee.systems.includes(items: [:brand, :category]).order_desending.paginate(page: params[:systems_page])
   end
 
   def destroy

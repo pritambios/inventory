@@ -1,8 +1,6 @@
 class Employee < ActiveRecord::Base
   has_many :items, dependent: :nullify
   has_many :item_histories, dependent: :nullify
-  has_many :systems, dependent: :nullify
-  has_many :system_histories, dependent: :nullify
   has_many :checkouts, dependent: :nullify
 
   validates :name, presence: true
