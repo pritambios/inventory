@@ -21,8 +21,9 @@ class Item < ActiveRecord::Base
   scope :available,       -> { where.not(id: unavailable) }
   scope :not_erased,      -> { where(deleted_at: nil) }
   scope :order_desending, -> { order('created_at DESC') }
-  scope :unattached,      -> { where(system_id: nil, employee_id: nil) }
+  scope :unattached,      -> { where(parent_id: nil, employee_id: nil) }
   scope :unavailable,     -> { joins(:checkouts).where(checkouts: { check_in: nil }) }
+  scope :parent_list,     -> { where(parent_id: nil) }
 
   def self.unassociated_items(item)
     where.not(id: item.childrens.pluck(:id,item.id))
