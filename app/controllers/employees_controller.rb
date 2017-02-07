@@ -40,7 +40,7 @@ class EmployeesController < ApplicationController
   end
 
   def add_item
-    if item = Item.find_by_id(employee_params[:id])
+    if item = Item.find_by_id(params[:item])
       item.update_attributes(employee_id: params[:id])
     end
 
@@ -62,6 +62,6 @@ class EmployeesController < ApplicationController
   end
 
   def employee_params
-    params.require(:employee).permit(:name, :email, :active, :id)
+    params.require(:employee).permit(:name, :email, :active, :id, :item)
   end
 end
