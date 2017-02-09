@@ -47,11 +47,11 @@ class Item < ActiveRecord::Base
   end
 
   def name
-    "#{brand.try(:name)} #{category.name}"
+    "#{brand.try(:name)} #{category.name}".titleize
   end
 
   def name_with_id
-    "#{name} #{id}"
+    "#{name} (#{id})"
   end
 
   def pending_checkout

@@ -7,6 +7,7 @@ en:
           name: "Name"
           email: "Email"
           status: "Working Status"
+          allocated_items: "Allocated Items"
         td:
           active: "Active"
           inactive: "Inactive"
