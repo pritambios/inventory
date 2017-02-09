@@ -41,7 +41,7 @@ class EmployeesController < ApplicationController
 
   def add_item
     if item = Item.find_by_id(params[:item])
-      item.update_attributes(employee_id: params[:id])
+      item.update_attributes(employee_id: @employee.id)
     end
 
     redirect_to employee_path
@@ -62,6 +62,6 @@ class EmployeesController < ApplicationController
   end
 
   def employee_params
-    params.require(:employee).permit(:name, :email, :active, :id, :item)
+    params.require(:employee).permit(:name, :email, :active, :id)
   end
 end
