@@ -23,7 +23,7 @@ class Item < ActiveRecord::Base
   scope :order_desending, -> { order('created_at DESC') }
   scope :unattached,      -> { where(parent_id: nil, employee_id: nil) }
   scope :unavailable,     -> { joins(:checkouts).where(checkouts: { check_in: nil }) }
-  scope :parent_list,     -> { where(parent_id: nil) }
+  scope :parent_list,     -> { joins(:childrens).distinct }
 
   def self.unassociated_items(item)
     where.not(id: item.childrens.pluck(:id,item.id))
