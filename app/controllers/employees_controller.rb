@@ -40,8 +40,8 @@ class EmployeesController < ApplicationController
   end
 
   def add_item
-    if item = Item.find_by_id(employee_params[:id])
-      item.update_attributes(employee_id: params[:id])
+    if item = Item.find_by_id(params[:item])
+      item.update_attributes(employee_id: @employee.id)
     end
 
     redirect_to employee_path
