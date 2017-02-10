@@ -1,13 +1,14 @@
 <div class="page-header">
   <div class= "row">
-    <h3 class="col-sm-4 col-md-4">
+    <h3 class="col-sm-4 col-md-2">
       <%= t('.heading') %>
     </h3>
-    <div class="col-sm-6 col-md-6 page-heading">
+    <div class="col-sm-6 col-md-8 page-heading">
       <%= form_tag items_path, { method: :get, class: "form-inline"} do %>
         <%= select_tag :category, options_from_collection_for_select(Category.active, :id, :name, { selected: params[:category]} ), prompt: "Select Category", class: "category-dropdown form-control search" %>
         <%= select_tag :brand, options_from_collection_for_select(Brand.all, :id, :name, { selected: params[:brand]} ), prompt: "Select Brand", class: "brand-dropdown form-control" %>
-	 <%= select_tag :allocated, options_for_select([["Allocated Items", true], ["Unallocated Items", false]], { selected: params[:allocated] }), prompt: "Select", class: "category-dropdown form-control search pull-left"  %>
+	 <%= select_tag :allocated, options_for_select([["Allocated Items", true], ["Unallocated Items", false]], { selected: params[:allocated] }), prompt: "Select", class: "category-dropdown form-control search"  %>
+        <%= select_tag :parent, options_from_collection_for_select(Item.parent_list, :id, :name, { selected: params[:parent]} ), prompt: "Select Parent", class: "category-dropdown form-control search pull-left" %>
       <% end %>
     </div>
     <div class="col-sm-2 col-md-2 page-heading link-right">
@@ -59,8 +60,8 @@
           <%  if item.employee.present? %>
             <%= link_to item.employee.name, employee_path(item.employee_id) %>
           <% else %>
-             <%= t('.table.td.unallocated') %> 
-          <% end %>  
+             <%= t('.table.td.unallocated') %>
+          <% end %>
         </td>
         <td>
           <%= item.working? ? t('.table.td.working') : t('.table.td.non_working') %>
