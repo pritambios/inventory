@@ -7,6 +7,9 @@ class ItemsController < ApplicationController
     @items = @items.not_erased.active
     @items = @items.where(category_id: params[:category]) if params[:category].present?
     @items = @items.where(brand_id: params[:brand]) if params[:brand].present?
+    @items = @items.unallocated_items if params[:allocated] == 'false'
+    @items = @items.allocated_items if params[:allocated] == 'true'
+    @items = Item.where(id: params[:parent]) if params[:parent].present?
     @items = @items.paginate(page: params[:page])
   end
 
