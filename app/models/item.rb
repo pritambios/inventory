@@ -24,6 +24,7 @@ class Item < ActiveRecord::Base
   scope :unattached,      -> { where(parent_id: nil, employee_id: nil) }
   scope :unavailable,     -> { joins(:checkouts).where(checkouts: { check_in: nil }) }
   scope :unallocated_items, -> { where(employee_id: nil) }
+  scope :allocated_items,   -> { where.not(employee_id: nil) }
   scope :parent_list,     -> { joins(:childrens).distinct }
   scope :filter_by_category,->(category) { where(category_id: category) }
   scope :filter_by_brand, ->(brand) { where(brand_id: brand) }

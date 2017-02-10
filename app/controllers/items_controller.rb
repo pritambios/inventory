@@ -8,6 +8,8 @@ class ItemsController < ApplicationController
     @items = @items.filter_by_category(params[:category]) if params[:category].present?
     @items = @items.filter_by_brand(params[:brand]) if params[:brand].present?
     @items = @items.filter_by_parent(params[:parent]) if params[:parent].present?
+    @items = @items.unallocated_items if params[:allocated] == 'false'
+    @items = @items.allocated_items if params[:allocated] == 'true'
     @items = @items.paginate(page: params[:page])
   end
 
