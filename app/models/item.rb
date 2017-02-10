@@ -17,18 +17,18 @@ class Item < ActiveRecord::Base
 
   accepts_nested_attributes_for :documents, reject_if: :all_blank, allow_destroy: true
 
-  scope :active,          -> { joins(:category).where(discarded_at: nil, categories: { deleted_at: nil }) }
-  scope :available,       -> { where.not(id: unavailable) }
-  scope :not_erased,      -> { where(deleted_at: nil) }
-  scope :order_desending, -> { order('created_at DESC') }
-  scope :unattached,      -> { where(parent_id: nil, employee_id: nil) }
-  scope :unavailable,     -> { joins(:checkouts).where(checkouts: { check_in: nil }) }
-  scope :unallocated_items, -> { where(employee_id: nil) }
-  scope :allocated_items,   -> { where.not(employee_id: nil) }
-  scope :parent_list,     -> { joins(:childrens).distinct }
-  scope :filter_by_category,->(category) { where(category_id: category) }
-  scope :filter_by_brand, ->(brand) { where(brand_id: brand) }
-  scope :filter_by_parent,->(parent) { where(parent_id: parent) }
+  scope :active,              -> { joins(:category).where(discarded_at: nil, categories: { deleted_at: nil }) }
+  scope :available,           -> { where.not(id: unavailable) }
+  scope :not_erased,          -> { where(deleted_at: nil) }
+  scope :order_desending,     -> { order('created_at DESC') }
+  scope :unattached,          -> { where(parent_id: nil, employee_id: nil) }
+  scope :unavailable,         -> { joins(:checkouts).where(checkouts: { check_in: nil }) }
+  scope :unallocated_items,   -> { where(employee_id: nil) }
+  scope :allocated_items,     -> { where.not(employee_id: nil) }
+  scope :parent_list,         -> { joins(:childrens).distinct }
+  scope :filter_by_category,  -> (id) { where(category_id: id) }
+  scope :filter_by_brand,     -> (id) { where(brand_id: id) }
+  scope :filter_by_parent,    -> (id) { where(parent_id: id) }
   
   def self.unassociated_items(item)
     where.not(id: item.childrens.pluck(:id,item.id))

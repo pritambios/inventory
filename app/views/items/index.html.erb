@@ -8,7 +8,7 @@
         <%= select_tag :category, options_from_collection_for_select(Category.active, :id, :name, { selected: params[:category]} ), prompt: "Select Category", class: "category-dropdown form-control search" %>
         <%= select_tag :brand, options_from_collection_for_select(Brand.all, :id, :name, { selected: params[:brand]} ), prompt: "Select Brand", class: "brand-dropdown form-control" %>
 	 <%= select_tag :allocated, options_for_select([["Allocated Items", true], ["Unallocated Items", false]], { selected: params[:allocated] }), prompt: "Select", class: "category-dropdown form-control search"  %>
-         <%= select_tag :parent, options_from_collection_for_select(Item.parent_list, :id, :name, { selected: params[:parent]} ), prompt: "Select Parent", class: "category-dropdown form-control search pull-left" %>
+        <%= select_tag :parent, options_from_collection_for_select(Item.parent_list, :id, :name, { selected: params[:parent]} ), prompt: "Select Parent", class: "category-dropdown form-control search pull-left" %>
       <% end %>
     </div>
     <div class="col-sm-2 col-md-2 page-heading link-right">
