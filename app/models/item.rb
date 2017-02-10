@@ -24,6 +24,7 @@ class Item < ActiveRecord::Base
   scope :unattached,        -> { where(system_id: nil, employee_id: nil) }
   scope :unavailable,       -> { joins(:checkouts).where(checkouts: { check_in: nil }) }
   scope :unallocated_items, -> { where(employee_id: nil) }
+  scope :allocated_items,   -> { where.not(employee_id: nil) }
 
   def self.unassociated_items(item)
     where.not(id: item.childrens.pluck(:id,item.id))
