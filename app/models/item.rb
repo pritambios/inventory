@@ -23,8 +23,12 @@ class Item < ActiveRecord::Base
   scope :order_desending, -> { order('created_at DESC') }
   scope :unattached,      -> { where(parent_id: nil, employee_id: nil) }
   scope :unavailable,     -> { joins(:checkouts).where(checkouts: { check_in: nil }) }
+  scope :unallocated_items, -> { where(employee_id: nil) }
   scope :parent_list,     -> { joins(:childrens).distinct }
-
+  scope :filter_by_category,->(category) { where(category_id: category) }
+  scope :filter_by_brand, ->(brand) { where(brand_id: brand) }
+  scope :filter_by_parent,->(parent) { where(parent_id: parent) }
+  
   def self.unassociated_items(item)
     where.not(id: item.childrens.pluck(:id,item.id))
   end
@@ -48,11 +52,11 @@ class Item < ActiveRecord::Base
   end
 
   def name
-    "#{brand.try(:name)} #{category.name}"
+    "#{brand.try(:name)} #{category.name}".titleize
   end
 
   def name_with_id
-    "#{name} #{id}"
+    "#{name} (#{id})"
   end
 
   def pending_checkout

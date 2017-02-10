@@ -8,6 +8,7 @@
       <th><%= t('.table.th.name') %></th>
       <th><%= t('.table.th.email') %></th>
       <th><%= t('.table.th.status') %></th>
+      <th><%= t('.table.th.allocated_items') %></th>
       <th></th>
     </tr>
     <% @employees.each do |employee| %>
@@ -15,6 +16,11 @@
         <td><%= link_to employee.name, employee_path(employee) %></td>
         <td><%= link_to employee.email, employee_path(employee) if employee.email? %></td>
         <td><%= employee.active? ? t('.table.td.active') : t('.table.td.inactive') %></td>
+	 <td>
+	   <% employee.items.each do |item| %>
+	     <%= link_to item.name_with_id, item_path(item) %><br>
+	   <% end %>
+	 </td>
         <td>
           <% unless employee.external_id? %>
             <%= edit_link(edit_employee_path(employee), t('.edit.popup.title')) %>
