@@ -51,7 +51,7 @@
 
     <p>
       <span><%= t('.parent_item') %></span>
-      <%= link_to t('.change'), change_parent_item_path(@item), data: { remote_popup: true, title: t('.change_parent') }, class: "btn btn-primary btn-sm pull-right" %>
+      <%= link_to t('.change'), change_parent_item_path(@item), data: { remote_popup: true, title: t('.change_parent') }, class: "pull-right parent-link"  %>
       <% if @item.parent.present? %>
         <%= link_to @item.parent.name_with_id, item_path(@item.parent) %>
       <% end %>
