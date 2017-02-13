@@ -10,7 +10,7 @@
     </tr>
     <% @categories.each do |category| %>
       <tr>
-        <td><%= link_to category.name, items_path(category: category) %></td>
+        <td><%= link_to category.name, items_path(category: category) %> (<%= category.items.count %>)</td>
         <td>
           <%= edit_link(edit_category_path(category), t('.edit.popup.title')) %>
           <%= delete_link(category_path(category)) %>
