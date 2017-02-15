@@ -10,7 +10,7 @@
     </tr>
     <% @brands.each do |brand| %>
       <tr>
-        <td><%= link_to brand.name, items_path(brand: brand) %></td>
+        <td><%= link_to brand.name, items_path(brand: brand) %> (<%= brand.items.count %>)</td>
         <td><%= edit_link(edit_brand_path(brand), t('.edit.popup.title')) %></td>
       </tr>
     <% end %>
