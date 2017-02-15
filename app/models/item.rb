@@ -1,4 +1,6 @@
 class Item < ActiveRecord::Base
+  PERMISSIBLE_HOURS = 48
+
   around_save :update_item_history
 
   has_many :checkouts
@@ -14,6 +16,7 @@ class Item < ActiveRecord::Base
   belongs_to :vendor
 
   validates :category, presence: true
+  validate :edit_item_details, on: [:update]
 
   accepts_nested_attributes_for :documents, reject_if: :all_blank, allow_destroy: true
 
@@ -29,7 +32,13 @@ class Item < ActiveRecord::Base
   scope :filter_by_category,  -> (id) { where(category_id: id) }
   scope :filter_by_brand,     -> (id) { where(brand_id: id) }
   scope :filter_by_parent,    -> (id) { where(parent_id: id) }
-  
+
+  def edit_item_details
+    if category_id_changed? || brand_id_changed?
+      errors.add(:base, "Brand or Category cannot be changed after 48 hours")  if created_at < PERMISSIBLE_HOURS.hours.ago
+    end
+  end
+
   def self.unassociated_items(item)
     where.not(id: item.childrens.pluck(:id,item.id))
   end
