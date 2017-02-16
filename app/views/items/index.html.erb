@@ -1,7 +1,7 @@
 <div class="page-header">
   <div class= "row">
     <h3 class="col-sm-4 col-md-2">
-      <%= t('.heading') %>
+      <%= t('.heading') %> (<%= @items.count %>)
     </h3>
     <div class="col-sm-6 col-md-8 page-heading">
       <%= form_tag items_path, { method: :get, class: "form-inline"} do %>
