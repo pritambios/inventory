@@ -2,7 +2,7 @@ class BrandsController < ApplicationController
   before_action :get_brand, only: [:edit, :update]
 
   def index
-    @brands = Brand.order_by_name.paginate(page: params[:page])
+    @brands = Brand.order_by_name.includes(:items).paginate(page: params[:page])
   end
 
   def new

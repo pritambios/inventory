@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   before_action :get_category, only: [:edit, :update, :destroy]
 
   def index
-    @categories = Category.active.order_by_name.paginate(page: params[:page])
+    @categories = Category.active.order_by_name.includes(:items).paginate(page: params[:page])
   end
 
   def new
