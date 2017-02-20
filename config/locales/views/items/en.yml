@@ -76,6 +76,7 @@ en:
       delete_attachment_confirm_message: "Are you sure, you want to delete this attachment?"
       new_issue: "New Issue"
       discard: "Discard"
+      delete: "Delete"
       discard_reason_title: "Discard reason"
       edit:
         popup:
