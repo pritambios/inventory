@@ -3,7 +3,9 @@
 </div>
 <div class="row">
   <section class="col-xs-12 col-sm-5 main-info">
-    <h3 class="table-heading"><%= @item.name %></h3>
+    <h3 class="table-heading"><%= @item.name %>
+      <span class="edit pull-right"><%= edit_link(edit_item_path(@item), t('.edit.popup.title')) %></span>
+    </h3>
     <p><span><%= t('.id') %> </span><%= @item.id %></p>
     <p><span><%= t('.status') %> </span><%= @item.working? ? t('.working') : t('.not_working') %></p>
 
@@ -91,8 +93,6 @@
         </ul>
       </p>
     <% end %>
-
-    <%= edit_link(edit_item_path(@item), t('.edit.popup.title')) %>
 
     <% if @item.discarded_at.nil? %>
       <%= link_to allocation_type(@item), allocate_item_path(@item), data: { remote_popup: true, title: allocation_type(@item) }, class: "btn btn-primary btn-sm" %>

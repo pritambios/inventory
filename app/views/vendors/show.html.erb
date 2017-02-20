@@ -3,7 +3,9 @@
 </div>
 <div class="row">
   <section class="col-xs-12 col-sm-5 main-info">
-    <h3><%= @vendor.name %></h3>
+    <h3><%= @vendor.name %>
+    <span class="edit pull-right"><%= edit_link(edit_vendor_path(@vendor), t('.edit.popup.title')) %></span>
+    </h3>
     <p><span><%= t('.id') %> </span><%= @vendor.id %></p>
 
     <% if @vendor.email.present? %>
@@ -26,7 +28,6 @@
       <p><span><%= t('.state') %> </span><%= @vendor.state %></p>
     <% end %>
 
-    <%= edit_link(edit_vendor_path(@vendor), t('.edit.popup.title')) %>
   </section>
   <section class="col-xs-12 col-sm-7 other-info">
     <h3><%= t('.purchased_item.heading') %> (<%= @items.count %>)</h3>

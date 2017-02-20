@@ -2,8 +2,10 @@
   <%= back_link %>
 </div>
 <section class="main-info">
-  <h3><%= @checkout.item.name %></h3>
-   <p><span><%= t('.id') %> </span><%= @checkout.id %></p>
+  <h3><%= @checkout.item.name %>
+    <span class="edit pull-right"><%= edit_link(edit_checkout_path(@checkout), t('checkout.index.edit.popup.title')) %></span>
+  </h3>
+  <p><span><%= t('.id') %> </span><%= @checkout.id %></p>
 
   <% if @checkout.employee.present? %>
     <p><span><%= t('.employee') %> </span><%= link_to @checkout.employee.name, employee_path(@checkout.employee_id) %></p>
@@ -16,8 +18,6 @@
   <% end %>
 
   <p><span><%= t('.reason') %> </span><%= @checkout.reason %></p>
-  <%= edit_link(edit_checkout_path(@checkout), t('checkout.index.edit.popup.title')) %>
-
   <% unless @checkout.check_in.present? %>
     <%= link_to t('button.checkin'), checkin_checkout_path(@checkout), method: :get, data: { confirm: t('.checkin_confirm_message') }, class: 'btn btn-default' %>
   <% end %>

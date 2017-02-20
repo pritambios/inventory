@@ -3,7 +3,9 @@
 </div>
 <div class="row">
   <section class="col-xs-12 col-sm-5 main-info">
-    <h3 class="table-heading"><%= @employee.name %></h3>
+    <h3 class="table-heading"><%= @employee.name %>
+      <span class="edit pull-right"><%= edit_link(edit_employee_path(@employee), t('.edit.popup.title')) %></span>
+    </h3>
 
     <% if @employee.email.present? %>
       <p><span><%= t('.title.email') %> </span><%= @employee.email %></p>
@@ -15,7 +17,6 @@
       <p><span><%= t('.title.external_id') %> </span><%= @employee.external_id %></p>
     <% end %>
 
-    <%= edit_link(edit_employee_path(@employee), t('.edit.popup.title')) %>
     <%= delete_link(employee_path(@employee)) %>
   </section>
   <section class="col-xs-12 col-sm-7 other-info">

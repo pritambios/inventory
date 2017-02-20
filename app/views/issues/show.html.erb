@@ -2,7 +2,9 @@
   <%= back_link %>
 </div>
 <section class="main-info">
-  <h3><%= @issue.title %></h3>
+  <h3><%= @issue.title %>
+    <span class="edit pull-right"><%= edit_link(edit_issue_path(@issue), t('.edit.popup.title')) %></span>
+  </h3>
   <p><span><%= t('.id') %> </span><%= @issue.id %></p>
 
   <% if @issue.item.present? %>
@@ -30,7 +32,5 @@
   <% if @issue.priority? %>
     <p><span><%= t('.priority') %> </span><%= @issue.priority %></p>
   <% end %>
-
-  <%= edit_link(edit_issue_path(@issue), t('.edit.popup.title')) %>
 
 </section>
