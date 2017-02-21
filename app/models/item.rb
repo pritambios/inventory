@@ -62,7 +62,7 @@ class Item < ActiveRecord::Base
   end
 
   def name
-    "#{brand.try(:name)} #{category.name}".titleize
+    "#{brand.try(:name)} #{category.name}"
   end
 
   def name_with_id
