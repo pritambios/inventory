@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'welcome#index'
-  resources :brands, except: [:show, :destroy]
+  resources :brands, except: [:show]
   resources :categories, except: [:show]
 
   resources :checkouts, except: [:destroy] do
