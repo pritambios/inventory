@@ -1,8 +1,8 @@
 class BrandsController < ApplicationController
-  before_action :get_brand, only: [:edit, :update]
+  before_action :get_brand, only: [:edit, :update, :destroy]
 
   def index
-    @brands = Brand.order_by_name.includes(:items).paginate(page: params[:page])
+    @brands = Brand.active.order_by_name.includes(:items).paginate(page: params[:page])
   end
 
   def new
@@ -37,6 +37,11 @@ class BrandsController < ApplicationController
 
   def show
     @brand_items = @brand.items.paginate(page: params[:page])
+  end
+
+  def destroy
+    @brand.update_attributes(deleted_at: Time.now)
+    redirect_to brands_path, flash: { success: t('destroy.success') }
   end
 
   private
