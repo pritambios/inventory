@@ -3,6 +3,7 @@
     <%= render 'shared/errors', obj: @item %>
     <%= render 'form', f: f %>
     <div class="text-right">
+      <%= delete_link(item_path(@item)) %>
       <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('button.cancel') %></button>
       <%= f.submit t('button.update'), class: "btn btn-primary" %>
     </div>
