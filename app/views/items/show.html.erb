@@ -88,10 +88,10 @@
     <% end %>
 
     <% if @item.discarded_at.nil? %>
-      <div class="row">
-	<div class="col-md-5 col-lg-5"><%= link_to allocation_type(@item), allocate_item_path(@item), data: { remote_popup: true, title: allocation_type(@item) } %></div>
-	<div class="col-md-4 col-lg-4"><%= link_to t('.new_issue'), new_issue_path(item_id: @item), data: { remote_popup: true, title: t('.item_issue.popup.title') } %></div>
-	<div class="col-md-3 col-lg-3" align="right"><%= link_to t('.discard'), discard_reason_item_path(@item), data: { remote_popup: true, title: t('.discard_reason_title') } %></div>
+      <div class="links">
+	<%= link_to allocation_type(@item), allocate_item_path(@item), data: { remote_popup: true, title: allocation_type(@item) } %>
+	<%= link_to t('.new_issue'), new_issue_path(item_id: @item), data: { remote_popup: true, title: t('.item_issue.popup.title') } %>
+	<%= link_to t('.discard'), discard_reason_item_path(@item), data: { remote_popup: true, title: t('.discard_reason_title') } %>
       </div>
     <% end %>
   </section>
