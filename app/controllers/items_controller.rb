@@ -4,12 +4,11 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.includes(:brand, :category, :issues, :checkouts)
-    @items = @items.not_erased.active
+    @items = @items.not_erased.active if params[:status] != "Discarded"
     @items = @items.filter_by_category(params[:category]) if params[:category].present?
     @items = @items.filter_by_brand(params[:brand]) if params[:brand].present?
     @items = @items.filter_by_parent(params[:parent]) if params[:parent].present?
-    @items = @items.unallocated_items if params[:allocated] == 'false'
-    @items = @items.allocated_items if params[:allocated] == 'true'
+    @items = @items.filter_by_status(params[:status]) if params[:status].present?
     @items = @items.paginate(page: params[:page])
   end
 

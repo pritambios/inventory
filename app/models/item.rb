@@ -1,5 +1,6 @@
 class Item < ActiveRecord::Base
   PERMISSIBLE_HOURS = 48
+  STATUS = { Allocated: "allocated_items", Unallocated: "unallocated_items", Discarded: "discarded_items" }
 
   around_save :update_item_history
 
@@ -28,6 +29,7 @@ class Item < ActiveRecord::Base
   scope :unavailable,         -> { joins(:checkouts).where(checkouts: { check_in: nil }) }
   scope :unallocated_items,   -> { where(employee_id: nil) }
   scope :allocated_items,     -> { where.not(employee_id: nil) }
+  scope :discarded_items,     -> { where.not(discarded_at: nil) }
   scope :parent_list,         -> { joins(:childrens).distinct }
   scope :filter_by_category,  -> (id) { where(category_id: id) }
   scope :filter_by_brand,     -> (id) { where(brand_id: id) }
@@ -41,6 +43,14 @@ class Item < ActiveRecord::Base
 
   def self.unassociated_items(item)
     where.not(id: item.childrens.pluck(:id,item.id))
+  end
+
+  def self.filter_by_status(status)
+    if STATUS.has_key?(status.to_sym)
+      send(STATUS[status.to_sym])
+    else
+      all
+    end
   end
 
   def change_parent(parent)
