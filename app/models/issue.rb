@@ -3,9 +3,12 @@ class Issue < ActiveRecord::Base
 
   belongs_to :item
   belongs_to :resolution
+  belongs_to :employee
 
   validates :title, :item, presence: true
   validate  :item_closed_at_limitation
+
+  delegate :name, to: :employee, prefix: true
 
   scope :order_desending, -> { order('created_at DESC') }
   scope :unclosed,        -> { where(closed_at: nil) }

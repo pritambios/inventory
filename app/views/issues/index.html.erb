@@ -14,6 +14,7 @@
       <th><%= t('.table.th.id') %></th>
       <th><%= t('.table.th.issue') %></th>
       <th><%= t('.table.th.item') %></th>
+      <th><%= t('.table.th.employee') %></th>
       <th><%= t('.table.th.resolution') %></th>
       <th><%= t('.table.th.priority') %></th>
       <th><%= t('.table.th.closed') %></th>
@@ -24,6 +25,11 @@
         <td><%= link_to issue.id, issue_path(issue) %></td>
         <td><%= link_to issue.title, issue_path(issue) %></td>
         <td><%= link_to issue.item.name_with_id, item_path(issue.item) if issue.item %></td>
+	 <td>
+	   <% if issue.employee.present? %>
+	     <%= issue.employee_name %>
+	   <% end %>
+	 </td>
         <td><%= issue.resolution.try(:name) %></td>
         <td>
           <%= select_tag :priority, options_for_select(Issue.priorities.sort_by{ |key, value| key }.map{|key, value| [key.humanize, key]}, selected: issue.priority), prompt: t('.table.td.placeholder.select') , data: { remote: true, url: set_priority_issue_path(issue), method: :put }, class: 'select-option' %>

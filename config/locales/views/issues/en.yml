@@ -38,6 +38,7 @@ en:
           resolution: "Resolution"
           priority: "Priority"
           closed: "Closed At"
+          employee: "Employee"
         td:
           placeholder:
             select: "Select"

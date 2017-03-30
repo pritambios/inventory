@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170221092108) do
+ActiveRecord::Schema.define(version: 20170403065705) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20170221092108) do
     t.datetime "updated_at"
     t.integer  "resolution_id", limit: 4
     t.integer  "priority",      limit: 4
+    t.integer  "employee_id",   limit: 4
   end
 
   add_index "issues", ["item_id"], name: "fk_rails_e682dcd997", using: :btree
