@@ -45,6 +45,7 @@ en:
           checkout: "Checkout"
           employee: "Employee"
           status: "Status"
+          note: "Note"
         td:
           unclosed: unclosed
           closed: "closed"

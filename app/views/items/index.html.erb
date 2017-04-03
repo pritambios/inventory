@@ -25,6 +25,7 @@
       <th><%= t('.table.th.serial_number') %></th>
       <th><%= t('.table.th.issue') %></th>
       <th><%= t('.table.th.checkout') %></th>
+      <th><%= t('.table.th.note') %></th>
       <th><%= t('.table.th.employee') %></th>
       <th><%= t('.table.th.status') %></th>
       <th></th>
@@ -56,6 +57,7 @@
             <% end %>
           <% end %>
         </td>
+	 <td><%= item.note %></td>
         <td>
           <%  if item.employee.present? %>
             <%= link_to item.employee.name, employee_path(item.employee_id) %>
