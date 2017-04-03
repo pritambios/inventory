@@ -26,8 +26,6 @@ en:
           employee: "Employee"
           checkout: "Checkout"
           checkin: "Checkin"
-        td:
-          for_maintaince: "For Maintaince"
       checkin_confirm_message: "are you sure the item is checkin?"
     show:
       id: "Id:"

@@ -2,7 +2,7 @@ class Checkout < ActiveRecord::Base
   belongs_to :employee
   belongs_to :item
 
-  validates :item, :checkout, :reason, presence: true
+  validates :item, :checkout, :reason, :employee, presence: true
   validate  :checkout_limitation
 
   scope :order_desending, -> { order('created_at DESC') }
