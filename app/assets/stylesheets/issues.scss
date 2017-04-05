@@ -1,0 +1,29 @@
+.issues-list {
+  &__id {
+    width: 5%;
+  }
+
+  &__issue {
+    width: 18%;
+  }
+
+  &__item {
+    width: 15%;
+  }
+
+  &__employee {
+    width: 20%;
+  }
+
+  &__priority {
+    width: 20%
+  }
+
+  &__status {
+    width: 15%
+  }
+
+  &__actions {
+    width: 7%;
+  }
+}
