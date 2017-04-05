@@ -22,8 +22,4 @@
   <div class="col-sm-4"><%= f.label :priority, t('.title.priority') %></div>
   <div class="col-sm-8"><%= f.select :priority, Issue.priorities.sort_by{ |key, value| key }.map{ |key, value| [key.humanize, key] }, { include_blank: t('.placeholder.select') }, class: 'form-control' %></div>
 </div>
-<div class="form-group row">
-  <div class="col-sm-4"><%= f.label :note, t('.title.note') %></div>
-  <div class="col-sm-8"><%= f.text_area :note, rows: "2", class: 'form-control', placeholder: t('.placeholder.note') %></div>
-</div>
 <%= unobtrusive_js("$('.datepicker').datetimepicker({ format: 'DD/MM/YYYY' });") %>

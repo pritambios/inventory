@@ -79,7 +79,7 @@ class IssuesController < ApplicationController
   end
 
   def issue_params
-    params.require(:issue).permit(:item_id, :title, :description, :note, :priority, :employee_id)
+    params.require(:issue).permit(:item_id, :title, :description, :priority, :employee_id)
   end
 
   def resolution_params
