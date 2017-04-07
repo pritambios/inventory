@@ -6,4 +6,8 @@ class Brand < ActiveRecord::Base
 
   scope :active,        -> { where(deleted_at: nil) }
   scope :order_by_name, -> { order('name') }
+
+  def category_count
+    items.group("category").count.map{|k,v| "#{k.name}-#{v}"}.join(", ")
+  end
 end
