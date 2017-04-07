@@ -9,16 +9,15 @@
   </h3>
 </div>
 <div class="table-responsive">
-  <table class="table table-striped table-last">
+  <table class="table table-striped table-last issues-list">
     <tr>
-      <th><%= t('.table.th.id') %></th>
-      <th><%= t('.table.th.issue') %></th>
-      <th><%= t('.table.th.item') %></th>
-      <th><%= t('.table.th.employee') %></th>
-      <th><%= t('.table.th.resolution') %></th>
-      <th><%= t('.table.th.priority') %></th>
-      <th><%= t('.table.th.closed') %></th>
-      <th>&nbsp;</th>
+      <th class="issues-list__id"><%= t('.table.th.id') %></th>
+      <th class="issues-list__issue"><%= t('.table.th.issue') %></th>
+      <th class="issues-list__item"><%= t('.table.th.item') %></th>
+      <th class="issues-list__employee"><%= t('.table.th.employee') %></th>
+      <th class="issues-list__priority"><%= t('.table.th.priority') %></th>
+      <th class="issues-list__status"><%= t('.table.th.status') %></th>
+      <th class="issues-list__actions">&nbsp;</th>
     </tr>
     <% @issues.each do |issue| %>
       <tr>
@@ -30,19 +29,21 @@
 	     <%= issue.employee_name %>
 	   <% end %>
 	 </td>
-        <td><%= issue.resolution.try(:name) %></td>
         <td>
           <%= select_tag :priority, options_for_select(Issue.priorities.sort_by{ |key, value| key }.map{|key, value| [key.humanize, key]}, selected: issue.priority), prompt: t('.table.td.placeholder.select') , data: { remote: true, url: set_priority_issue_path(issue), method: :put }, class: 'select-option' %>
         </td>
         <td>
           <% if issue.closed_at %>
-            <%= format_date(issue.closed_at) %>
+           Closed at <%= format_date(issue.closed_at) %></br>
+           Resolution: <%= issue.resolution.try(:name) %>
           <% else %>
             <%= link_to t('button.close'), close_issue_path(issue), data: { remote_popup: true, title: t('.close.popup.title') }, class: 'btn btn-default' %>
           <% end %>
         </td>
         <td>
-          <%= edit_link(edit_issue_path(issue), t('.edit.popup.title')) %>
+          <% unless issue.closed_at %>
+            <%= edit_link(edit_issue_path(issue), t('.edit.popup.title')) %>
+          <% end %>
         </td>
       </tr>
     <% end %>
