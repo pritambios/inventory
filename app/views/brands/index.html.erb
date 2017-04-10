@@ -11,7 +11,7 @@
     <% @brands.each do |brand| %>
       <tr>
         <td><%= link_to brand.name, items_path(brand: brand) %> (<%= brand.items.size %>)
-          <p><%= brand.category_count %></p>    
+          <p><%= brand.category_wise_items_count %></p>    
         </td>
         <td>
 	  <%= edit_link(edit_brand_path(brand), t('.edit.popup.title')) %>
