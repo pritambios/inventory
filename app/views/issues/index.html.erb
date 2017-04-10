@@ -34,7 +34,7 @@
         </td>
         <td>
           <% if issue.closed_at %>
-           <%= format_date(issue.closed_at) %></br>
+            <%= format_date(issue.closed_at) %>
           <% else %>
             <%= link_to t('button.close'), close_issue_path(issue), data: { remote_popup: true, title: t('.close.popup.title') }, class: 'btn btn-default' %>
           <% end %>
