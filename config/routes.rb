@@ -16,6 +16,10 @@ Rails.application.routes.draw do
       get 'allocate_item'
       put 'add_item'
     end
+
+    collection do
+      get 'fetch'
+    end
   end
 
   resources :issues, except: [:destroy] do

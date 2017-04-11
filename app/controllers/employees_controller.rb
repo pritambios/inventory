@@ -55,6 +55,11 @@ class EmployeesController < ApplicationController
     end
   end
 
+  def fetch
+    FetchExternalEmployee.add_employees()
+    redirect_to employees_path
+  end
+
   private
 
   def get_employee
