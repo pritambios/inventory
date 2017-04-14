@@ -362,19 +362,7 @@ section.other-info .icon-show {
 }
 
 .item-index {
-  & td:nth-child(6), td:nth-child(7)  {
-    width: 15%;
-    word-break: break-all;
-  }
-
-  & td:nth-child(10) {
-    width: 5%;
-  }
-
-  & td:last-child {
-    text-align: right;
-    width: 15%;
-  }
+  table-layout: fixed;
 }
 
 .item-index>thead>tr>th, .item-index>thead>tr>td, .item-index>tbody>tr>th, .item-index>tbody>tr>td, .item-index>tfoot>tr>th, .item-index>tfoot>tr>td {
@@ -415,13 +403,6 @@ section.other-info .icon-show {
     font-size: 12px;
   }
 
-  .item-index-responsive {
-    overflow-x: auto;
-    overflow-y: hidden;
-    width: 100%;
-    margin-bottom: 15px;
-  }
-
   .btn-allocate {
     white-space: normal;
     width: 86px;
@@ -444,4 +425,8 @@ section.other-info .icon-show {
   .nav > li > a {
     padding: 15px 10px 0px;
   }
+}
+ 
+.item-index td {
+  word-wrap: break-word;
 }

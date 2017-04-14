@@ -16,28 +16,28 @@
     </div>
   </div>
 </div>
-<div class="table-responsive item-index-responsive">
+<div class="table-responsive">
   <table class="table table-striped item-index">
-    <tr>
-      <th><%= t('.table.th.id') %></th>
-      <th><%= t('.table.th.item') %></th>
-      <th><%= t('.table.th.model_number') %></th>
-      <th><%= t('.table.th.serial_number') %></th>
-      <th><%= t('.table.th.issue') %></th>
-      <th><%= t('.table.th.checkout') %></th>
-      <th><%= t('.table.th.note') %></th>
-      <th><%= t('.table.th.employee') %></th>
-      <th><%= t('.table.th.status') %></th>
-      <th></th>
-      <th></th>
-    </tr>
+    <thead>
+      <th class="item-index-id"><%= t('.table.th.id') %></th>
+      <th class="item-index-item"><%= t('.table.th.item') %></th>
+      <th class="item-index-model"><%= t('.table.th.model_number') %></th>
+      <th class="item-index-serial"><%= t('.table.th.serial_number') %></th>
+      <th class="item-index-issue"><%= t('.table.th.issue') %></th>
+      <th class="item-index-checkout"><%= t('.table.th.checkout') %></th>
+      <th class="item-index-note"><%= t('.table.th.note') %></th>
+      <th class="item-index-employee"><%= t('.table.th.employee') %></th>
+      <th class="item-index-status"><%= t('.table.th.status') %></th>
+      <th class="item-index-edit"></th>
+      <th class="item-index-allocate"></th>
+    </thead>
     <% @items.each do |item| %>
       <tr>
-        <td><%= link_to item.id, item_path(item) %></td>
-        <td><%= link_to item.name, item_path(item) %></td>
-        <td><%= item.model_number %></td>
-        <td><%= item.serial_number %></td>
-        <td>
+        <td class="item-index-id"><%= link_to item.id, item_path(item) %></td>
+        <td class="item-index-item"><%= link_to item.name, item_path(item) %></td>
+        <td class="item-index-model"><%= item.model_number %></td>
+        <td class="item-index-serial"><%= item.serial_number %></td>
+        <td class="item-index-issue">
           <% if item.issues.present? %>
             <% if item.issues.unclosed.count > 0 %>
               <%= link_to "#{t('.table.td.unclosed')} (#{item.issues.unclosed.count})", issues_path(item_id: item.id) %>
@@ -48,7 +48,7 @@
             <%= t('.table.td.no_issue') %>
           <% end %>
         </td>
-        <td>
+        <td class="item-index-checkout">
           <% if item.checkouts.present? %>
             <% if item.unavailable? %>
               <%= checkout_details(item) %>
@@ -57,21 +57,21 @@
             <% end %>
           <% end %>
         </td>
-	 <td><%= item.note %></td>
-        <td>
+	 <td class="item-index-note"><%= item.note %></td>
+        <td class="employee">
           <%  if item.employee.present? %>
             <%= link_to item.employee.name, employee_path(item.employee_id) %>
           <% else %>
              <%= t('.table.td.unallocated') %>
           <% end %>
         </td>
-        <td>
+        <td class="item-index-working">
           <%= item.working? ? t('.table.td.working') : t('.table.td.non_working') %>
         </td>
-        <td>
+        <td class="item-index-edit">
           <%= edit_link(edit_item_path(item), t('.edit.popup.title')) %>
         </td>
-        <td>
+        <td class="item-index-allocate">
           <% if item.discarded_at.nil? %>
             <%= link_to allocation_type(item), allocate_item_path(item), data: { remote_popup: true, title: allocation_type(item) } %>
           <% end %>
