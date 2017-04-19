@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170405063728) do
+ActiveRecord::Schema.define(version: 20170418133237) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name",       limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.date     "deleted_at"
   end
 
@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 20170405063728) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.date     "deleted_at"
   end
 
@@ -36,8 +36,8 @@ ActiveRecord::Schema.define(version: 20170405063728) do
     t.date     "checkout",                null: false
     t.date     "check_in"
     t.string   "reason",      limit: 255, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.integer  "employee_id", limit: 4
   end
 
@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(version: 20170405063728) do
     t.integer  "attachment_file_size",    limit: 4
     t.datetime "attachment_updated_at"
     t.integer  "item_id",                 limit: 4
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.string   "title",                   limit: 255
   end
 
@@ -61,8 +61,8 @@ ActiveRecord::Schema.define(version: 20170405063728) do
     t.string   "email",       limit: 255
     t.boolean  "active",                  default: true
     t.integer  "external_id", limit: 4
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "issues", force: :cascade do |t|
@@ -70,8 +70,8 @@ ActiveRecord::Schema.define(version: 20170405063728) do
     t.string   "title",         limit: 255,   null: false
     t.text     "description",   limit: 65535
     t.date     "closed_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.integer  "resolution_id", limit: 4
     t.integer  "priority",      limit: 4
     t.integer  "employee_id",   limit: 4
@@ -84,8 +84,8 @@ ActiveRecord::Schema.define(version: 20170405063728) do
     t.integer  "item_id",     limit: 4,   null: false
     t.boolean  "status",                  null: false
     t.string   "note",        limit: 500
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.integer  "employee_id", limit: 4
     t.integer  "parent_id",   limit: 4
   end
@@ -94,8 +94,8 @@ ActiveRecord::Schema.define(version: 20170405063728) do
 
   create_table "items", force: :cascade do |t|
     t.string   "model_number",        limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.integer  "category_id",         limit: 4,                    null: false
     t.integer  "brand_id",            limit: 4
     t.string   "serial_number",       limit: 255
@@ -117,8 +117,8 @@ ActiveRecord::Schema.define(version: 20170405063728) do
 
   create_table "resolutions", force: :cascade do |t|
     t.string   "name",       limit: 255, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -140,8 +140,8 @@ ActiveRecord::Schema.define(version: 20170405063728) do
     t.string   "address",    limit: 255, null: false
     t.string   "city",       limit: 255
     t.string   "state",      limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_foreign_key "checkouts", "items"
