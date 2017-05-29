@@ -20,7 +20,14 @@ gem 'will_paginate', '~> 3.1.0'
 
 group :development, :test do
   gem 'byebug', platform: :mri
+  gem 'factory_girl_rails'
   gem 'pry-rails', "~> 0.3.4"
+  gem 'rspec-rails', '~> 3.5'
+end
+
+group :test do
+  gem 'capybara', '2.2.0'
+  gem 'faker'
 end
 
 group :development do

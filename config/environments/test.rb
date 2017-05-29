@@ -33,4 +33,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  config.rest_api_url        = Rails.application.secrets["rest_api_url"]
+  config.rest_api_auth_token = Rails.application.secrets["api_auth_token"]
+  config.company_id          = Rails.application.secrets["company_id"]
 end
