@@ -24,6 +24,8 @@ en:
       edit:
         popup:
           title: "Issue"
+        button:
+          close: "Close"
       close:
         popup:
           title: "Close Issue"

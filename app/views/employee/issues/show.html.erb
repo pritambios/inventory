@@ -3,23 +3,22 @@
 </div>
 <section class="main-info">
   <h3><%= @issue.title %>
-    <span class="edit pull-right"><%= edit_link(edit_issue_path(@issue), t('.edit.popup.title')) unless @issue.closed_at.present? %></span>
+    <span class="edit pull-right"><%= edit_link(edit_employee_issue_path(@issue), t('.edit.popup.title')) unless @issue.closed_at.present? %></span>
   </h3>
   <p><span><%= t('.id') %> </span><%= @issue.id %></p>
 
   <% if @issue.item.present? %>
-    <p><span><%= t('.item') %> </span><%= link_to @issue.item.name_with_id, item_path(@issue.item) %></p>
+    <p><span><%= t('.item') %> </span><%= @issue.item.name_with_id %></p>
   <% end %>
 
   <% if @issue.description.present? %>
-    <p><span><%= t('.description') %>  </span><%= @issue.description %></p>
+    <p><span><%= t('.description') %> </span><%= @issue.description %></p>
   <% end %>
 
   <% if @issue.closed_at.present? %>
     <p><span><%= t('.closed') %> </span><%= format_date(@issue.closed_at) %></p>
   <% else %>
     <p><span><%= t('.status') %> </span><%= t('.pending') %>
-    <%= link_to t('button.close'), close_issue_path(@issue), data: { remote_popup: true, title: "Close Issue" }, class: 'btn btn-default' %></p>
   <% end %>
   <p><span><%= t('.resolution') %> </span>
   <%= select_tag :resolution_id, options_from_collection_for_select(Resolution.all, :id, :name, selected: @issue.resolution_id), prompt: t('.placeholder.select'), data: { remote: true, url: set_resolution_issue_path(@issue), method: :put }, class: 'select-option-showPage' %></p>

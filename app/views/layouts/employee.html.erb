@@ -15,9 +15,9 @@
     <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
   </head>
 
-  <body class="<%= 'login-container' unless current_user.present? %>">
-    <% if current_user.present? %>
-      <%= render 'layouts/navigation' %>
+  <body class="<%= 'login-container' unless current_employee.present? %>">
+    <% if current_employee.present? %>
+      <%= render 'layouts/navigation_employee' %>
       <div class="container main-content">
         <%= render partial: 'shared/flash_messages' %>
         <%= yield %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170418133237) do
+ActiveRecord::Schema.define(version: 20170420080431) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -57,12 +57,14 @@ ActiveRecord::Schema.define(version: 20170418133237) do
   add_index "documents", ["item_id"], name: "fk_rails_9fa64cfbd0", using: :btree
 
   create_table "employees", force: :cascade do |t|
-    t.string   "name",        limit: 255,                null: false
-    t.string   "email",       limit: 255
+    t.string   "name",        limit: 255
+    t.string   "email",       limit: 255,               null: false
     t.boolean  "active",                  default: true
     t.integer  "external_id", limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.string   "access_token",limit: 255
+    t.string   "google_uid",  limit: 255
   end
 
   create_table "issues", force: :cascade do |t|

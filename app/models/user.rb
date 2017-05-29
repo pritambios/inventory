@@ -13,18 +13,16 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}".squish
   end
 
-  def self.find_and_update_from_auth(auth)
-    user ||= User.find_by_email(auth.info.email)
+  def name_or_email
+    full_name.presence || email
+  end
 
-    if user
-      user.first_name   = auth.info.first_name
-      user.last_name    = auth.info.last_name
-      user.google_uid   = auth.uid
-      user.access_token = auth.credentials.token
-      user.google_uid   = auth.uid
-      user.save
-    end
+  def update_from_auth(auth)
+    self.first_name   = auth.info.name.split.first
+    self.last_name    = auth.info.name.split.last
+    self.google_uid   = auth.uid
+    self.access_token = auth.credentials.token
 
-    user
+    save!
   end
 end

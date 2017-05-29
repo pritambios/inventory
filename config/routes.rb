@@ -52,4 +52,12 @@ Rails.application.routes.draw do
   get "/login", to: redirect("/auth/google_oauth2")
   get "/auth/google_oauth2/callback", to: "sessions#create"
   delete 'logout', to: 'sessions#destroy'
+
+  namespace :employee do
+    resources :issues do
+      member do
+        put 'set_priority'
+      end
+    end
+  end
 end

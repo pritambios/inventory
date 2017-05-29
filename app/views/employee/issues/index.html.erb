@@ -1,5 +1,5 @@
 <div class="page-header">
-  <%= link_to t('button.new'), new_issue_path(item_id: @item), data: { remote_popup: true, title: t('.add.popup.title') }, class: "btn btn-primary pull-right" %>
+  <%= link_to t('button.new'), new_employee_issue_path(item_id: @item), data: { remote_popup: true, title: t('.add.popup.title') }, class: "btn btn-primary pull-right" %>
   <h3>
     <% if params[:item_id].present? %>
       <%= t('.item') %> <%= @item.name_with_id %>
@@ -21,9 +21,9 @@
     </tr>
     <% @issues.each do |issue| %>
       <tr>
-        <td><%= link_to issue.id, issue_path(issue) %></td>
-        <td><%= link_to issue.title, issue_path(issue) %></td>
-        <td><%= link_to issue.item.name_with_id, item_path(issue.item) if issue.item %></td>
+        <td><%= link_to issue.id, employee_issue_path(issue) %></td>
+        <td><%= link_to issue.title, employee_issue_path(issue) %></td>
+        <td><%= issue.item.name_with_id %></td>
         <td>
           <% if issue.employee.present? %>
             <%= issue.employee_name %>
@@ -36,13 +36,11 @@
           <% if issue.closed_at.present? %>
             Closed at <%= format_date(issue.closed_at) %></br>
             Resolution: <%= issue.resolution.try(:name) %>
-          <% else %>
-            <%= link_to t('.button.close'), close_issue_path(issue), data: { remote_popup: true, title: t('.close.popup.title') }, class: 'btn btn-default' %>
           <% end %>
         </td>
         <td>
           <% unless issue.closed_at.present? %>
-            <%= edit_link(edit_issue_path(issue), t('.edit.popup.title')) %>
+            <%= edit_link(edit_employee_issue_path(issue), t('.edit.popup.title')) %>
           <% end %>
         </td>
       </tr>

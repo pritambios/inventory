@@ -12,6 +12,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_path unless current_user
   end
 
+  def find_user_or_employee(google_auth)
+    User.find_by(email: google_auth.info.email) || Employee.find_by(email: google_auth.info.email)
+  end
+
   protected
 
   def choose_layout

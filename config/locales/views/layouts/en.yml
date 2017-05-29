@@ -9,6 +9,8 @@ en:
       heading: "Inventory Management System"
       signin_text: "Sign in or Sign up in just a click!"
       footer: "Copyright &copy; 2016 Kreeti Technologies Pvt. Ltd. All rights reserved."
+    employee:
+      title: "Kreeti Technologies"
     navigation:
       brand: "Inventory"
       list:
@@ -28,3 +30,12 @@ en:
         logout: "Log out"
         popup:
           title: "Edit User"
+    navigation_employee:
+      brand: "Inventory"
+      list:
+        issues: "Issues"
+      dropdown:
+        settings: "Settings"
+        logout: "Log out"
+        popup:
+          title: "Edit Employee"

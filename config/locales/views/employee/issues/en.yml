@@ -1,0 +1,58 @@
+en:
+  employee:
+    issues:
+      form:
+        title:
+          issue_title: "Title:"
+          item: "Item:"
+          system: "System:"
+          description: "Description:"
+          note: "Note:"
+        placeholder:
+          select: "Select"
+          issue_title: "Title"
+          note: "Note"
+          description: "Description"
+      close:
+        title:
+          resolution: "Resolution:"
+        placeholder:
+          select: "Select"
+      index:
+        add:
+          popup:
+            title: "Create Issues"
+        edit:
+          popup:
+            title: "Issue"
+        heading: "Issues"
+        item: "Issues with Item "
+        table:
+          th:
+            id: "Id"
+            issue: "Issue"
+            system: "System"
+            item: "Item"
+            resolution: "Resolution"
+            priority: "Priority"
+            closed: "Closed At"
+            employee: "Employee"
+          td:
+            placeholder:
+              select: "Select"
+      show:
+        id: "Id:"
+        item: "Item:"
+        system: "System:"
+        description: "Description:"
+        closed: "Resolved At:"
+        status: "Status:"
+        pending: "Pending"
+        note: "Note:"
+        resolution: "Resolution:"
+        placeholder:
+          select: "Select"
+        priority: "Priority"
+        edit:
+          popup:
+            title: "Issue"

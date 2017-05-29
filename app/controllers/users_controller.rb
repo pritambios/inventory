@@ -43,6 +43,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def add_item
+    if item = Item.find_by_id(params[:item])
+      item.update_attributes(user_id: @user.id)
+    end
+
+    redirect_to user_path
+  end
+
   private
 
   def get_user
