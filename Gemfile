@@ -26,6 +26,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'capybara', '2.2.0'
   gem 'faker'
 end
 

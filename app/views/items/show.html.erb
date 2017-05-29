@@ -139,7 +139,7 @@
         </tr>
         <% @checkouts.each do |checkout| %>
           <tr>
-            <td><%= link_to checkout.employee.try(:name), employee_path(checkout.employee_id) if checkout.employee.present? %></td>
+            <td><%= link_to checkout.employee.try(:name), employee_path(checkout) if checkout.employee.present? %></td>
             <td><%= format_date(checkout.checkout) %></td>
             <td><%= format_date(checkout.check_in) %></td>
             <td><%= show_link(checkout_path(checkout)) %></td>
