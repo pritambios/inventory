@@ -76,7 +76,7 @@ class Item < ActiveRecord::Base
   end
 
   def name_with_id
-    "#{name} (#{id})"
+    "#{name} ##{id}"
   end
 
   def pending_checkout
