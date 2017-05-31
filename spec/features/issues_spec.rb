@@ -1,77 +1,48 @@
 require 'rails_helper'
 
-describe "Issue" do
-  subject { page }
-
-  let(:user)     { create(:user) }
-  let(:employee) { create(:employee) }
-  let(:item)     { create(:item) }
-  let(:issue)    { create(:issue, item, employee) }
-
-  before do
-    login_path(user)
+feature  "Issue" do
+  before :each do
+    login(User.create(email: "paromitadgp@gmail.com"))
   end
 
-  describe "index page" do
-    before do
-      visit issues_path(issue)
-    end
-    it { should have_content('Issues') }
-    it { should have_content('New') }
+  scenario "index page" do
+    visit issues_path
+
+    expect(page).to have_css('table.issues-list')
   end
 
-  describe "new" do
-    before do
-      visit new_issue_path(issue)
-    end
-    it {  should have_content('Create Issues') }
+  scenario "new issue page" do
+    visit new_issue_path
+
+    find_button('Create')
   end
 
-  describe "create" do
-    before do
-      visit new_item_path(item)
-    end
+  scenario "create new issue" do
+    category = FactoryGirl.create(:category, name: "Monitor")
+    brand = FactoryGirl.create(:brand, name: "HP")
+    item = FactoryGirl.create(:item, category: category, brand: brand)
+    visit new_issue_path
 
-  describe "with invalid inputs" do
-    it "should not create issue" do
-      expect {  click_button "Create" }.not_to change(Issue, :count)
-    end
+    fill_in "Title", with: "issue title"
+    select 'Hp Monitor', from: 'issue[item_id]'
+    expect { click_button 'Create' }.to change(Issue, :count).by(1)
   end
 
-  describe "with valid inputs" do
-    before do
-      fill_in "title", with: "some issue"
-      fill_in "item", with: "item"
-      fill_in "employee", with: "employee"
-      fill_in "description", with: "some description"
-    end
+  scenario "edit issue page" do
+    issue = FactoryGirl.create(:issue)
+    visit edit_issue_path(issue)
 
-    it "should save the issue" do
-      expect { click_button "Create" }.to change(Issue, :count).by(1)
-    end
+    find_button('Update')
   end
 
-    it "should save the issue with given inputs" do
-      click_button "Create"
-      expect(page).to have_content("some issue")
-    end
+  scenario "update issue" do
+    category = FactoryGirl.create(:category, name: "Monitor")
+    brand = FactoryGirl.create(:brand, name: "HP")
+    item = FactoryGirl.create(:item, category: category, brand: brand)
+    issue = FactoryGirl.create(:issue, item: item)
+    visit edit_issue_path(issue)
+
+    issue.reload
+    expect(current_path) == issues_path
   end
-
-
-  describe "edit" do
-    before do
-      visit edit_issue_path(issue)
-    end
-
-   describe "with valid inputs" do
-     before do
-       fill_in "title", with: "some issue"
-     end
-
-     it "should update the issue" do
-       click_button "Update"
-       expect(page).to have_content("some issue")
-     end
-   end
- end
 end
