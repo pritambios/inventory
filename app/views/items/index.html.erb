@@ -69,12 +69,10 @@
           <%= item.working? ? t('.table.td.working') : t('.table.td.non_working') %>
         </td>
         <td>
-          <%= edit_link(edit_item_path(item), t('.edit.popup.title')) %>
-        </td>
-        <td>
           <% if item.discarded_at.nil? %>
             <%= link_to allocation_type(item), allocate_item_path(item), data: { remote_popup: true, title: allocation_type(item) } %>
-          <% end %>
+          <% end %></br>
+          <%= edit_link(edit_item_path(item), t('.edit.popup.title')) %>
         </td>
       </tr>
     <% end %>
