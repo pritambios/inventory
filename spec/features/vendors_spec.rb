@@ -7,19 +7,16 @@ feature  "Vendor" do
 
   scenario "index page" do
     visit vendors_path
-
     expect(page).to have_css('table.table-last')
   end
 
   scenario "new vendor page" do
     visit new_vendor_path
-
     find_button('Create')
   end
 
   scenario "create new vendor" do
     visit new_vendor_path
-
     fill_in "Name", with: "paromita"
     fill_in "Address", with: "Kolkata"
     expect { click_button 'Add' }.to change(Vendor, :count).by(1)
@@ -28,15 +25,13 @@ feature  "Vendor" do
   scenario "edit vendor page" do
     vendor = FactoryGirl.create(:vendor)
     visit edit_vendor_path(vendor)
-
     find_button('Update')
   end
 
   scenario "update vendor" do
     vendor = FactoryGirl.create(:vendor)
     visit edit_vendor_path(vendor)
-
     vendor.reload
-    expect(current_path) == vendorss_path
+    expect(current_path) == vendors_path
   end
 end

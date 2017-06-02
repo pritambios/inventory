@@ -26,8 +26,10 @@ group :development, :test do
 end
 
 group :test do
-  gem 'capybara', '2.2.0'
+  gem 'capybara'
+  gem 'database_cleaner'
   gem 'faker'
+  gem 'selenium-webdriver', '~> 3.0.1'
 end
 
 group :development do
