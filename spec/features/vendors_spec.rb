@@ -19,7 +19,7 @@ feature  "Vendor" do
     visit new_vendor_path
     fill_in "Name", with: "paromita"
     fill_in "Address", with: "Kolkata"
-    expect { click_button 'Add' }.to change(Vendor, :count).by(1)
+    expect { click_button 'Create' }.to change(Vendor, :count).by(1)
   end
 
   scenario "edit vendor page" do

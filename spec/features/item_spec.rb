@@ -107,7 +107,6 @@ feature "Item" do
     item = FactoryGirl.create(:item, category: category1, brand: brand1, employee: employee)
 
     visit items_path
-binding.pry
     select 'Discarded', from: 'status'
     expect(page).to have_content(another_item.name)
     expect(page).not_to have_content(parent_item.name)
@@ -137,9 +136,5 @@ binding.pry
     visit edit_item_path(item)
     item.reload
     expect(current_path) == items_path
-  end
-
-  after(:all) do
-    Capybara.use_default_driver
   end
 end

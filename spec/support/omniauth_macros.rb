@@ -15,4 +15,3 @@ module OmniauthMacros
     })
   end
 end
-
