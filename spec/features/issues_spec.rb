@@ -21,7 +21,7 @@ feature  "Issue" do
     item = FactoryGirl.create(:item, category: category, brand: brand)
     visit new_issue_path
     fill_in "Title", with: "issue title"
-    select 'Hp Monitor', from: 'issue[item_id.name_with_id]'
+    select 'HP Monitor (1)', from: 'issue[item_id]'
     expect { click_button 'Create' }.to change(Issue, :count).by(1)
   end
 
