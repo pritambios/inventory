@@ -57,8 +57,6 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-<<<<<<< HEAD
-=======
   config.include OmniauthMacros
   config.include LoginHelper
   config.before(:suite) do
@@ -80,5 +78,4 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
->>>>>>> add feature spec
 end
