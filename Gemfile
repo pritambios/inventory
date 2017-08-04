@@ -13,7 +13,7 @@ gem 'mysql2'
 gem "omniauth-google-oauth2"
 gem 'puma', '~> 3.0'
 gem "paperclip", "~> 5.0.0"
-gem 'rails', '4.2.7'
+gem 'rails', '4.2.8'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'will_paginate', '~> 3.1.0'
