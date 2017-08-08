@@ -18,5 +18,9 @@ class Checkout < ActiveRecord::Base
     if item.purchase_on.present?
       errors.add(:checkout, "must be after purchase date") unless checkout >= item.purchase_on
     end
+
+    if check_in.present?
+      errors.add(:checkout, "date cannot be after checkin date") if checkout > check_in
+    end
   end
 end
