@@ -43,9 +43,9 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item_histories = @item.item_histories.order_desending.paginate(page: params[:item_histories_page])
-    @checkouts      = @item.checkouts.order_desending.paginate(page: params[:checkouts_page])
-    @issues         = @item.issues.order_desending.paginate(page: params[:issues_page])
+    @item_histories = @item.item_histories.order_descending.paginate(page: params[:item_histories_page])
+    @checkouts      = @item.checkouts.order_descending.paginate(page: params[:checkouts_page])
+    @issues         = @item.issues.order_descending.paginate(page: params[:issues_page])
   end
 
   def reallocate

@@ -24,7 +24,7 @@ class Item < ActiveRecord::Base
   scope :active,              -> { joins(:category).where(discarded_at: nil, categories: { deleted_at: nil }) }
   scope :available,           -> { where.not(id: unavailable) }
   scope :not_erased,          -> { where(deleted_at: nil) }
-  scope :order_desending,     -> { order('created_at DESC') }
+  scope :order_descending,    -> { order('created_at DESC') }
   scope :unattached,          -> { where(parent_id: nil, employee_id: nil) }
   scope :unavailable,         -> { joins(:checkouts).where(checkouts: { check_in: nil }) }
   scope :unallocated_items,   -> { where(employee_id: nil) }
@@ -80,7 +80,7 @@ class Item < ActiveRecord::Base
   end
 
   def pending_checkout
-    checkouts.pending.order_desending.first
+    checkouts.pending.order_descending.first
   end
 
   def reallocate(employee)
@@ -93,7 +93,7 @@ class Item < ActiveRecord::Base
   end
 
   def discard(reason)
-    update_attributes(system_id: nil, working: false, discarded_at: Time.now, employee_id: nil, discard_reason: reason)
+    update_attributes(working: false, discarded_at: Time.now, employee_id: nil, discard_reason: reason)
   end
 
   private

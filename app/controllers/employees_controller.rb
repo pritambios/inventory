@@ -36,7 +36,7 @@ class EmployeesController < ApplicationController
   end
 
   def show
-    @items = @employee.items.includes(:brand, :category).order_desending.paginate(page: params[:items_page])
+    @items = @employee.items.includes(:brand, :category).order_descending.paginate(page: params[:items_page])
   end
 
   def add_item

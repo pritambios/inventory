@@ -5,7 +5,7 @@ class Checkout < ActiveRecord::Base
   validates :item, :checkout, :reason, :employee, presence: true
   validate  :checkout_limitation
 
-  scope :order_desending, -> { order('created_at DESC') }
+  scope :order_descending,-> { order('created_at DESC') }
   scope :pending,         -> { where(check_in: nil) }
 
   def checkin?

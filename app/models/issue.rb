@@ -10,7 +10,7 @@ class Issue < ActiveRecord::Base
 
   delegate :name, to: :employee, prefix: true
 
-  scope :order_desending, -> { order('created_at DESC') }
+  scope :order_descending, -> { order('created_at DESC') }
   scope :unclosed,        -> { where(closed_at: nil) }
 
   def item_closed_at_limitation
