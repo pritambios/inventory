@@ -2,7 +2,7 @@
   <%= form_for @employee, url: { action: "add_item" }, html: { method: :put }, class: "form-horizontal" do |f| %>
     <div class="form-group row">
       <div class="col-sm-4"><%= f.label :item_id , t('.items') %></div>
-      <div class="col-sm-8"><%= select_tag :item, options_from_collection_for_select(Item.unallocated_items, :id, :name, { selected: params[:item]} ), prompt: "Select Item", class: "form-control change-parent", required: true %></div>
+      <div class="col-sm-8"><%= select_tag :item, options_for_select(Item.unallocated_items.map{ |i| [i.name_with_id, i.id]}, selected: params[:item]), prompt: "Select Item", class: "form-control change-parent", required: true %></div>
     </div>
     <div class="display-item">
     </div>
