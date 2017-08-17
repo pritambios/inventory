@@ -89,9 +89,9 @@
 
     <% if @item.discarded_at.nil? %>
       <div class="links">
-	<%= link_to allocation_type(@item), allocate_item_path(@item), data: { remote_popup: true, title: allocation_type(@item) } %>
-	<%= link_to t('.new_issue'), new_issue_path(item_id: @item), data: { remote_popup: true, title: t('.item_issue.popup.title') } %>
-	<%= link_to t('.discard'), discard_reason_item_path(@item), data: { remote_popup: true, title: t('.discard_reason_title') } %>
+        <%= link_to allocation_type(@item), allocate_item_path(@item), data: { remote_popup: true, title: allocation_type(@item) } %>
+        <%= link_to t('.new_issue'), new_issue_path(item_id: @item), data: { remote_popup: true, title: t('.item_issue.popup.title') } %>
+        <%= link_to t('.discard'), discard_reason_item_path(@item), data: { remote_popup: true, title: t('.discard_reason_title') } %>
       </div>
     <% end %>
   </section>
@@ -116,7 +116,7 @@
             </td>
             <td>
               <% if item_history.employee.present? %>
-                <%= link_to item_history.employee.try(:name), employee_path(item_history) %>
+                <%= link_to item_history.employee.try(:name), employee_path(item_history.employee_id) %>
               <% else %>
                 <%= t('.item_history.table.td.unallocated') %>
               <% end %>
