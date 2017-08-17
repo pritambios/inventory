@@ -7,7 +7,7 @@
       <%= form_tag items_path, { method: :get, class: "form-inline"} do %>
         <%= select_tag :category, options_from_collection_for_select(Category.active, :id, :name, { selected: params[:category]} ), prompt: "Select Category", class: "category-dropdown form-control search" %>
         <%= select_tag :brand, options_from_collection_for_select(Brand.all, :id, :name, { selected: params[:brand]} ), prompt: "Select Brand", class: "brand-dropdown form-control" %>
-	 <%= select_tag :status, options_for_select(Item::STATUS.keys, { selected: params[:status] }), prompt: "Select Status", class: "category-dropdown form-control search" %>
+        <%= select_tag :status, options_for_select(Item::STATUS.keys, { selected: params[:status] }), prompt: "Select Status", class: "category-dropdown form-control search" %>
         <%= select_tag :parent, options_from_collection_for_select(Item.parent_list, :id, :name, { selected: params[:parent]} ), prompt: "Select Parent", class: "category-dropdown form-control search pull-left" %>
       <% end %>
     </div>
@@ -23,8 +23,6 @@
       <th><%= t('.table.th.item') %></th>
       <th><%= t('.table.th.model_number') %></th>
       <th><%= t('.table.th.serial_number') %></th>
-      <th><%= t('.table.th.issue') %></th>
-      <th><%= t('.table.th.checkout') %></th>
       <th><%= t('.table.th.note') %></th>
       <th><%= t('.table.th.employee') %></th>
       <th><%= t('.table.th.status') %></th>
@@ -37,27 +35,7 @@
         <td><%= link_to item.name, item_path(item) %></td>
         <td><%= item.model_number %></td>
         <td><%= item.serial_number %></td>
-        <td>
-          <% if item.issues.present? %>
-            <% if item.issues.unclosed.count > 0 %>
-              <%= link_to "#{t('.table.td.unclosed')} (#{item.issues.unclosed.count})", issues_path(item_id: item.id) %>
-            <% else %>
-              <%= link_to t('.table.td.closed'), issues_path(item_id: item.id) %>
-            <% end %>
-          <% else %>
-            <%= t('.table.td.no_issue') %>
-          <% end %>
-        </td>
-        <td>
-          <% if item.checkouts.present? %>
-            <% if item.unavailable? %>
-              <%= checkout_details(item) %>
-            <% else %>
-              <%= link_to t('.table.td.checkouts'), checkouts_path(item_id: item.id) %>
-            <% end %>
-          <% end %>
-        </td>
-	 <td><%= item.note %></td>
+        <td><%= item.note %></td>
         <td>
           <%  if item.employee.present? %>
             <%= link_to item.employee.name, employee_path(item.employee_id) %>
