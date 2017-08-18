@@ -1,4 +1,6 @@
 class Employee < ActiveRecord::Base
+  STATUS = { Active: "active", Inactive: "inactive" }
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
   has_many :items, dependent: :nullify
@@ -11,6 +13,8 @@ class Employee < ActiveRecord::Base
   before_save :deallocate_items
 
   scope :order_by_name, -> { order('name') }
+  scope :active,        -> { where(active: true) }
+  scope :inactive,      -> { where(active: false) }
 
   def name_or_email
     name.presence || email
@@ -25,5 +29,13 @@ class Employee < ActiveRecord::Base
     self.google_uid   = auth.uid
     self.access_token = auth.credentials.token
     save!
+  end
+
+  def self.filter_by_status(status)
+    if STATUS.has_key?(status.to_sym)
+      send(STATUS[status.to_sym])
+    else
+      all
+    end
   end
 end

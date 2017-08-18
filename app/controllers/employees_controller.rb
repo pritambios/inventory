@@ -33,6 +33,7 @@ class EmployeesController < ApplicationController
 
   def index
     @employees = Employee.order_by_name.paginate(page: params[:page])
+    @employees = @employees.filter_by_status(params[:status]) if params[:status].present?
   end
 
   def show
