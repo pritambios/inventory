@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :documents, only: [:destroy]
 
-  resources :employees do
+  resources :employees, except: [:destroy] do
     member do
       get 'allocate_item'
       put 'add_item'

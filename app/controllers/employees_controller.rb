@@ -47,14 +47,6 @@ class EmployeesController < ApplicationController
     redirect_to employee_path
   end
 
-  def destroy
-    @employee.update_attributes(active: false)
-
-    if @employee.destroy
-      redirect_to employees_path, flash: { success: t('destroy.success') }
-    end
-  end
-
   def fetch
     FetchExternalEmployee.add_employees()
     redirect_to employees_path
