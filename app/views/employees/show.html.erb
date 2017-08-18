@@ -25,16 +25,14 @@
     <div class="table-responsive">
       <table class="table table-striped table-last">
         <tr>
-          <th class="five"><%= t('.item_history.table.th.id')%></th>
           <th class="thirty"><%= t('.item_history.table.th.item') %></th>
           <th class="thirty"><%= t('.item_history.table.th.model_number') %></th>
           <th class="thirty"><%= t('.item_history.table.th.serial_number') %></th>
-          <th class="five"></th>
+          <th class="ten"></th>
         </tr>
         <% @items.each do |item| %>
           <tr class="<%= 'pending' if item.unavailable? %>">
-            <td><%= item.id %></td>
-            <td><%= link_to item.name, item_path(item)  %></td>
+            <td><%= link_to item.name_with_id, item_path(item)  %></td>
             <td><%= item.model_number %></td>
             <td><%= item.serial_number %></td>
             <td class="icon-show"><%= show_link(item_path(item)) %></td>
