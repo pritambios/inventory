@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170420080431) do
+ActiveRecord::Schema.define(version: 20170818124916) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -66,6 +66,8 @@ ActiveRecord::Schema.define(version: 20170420080431) do
     t.string   "access_token",limit: 255
     t.string   "google_uid",  limit: 255
   end
+
+  add_index "employees", ["external_id"], name: "index_employees_on_external_id", unique: true, using: :btree
 
   create_table "issues", force: :cascade do |t|
     t.integer  "item_id",       limit: 4
