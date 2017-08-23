@@ -15,8 +15,10 @@
           <p><%= brand.category_wise_items_count %></p>
         </td>
         <td>
-	  <%= edit_link(edit_brand_path(brand), t('.edit.popup.title')) %>
-	  <%= delete_link(brand_path(brand)) %>
+          <% if brand.items.empty? %>
+            <%= edit_link(edit_brand_path(brand), t('.edit.popup.title')) %>
+            <%= delete_link(brand_path(brand)) %>
+          <% end %>
         </td>
       </tr>
     <% end %>

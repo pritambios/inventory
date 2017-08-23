@@ -5,6 +5,11 @@ en:
         name: "Name:"
       placeholder:
         name: "Brand Name"
+    edit:
+      error: "Cannot Edit Brand while items still present"
+    destroy:
+      success: "Successfully deleted Brand"
+      error: "Cannot delete brand while items are still present"
     index:
       add:
         popup:

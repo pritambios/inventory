@@ -12,8 +12,10 @@
       <tr>
         <td><%= link_to category.name, items_path(category: category) %> (<%= category.items.size %>)</td>
         <td>
-          <%= edit_link(edit_category_path(category), t('.edit.popup.title')) %>
-          <%= delete_link(category_path(category)) %>
+          <% if category.items.empty? %>
+            <%= edit_link(edit_category_path(category), t('.edit.popup.title')) %>
+            <%= delete_link(category_path(category)) %>
+          <% end %>
         </td>
       </tr>
     <% end %>

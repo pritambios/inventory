@@ -40,9 +40,17 @@ class BrandsController < ApplicationController
     @brand_items = @brand.items.paginate(page: params[:page])
   end
 
+  def edit
+    redirect_to brands_path, flash: { error: t('.error') } if @brand.items.present?
+  end
+
   def destroy
-    @brand.update_attributes(deleted_at: Time.now)
-    redirect_to brands_path, flash: { success: t('destroy.success') }
+    if @brand.items.empty?
+      @brand.update_attributes(deleted_at: Time.now)
+      redirect_to brands_path, flash: { success: t('.success') }
+    else
+      redirect_to brands_path, flash: { error: t('.error') }
+    end
   end
 
   private

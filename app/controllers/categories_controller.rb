@@ -24,6 +24,10 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def edit
+    redirect_to categories_path, flash: { error: t('.error') } if @category.items.present?
+  end
+
   def update
     if request.xhr?
       @category.update_attributes(category_params)
@@ -41,9 +45,14 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    @category.update_attributes(deleted_at: Time.now)
-    redirect_to categories_path, flash: { success: t('destroy.success') }
+    if @category.items.empty?
+      @category.update_attributes(deleted_at: Time.now)
+      redirect_to categories_path, flash: { success: t('.success') }
+    else
+      redirect_to categories_path, flash: { error: t('.success') }
+    end
   end
+
   private
 
   def get_category

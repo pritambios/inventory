@@ -16,3 +16,8 @@ en:
       table:
         th:
           name: "Name"
+    edit:
+      error: "Cannot Edit Category while items still present"
+    destroy:
+      success: "Successfully deleted Category"
+      error: "Cannot delete Category while items are still present"
