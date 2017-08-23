@@ -14,6 +14,7 @@ class BrandsController < ApplicationController
 
     if request.xhr?
       @brand.save
+      flash[:success] = t('create')
     else
       if @brand.save
         redirect_to :back, flash: { success: t('create') }

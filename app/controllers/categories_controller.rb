@@ -14,6 +14,7 @@ class CategoriesController < ApplicationController
 
     if request.xhr?
       @category.save
+      flash[:success] = t('create')
     else
       if @category.save
         redirect_to :back, flash: { success: t('create') }
