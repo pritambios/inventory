@@ -52,7 +52,7 @@ en:
           no_issue: "No Issue"
           checkouts: "Checkouts"
           working: "Working"
-          non_working: "Non-Working"
+          not_working: "Not Working"
     show:
       id: "Id:"
       status: "Status:"
