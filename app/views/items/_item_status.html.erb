@@ -1,0 +1,7 @@
+<% if item.approved_by.present? %>
+  <%= t('.approved_by') %> <%= item.approved_by.first_name + ' ' + item.approved_by.last_name + t('.preposition') %> <%= l(item.approved_at, format: :date_format) %>
+<% elsif item.rejected_by.present? %>
+  <%= t('.rejected_by') %> <%= item.rejected_by.first_name + ' ' +  item.rejected_by.last_name + t('.preposition') %> <%= l(item.rejected_at, format: :date_format) %>
+<% else %>
+  <%= link_to t('.approve'), approve_item_path(item), remote: true, method: :put %>/<%= link_to t('.Reject'), reject_item_path(item), remote: true, method: :put %>
+<% end %>

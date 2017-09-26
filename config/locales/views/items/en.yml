@@ -46,6 +46,7 @@ en:
           employee: "Employee"
           status: "Status"
           note: "Note"
+          discard: "Discard"
         td:
           unclosed: unclosed
           closed: "closed"
@@ -136,3 +137,8 @@ en:
       not_working: "Not Working"
       parent_item: "Parent Item:"
       item_not_present: "Item not present"
+    item_status:
+      approved_by: "Approved by"
+      rejected_by: "Rejected by"
+      preposition: " on"
+      approve: "Approve"

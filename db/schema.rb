@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170818124916) do
+ActiveRecord::Schema.define(version: 20170919124802) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -113,10 +113,16 @@ ActiveRecord::Schema.define(version: 20170818124916) do
     t.text     "note",                limit: 65535
     t.string   "discard_reason",      limit: 255
     t.integer  "parent_id",           limit: 4
+    t.integer  "approved_by_id",      limit: 4
+    t.integer  "rejected_by_id",      limit: 4
+    t.datetime "approved_at"
+    t.datetime "rejected_at"
   end
 
+  add_index "items", ["approved_by_id"], name: "fk_rails_e88dd3cf0f", using: :btree
   add_index "items", ["brand_id"], name: "fk_rails_36708b3aa6", using: :btree
   add_index "items", ["category_id"], name: "fk_rails_89fb86dc8b", using: :btree
+  add_index "items", ["rejected_by_id"], name: "fk_rails_38f7d03ed0", using: :btree
   add_index "items", ["vendor_id"], name: "fk_rails_e1bcf5469c", using: :btree
 
   create_table "resolutions", force: :cascade do |t|
@@ -156,4 +162,6 @@ ActiveRecord::Schema.define(version: 20170818124916) do
   add_foreign_key "items", "brands"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "vendors"
+  add_foreign_key "items", "users", column: "approved_by_id"
+  add_foreign_key "items", "users", column: "rejected_by_id"
 end

@@ -90,6 +90,14 @@ class ItemsController < ApplicationController
     end
   end
 
+  def approve
+    @item.approve_item(current_user)
+  end
+
+  def reject
+    @item.reject_item(current_user)
+  end
+
   private
 
   def get_item

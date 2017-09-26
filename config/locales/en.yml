@@ -12,3 +12,6 @@ en:
     logout: "successfully logged out"
   update_parent_fail: "Invalid Parent Id"
   add_child_fail: "Invalid Child Id"
+  time:
+    formats:
+      date_format: "%d/%m/%Y"

@@ -15,6 +15,8 @@ class Item < ActiveRecord::Base
   belongs_to :category
   belongs_to :parent, class_name: "Item", foreign_key: "parent_id"
   belongs_to :vendor
+  belongs_to :approved_by, class_name: 'User', foreign_key: 'approved_by_id'
+  belongs_to :rejected_by, class_name: 'User', foreign_key: 'rejected_by_id'
 
   validates :category, presence: true
   validate :edit_item_details, on: [:update]
@@ -94,6 +96,14 @@ class Item < ActiveRecord::Base
 
   def discard(reason)
     update_attributes(working: false, discarded_at: Time.now, employee_id: nil, discard_reason: reason)
+  end
+
+  def approve_item(user)
+    update_attributes(approved_by: user, approved_at: Time.now)
+  end
+
+  def reject_item(user)
+    update_attributes(rejected_by: user, rejected_at: Time.now)
   end
 
   private

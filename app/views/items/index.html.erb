@@ -26,11 +26,12 @@
       <th><%= t('.table.th.note') %></th>
       <th><%= t('.table.th.employee') %></th>
       <th><%= t('.table.th.status') %></th>
+      <th><%= t('.table.th.discard') %></th>
       <th></th>
       <th></th>
     </tr>
     <% @items.each do |item| %>
-      <tr>
+      <tr id="item_<%= item.id %>" >
         <td><%= link_to item.id, item_path(item) %></td>
         <td><%= link_to item.name, item_path(item) %></td>
         <td><%= item.model_number %></td>
@@ -46,11 +47,16 @@
         <td>
           <%= item.working? ? t('.table.td.working') : t('.table.td.not_working') %>
         </td>
+        <td class="item_status">
+          <%= render "item_status", item: item %>
+        </td>
         <td>
           <% if item.discarded_at.nil? %>
             <%= link_to allocation_type(item), allocate_item_path(item), data: { remote_popup: true, title: allocation_type(item) } %>
           <% end %></br>
-          <%= edit_link(edit_item_path(item), t('.edit.popup.title')) %>
+          <% unless item.approved_by.present? || item.rejected_by.present? %>
+            <%= edit_link(edit_item_path(item), t('.edit.popup.title')) %>
+          <% end %>
         </td>
       </tr>
     <% end %>

@@ -43,6 +43,8 @@ Rails.application.routes.draw do
       get 'item_render'
       get 'add_item'
       put 'add_child'
+      put 'approve'
+      put 'reject'
     end
   end
 

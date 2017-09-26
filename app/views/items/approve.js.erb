@@ -1,0 +1,2 @@
+$("tr#item_<%= @item.id %> .item_status").html("<%= j render 'item_status', item: @item  %>")
+$("tr#item_<%= @item.id %> .link-edit").remove();
