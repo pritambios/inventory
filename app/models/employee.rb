@@ -9,7 +9,7 @@ class Employee < ActiveRecord::Base
   has_many :issues, dependent: :nullify
 
   validates :email, presence: true, uniqueness: { case_sensitive: false }, format: { with: VALID_EMAIL_REGEX }, allow_blank: true
-  validates :external_id, uniqueness: true
+  validates :external_id, uniqueness: true, allow_nil: true
 
   before_save :deallocate_items
 
