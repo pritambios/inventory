@@ -1,4 +1,4 @@
-class Vendor < ActiveRecord::Base
+class Vendor < ApplicationRecord
   VALID_MOBILE_REGEX = /\A\+?\d+\-?\d+\z/
 
   has_many :items
