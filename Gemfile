@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'aws-sdk', '~> 2.3'
-gem 'bootstrap-sass', '3.2.0.0'
-gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
+gem 'bootstrap', '~> 4.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 gem 'exception_notification'
 gem 'font-awesome-sass', '~> 4.7.0'
 gem "her"

@@ -59,7 +59,7 @@
           <% @item.childrens.each do |child_items| %>
             <li class="list-group-item">
               <%= link_to child_items.name_with_id, item_path(child_items) %>
-              <%= link_to "", remove_item_item_path(child_items), method: :put, data: { confirm: t('.delete_confirm_message') }, class: "fa fa-trash navbar-right" %>
+              <%= link_to "", remove_item_item_path(child_items), method: :put, data: { confirm: t('.delete_confirm_message') }, class: "fa fa-trash trash-float-right" %>
             </li>
           <% end %>
         </ul>

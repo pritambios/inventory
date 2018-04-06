@@ -24,7 +24,7 @@
         <td><%= format_date(checkout.checkout) %></td>
         <td>
           <% unless checkout.check_in.present? %>
-            <%= link_to t('button.checkin'), checkin_checkout_path(checkout), method: :get, data: { confirm: t('.checkin_confirm_message') }, class: 'btn btn-default' %>
+            <%= link_to t('button.checkin'), checkin_checkout_path(checkout), method: :get, data: { confirm: t('.checkin_confirm_message') }, class: 'btn btn-secondary' %>
           <% else %>
             <%= format_date(checkout.check_in) %>
           <% end %>

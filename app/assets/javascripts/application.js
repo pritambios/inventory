@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require moment
+//= require popper
 //= require bootstrap-datetimepicker
 //= require bootstrap-sprockets
 //= require modal

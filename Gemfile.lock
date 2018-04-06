@@ -41,6 +41,8 @@ GEM
     airbrussh (1.3.0)
       sshkit (>= 1.6.1, != 1.7.0)
     arel (7.1.4)
+    autoprefixer-rails (8.2.0)
+      execjs
     aws-sdk (2.11.26)
       aws-sdk-resources (= 2.11.26)
     aws-sdk-core (2.11.26)
@@ -50,8 +52,10 @@ GEM
       aws-sdk-core (= 2.11.26)
     aws-sigv4 (1.0.2)
     bindex (0.5.0)
-    bootstrap-sass (3.2.0.0)
-      sass (~> 3.2)
+    bootstrap (4.0.0)
+      autoprefixer-rails (>= 6.0.3)
+      popper_js (>= 1.12.9, < 2)
+      sass (>= 3.5.2)
     bootstrap3-datetimepicker-rails (4.17.47)
       momentjs-rails (>= 2.8.1)
     builder (3.2.3)
@@ -157,6 +161,7 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (~> 0.3.0)
+    popper_js (1.12.9)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -255,8 +260,8 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk (~> 2.3)
-  bootstrap-sass (= 3.2.0.0)
-  bootstrap3-datetimepicker-rails (~> 4.17.37)
+  bootstrap (~> 4.0)
+  bootstrap3-datetimepicker-rails (~> 4.17.47)
   byebug
   capistrano (~> 3.6)
   capistrano-rails (~> 1.2)

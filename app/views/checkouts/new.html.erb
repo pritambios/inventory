@@ -1,8 +1,8 @@
-<div class="center-block form-container">
+<div class="mx-auto form-container">
   <%= form_for @checkout, class: "form-horizontal", remote: true do |f| %>
     <%= render 'form', f: f %>
     <div class="text-right">
-      <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('button.cancel') %></button>
+      <button type="button" class="btn btn-secondary" data-dismiss="modal"><%= t('button.cancel') %></button>
       <%= f.submit t('button.create'), class: "btn btn-primary" %>
     </div>
   <% end %>

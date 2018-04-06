@@ -3,15 +3,15 @@
     <h3 class="col-sm-4 col-md-2">
       <%= t('.heading') %> (<%= @items.count %>)
     </h3>
-    <div class="col-sm-6 col-md-8 page-heading">
+    <div class="col-sm-6 col-md-8">
       <%= form_tag items_path, { method: :get, class: "form-inline"} do %>
         <%= select_tag :category, options_from_collection_for_select(Category.active, :id, :name, { selected: params[:category]} ), prompt: "Select Category", class: "category-dropdown form-control search" %>
-        <%= select_tag :brand, options_from_collection_for_select(Brand.all, :id, :name, { selected: params[:brand]} ), prompt: "Select Brand", class: "brand-dropdown form-control" %>
+        <%= select_tag :brand, options_from_collection_for_select(Brand.all, :id, :name, { selected: params[:brand]} ), prompt: "Select Brand", class: "brand-dropdown form-control search" %>
         <%= select_tag :status, options_for_select(Item::STATUS.keys, { selected: params[:status] }), prompt: "Select Status", class: "category-dropdown form-control search" %>
         <%= select_tag :parent, options_from_collection_for_select(Item.parent_list, :id, :name, { selected: params[:parent]} ), prompt: "Select Parent", class: "category-dropdown form-control search pull-left" %>
       <% end %>
     </div>
-    <div class="col-sm-2 col-md-2 page-heading link-right">
+    <div class="col-sm-2 col-md-2">
       <%= link_to t('button.add'), new_item_path, data: { remote_popup: true, title: t('.add.popup.title') }, class: "btn btn-primary pull-right" %>
     </div>
   </div>

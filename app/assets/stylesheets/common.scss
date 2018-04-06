@@ -1,6 +1,7 @@
 html {
   position: relative;
   min-height: 100%;
+  font-size: 14px;
 }
 
 #logo {
@@ -89,7 +90,9 @@ p.copy {
 }
 
 .page-header {
-  margin-top: 0px;
+  border-bottom: 1px solid #eeeeee;
+  margin: 20px 0 20px;
+  padding-bottom: 9px;
 }
 
 a {
@@ -118,7 +121,7 @@ a {
   border-color: transparent;
 }
 
-.btn-default {
+.btn-secondary {
   border-color: #f26722;
 }
 
@@ -158,7 +161,7 @@ a {
   box-shadow: none;
 }
 
-.navbar-default {
+.navbar-light {
   background-color:#333;
   border-color: #e7e7e7;
   box-shadow: 0 3px 5px #eee;
@@ -166,21 +169,16 @@ a {
   padding-top: 5px;
 }
 
-.navbar-default .navbar-nav > li > a {
+.navbar-light .navbar-nav > li > a.nav-link {
   color: #fff;
 }
 
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+.navbar-light .navbar-nav > li > a.nav-link:hover, .navbar-light .navbar-nav > li > a.nav-link:focus {
    background-color: transparent;
    color: #e85d1a;
 }
 
-.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-  color: #e85d1a;
-  background-color: transparent;
-}
-
-.navbar-nav.navbar-right:last-child {
+.navbar-nav.mx-auto:last-child {
   margin-right: 0;
 }
 
@@ -200,8 +198,33 @@ a {
   }
 }
 
-.panel {
+.menu-custom > .dropdown-menu.show > .dropdown-item:hover {
+  background-color: #333;
+}
+
+.card {
   margin-top: 20px;
+}
+
+.error-margin {
+  border-color: #ebccd1;
+  margin-bottom: 20px;
+}
+
+.error-color {
+  background-color: #f2dede;
+  color: #a94442;
+}
+
+.error-title-size {
+  color: inherit;
+  font-size: 16px;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.trash-float-right {
+  float: right;
 }
 
 .required {
@@ -282,7 +305,7 @@ section.other-info .icon-show {
   text-align: right;
 }
 
-.navbar-default .navbar-nav .menu-custom.open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .menu-custom.open .dropdown-menu > li > a:focus {
+.navbar-light .navbar-nav .menu-custom.open .dropdown-menu > li > a:hover, .navbar-light .navbar-nav .menu-custom.open .dropdown-menu > li > a:focus {
   color:  #e85d1a;
 }
 
@@ -377,20 +400,11 @@ section.other-info .icon-show {
   padding: 8px 4px;
 }
 
-.page-heading {
-  margin-top: 15px;
-}
-
 .search {
   margin-right: 10px;
 }
 
 @media (min-width: 768px) {
-  .top-links {
-    width: 70%;
-    float: right;
-  }
-
   .nav > li > a {
     padding: 15px 5px 0px;
   }
@@ -426,10 +440,6 @@ section.other-info .icon-show {
 }
 
 @media (min-width: 992px) {
-  .top-links {
-    width: 55%;
-  }
-
   .btn-allocate {
     white-space:nowrap;
     width: auto;

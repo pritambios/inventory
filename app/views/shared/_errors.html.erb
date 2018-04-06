@@ -1,11 +1,11 @@
 <% if obj.errors.any? %>
-  <div class="panel panel-danger">
-    <div class="panel-heading">
-      <h2 class="panel-title">
+  <div class="card error-margin">
+    <div class="card-header error-color">
+      <h2 class="card-title error-title-size">
         <%= pluralize(obj.errors.count, "error") %>
         <%= t('.error_message') %>
       </h2>
-      <div class="panel-body">
+      <div class="card-body">
         <ul>
           <% obj.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>

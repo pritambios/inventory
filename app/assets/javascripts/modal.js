@@ -24,7 +24,7 @@ $(function() {
     event.preventDefault();
     var target = $(this).data('modal-class'),
         title  = $(this).data('title'),
-        header = '<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title">' + title + '</h4></div>',
+        header = '<div class="modal-header"><h4 class="modal-title">' + title + '</h4><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button></div>',
         modal_content = $('<div class="modal fade"><div class="modal-dialog"><div class="modal-content">' +
                           header + '<div class="modal-body all-categories clearfix"></div></div></div></div>');
     modal_content.find('.modal-body').html($("." + target).html());
@@ -60,8 +60,8 @@ $(function() {
 
 Inventory.Modal = {
   showRemoteModal: function(url, title, modal_class){
-    var header = '<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title">' +
-          title + '</h4></div>';
+    var header = '<div class="modal-header"><h4 class="modal-title">' +
+          title + '</h4><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button></div>';
     var modal_content = $('<div class="modal fade"><div class="modal-dialog"><div class="modal-content">' +
                           header + '<div class="modal-body clearfix"></div></div></div></div>');
     modal_content.modal('show');

@@ -37,7 +37,7 @@
             Closed at <%= format_date(issue.closed_at) %></br>
             Resolution: <%= issue.resolution.try(:name) %>
           <% else %>
-            <%= link_to t('.button.close'), close_issue_path(issue), data: { remote_popup: true, title: t('.close.popup.title') }, class: 'btn btn-default' %>
+            <%= link_to t('.button.close'), close_issue_path(issue), data: { remote_popup: true, title: t('.close.popup.title') }, class: 'btn btn-secondary' %>
           <% end %>
         </td>
         <td>
