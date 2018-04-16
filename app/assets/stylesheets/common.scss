@@ -406,6 +406,24 @@ section.other-info .icon-show {
   margin-right: 10px;
 }
 
+.navbar-toggler {
+  border-color: white !important;
+  &:hover {
+    background-color: #f5f5f5;
+  }
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(136, 136, 136, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important;
+  }
+}
+
+.dropdown > ul.dropdown-menu {
+  border: 0;
+}
+
+h3.card-title {
+  font-size: 16px;
+}
+
 @media (min-width: 768px) {
   .nav > li > a {
     padding: 15px 5px 0px;
