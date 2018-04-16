@@ -117,12 +117,10 @@ a {
 }
 
 .btn-primary:hover, .btn-primary:focus {
-  background-color: #0c4685;
+  background-color: #0e3f78;
   border-color: transparent;
-}
-
-.btn-secondary {
-  border-color: #f26722;
+  box-shadow: none;
+  color: #fff;
 }
 
 .table-heading {
@@ -225,6 +223,10 @@ a {
 
 .trash-float-right {
   float: right;
+}
+
+input[type="radio"]{
+  vertical-align: middle;
 }
 
 .required {

@@ -19,6 +19,6 @@
 
   <p><span><%= t('.reason') %> </span><%= @checkout.reason %></p>
   <% unless @checkout.check_in.present? %>
-    <%= link_to t('button.checkin'), checkin_checkout_path(@checkout), method: :get, data: { confirm: t('.checkin_confirm_message') }, class: 'btn btn-secondary' %>
+    <%= link_to t('button.checkin'), checkin_checkout_path(@checkout), method: :get, data: { confirm: t('.checkin_confirm_message') }, class: 'btn btn-light' %>
   <% end %>
 </section>

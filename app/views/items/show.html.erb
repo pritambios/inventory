@@ -160,6 +160,7 @@
         <% @issues.each do |issue| %>
           <tr>
             <td><%= link_to issue.title, issue_path(issue) %></td>
+            <td></td>
             <td><%= format_date(issue.closed_at) if issue.closed_at? %></td>
             <td><%= show_link(issue_path(issue)) %></td>
           </tr>

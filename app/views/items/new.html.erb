@@ -3,7 +3,7 @@
     <%= render 'shared/errors', obj: @item %>
     <%= render 'form', f: f %>
     <div class="text-right">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal"><%= t('button.cancel') %></button>
+      <button type="button" class="btn btn-light" data-dismiss="modal"><%= t('button.cancel') %></button>
       <%= f.submit t('button.create'), class: "btn btn-primary" %>
     </div>
   <% end %>

@@ -19,7 +19,7 @@
     <p><span><%= t('.closed') %> </span><%= format_date(@issue.closed_at) %></p>
   <% else %>
     <p><span><%= t('.status') %> </span><%= t('.pending') %>
-    <%= link_to t('button.close'), close_issue_path(@issue), data: { remote_popup: true, title: "Close Issue" }, class: 'btn btn-secondary' %></p>
+    <%= link_to t('button.close'), close_issue_path(@issue), data: { remote_popup: true, title: "Close Issue" }, class: 'btn btn-light' %></p>
   <% end %>
   <p><span><%= t('.resolution') %> </span>
   <%= select_tag :resolution_id, options_from_collection_for_select(Resolution.all, :id, :name, selected: @issue.resolution_id), prompt: t('.placeholder.select'), data: { remote: true, url: set_resolution_issue_path(@issue), method: :put }, class: 'select-option-showPage' %></p>
