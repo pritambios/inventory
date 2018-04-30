@@ -1,4 +1,4 @@
-class Brand < ActiveRecord::Base
+class Brand < ApplicationRecord
   has_many :items
 
   validates :name, presence: true, uniqueness: {case_sensitive: true }, length: { maximum: 25 }

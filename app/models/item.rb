@@ -1,4 +1,4 @@
-class Item < ActiveRecord::Base
+class Item < ApplicationRecord
   PERMISSIBLE_HOURS = 48
   STATUS = { Allocated: "allocated_items", Unallocated: "unallocated_items", Discarded: "discarded_items" }
 

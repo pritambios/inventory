@@ -1,4 +1,4 @@
-class Employee < ActiveRecord::Base
+class Employee < ApplicationRecord
   STATUS = { Active: "active", Inactive: "inactive" }
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i

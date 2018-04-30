@@ -1,4 +1,4 @@
-class ItemHistory < ActiveRecord::Base
+class ItemHistory < ApplicationRecord
   belongs_to :employee
   belongs_to :item
   belongs_to :parent, class_name: "Item"

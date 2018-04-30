@@ -78,7 +78,7 @@ describe Item do
       let!(:item)         { create(:item, category: category, brand: brand, created_at: Date.today) }
       let!(:another_item) { create(:item, category: category, brand: brand, created_at: Date.yesterday) }
       let!(:third_item)   { create(:item, category: category, brand: brand, created_at: Date.tomorrow) }
-      let!(:fourth_item)  { create(:item, category: category, brand: brand, created_at: Date.new(2018,2,3)) }
+      let!(:fourth_item)  { create(:item, category: category, brand: brand, created_at: (Date.tomorrow + 10)) }
 
       it "should order item names as per date/time with respect to created_at in desc order" do
         expect(Item.order_descending).to eq([fourth_item, third_item, item, another_item])
