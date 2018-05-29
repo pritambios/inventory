@@ -11,8 +11,8 @@ gem 'jquery-rails'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'mysql2', '~> 0.3.18'
 gem "omniauth-google-oauth2"
-gem 'puma', '~> 3.0'
 gem "paperclip", "~> 5.0.0"
+gem 'puma', '~> 3.0'
 gem 'rails', '5.0.6'
 gem 'sass-rails', '~> 5.0.7'
 gem 'uglifier', '>= 1.3.0'
@@ -32,6 +32,7 @@ end
 group :development do
   gem 'capistrano', '~> 3.6'
   gem 'capistrano-rails', '~> 1.2'
+  gem 'rubocop', '~> 0.55.0', require: false
   gem 'spring'
   gem 'web-console', '3.5.1'
 end
