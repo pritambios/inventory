@@ -1,6 +1,4 @@
 class VendorsController < ApplicationController
-  before_action :get_vendor, only: [:edit, :update, :show]
-
   def new
     @vendor = Vendor.new
   end
@@ -10,24 +8,24 @@ class VendorsController < ApplicationController
 
     if request.xhr?
       @vendor.save
+    elsif @vendor.save
+      redirect_to :back, flash: { success: t('create') }
     else
-      if @vendor.save
-        redirect_to :back, flash: { success: t('create') }
-      else
-        render 'new'
-      end
+      render 'new'
     end
+  end
+
+  def edit
+    vendor
   end
 
   def update
     if request.xhr?
-      @vendor.update_attributes(vendor_params)
+      vendor.update(vendor_params)
+    elsif vendor.update(vendor_params)
+      redirect_to :back, flash: { success: t('update') }
     else
-      if @vendor.update_attributes(vendor_params)
-        redirect_to :back, flash: { success: t('update') }
-      else
-        render 'edit'
-      end
+      render 'edit'
     end
   end
 
@@ -36,13 +34,13 @@ class VendorsController < ApplicationController
   end
 
   def show
-    @items = @vendor.items.includes(:brand, :category).order_descending.paginate(page: params[:items_page])
+    @items = vendor.items.includes(:brand, :category).order_descending.paginate(page: params[:items_page])
   end
 
   private
 
-  def get_vendor
-    @vendor = Vendor.find(params[:id])
+  def vendor
+    @vendor ||= Vendor.find(params[:id])
   end
 
   def vendor_params

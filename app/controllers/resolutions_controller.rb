@@ -1,6 +1,4 @@
 class ResolutionsController < ApplicationController
-  before_action :get_resolution, only: [:edit, :update]
-
   def index
     @resolutions = Resolution.order_by_name.paginate(page: params[:page])
   end
@@ -14,31 +12,31 @@ class ResolutionsController < ApplicationController
 
     if request.xhr?
       @resolution.save
+    elsif @resolution.save
+      redirect_to :back, flash: { success: t('create') }
     else
-      if @resolution.save
-        redirect_to :back, flash: { success: t('create') }
-      else
-        render 'new'
-      end
+      render 'new'
     end
+  end
+
+  def edit
+    resolution
   end
 
   def update
     if request.xhr?
-      @resolution.update_attributes(resolution_params)
+      resolution.update(resolution_params)
+    elsif resolution.update(resolution_params)
+      redirect_to :back, flash: { success: t('update') }
     else
-      if @resolution.update_attributes(resolution_params)
-        redirect_to :back, flash: { success: t('update') }
-      else
-        render 'edit'
-      end
+      render 'edit'
     end
   end
 
   private
 
-  def get_resolution
-    @resolution = Resolution.find(params[:id])
+  def resolution
+    @resolution ||= Resolution.find(params[:id])
   end
 
   def resolution_params

@@ -1,6 +1,4 @@
 class CategoriesController < ApplicationController
-  before_action :get_category, only: [:edit, :update, :destroy]
-
   def index
     @categories = Category.active.order_by_name.includes(:items).paginate(page: params[:page])
   end
@@ -15,28 +13,24 @@ class CategoriesController < ApplicationController
     if request.xhr?
       @category.save
       flash[:success] = t('create')
+    elsif @category.save
+      redirect_to :back, flash: { success: t('create') }
     else
-      if @category.save
-        redirect_to :back, flash: { success: t('create') }
-      else
-        render 'new'
-      end
+      render 'new'
     end
   end
 
   def edit
-    redirect_to categories_path, flash: { error: t('.error') } if @category.items.present?
+    redirect_to categories_path, flash: { error: t('.error') } if category.items.present?
   end
 
   def update
     if request.xhr?
-      @category.update_attributes(category_params)
+      category.update(category_params)
+    elsif category.update(category_params)
+      redirect_to :back, flash: { success: t('update') }
     else
-      if @category.update_attributes(category_params)
-        redirect_to :back, flash: { success: t('update') }
-      else
-        render 'edit'
-      end
+      render 'edit'
     end
   end
 
@@ -45,8 +39,8 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    if @category.items.empty?
-      @category.update_attributes(deleted_at: Time.now)
+    if category.items.empty?
+      category.update(deleted_at: Time.zone.now)
       redirect_to categories_path, flash: { success: t('.success') }
     else
       redirect_to categories_path, flash: { error: t('.success') }
@@ -55,8 +49,8 @@ class CategoriesController < ApplicationController
 
   private
 
-  def get_category
-    @category = Category.find(params[:id])
+  def category
+    @category ||= Category.find(params[:id])
   end
 
   def category_params

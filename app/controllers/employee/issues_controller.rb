@@ -35,7 +35,7 @@ class Employee::IssuesController < ActionController::Base
   def update
     @issue = current_employee.issues.find(params[:id])
 
-    if @issue.update_attributes(issue_params)
+    if @issue.update(issue_params)
       redirect_to :back, flash: { success: t('update') } unless request.xhr?
     else
       render :edit

@@ -1,6 +1,4 @@
 class IssuesController < ApplicationController
-  before_action :get_issue, only: [:edit, :update, :show, :set_resolution, :set_priority, :close, :close_issue]
-
   def index
     @issues = Issue.includes(:resolution, item: [:brand, :category])
 
@@ -12,12 +10,16 @@ class IssuesController < ApplicationController
     @issues = @issues.paginate(page: params[:page])
   end
 
+  def show
+    issue
+  end
+
   def new
-    if item = Item.find_by_id(params[:item_id])
-      @issue = item.issues.build
-    else
-      @issue = Issue.new
-    end
+    @issue = if (item = Item.find(params[:item_id]))
+               item.issues.build
+             else
+               Issue.new
+             end
   end
 
   def create
@@ -25,29 +27,29 @@ class IssuesController < ApplicationController
 
     if request.xhr?
       @issue.save
+    elsif @issue.save
+      redirect_to :back, flash: { success: t('create') }
     else
-      if @issue.save
-        redirect_to :back, flash: { success: t('create') }
-      else
-        render 'new'
-      end
+      render 'new'
     end
+  end
+
+  def edit
+    issue
   end
 
   def update
     if request.xhr?
-      @issue.update_attributes(issue_params)
+      issue.update(issue_params)
+    elsif issue.update(issue_params)
+      redirect_to :back, flash: { success: t('update') }
     else
-      if @issue.update_attributes(issue_params)
-        redirect_to :back, flash: { success: t('update') }
-      else
-        render 'edit'
-      end
+      render 'edit'
     end
   end
 
   def set_resolution
-    @issue.update_attribute(:resolution_id, params[:resolution_id])
+    issue.update_attribute(:resolution_id, params[:resolution_id])
 
     if request.xhr?
       render nothing: true
@@ -55,17 +57,21 @@ class IssuesController < ApplicationController
   end
 
   def set_priority
-    @issue.update_attribute(:priority, params[:priority])
+    issue.update_attribute(:priority, params[:priority])
 
     if request.xhr?
       render nothing: true
     end
   end
 
-  def close_issue
-    @issue.closed_at = Time.now
+  def close
+    issue
+  end
 
-    if @issue.update_attributes(resolution_params)
+  def close_issue
+    issue.closed_at = Time.zone.now
+
+    if issue.update(resolution_params)
       redirect_to issues_path, flash: { success: t('close') }
     else
       render 'close'
@@ -74,8 +80,8 @@ class IssuesController < ApplicationController
 
   private
 
-  def get_issue
-    @issue = Issue.find(params[:id])
+  def issue
+    @issue ||= Issue.find(params[:id])
   end
 
   def issue_params

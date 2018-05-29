@@ -1,6 +1,4 @@
 class CheckoutsController < ApplicationController
-  before_action :get_checkout, only: [:edit, :update, :show, :checkin]
-
   def new
     @checkout = Checkout.new
   end
@@ -10,24 +8,28 @@ class CheckoutsController < ApplicationController
 
     if request.xhr?
       @checkout.save
+    elsif @checkout.save
+      redirect_to :back, flash: { success: t('create') }
     else
-      if @checkout.save
-        redirect_to :back, flash: { success: t('create') }
-      else
-        render 'new'
-      end
+      render 'new'
     end
+  end
+
+  def edit
+    checkout
+  end
+
+  def show
+    checkout
   end
 
   def update
     if request.xhr?
-      @checkout.update_attributes(checkout_params)
+      checkout.update(checkout_params)
+    elsif checkout.update(checkout_params)
+      redirect_to :back, flash: { success: t('update') }
     else
-      if @checkout.update_attributes(checkout_params)
-        redirect_to :back, flash: { success: t('update') }
-      else
-        render 'edit'
-      end
+      render 'edit'
     end
   end
 
@@ -38,14 +40,14 @@ class CheckoutsController < ApplicationController
   end
 
   def checkin
-    @checkout.update_attribute(:check_in , Time.now)
+    checkout.update_attribute(:check_in, Time.zone.now)
     redirect_to checkouts_path
   end
 
   private
 
-  def get_checkout
-    @checkout = Checkout.find(params[:id])
+  def checkout
+    @checkout ||= Checkout.find(params[:id])
   end
 
   def checkout_params
