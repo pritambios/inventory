@@ -15,7 +15,7 @@ class IssuesController < ApplicationController
   end
 
   def new
-    @issue = if (item = Item.find(params[:item_id]))
+    @issue = if (item = Item.find_by(id: params[:item_id]))
                item.issues.build
              else
                Issue.new

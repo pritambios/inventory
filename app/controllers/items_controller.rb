@@ -27,6 +27,10 @@ class ItemsController < ApplicationController
     end
   end
 
+  def edit
+    item
+  end
+
   def update
     if request.xhr?
       item.update(item_params)
@@ -41,6 +45,18 @@ class ItemsController < ApplicationController
     @item_histories = item.item_histories.order_descending.paginate(page: params[:item_histories_page])
     @checkouts      = item.checkouts.order_descending.paginate(page: params[:checkouts_page])
     @issues         = item.issues.order_descending.paginate(page: params[:issues_page])
+  end
+
+  def add_item
+    item
+  end
+
+  def allocate
+    item
+  end
+
+  def discard_reason
+    item
   end
 
   def reallocate
@@ -64,7 +80,7 @@ class ItemsController < ApplicationController
   end
 
   def update_parent
-    parent = Item.find(item_params["parent_id"])
+    parent = Item.find_by(id: item_params["parent_id"])
 
     if item.change_parent(parent)
       redirect_to item_path
@@ -75,7 +91,7 @@ class ItemsController < ApplicationController
   end
 
   def add_child
-    child = Item.find(item_params["parent_id"])
+    child = Item.find_by(id: item_params["parent_id"])
 
     if item.add_child(child)
       redirect_to item_path
@@ -109,6 +125,6 @@ class ItemsController < ApplicationController
   end
 
   def find_item_by_id
-    @item = Item.find(params[:id])
+    @item = Item.find_by(id: params[:id])
   end
 end

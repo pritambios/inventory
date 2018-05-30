@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   end
 
   def add_item
-    if (item = Item.find(params[:item]))
+    if (item = Item.find_by(id: params[:item]))
       item.update(user_id: @user.id)
     end
 
