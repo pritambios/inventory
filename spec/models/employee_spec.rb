@@ -46,13 +46,13 @@ describe Employee  do
 
     context "when both name and email are present" do
       it "should return name" do
-        expect(employee.name_or_email).to eq("#{employee.name}")
+        expect(employee.name_or_email).to eq(employee.name.to_s)
       end
     end
 
     context "when only email is present" do
       it "should return email" do
-        expect(another_employee.name_or_email).to eq("#{another_employee.email}")
+        expect(another_employee.name_or_email).to eq(another_employee.email.to_s)
       end
     end
   end

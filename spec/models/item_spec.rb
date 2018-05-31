@@ -7,11 +7,11 @@ describe Item do
     let!(:employee) { create(:employee, name: "Raman") }
 
     describe ".active" do
-      let!(:another_category) { create(:category, deleted_at: Date.today) }
-      let!(:item)             { create(:item, category: category, discarded_at: Date.new(2018,2,3)) }
+      let!(:another_category) { create(:category, deleted_at: Time.zone.today) }
+      let!(:item)             { create(:item, category: category, discarded_at: Date.new(2018, 2, 3)) }
       let!(:another_item)     { create(:item, category: another_category) }
       let!(:third_item)       { create(:item, category: category) }
-      let!(:fourth_item)      { create(:item, category: another_category, discarded_at: Date.new(2019,2,3)) }
+      let!(:fourth_item)      { create(:item, category: another_category, discarded_at: Date.new(2019, 2, 3)) }
 
       context "when category is valid and item has not been discarded" do
         it "should return the active item" do
@@ -39,10 +39,10 @@ describe Item do
     end
 
     describe ".available" do
-      let!(:item)                  { create(:item, category: category, brand: brand, created_at: Date.today) }
+      let!(:item)                  { create(:item, category: category, brand: brand, created_at: Time.zone.today) }
       let!(:another_item)          { create(:item, category: category, brand: brand, created_at: Date.yesterday) }
-      let!(:another_item_checkout) { create(:checkout, item: another_item, checkout: Date.today, check_in: Date.tomorrow) }
-      let!(:item_checkout)         { create(:checkout, item: item, checkout: Date.tomorrow, check_in: nil)}
+      let!(:another_item_checkout) { create(:checkout, item: another_item, checkout: Time.zone.today, check_in: Date.tomorrow) }
+      let!(:item_checkout)         { create(:checkout, item: item, checkout: Date.tomorrow, check_in: nil) }
 
       context "when item is checked out but check_in is nil" do
         it " should return available item" do
@@ -75,7 +75,7 @@ describe Item do
     end
 
     describe ".order_descending" do
-      let!(:item)         { create(:item, category: category, brand: brand, created_at: Date.today) }
+      let!(:item)         { create(:item, category: category, brand: brand, created_at: Time.zone.today) }
       let!(:another_item) { create(:item, category: category, brand: brand, created_at: Date.yesterday) }
       let!(:third_item)   { create(:item, category: category, brand: brand, created_at: Date.tomorrow) }
       let!(:fourth_item)  { create(:item, category: category, brand: brand, created_at: (Date.tomorrow + 10)) }
@@ -104,9 +104,9 @@ describe Item do
     end
 
     describe ".unavailable" do
-      let!(:item)                  { create(:item, category: category, brand: brand, created_at: Date.today) }
+      let!(:item)                  { create(:item, category: category, brand: brand, created_at: Time.zone.today) }
       let!(:another_item)          { create(:item, category: category, brand: brand, created_at: Date.yesterday) }
-      let!(:another_item_checkout) { create(:checkout, item: another_item, checkout: Date.today, check_in: Date.tomorrow) }
+      let!(:another_item_checkout) { create(:checkout, item: another_item, checkout: Time.zone.today, check_in: Date.tomorrow) }
       let!(:item_checkout)         { create(:checkout, item: item, checkout: Date.tomorrow, check_in: nil) }
 
       context "when item is checked out but check_in is nil" do
@@ -157,8 +157,8 @@ describe Item do
     end
 
     describe ".discarded_items" do
-      let!(:item)         { create(:item, category: category, brand: brand, created_at: Date.today) }
-      let!(:another_item) { create(:item, category: category, brand: brand, created_at: Date.yesterday, discarded_at: Date.tomorrow)}
+      let!(:item)         { create(:item, category: category, brand: brand, created_at: Time.zone.today) }
+      let!(:another_item) { create(:item, category: category, brand: brand, created_at: Date.yesterday, discarded_at: Date.tomorrow) }
 
       context "when discarded_at is not nil" do
         it "should return those items which have been discarded" do
@@ -174,10 +174,10 @@ describe Item do
     end
 
     describe ".parent_list" do
-      let!(:item)         { create(:item, category: category, brand: brand, created_at: Date.today) }
-      let!(:another_item) { create(:item, category: category, brand: brand, created_at: Date.today, parent: item) }
-      let!(:third_item)   { create(:item, category: category, brand: brand, created_at: Date.today, parent: another_item) }
-      let!(:fourth_item)  { create(:item, category: category, brand: brand, created_at: Date.today) }
+      let!(:item)         { create(:item, category: category, brand: brand, created_at: Time.zone.today) }
+      let!(:another_item) { create(:item, category: category, brand: brand, created_at: Time.zone.today, parent: item) }
+      let!(:third_item)   { create(:item, category: category, brand: brand, created_at: Time.zone.today, parent: another_item) }
+      let!(:fourth_item)  { create(:item, category: category, brand: brand, created_at: Time.zone.today) }
 
       context "when parent id is valid" do
         it "should return list of distinct parents" do
@@ -194,8 +194,8 @@ describe Item do
 
     describe ".filter_by_category" do
       let!(:another_category) { create(:category) }
-      let!(:item)             { create(:item, category: category, brand: brand, created_at: Date.today) }
-      let!(:another_item)     { create(:item, category: another_category, brand: brand, created_at: Date.today) }
+      let!(:item)             { create(:item, category: category, brand: brand, created_at: Time.zone.today) }
+      let!(:another_item)     { create(:item, category: another_category, brand: brand, created_at: Time.zone.today) }
 
       context "when category id is valid" do
         it "should return items belonging to that particular category" do
@@ -212,8 +212,8 @@ describe Item do
 
     describe ".filter_by_brand" do
       let!(:another_brand) { create(:brand) }
-      let!(:item)          { create(:item, category: category, brand: brand, created_at: Date.today) }
-      let!(:another_item)  { create(:item, category: category, brand: another_brand, created_at: Date.today) }
+      let!(:item)          { create(:item, category: category, brand: brand, created_at: Time.zone.today) }
+      let!(:another_item)  { create(:item, category: category, brand: another_brand, created_at: Time.zone.today) }
 
       context "when brand id is valid" do
         it "should return items belonging to that particular brand" do
@@ -229,10 +229,10 @@ describe Item do
     end
 
     describe ".filter_by_parent" do
-      let!(:item)         { create(:item, category: category, brand: brand, created_at: Date.today) }
-      let!(:another_item) { create(:item, category: category, brand: brand, created_at: Date.today) }
-      let!(:third_item)   { create(:item, category: category, brand: brand, created_at: Date.today, parent: item) }
-      let!(:fourth_item)  { create(:item, category: category, brand: brand, created_at: Date.today, parent: another_item) }
+      let!(:item)         { create(:item, category: category, brand: brand, created_at: Time.zone.today) }
+      let!(:another_item) { create(:item, category: category, brand: brand, created_at: Time.zone.today) }
+      let!(:third_item)   { create(:item, category: category, brand: brand, created_at: Time.zone.today, parent: item) }
+      let!(:fourth_item)  { create(:item, category: category, brand: brand, created_at: Time.zone.today, parent: another_item) }
 
       context "when parent id is valid" do
         it "should return items belonging to that particular parent" do
@@ -253,7 +253,7 @@ describe Item do
     let!(:brand)            { create(:brand) }
     let!(:another_category) { create(:category) }
     let!(:another_brand)    { create(:brand) }
-    let!(:item)             { create(:item, category: category, brand: brand, created_at: 6.day.ago.to_datetime) }
+    let!(:item)             { create(:item, category: category, brand: brand, created_at: 6.days.ago.to_datetime) }
 
     context "when category is changed" do
       before do
@@ -292,7 +292,7 @@ describe Item do
   describe ".filter_by_status" do
     let!(:employee)         { create(:employee) }
     let!(:allocated_item)   { create(:item, employee: employee) }
-    let!(:discarded_item)   { create(:item, discarded_at: Date.today) }
+    let!(:discarded_item)   { create(:item, discarded_at: Time.zone.today) }
     let!(:unallocated_item) { create(:item) }
 
     context "when employee_id is nil" do
@@ -338,7 +338,6 @@ describe Item do
         expect(second_item.parent_id).not_to eq(another_item.id)
       end
     end
-
   end
 
   describe "#add_child" do
@@ -402,8 +401,12 @@ describe Item do
     let!(:item)             { create(:item) }
     let!(:employee)         { create(:employee) }
     let!(:another_employee) { create(:employee) }
-    let!(:item_checkout)    { create(:checkout, employee: employee, check_in: nil, reason: "System failure", checkout: Date.today, item: item, created_at: Date.today) }
-    let!(:another_item_checkout) { create(:checkout, employee: another_employee, check_in: nil, reason: "any reason", checkout: Date.today, item: item, created_at: Date.today-1) }
+    let!(:item_checkout)    do
+      create(:checkout, employee: employee, check_in: nil, reason: "System failure", checkout: Time.zone.today, item: item, created_at: Time.zone.today)
+    end
+    let!(:another_item_checkout) do
+      create(:checkout, employee: another_employee, check_in: nil, reason: "any reason", checkout: Time.zone.today, item: item, created_at: Time.zone.today - 1)
+    end
 
     context "when check_in is nil" do
       it "should return all checkouts whose check_in is nil" do
@@ -427,8 +430,8 @@ describe Item do
   describe "#unavailable?" do
     let!(:item)                  { create(:item) }
     let!(:another_item)          { create(:item) }
-    let!(:item_checkout)         { create(:checkout, item: item, check_in: Date.today, reason: "anything", checkout: Date.today) }
-    let!(:another_item_checkout) { create(:checkout, item: another_item, check_in: nil, reason: "anything", checkout: Date.today) }
+    let!(:item_checkout)         { create(:checkout, item: item, check_in: Time.zone.today, reason: "anything", checkout: Time.zone.today) }
+    let!(:another_item_checkout) { create(:checkout, item: another_item, check_in: nil, reason: "anything", checkout: Time.zone.today) }
 
     context "when checkin is present" do
       it "should return false" do
