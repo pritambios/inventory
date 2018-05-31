@@ -5,8 +5,8 @@ class Checkout < ApplicationRecord
   validates :item, :checkout, :reason, :employee, presence: true
   validate  :checkout_limitation
 
-  scope :order_descending,-> { order('created_at DESC') }
-  scope :pending,         -> { where(check_in: nil) }
+  scope :order_descending, -> { order('created_at DESC') }
+  scope :pending, -> { where(check_in: nil) }
 
   def checkin?
     check_in.present?

@@ -11,7 +11,7 @@ class Issue < ApplicationRecord
   delegate :name, to: :employee, prefix: true
 
   scope :order_descending, -> { order('created_at DESC') }
-  scope :unclosed,        -> { where(closed_at: nil) }
+  scope :unclosed, -> { where(closed_at: nil) }
 
   def item_closed_at_limitation
     if closed_at.present? && item.present? && item.purchase_on.present?
