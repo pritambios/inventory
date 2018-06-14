@@ -55,4 +55,10 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  rubocop_output = `rubocop`
+  print rubocop_output
+  if rubocop_output =~ /files inspected, no offenses detected/
+    raise "RuboCop Errors"
+  end
 end

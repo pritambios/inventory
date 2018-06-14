@@ -1,0 +1,123 @@
+AllCops:
+  TargetRubyVersion: 2.3.3
+  Severity: warning
+  Exclude:
+    - "db/**/*"
+    - "tmp/**/*"
+    - "vendor/**/*"
+    - "bin/**/*"
+    - "log/**/*"
+
+# Checks for rails related issues
+Rails:
+  Enabled: true
+
+# Guiding principle of classes is Single Responsibility Principle (SRP), SRP can't be accurately measured by Lines of Code
+Metrics/ClassLength:
+  Enabled: false
+
+# Too short methods lead to extraction of single-use methods, which can make
+# the code easier to read (by naming things), but can also clutter the class
+Metrics/MethodLength:
+  Max: 50
+
+#Checks the block length, which is large sometimes in general
+Metrics/BlockLength:
+  Enabled: false
+
+# Commonly used screens these days easily fit more than 80 characters.
+Metrics/LineLength:
+  Max: 160
+
+# Single quotes being faster is hardly measurable and only affects parse time.
+# Enforcing double quotes reduces the times where you need to change them
+# when introducing an interpolation. Use single quotes only if their semantics
+# are needed.
+Style/StringLiterals:
+  Enabled: false
+ #EnforcedStyle: double_quotes  This gives error for single quotes then
+
+# This cop makes sure that certain binary operator methods have their sole parameter named other.
+# I think it will be confusing calling the argument 'other' in all such cases
+Naming/BinaryOperatorParameterName:
+  Enabled: false
+
+# We are not writing any comments during coding
+Documentation:
+  Enabled: false
+
+# This cop checks that methods specified in the filter's `only` or `except` options are explicitly defined in the class or module.
+# Sometimes we have an 'edit' method, it is important for the forms in views to work,but we just specify it in before action
+# and not write an empty 'edit' action.
+Rails/LexicallyScopedActionFilter:
+  Enabled: false
+
+# This cop looks for has_(one|many) and belongs_to associations
+# where Active Record can't automatically determine the inverse association because of a scope or the options used.
+#WE NEVER DEFINED ONE, CHECK IF OKAY
+Rails/InverseOf:
+  Enabled: false
+
+#Some methods like pluck are used sometimes which skips model validations, rails guide suggests to use those methods
+#only when required and thus is it used in the projects
+Rails/SkipsModelValidations:
+  Enabled: false
+
+#Frozen string literal is default in Ruby3.0, also
+#The frozen string literal comment is only valid in Ruby 2.3+.
+#causes issues in spec files , CHECK IF OKAY
+Style/FrozenStringLiteralComment:
+ Enabled: false
+
+#This cop tries to produce a complexity score that's a measure of the complexity the reader experiences when looking at a method.
+#CHECK THIS, I couldn't figure out much importance
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+# The cyclomatic complexity is the number of linearly independent paths through a method.
+# The algorithm counts decision points and adds one
+#CHECK FOR MAX VALUE default is 6
+
+Metrics/CyclomaticComplexity:
+  Max: 8
+ # Enabled: false
+
+#its the [A]ssignemnts, [B]ranches, and [C]onditions size,
+#CHECK MAX VALUE REQUIREMENT, default is 15
+Metrics/AbcSize:
+  Max: 15
+  Enabled: false
+
+
+#Enforces use of %i or %I for an array of symbols, which is not required.
+Style/SymbolArray:
+  Enabled: false
+
+#method naming convention
+Naming/AccessorMethodName:
+  Enabled: true
+
+# The space here provides no real gain in readability while consuming
+Layout/SpaceInsideBlockBraces:
+  SpaceBeforeBlockParameters: true
+
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: space
+
+# Rubocop is marking variables used as useless in specs.
+Lint/UselessAssignment:
+  Exclude:
+    - "spec/**/*"
+  Enabled: false
+
+# Rubocop asks to write if blocks in guard clause formats which is not required by us.
+Style/GuardClause:
+  Enabled: false
+
+# Rubocop asks to use unless or if for single line conditions
+Style/IfUnlessModifier:
+  Enabled: false
+
+#Using compact style (Admin::QuestionPapersController) makes the code more readable
+Style/ClassAndModuleChildren:
+  Enabled: false
