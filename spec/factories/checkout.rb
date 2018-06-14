@@ -1,6 +1,6 @@
 require 'faker'
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :checkout do |f|
     item
     f.checkout { Date.today }

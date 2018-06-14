@@ -1,5 +1,5 @@
 require 'faker'
-FactoryGirl.define do
+FactoryBot.define do
   factory :resolution do |f|
     f.name { Faker::Name.name }
   end
