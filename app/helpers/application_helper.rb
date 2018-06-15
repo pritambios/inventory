@@ -1,15 +1,16 @@
 module ApplicationHelper
   def back_link
-    link_to ("<i class='fa fa-arrow-left'></i> #{ t('button.back') }").html_safe, :back
+    link_to content_tag(:i, t('button.back'), class: 'fa fa-arrow-left'), :back
   end
 
   def delete_link(path)
-     link_to ("<i class='fa fa-trash' title=t('button_delete_title')></i> #{ t('button.delete.name') }").html_safe, path, method: :delete,
-                data: { confirm: t('button.delete.confirm_message') }, class: 'btn btn-danger btn-sm'
+    link_to content_tag(:i, t('button.delete.name'), title: t('button.delete.title'), class: 'fa fa-trash'),
+            path, method: :delete, data: { confirm: t('button.delete.confirm_message') }, class: 'btn btn-danger btn-sm'
   end
 
   def edit_link(path, title = t('button.edit.title'))
-    link_to ("<i class='fa fa-edit' title=t('button.edit.button_title')></i> #{ t('button.edit.name') }").html_safe, path, data: { remote_popup: true, title: "#{ t('button.edit.popup_title') } #{title}" }, class: 'link-edit'
+    link_to content_tag(:i, t('button.edit.name'), title: t('button.edit.button_title'), class: 'fa fa-edit'),
+            path, data: { remote_popup: true, title: "#{t('button.edit.popup_title')} #{title}" }, class: 'link-edit'
   end
 
   def flash_message_type(message_type)
@@ -27,7 +28,7 @@ module ApplicationHelper
   end
 
   def show_link(path)
-    link_to ('<i class="fa fa-eye"></i>').html_safe, path, class: 'btn-show'
+    link_to content_tag(:i, '', class: 'fa fa-eye'), path, class: 'btn-show'
   end
 
   def unobtrusive_js(code)
