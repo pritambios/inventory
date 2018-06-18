@@ -1,5 +1,5 @@
 class EmployeesController < ApplicationController
-  before_action :get_employee, only: [:edit, :update, :show, :destroy, :allocate_item, :add_item]
+  before_action :employee, only: [:edit, :update, :show, :destroy, :allocate_item, :add_item]
 
   def new
     @employee = Employee.new
@@ -10,24 +10,20 @@ class EmployeesController < ApplicationController
 
     if request.xhr?
       @employee.save
+    elsif @employee.save
+      redirect_to :back, flash: { success: t('create') }
     else
-      if @employee.save
-        redirect_to :back, flash: { success: t('create') }
-      else
-        render 'new'
-      end
+      render 'new'
     end
   end
 
   def update
     if request.xhr?
-      @employee.update_attributes(employee_params)
+      @employee.update(employee_params)
+    elsif @employee.update(employee_params)
+      redirect_to :back, flash: { success: t('update') }
     else
-      if @employee.update_attributes(employee_params)
-        redirect_to :back, flash: { success: t('update') }
-      else
-        render 'edit'
-      end
+      render 'edit'
     end
   end
 
@@ -41,22 +37,22 @@ class EmployeesController < ApplicationController
   end
 
   def add_item
-    if item = Item.find_by_id(params[:item])
-      item.update_attributes(employee_id: @employee.id)
+    if (item = Item.find_by(id: params[:item]))
+      item.update(employee_id: @employee.id)
     end
 
     redirect_to employee_path
   end
 
   def fetch
-    FetchExternalEmployee.add_employees()
+    FetchExternalEmployee.add_employees
     redirect_to employees_path
   end
 
   private
 
-  def get_employee
-    @employee = Employee.find(params[:id])
+  def employee
+    @employee ||= Employee.find(params[:id])
   end
 
   def employee_params

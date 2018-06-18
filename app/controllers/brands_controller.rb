@@ -1,5 +1,5 @@
 class BrandsController < ApplicationController
-  before_action :get_brand, only: [:edit, :update, :destroy]
+  before_action :brand, only: [:edit, :update, :destroy]
 
   def index
     @brands = Brand.active.order_by_name.includes(:items).paginate(page: params[:page])
@@ -15,24 +15,20 @@ class BrandsController < ApplicationController
     if request.xhr?
       @brand.save
       flash[:success] = t('create')
+    elsif @brand.save
+      redirect_to :back, flash: { success: t('create') }
     else
-      if @brand.save
-        redirect_to :back, flash: { success: t('create') }
-      else
-        render 'new'
-      end
+      render 'new'
     end
   end
 
   def update
     if request.xhr?
-      @brand.update_attributes(brand_params)
+      @brand.update(brand_params)
+    elsif @brand.update(brand_params)
+      redirect_to :back, flash: { success: t('update') }
     else
-      if @brand.update_attributes(brand_params)
-        redirect_to :back, flash: { success: t('update') }
-      else
-        render 'edit'
-      end
+      render 'edit'
     end
   end
 
@@ -46,7 +42,7 @@ class BrandsController < ApplicationController
 
   def destroy
     if @brand.items.empty?
-      @brand.update_attributes(deleted_at: Time.now)
+      @brand.update(deleted_at: Time.zone.now)
       redirect_to brands_path, flash: { success: t('.success') }
     else
       redirect_to brands_path, flash: { error: t('.error') }
@@ -55,8 +51,8 @@ class BrandsController < ApplicationController
 
   private
 
-  def get_brand
-    @brand = Brand.find(params[:id])
+  def brand
+    @brand ||= Brand.find(params[:id])
   end
 
   def brand_params

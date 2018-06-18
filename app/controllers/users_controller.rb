@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :get_user, only: [:edit, :update, :destroy]
+  before_action :user, only: [:edit, :update, :destroy]
 
   def index
     @users = User.order_by_name.paginate(page: params[:page])
@@ -14,24 +14,20 @@ class UsersController < ApplicationController
 
     if request.xhr?
       @user.save
+    elsif @user.save
+      redirect_to :back, flash: { success: t('create') }
     else
-      if @user.save
-        redirect_to :back, flash: { success: t('create') }
-      else
-        render 'new'
-      end
+      render 'new'
     end
   end
 
   def update
     if request.xhr?
-      @user.update_attributes(user_params)
+      @user.update(user_params)
+    elsif @user.update(user_params)
+      redirect_to :back, flash: { success: t('update') }
     else
-      if @user.update_attributes(user_params)
-        redirect_to :back, flash: { success: t('update') }
-      else
-        render 'edit'
-      end
+      render 'edit'
     end
   end
 
@@ -44,8 +40,8 @@ class UsersController < ApplicationController
   end
 
   def add_item
-    if item = Item.find_by_id(params[:item])
-      item.update_attributes(user_id: @user.id)
+    if (item = Item.find_by(id: params[:item]))
+      item.update(user_id: @user.id)
     end
 
     redirect_to user_path
@@ -53,8 +49,8 @@ class UsersController < ApplicationController
 
   private
 
-  def get_user
-    @user = User.find(params[:id])
+  def user
+    @user ||= User.find(params[:id])
   end
 
   def user_params
