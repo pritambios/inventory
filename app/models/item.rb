@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
   PERMISSIBLE_HOURS = 48
-  STATUS = { Allocated: "allocated_items", Unallocated: "unallocated_items", Discarded: "discarded_items" }
+  STATUS = { Allocated: "allocated_items", Unallocated: "unallocated_items", Discarded: "discarded_items" }.freeze
 
   around_save :update_item_history
 
@@ -33,22 +33,22 @@ class Item < ApplicationRecord
   scope :allocated_items,     -> { where.not(employee_id: nil) }
   scope :discarded_items,     -> { where.not(discarded_at: nil) }
   scope :parent_list,         -> { joins(:childrens).distinct }
-  scope :filter_by_category,  -> (id) { where(category_id: id) }
-  scope :filter_by_brand,     -> (id) { where(brand_id: id) }
-  scope :filter_by_parent,    -> (id) { where(parent_id: id) }
+  scope :filter_by_category,  ->(id) { where(category_id: id) }
+  scope :filter_by_brand,     ->(id) { where(brand_id: id) }
+  scope :filter_by_parent,    ->(id) { where(parent_id: id) }
 
   def edit_item_details
     if category_id_changed? || brand_id_changed?
-      errors.add(:base, "Brand or Category cannot be changed after 48 hours")  if created_at < PERMISSIBLE_HOURS.hours.ago
+      errors.add(:base, "Brand or Category cannot be changed after 48 hours") if created_at < PERMISSIBLE_HOURS.hours.ago
     end
   end
 
   def self.unassociated_items(item)
-    where.not(id: item.childrens.pluck(:id,item.id))
+    where.not(id: item.childrens.pluck(:id, item.id))
   end
 
   def self.filter_by_status(status)
-    if STATUS.has_key?(status.to_sym)
+    if STATUS.key?(status.to_sym)
       send(STATUS[status.to_sym])
     else
       all
@@ -58,8 +58,8 @@ class Item < ApplicationRecord
   def change_parent(parent)
     if parent.present? && self != parent
 
-      unless self.childrens.include?(parent)
-        self.update_attributes(parent_id: parent.id)
+      unless childrens.include?(parent)
+        update(parent_id: parent.id)
       end
     end
   end
@@ -67,8 +67,8 @@ class Item < ApplicationRecord
   def add_child(child)
     if child.present? && self != child
 
-      unless child.id == self.parent_id
-        @update_child = child.update_attributes(parent_id: self.id)
+      unless child.id == parent_id
+        @update_child = child.update(parent_id: id)
       end
     end
   end
@@ -95,22 +95,22 @@ class Item < ApplicationRecord
   end
 
   def discard(reason)
-    update_attributes(working: false, discarded_at: Time.now, employee_id: nil, discard_reason: reason)
+    update(working: false, discarded_at: Time.zone.now, employee_id: nil, discard_reason: reason)
   end
 
   def approve_item(user)
-    update_attributes(approved_by: user, approved_at: Time.now)
+    update(approved_by: user, approved_at: Time.zone.now)
   end
 
   def reject_item(user)
-    update_attributes(rejected_by: user, rejected_at: Time.now)
+    update(rejected_by: user, rejected_at: Time.zone.now)
   end
 
   private
 
   def update_item_history
     if employee_id_changed? || working_changed? || new_record? || parent_id_changed?
-      item_history = item_histories.build(employee_id: employee_id,  status: working, parent_id: parent_id)
+      item_history = item_histories.build(employee_id: employee_id, status: working, parent_id: parent_id)
     end
 
     yield

@@ -1,5 +1,5 @@
 class Employee < ApplicationRecord
-  STATUS = { Active: "active", Inactive: "inactive" }
+  STATUS = { Active: "active", Inactive: "inactive" }.freeze
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
@@ -22,7 +22,7 @@ class Employee < ApplicationRecord
   end
 
   def deallocate_items
-    items.clear() if active_changed? && active == false
+    items.clear if active_changed? && active == false
   end
 
   def update_from_auth(auth)
@@ -33,7 +33,7 @@ class Employee < ApplicationRecord
   end
 
   def self.filter_by_status(status)
-    if STATUS.has_key?(status.to_sym)
+    if STATUS.key?(status.to_sym)
       send(STATUS[status.to_sym])
     else
       all
