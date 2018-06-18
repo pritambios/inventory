@@ -49,8 +49,8 @@ describe Checkout do
 
   describe "#checkout_limitation" do
     context "when checkout date is before purchase date" do
-      let!(:item)     { create(:item, purchase_on: (Date.today)) }
-      let!(:checkout) { build(:checkout, item: item, checkout: (Date.today-1)) }
+      let!(:item)     { create(:item, purchase_on: Time.zone.today) }
+      let!(:checkout) { build(:checkout, item: item, checkout: (Time.zone.today - 1)) }
 
       it "should be invalid" do
         expect(checkout).to be_invalid
@@ -58,8 +58,8 @@ describe Checkout do
     end
 
     context "when checkout date is after purchase date" do
-      let!(:another_item)     { create(:item, purchase_on: (Date.today-1)) }
-      let!(:another_checkout) { create(:checkout, item: another_item, checkout: (Date.today)) }
+      let!(:another_item)     { create(:item, purchase_on: (Time.zone.today - 1)) }
+      let!(:another_checkout) { create(:checkout, item: another_item, checkout: Time.zone.today) }
 
       it "should be valid" do
         expect(another_checkout).to be_valid

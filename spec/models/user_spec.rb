@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe User  do
+describe User do
   context "scopes" do
     let!(:user)         { create(:user, first_name: "Sandeep") }
     let!(:another_user) { create(:user, first_name: "Aman") }
@@ -34,7 +34,7 @@ describe User  do
 
     context "when only email is present" do
       it "should return email" do
-        expect(another_user.name_or_email).to eq("#{another_user.email}")
+        expect(another_user.name_or_email).to eq(another_user.email.to_s)
       end
     end
   end

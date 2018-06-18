@@ -3,7 +3,7 @@ require "rails_helper"
 describe Category do
   context "scopes" do
     let!(:category)         { create(:category, deleted_at: nil, name: "Mouse") }
-    let!(:another_category) { create(:category, deleted_at: Time.now, name: "Keyboard") }
+    let!(:another_category) { create(:category, deleted_at: Time.zone.now, name: "Keyboard") }
 
     describe ".active" do
       context "when category is active" do

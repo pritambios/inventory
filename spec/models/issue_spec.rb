@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe Issue do
   context "scopes" do
-    let!(:issue)         { create(:issue, created_at: Date.yesterday, closed_at: Date.today) }
-    let!(:another_issue) { create(:issue, created_at: Date.today, closed_at: nil) }
+    let!(:issue)         { create(:issue, created_at: Date.yesterday, closed_at: Time.zone.today) }
+    let!(:another_issue) { create(:issue, created_at: Time.zone.today, closed_at: nil) }
 
     describe ".order_descending" do
       it "should order issue names as per date/time created in desc order" do
@@ -27,7 +27,7 @@ describe Issue do
   end
 
   describe "#item_closed_at_limitation" do
-    let!(:another_item)  { create(:item, purchase_on: Date.today) }
+    let!(:another_item)  { create(:item, purchase_on: Time.zone.today) }
     let!(:another_issue) { create(:issue, item: another_item, closed_at: Date.tomorrow) }
 
     context "when closed_at date is smaller than purchase_on date" do

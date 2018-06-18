@@ -2,7 +2,6 @@ require "rails_helper"
 
 describe ItemHistory do
   context "scopes" do
-
     let!(:category)     { create(:category) }
     let!(:item)         { create(:item, category: category) }
     let!(:another_item) { create(:item, category: category) }

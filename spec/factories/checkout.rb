@@ -3,9 +3,9 @@ require 'faker'
 FactoryBot.define do
   factory :checkout do |f|
     item
-    f.checkout { Date.today }
+    f.checkout { Time.zone.today }
     f.reason   { "System failure" }
-    f.check_in { Date.today }
+    f.check_in { Time.zone.today }
     employee
   end
 end

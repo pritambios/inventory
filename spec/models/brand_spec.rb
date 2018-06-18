@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Brand do
   context "scopes" do
     let!(:brand)         { create(:brand, deleted_at: nil, name: "Microsoft") }
-    let!(:another_brand) { create(:brand, deleted_at: Time.now, name: "Frontech") }
+    let!(:another_brand) { create(:brand, deleted_at: Time.zone.now, name: "Frontech") }
 
     describe ".active" do
       context "when brand is active" do
