@@ -2,10 +2,10 @@ require 'rails_helper'
 
 describe Checkout do
   context "scopes" do
-    let!(:employee)         { create(:employee) }
-    let!(:item)             { create(:item, employee: employee) }
-    let!(:checkout)         { create(:checkout, item: item, created_at: Date.yesterday) }
-    let!(:another_checkout) { create(:checkout, item: item, check_in: nil, created_at: Date.tomorrow) }
+    let(:employee)         { create(:employee) }
+    let(:item)             { create(:item, employee: employee) }
+    let(:checkout)         { create(:checkout, item: item, created_at: Date.yesterday) }
+    let(:another_checkout) { create(:checkout, item: item, check_in: nil, created_at: Date.tomorrow) }
 
     describe ".order_descending" do
       it "should list Checkouts in descending order" do
@@ -29,10 +29,10 @@ describe Checkout do
   end
 
   describe "#checkin?" do
-    let!(:employee)         { create(:employee) }
-    let!(:item)             { create(:item, employee: employee) }
-    let!(:checkout)         { create(:checkout, item: item) }
-    let!(:another_checkout) { create(:checkout, item: item, check_in: nil) }
+    let(:employee)         { create(:employee) }
+    let(:item)             { create(:item, employee: employee) }
+    let(:checkout)         { create(:checkout, item: item) }
+    let(:another_checkout) { create(:checkout, item: item, check_in: nil) }
 
     context "when check_in is present" do
       it "should return true" do
@@ -49,8 +49,8 @@ describe Checkout do
 
   describe "#checkout_limitation" do
     context "when checkout date is before purchase date" do
-      let!(:item)     { create(:item, purchase_on: Time.zone.today) }
-      let!(:checkout) { build(:checkout, item: item, checkout: (Time.zone.today - 1)) }
+      let(:item)     { create(:item, purchase_on: Time.zone.today) }
+      let(:checkout) { build(:checkout, item: item, checkout: (Time.zone.today - 1)) }
 
       it "should be invalid" do
         expect(checkout).to be_invalid
@@ -58,8 +58,8 @@ describe Checkout do
     end
 
     context "when checkout date is after purchase date" do
-      let!(:another_item)     { create(:item, purchase_on: (Time.zone.today - 1)) }
-      let!(:another_checkout) { create(:checkout, item: another_item, checkout: Time.zone.today) }
+      let(:another_item)     { create(:item, purchase_on: (Time.zone.today - 1)) }
+      let(:another_checkout) { create(:checkout, item: another_item, checkout: Time.zone.today) }
 
       it "should be valid" do
         expect(another_checkout).to be_valid

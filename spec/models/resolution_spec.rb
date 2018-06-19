@@ -2,8 +2,8 @@ require "rails_helper"
 
 describe Resolution do
   context "scopes" do
-    let!(:resolution)         { create(:resolution, name: "Unresolved") }
-    let!(:another_resolution) { create(:resolution, name: "Resolved") }
+    let(:resolution)         { create(:resolution, name: "Unresolved") }
+    let(:another_resolution) { create(:resolution, name: "Resolved") }
 
     describe ".order_by_name" do
       it "should order resolutions alphabetically according to name" do

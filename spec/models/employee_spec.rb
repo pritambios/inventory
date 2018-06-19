@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe Employee  do
   context "scopes" do
-    let!(:employee)         { create(:employee, name: "Raman", active: true) }
-    let!(:another_employee) { create(:employee, name: "Naman", active: false) }
+    let(:employee)         { create(:employee, name: "Raman", active: true) }
+    let(:another_employee) { create(:employee, name: "Naman", active: false) }
 
     describe ".order_by_name" do
       it "should order employees alphabetically according to name" do
@@ -41,8 +41,8 @@ describe Employee  do
   end
 
   describe "#name_or_email" do
-    let!(:employee)         { create(:employee) }
-    let!(:another_employee) { create(:employee, name: nil) }
+    let(:employee)         { create(:employee) }
+    let(:another_employee) { create(:employee, name: nil) }
 
     context "when both name and email are present" do
       it "should return name" do
@@ -58,8 +58,8 @@ describe Employee  do
   end
 
   describe "#deallocate_items" do
-    let!(:employee) { create(:employee, active: true) }
-    let!(:item)     { create(:item, employee: employee) }
+    let(:employee) { create(:employee, active: true) }
+    let(:item)     { create(:item, employee: employee) }
 
     before do
       employee.update(active: false)
