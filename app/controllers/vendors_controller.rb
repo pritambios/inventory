@@ -11,7 +11,7 @@ class VendorsController < ApplicationController
     if request.xhr?
       @vendor.save
     elsif @vendor.save
-      redirect_to :back, flash: { success: t('create') }
+      redirect_back(fallback_location: root_path, flash: { success: t('create') })
     else
       render 'new'
     end
@@ -21,7 +21,7 @@ class VendorsController < ApplicationController
     if request.xhr?
       @vendor.update(vendor_params)
     elsif @vendor.update(vendor_params)
-      redirect_to :back, flash: { success: t('update') }
+      redirect_back(fallback_location: root_path, flash: { success: t('update') })
     else
       render 'edit'
     end

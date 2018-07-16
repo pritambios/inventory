@@ -11,7 +11,7 @@ class EmployeesController < ApplicationController
     if request.xhr?
       @employee.save
     elsif @employee.save
-      redirect_to :back, flash: { success: t('create') }
+      redirect_back(fallback_location: root_path, flash: { success: t('create') })
     else
       render 'new'
     end
@@ -21,7 +21,7 @@ class EmployeesController < ApplicationController
     if request.xhr?
       @employee.update(employee_params)
     elsif @employee.update(employee_params)
-      redirect_to :back, flash: { success: t('update') }
+      redirect_back(fallback_location: root_path, flash: { success: t('update') })
     else
       render 'edit'
     end

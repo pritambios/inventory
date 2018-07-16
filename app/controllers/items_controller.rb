@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
     if request.xhr?
       @item.save
     elsif @item.save
-      redirect_to :back, flash: { success: t('create') }
+      redirect_back(fallback_location: root_path, flash: { success: t('create') })
     else
       render 'new'
     end
@@ -32,7 +32,7 @@ class ItemsController < ApplicationController
     if request.xhr?
       @item.update(item_params)
     elsif @item.update(item_params)
-      redirect_to :back, flash: { success: t('update') }
+      redirect_back(fallback_location: root_path, flash: { success: t('update') })
     else
       render 'edit'
     end
@@ -46,7 +46,7 @@ class ItemsController < ApplicationController
 
   def reallocate
     @item.reallocate(reallocate_employee_params["employee_id"])
-    redirect_to :back, flash: { success: t('reallocate') }
+    redirect_back(fallback_location: root_path, flash: { success: t('reallocate') })
   end
 
   def destroy

@@ -26,7 +26,7 @@ class Employee::IssuesController < ActionController::Base
     @issue = current_employee.issues.build(issue_params)
 
     if @issue.save
-      redirect_to :back, flash: { success: t('create') } unless request.xhr?
+      redirect_back(fallback_location: root_path, flash: { success: t('create') }) unless request.xhr?
     else
       render :new
     end
@@ -36,7 +36,7 @@ class Employee::IssuesController < ActionController::Base
     @issue = current_employee.issues.find(params[:id])
 
     if @issue.update(issue_params)
-      redirect_to :back, flash: { success: t('update') } unless request.xhr?
+      redirect_back(fallback_location: root_path, flash: { success: t('update') }) unless request.xhr?
     else
       render :edit
     end

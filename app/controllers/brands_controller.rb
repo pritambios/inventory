@@ -16,7 +16,7 @@ class BrandsController < ApplicationController
       @brand.save
       flash[:success] = t('create')
     elsif @brand.save
-      redirect_to :back, flash: { success: t('create') }
+      redirect_back(fallback_location: root_path, flash: { success: t('create') })
     else
       render 'new'
     end
@@ -26,7 +26,7 @@ class BrandsController < ApplicationController
     if request.xhr?
       @brand.update(brand_params)
     elsif @brand.update(brand_params)
-      redirect_to :back, flash: { success: t('update') }
+      redirect_back(fallback_location: root_path, flash: { success: t('update') })
     else
       render 'edit'
     end
