@@ -89,10 +89,10 @@ Rails.application.configure do
                                           email: {
                                             email_prefix: "[Inventory Error] ",
                                             sender_address: %("sender" <support@kreeti.com>),
-                                            exception_recipients: %w[ssinghi@kreeti.com nbanerjee@kreeti.com aroy@kreeti.com]
+                                            exception_recipients: %w[ssinghi@kreeti.com abasu@kreeti.com ksharma@kreeti.com]
                                           }
 
-  config.action_mailer.delivery_method = :amazon_ses
+  config.action_mailer.delivery_method = :aws_sdk
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
 end

@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'aws-sdk', '~> 2.3'
+gem 'aws-sdk-rails'
+gem 'aws-sdk-s3', '~> 1.30'
 gem 'bootstrap-sass', '3.2.0.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 gem 'exception_notification'
@@ -11,7 +12,7 @@ gem 'jquery-rails'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'mysql2', '~> 0.4.4'
 gem "omniauth-google-oauth2"
-gem "paperclip", "~> 5.0.0"
+gem "paperclip", "~> 6.0.0"
 gem 'puma', '~> 3.0'
 gem 'rails', '~> 5.2'
 gem 'sass-rails', '~> 5.0.7'
