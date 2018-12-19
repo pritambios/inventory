@@ -9,7 +9,7 @@ if Rails.env.production?
     s3_credentials: {
       bucket: Rails.application.secrets.bucket,
       access_key_id: Rails.application.secrets.aws_access_key_id,
-      secret_access_key: Rails.application.secrets.aws_secret_access_key,
+      secret_access_key: Rails.application.secrets.aws_access_key_secret,
       s3_region: Rails.application.secrets.aws_region
     },
     s3_permissions: :private
