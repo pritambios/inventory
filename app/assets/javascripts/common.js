@@ -28,3 +28,16 @@ $(document).on('change', "#issue_system_id", function() {
   var selected = $(this).find('option:selected');
   $('#issue_closed_at').data('DateTimePicker').minDate(moment(selected.data('assembled_on'), 'YYYY MM DD'));
 });
+
+$(document).on('show.bs.modal', '#attachmentModal', function(event){
+  var button = $(event.relatedTarget);
+  var url = button.data('url');
+  if (button.data('type').match(/image|pdf/)) {
+    $("#attachment").show();
+    $("#attachment").attr('data', url);
+  }
+  else {
+    $("#attachment").hide();
+    $("#attachment-without-preview a").attr("href", url)
+  }
+});

@@ -453,3 +453,23 @@ body {
 .item_status {
   min-width: 200px;
 }
+
+#attachmentModal {
+  .modal-dialog {
+    width: 1000px;
+  }
+
+  .modal-body {
+    height: 700px;
+  }
+}
+
+#attachment-without-preview {
+  font-weight: bold;
+  position: relative;
+  top: 50%;
+
+  a {
+    display: block;
+  }
+}
