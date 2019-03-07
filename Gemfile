@@ -11,7 +11,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'mysql2', '~> 0.4.4'
-gem "omniauth-google-oauth2"
+gem 'omniauth-google-oauth2', '~> 0.6.0'
 gem "paperclip", "~> 6.0.0"
 gem 'puma', '~> 3.0'
 gem 'rails', '~> 5.2'
