@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'aws-sdk-rails'
 gem 'aws-sdk-s3', '~> 1.30'
-gem 'bootstrap-sass', '3.2.0.0'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 gem 'exception_notification'
 gem 'font-awesome-sass', '~> 4.7.0'
