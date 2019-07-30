@@ -3,12 +3,12 @@ en:
     application:
       title: "Kreeti Technologies"
     footer:
-      content: "Copyright &copy; 2016 Kreeti Technologies Pvt. Ltd. All rights reserved."
+      content: "Copyright &copy; 2019 Kreeti Technologies Pvt. Ltd. All rights reserved."
     login:
       welcome: "Welcome to"
       heading: "Inventory Management System"
       signin_text: "Sign in or Sign up in just a click!"
-      footer: "Copyright &copy; 2016 Kreeti Technologies Pvt. Ltd. All rights reserved."
+      footer: "Copyright &copy; 2019 Kreeti Technologies Pvt. Ltd. All rights reserved."
     employee:
       title: "Kreeti Technologies"
     navigation:
